@@ -5,6 +5,11 @@
  */
 package Interfaces;
 
+import basededatos.BDD;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author Cherne
@@ -14,9 +19,13 @@ public class I_Login extends javax.swing.JFrame {
     /**
      * Creates new form I_Login
      */
+    
+    BDD a;
+    
     public I_Login() {
         initComponents();
-       
+        lbl_invisible.setVisible(false);
+        a = new BDD();
     }
 
     /**
@@ -38,6 +47,7 @@ public class I_Login extends javax.swing.JFrame {
         btn_iniciar = new javax.swing.JButton();
         btn_salir = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
+        txt_password = new javax.swing.JPasswordField();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -60,11 +70,17 @@ public class I_Login extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setText("Contraseña:");
 
-        lbl_invisible.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lbl_invisible.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
+        lbl_invisible.setForeground(new java.awt.Color(255, 0, 0));
         lbl_invisible.setText("Label Invisible");
 
         btn_iniciar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btn_iniciar.setText("Iniciar Sesion");
+        btn_iniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_iniciarActionPerformed(evt);
+            }
+        });
 
         btn_salir.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btn_salir.setText("Salir");
@@ -75,6 +91,7 @@ public class I_Login extends javax.swing.JFrame {
         });
 
         jPasswordField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txt_password.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -85,19 +102,20 @@ public class I_Login extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lbl_invisible, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(btn_iniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_usuario)
-                            .addComponent(jPasswordField1))))
+                            .addComponent(txt_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                            .addComponent(txt_password))))
                 .addGap(6, 6, 6))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btn_iniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,20 +127,19 @@ public class I_Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbl_invisible)
-                .addGap(7, 7, 7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_iniciar)
-                    .addComponent(btn_salir))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_salir)
+                    .addComponent(btn_iniciar)))
         );
 
         jButton3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes_000\\Documents\\GitHub\\SistemaInventariosIEE\\src\\Recursos\\ic_help_outline_black_24dp_1x.png")); // NOI18N
-
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes_000\\Documents\\GitHub\\SistemaInventariosIEE\\src\\Recursos\\IEE.png")); // NOI18N
+
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -148,11 +165,12 @@ public class I_Login extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3)
                 .addContainerGap())
         );
@@ -178,6 +196,28 @@ public class I_Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btn_salirActionPerformed
+
+    private void btn_iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciarActionPerformed
+        // TODO add your handling code here:
+        String [] usuariopass  = a.validarInicio(txt_usuario.getText().toString());
+        
+        char[] password = txt_password.getPassword();
+        try{char[] pss = usuariopass[1].toCharArray();
+        
+            if(Arrays.equals(password, pss)){
+                lbl_invisible.setVisible(false);
+                JOptionPane.showMessageDialog(this, "password correcta");
+            }
+            else {
+                lbl_invisible.setText("password incorrecta");
+                lbl_invisible.setVisible(true);
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "no existe usuario");
+            lbl_invisible.setVisible(false);
+        }        
+    }//GEN-LAST:event_btn_iniciarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,6 +266,7 @@ public class I_Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JLabel lbl_invisible;
+    private javax.swing.JPasswordField txt_password;
     private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
 }
