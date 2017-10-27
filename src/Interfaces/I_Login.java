@@ -46,7 +46,6 @@ public class I_Login extends javax.swing.JFrame {
         lbl_invisible = new javax.swing.JLabel();
         btn_iniciar = new javax.swing.JButton();
         btn_salir = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
         txt_password = new javax.swing.JPasswordField();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -90,7 +89,6 @@ public class I_Login extends javax.swing.JFrame {
             }
         });
 
-        jPasswordField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txt_password.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -264,7 +262,6 @@ public class I_Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JLabel lbl_invisible;
     private javax.swing.JPasswordField txt_password;
     private javax.swing.JTextField txt_usuario;
