@@ -384,7 +384,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial Black" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Se&#xf1;or de informatica"/>
+            <Property name="text" type="java.lang.String" value="Se&#xf1;or de general"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btn_ayuda">

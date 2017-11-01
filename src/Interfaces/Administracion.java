@@ -5,6 +5,8 @@
  */
 package Interfaces;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Cherne
@@ -12,10 +14,11 @@ package Interfaces;
 public class Administracion extends javax.swing.JFrame {
 
     /**
-     * Creates new form Informatica
-     */
+     * Creates new form Administracion
+     */ 
+    
     public Administracion() {
-        initComponents();
+        initComponents();       
     }
 
     /**
@@ -48,7 +51,7 @@ public class Administracion extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btn_ayuda = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setUndecorated(true);
 
@@ -76,10 +79,25 @@ public class Administracion extends javax.swing.JFrame {
         btn_asignar.setBackground(new java.awt.Color(255, 255, 255));
         btn_asignar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/delivery-worker-giving-a-box-to-a-receiver.png"))); // NOI18N
         btn_asignar.setText("Asignar");
+        btn_asignar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_asignarActionPerformed(evt);
+            }
+        });
 
         btn_alta.setBackground(new java.awt.Color(255, 255, 255));
         btn_alta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/note.png"))); // NOI18N
         btn_alta.setText("Alta");
+        btn_alta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_altaMouseClicked(evt);
+            }
+        });
+        btn_alta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_altaActionPerformed(evt);
+            }
+        });
 
         btn_modificar.setBackground(new java.awt.Color(255, 255, 255));
         btn_modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/edit.png"))); // NOI18N
@@ -92,6 +110,11 @@ public class Administracion extends javax.swing.JFrame {
         btn_buscar.setBackground(new java.awt.Color(255, 255, 255));
         btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/loupe.png"))); // NOI18N
         btn_buscar.setText("Buscar");
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
 
         btn_salir.setBackground(new java.awt.Color(255, 255, 255));
         btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/power-button-off.png"))); // NOI18N
@@ -275,13 +298,33 @@ public class Administracion extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        setExtendedState(Informatica.HIDE_ON_CLOSE);
+        setExtendedState(Administracion.HIDE_ON_CLOSE);
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btn_ayudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ayudaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_ayudaActionPerformed
+
+    private void btn_altaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_altaActionPerformed
+        // TODO add your handling code here:
+        Alta alta = new Alta();
+        alta.setVisible(true);        
+    }//GEN-LAST:event_btn_altaActionPerformed
+
+    private void btn_altaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_altaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_altaMouseClicked
+
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+        // TODO add your handling code here:
+        Buscar buscar = new Buscar();
+        buscar.setVisible(true);
+    }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private void btn_asignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_asignarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_asignarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -300,20 +343,20 @@ public class Administracion extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Informatica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Administracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Informatica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Administracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Informatica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Administracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Informatica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Administracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Informatica().setVisible(true);
+                new Administracion().setVisible(true);
             }
         });
     }

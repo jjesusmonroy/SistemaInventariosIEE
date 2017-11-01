@@ -159,106 +159,33 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btn_alta" min="-2" max="-2" attributes="0"/>
-                          <Component id="btn_baja" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="btn_notificaciones" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="btn_modificar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btn_recoleccion" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="btn_buscar" min="-2" pref="111" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btn_asignar" min="-2" pref="125" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btn_notificaciones" max="32767" attributes="0"/>
-                          <Component id="btn_solicitar" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btn_usuarios" min="-2" pref="133" max="-2" attributes="0"/>
-                          <Component id="btn_salir" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="btn_buscar" min="-2" pref="111" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btn_solicitar" min="-2" pref="135" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+                      <Component id="btn_salir" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btn_alta" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btn_buscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btn_asignar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btn_usuarios" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btn_solicitar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btn_modificar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btn_salir" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btn_baja" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btn_recoleccion" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btn_notificaciones" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_solicitar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_salir" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="35" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="btn_asignar">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Interfaces/delivery-worker-giving-a-box-to-a-receiver.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Asignar"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="btn_alta">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Interfaces/note.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Alta"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="btn_modificar">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Interfaces/edit.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Modificar"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="btn_recoleccion">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Interfaces/delivery-packages-on-a-trolley.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Recolecci&#xf3;n"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JButton" name="btn_buscar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -269,6 +196,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Buscar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_buscarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btn_salir">
               <Properties>
@@ -279,28 +209,6 @@
                   <Image iconType="3" name="/Interfaces/power-button-off.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cerrar Sesi&#xf3;n"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="btn_baja">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Interfaces/download.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Baja"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="btn_usuarios">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Interfaces/user.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Usuarios"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btn_solicitar">

@@ -9,12 +9,12 @@ package Interfaces;
  *
  * @author Cherne
  */
-public class Informatica extends javax.swing.JFrame {
+public class General extends javax.swing.JFrame {
 
     /**
-     * Creates new form Informatica
+     * Creates new form General
      */
-    public Informatica() {
+    public General() {
         initComponents();
     }
 
@@ -195,7 +195,7 @@ public class Informatica extends javax.swing.JFrame {
         jLabel3.setText("Bienvenido!");
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        jLabel4.setText("Señor de informatica");
+        jLabel4.setText("Señor de general");
 
         btn_ayuda.setBackground(new java.awt.Color(255, 255, 255));
         btn_ayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/ic_help_outline_black_24dp_1x.png"))); // NOI18N
@@ -285,7 +285,7 @@ public class Informatica extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        setExtendedState(Informatica.HIDE_ON_CLOSE);
+        setExtendedState(General.HIDE_ON_CLOSE);
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -322,20 +322,20 @@ public class Informatica extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Informatica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(General.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Informatica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(General.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Informatica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(General.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Informatica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(General.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Informatica().setVisible(true);
+                new General().setVisible(true);
             }
         });
     }

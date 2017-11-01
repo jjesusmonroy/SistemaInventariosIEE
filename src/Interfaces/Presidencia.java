@@ -12,7 +12,7 @@ package Interfaces;
 public class Presidencia extends javax.swing.JFrame {
 
     /**
-     * Creates new form Informatica
+     * Creates new form Presidencia
      */
     public Presidencia() {
         initComponents();
@@ -31,14 +31,8 @@ public class Presidencia extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        btn_asignar = new javax.swing.JButton();
-        btn_alta = new javax.swing.JButton();
-        btn_modificar = new javax.swing.JButton();
-        btn_recoleccion = new javax.swing.JButton();
         btn_buscar = new javax.swing.JButton();
         btn_salir = new javax.swing.JButton();
-        btn_baja = new javax.swing.JButton();
-        btn_usuarios = new javax.swing.JButton();
         btn_solicitar = new javax.swing.JButton();
         btn_notificaciones = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -73,22 +67,6 @@ public class Presidencia extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        btn_asignar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_asignar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/delivery-worker-giving-a-box-to-a-receiver.png"))); // NOI18N
-        btn_asignar.setText("Asignar");
-
-        btn_alta.setBackground(new java.awt.Color(255, 255, 255));
-        btn_alta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/note.png"))); // NOI18N
-        btn_alta.setText("Alta");
-
-        btn_modificar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/edit.png"))); // NOI18N
-        btn_modificar.setText("Modificar");
-
-        btn_recoleccion.setBackground(new java.awt.Color(255, 255, 255));
-        btn_recoleccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/delivery-packages-on-a-trolley.png"))); // NOI18N
-        btn_recoleccion.setText("Recolección");
-
         btn_buscar.setBackground(new java.awt.Color(255, 255, 255));
         btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/loupe.png"))); // NOI18N
         btn_buscar.setText("Buscar");
@@ -96,14 +74,6 @@ public class Presidencia extends javax.swing.JFrame {
         btn_salir.setBackground(new java.awt.Color(255, 255, 255));
         btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/power-button-off.png"))); // NOI18N
         btn_salir.setText("Cerrar Sesión");
-
-        btn_baja.setBackground(new java.awt.Color(255, 255, 255));
-        btn_baja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/download.png"))); // NOI18N
-        btn_baja.setText("Baja");
-
-        btn_usuarios.setBackground(new java.awt.Color(255, 255, 255));
-        btn_usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/user.png"))); // NOI18N
-        btn_usuarios.setText("Usuarios");
 
         btn_solicitar.setBackground(new java.awt.Color(255, 255, 255));
         btn_solicitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/delivery-worker-giving-a-box-to-a-receiver.png"))); // NOI18N
@@ -119,47 +89,25 @@ public class Presidencia extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_alta)
-                    .addComponent(btn_baja))
+                .addComponent(btn_notificaciones)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btn_modificar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_recoleccion))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_asignar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_notificaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_solicitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_usuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_salir))
+                .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_solicitar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(87, 87, 87)
+                .addComponent(btn_salir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_alta)
                     .addComponent(btn_buscar)
-                    .addComponent(btn_asignar)
-                    .addComponent(btn_usuarios)
-                    .addComponent(btn_solicitar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_modificar)
-                    .addComponent(btn_salir)
-                    .addComponent(btn_baja)
-                    .addComponent(btn_recoleccion)
-                    .addComponent(btn_notificaciones))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_notificaciones)
+                    .addComponent(btn_solicitar)
+                    .addComponent(btn_salir))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 102, 255));
@@ -275,7 +223,7 @@ public class Presidencia extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        setExtendedState(Informatica.HIDE_ON_CLOSE);
+        setExtendedState(Presidencia.HIDE_ON_CLOSE);
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -300,36 +248,30 @@ public class Presidencia extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Informatica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Presidencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Informatica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Presidencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Informatica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Presidencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Informatica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Presidencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Informatica().setVisible(true);
+                new Presidencia().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_alta;
-    private javax.swing.JButton btn_asignar;
     private javax.swing.JButton btn_ayuda;
-    private javax.swing.JButton btn_baja;
     private javax.swing.JButton btn_buscar;
-    private javax.swing.JButton btn_modificar;
     private javax.swing.JButton btn_notificaciones;
-    private javax.swing.JButton btn_recoleccion;
     private javax.swing.JButton btn_salir;
     private javax.swing.JButton btn_solicitar;
-    private javax.swing.JButton btn_usuarios;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

@@ -15,7 +15,13 @@ public class BDD{
 
     public BDD() {
     
-    }    
+    }
+
+    public static void main (String [] args){
+        BDD b = new BDD();
+        System.out.println(b.obtenerProductos()[0][0]);
+        //System.out.println(b.noregistros(b.connection("select * from producto")));  // si sirve
+    }
     
     
     //metodo para validar inicio de sesion de login
@@ -44,7 +50,7 @@ public class BDD{
         return a;
     }   
     
-    public String [][] obtenerProductos(){
+    public String [][]  obtenerProductos(){
         BDD b = new BDD();
         ResultSet resul = b.connection("select * from producto");
         String [][] datos = new String [b.noregistros(b.connection("select * from producto"))][16]; 
@@ -57,13 +63,13 @@ public class BDD{
                     datos[counter][i]=resul.getString(i);
                 }
                 counter ++; 
-                return datos;
             }
             }catch(Exception e){
                 System.out.println(e);
             }   
         return datos;
     }
+    
     private ResultSet connection(String query){
         ResultSet a=null;
         try{
