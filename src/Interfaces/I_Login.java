@@ -6,6 +6,7 @@
 package Interfaces;
 
 import basededatos.BDD;
+import java.awt.event.ActionEvent;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 
@@ -90,6 +91,11 @@ public class I_Login extends javax.swing.JFrame {
         });
 
         txt_password.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txt_password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_passwordKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -212,6 +218,13 @@ public class I_Login extends javax.swing.JFrame {
             lbl_invisible.setVisible(false);
         }        
     }//GEN-LAST:event_btn_iniciarActionPerformed
+
+    private void txt_passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_passwordKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==java.awt.event.KeyEvent.VK_ENTER){
+            btn_iniciarActionPerformed(new ActionEvent(evt.getSource(), evt.getID(), evt.paramString()));
+        }
+    }//GEN-LAST:event_txt_passwordKeyPressed
 
     /**
      * @param args the command line arguments
