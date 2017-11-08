@@ -19,14 +19,14 @@ public class BDD{
 
     public static void main (String [] args){
         BDD b = new BDD();
-        //int a = b.prueba();
-        //System.out.println(a+"");
         
-        //String [][]a = b.obtenerConsultas("select * from producto");
-        //String [][] c = b.obtenerConsultas("select id_producto, id_categoria, "
-         //       + "nombre_producto, marca_producto,modelo_producto, stock_producto, "
-         //       + "status_producto from producto");
-        //System.out.println(c[0][6]);
+        String [][] datos = b.obtenerConsultas("select id_producto,id_categoria,"
+                + "nombre_producto,marca_producto,modelo_producto,stock_producto,"
+                + "status_producto from producto");
+        
+        System.out.println(datos[0][6]);
+        
+        
     }
     
     
@@ -68,17 +68,25 @@ public class BDD{
     }
     public String [][]  obtenerConsultas(String query){
         BDD b = new BDD();
+        String [] columnNames = b.columnNames(query);
         ResultSet resul = b.connection(query);
-        String [][] datos = new String [b.noregistros(b.connection(query))][b.columnCounter(query)]; 
+        int columnas = b.columnCounter(query);
+        int renglones = b.noregistros(b.connection(query));
+        String [][] datos = new String [renglones][columnas]; 
                 // el metodo noregistros te regresa la cantidad de registros que encuentra
                 // del query que se le ha pasado como parametro
             
-            int counter =0;
+            
             try{while(resul.next()){
-                for(int i=0; i<16;i++){
-                    datos[counter][i]=resul.getString(i+1);
+                for(int j=0; j<renglones;j++){
+                    for(int i=0; i<columnas; i++){
+                        if(!b.needColumnNames(query)){
+                        datos[j][i]=resul.getString(i+1);
+                        }
+                        else datos[j][i]=resul.getString(columnNames[i]);
+                    }
                 }
-                counter ++; 
+                
             }
             }catch(Exception e){
                 System.out.println(e);
@@ -86,7 +94,7 @@ public class BDD{
         return datos;
     }
     
-    private ResultSet connection(String query){
+    public ResultSet connection(String query){
         ResultSet a=null;
         try{
             Connection con = DriverManager.getConnection
@@ -111,5 +119,16 @@ public class BDD{
             contador = 0;
         }
         return contador;
+    }
+    private boolean needColumnNames(String query){
+        if(query.substring(7,8).equals("*"))return false;
+        else return true;
+    }
+    private String[] columnNames(String query){
+        String c = query.substring(7);
+        String []d = c.split(" from");
+        String e = d[0];
+        String []f = e.split(",");
+        return f;
     }
 }
