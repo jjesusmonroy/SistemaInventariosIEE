@@ -74,6 +74,11 @@ public class Presidencia extends javax.swing.JFrame {
         btn_solicitar.setBackground(new java.awt.Color(255, 255, 255));
         btn_solicitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/hand-finger-with-a-ribbon.png"))); // NOI18N
         btn_solicitar.setText("Solicitar");
+        btn_solicitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_solicitarActionPerformed(evt);
+            }
+        });
 
         btn_notificaciones.setBackground(new java.awt.Color(255, 255, 255));
         btn_notificaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/notification-bell.png"))); // NOI18N
@@ -87,6 +92,11 @@ public class Presidencia extends javax.swing.JFrame {
         btn_buscar1.setBackground(new java.awt.Color(255, 255, 255));
         btn_buscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/loupe.png"))); // NOI18N
         btn_buscar1.setText("Buscar");
+        btn_buscar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscar1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -238,7 +248,21 @@ public class Presidencia extends javax.swing.JFrame {
 
     private void btn_notificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_notificacionesActionPerformed
         // TODO add your handling code here:
+        Notificaciones notificaciones = new Notificaciones();
+        notificaciones.setVisible(true);        
     }//GEN-LAST:event_btn_notificacionesActionPerformed
+
+    private void btn_solicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_solicitarActionPerformed
+        // TODO add your handling code here:
+        Solicitar solicitar = new Solicitar();
+        solicitar.setVisible(true);
+    }//GEN-LAST:event_btn_solicitarActionPerformed
+
+    private void btn_buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscar1ActionPerformed
+        // TODO add your handling code here:
+        Buscar buscar = new Buscar();
+        buscar.setVisible(true);
+    }//GEN-LAST:event_btn_buscar1ActionPerformed
 
     /**
      * @param args the command line arguments

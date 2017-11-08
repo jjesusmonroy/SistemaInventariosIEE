@@ -240,7 +240,6 @@
                 <Property name="text" type="java.lang.String" value="Alta"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_altaMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_altaActionPerformed"/>
               </Events>
             </Component>
@@ -254,6 +253,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Modificar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_modificarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btn_recoleccion">
               <Properties>
@@ -265,6 +267,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Recolecci&#xf3;n"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_recoleccionActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btn_buscar">
               <Properties>
@@ -290,6 +295,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cerrar Sesi&#xf3;n"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_salirActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btn_baja">
               <Properties>
@@ -301,6 +309,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Baja"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_bajaActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btn_usuarios">
               <Properties>
@@ -312,6 +323,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Usuarios"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_usuariosActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btn_solicitar">
               <Properties>
@@ -323,6 +337,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Solicitar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_solicitarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btn_notificaciones">
               <Properties>
@@ -334,6 +351,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Notificaciones"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_notificacionesActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

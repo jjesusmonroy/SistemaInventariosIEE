@@ -88,11 +88,6 @@ public class Administracion extends javax.swing.JFrame {
         btn_alta.setBackground(new java.awt.Color(255, 255, 255));
         btn_alta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/note.png"))); // NOI18N
         btn_alta.setText("Alta");
-        btn_alta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_altaMouseClicked(evt);
-            }
-        });
         btn_alta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_altaActionPerformed(evt);
@@ -102,10 +97,20 @@ public class Administracion extends javax.swing.JFrame {
         btn_modificar.setBackground(new java.awt.Color(255, 255, 255));
         btn_modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/edit.png"))); // NOI18N
         btn_modificar.setText("Modificar");
+        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_modificarActionPerformed(evt);
+            }
+        });
 
         btn_recoleccion.setBackground(new java.awt.Color(255, 255, 255));
         btn_recoleccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/delivery-packages-on-a-trolley.png"))); // NOI18N
         btn_recoleccion.setText("Recolección");
+        btn_recoleccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_recoleccionActionPerformed(evt);
+            }
+        });
 
         btn_buscar.setBackground(new java.awt.Color(255, 255, 255));
         btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/loupe.png"))); // NOI18N
@@ -119,22 +124,47 @@ public class Administracion extends javax.swing.JFrame {
         btn_salir.setBackground(new java.awt.Color(255, 255, 255));
         btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/power-button-off.png"))); // NOI18N
         btn_salir.setText("Cerrar Sesión");
+        btn_salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salirActionPerformed(evt);
+            }
+        });
 
         btn_baja.setBackground(new java.awt.Color(255, 255, 255));
         btn_baja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/download.png"))); // NOI18N
         btn_baja.setText("Baja");
+        btn_baja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_bajaActionPerformed(evt);
+            }
+        });
 
         btn_usuarios.setBackground(new java.awt.Color(255, 255, 255));
         btn_usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/user.png"))); // NOI18N
         btn_usuarios.setText("Usuarios");
+        btn_usuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_usuariosActionPerformed(evt);
+            }
+        });
 
         btn_solicitar.setBackground(new java.awt.Color(255, 255, 255));
         btn_solicitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/hand-finger-with-a-ribbon.png"))); // NOI18N
         btn_solicitar.setText("Solicitar");
+        btn_solicitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_solicitarActionPerformed(evt);
+            }
+        });
 
         btn_notificaciones.setBackground(new java.awt.Color(255, 255, 255));
         btn_notificaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/notification-bell.png"))); // NOI18N
         btn_notificaciones.setText("Notificaciones");
+        btn_notificaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_notificacionesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -312,10 +342,6 @@ public class Administracion extends javax.swing.JFrame {
         alta.setVisible(true);        
     }//GEN-LAST:event_btn_altaActionPerformed
 
-    private void btn_altaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_altaMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_altaMouseClicked
-
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         // TODO add your handling code here:
         Buscar buscar = new Buscar();
@@ -324,7 +350,49 @@ public class Administracion extends javax.swing.JFrame {
 
     private void btn_asignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_asignarActionPerformed
         // TODO add your handling code here:
+        Asignar asignar = new Asignar();
+        asignar.setVisible(true);
     }//GEN-LAST:event_btn_asignarActionPerformed
+
+    private void btn_bajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_bajaActionPerformed
+        // TODO add your handling code here:
+        Buscar buscar = new Buscar();
+        buscar.setVisible(true);
+    }//GEN-LAST:event_btn_bajaActionPerformed
+
+    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
+        // TODO add your handling code here:
+        Buscar buscar = new Buscar();
+        buscar.setVisible(true);
+    }//GEN-LAST:event_btn_modificarActionPerformed
+
+    private void btn_recoleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_recoleccionActionPerformed
+        // TODO add your handling code here:
+        Recoleccion recoleccion = new Recoleccion();
+        recoleccion.setVisible(true);
+    }//GEN-LAST:event_btn_recoleccionActionPerformed
+
+    private void btn_solicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_solicitarActionPerformed
+        // TODO add your handling code here:
+        Solicitar solicitar = new Solicitar();
+        solicitar.setVisible(true);
+    }//GEN-LAST:event_btn_solicitarActionPerformed
+
+    private void btn_notificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_notificacionesActionPerformed
+        // TODO add your handling code here:
+        Notificaciones notificaciones = new Notificaciones();
+        notificaciones.setVisible(true);
+    }//GEN-LAST:event_btn_notificacionesActionPerformed
+
+    private void btn_usuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_usuariosActionPerformed
+        // TODO add your handling code here:
+        Usuarios usuarios = new Usuarios();
+        usuarios.setVisible(true);
+    }//GEN-LAST:event_btn_usuariosActionPerformed
+
+    private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_salirActionPerformed
 
     /**
      * @param args the command line arguments

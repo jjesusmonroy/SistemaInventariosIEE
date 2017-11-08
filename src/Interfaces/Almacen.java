@@ -73,10 +73,20 @@ public class Almacen extends javax.swing.JFrame {
         btn_asignar.setBackground(new java.awt.Color(255, 255, 255));
         btn_asignar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/delivery-worker-giving-a-box-to-a-receiver.png"))); // NOI18N
         btn_asignar.setText("Asignar");
+        btn_asignar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_asignarActionPerformed(evt);
+            }
+        });
 
         btn_recoleccion.setBackground(new java.awt.Color(255, 255, 255));
         btn_recoleccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/delivery-packages-on-a-trolley.png"))); // NOI18N
         btn_recoleccion.setText("Recolección");
+        btn_recoleccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_recoleccionActionPerformed(evt);
+            }
+        });
 
         btn_buscar.setBackground(new java.awt.Color(255, 255, 255));
         btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/loupe.png"))); // NOI18N
@@ -94,14 +104,29 @@ public class Almacen extends javax.swing.JFrame {
         btn_baja.setBackground(new java.awt.Color(255, 255, 255));
         btn_baja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/download.png"))); // NOI18N
         btn_baja.setText("Baja");
+        btn_baja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_bajaActionPerformed(evt);
+            }
+        });
 
         btn_solicitar.setBackground(new java.awt.Color(255, 255, 255));
         btn_solicitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/hand-finger-with-a-ribbon.png"))); // NOI18N
         btn_solicitar.setText("Solicitar");
+        btn_solicitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_solicitarActionPerformed(evt);
+            }
+        });
 
         btn_notificaciones.setBackground(new java.awt.Color(255, 255, 255));
         btn_notificaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/notification-bell.png"))); // NOI18N
         btn_notificaciones.setText("Notificaciones");
+        btn_notificaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_notificacionesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -267,6 +292,36 @@ public class Almacen extends javax.swing.JFrame {
         Buscar buscar = new Buscar();
         buscar.setVisible(true);
     }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private void btn_bajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_bajaActionPerformed
+        // TODO add your handling code here:
+        Buscar buscar = new Buscar();
+        buscar.setVisible(true);
+    }//GEN-LAST:event_btn_bajaActionPerformed
+
+    private void btn_asignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_asignarActionPerformed
+        // TODO add your handling code here:
+        Asignar asignar = new Asignar();
+        asignar.setVisible(true);
+    }//GEN-LAST:event_btn_asignarActionPerformed
+
+    private void btn_recoleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_recoleccionActionPerformed
+        // TODO add your handling code here:
+        Recoleccion recoleccion = new Recoleccion();
+        recoleccion.setVisible(true);
+    }//GEN-LAST:event_btn_recoleccionActionPerformed
+
+    private void btn_solicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_solicitarActionPerformed
+        // TODO add your handling code here:
+        Recoleccion recoleccion = new Recoleccion();
+        recoleccion.setVisible(true);
+    }//GEN-LAST:event_btn_solicitarActionPerformed
+
+    private void btn_notificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_notificacionesActionPerformed
+        // TODO add your handling code here:
+        Notificaciones notificaciones = new Notificaciones();
+        notificaciones.setVisible(true);
+    }//GEN-LAST:event_btn_notificacionesActionPerformed
 
     /**
      * @param args the command line arguments

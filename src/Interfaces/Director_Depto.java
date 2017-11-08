@@ -73,10 +73,20 @@ public class Director_Depto extends javax.swing.JFrame {
         btn_solicitar.setBackground(new java.awt.Color(255, 255, 255));
         btn_solicitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/hand-finger-with-a-ribbon.png"))); // NOI18N
         btn_solicitar.setText("Solicitar");
+        btn_solicitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_solicitarActionPerformed(evt);
+            }
+        });
 
         btn_notificaciones.setBackground(new java.awt.Color(255, 255, 255));
         btn_notificaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/notification-bell.png"))); // NOI18N
         btn_notificaciones.setText("Notificaciones");
+        btn_notificaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_notificacionesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -222,6 +232,18 @@ public class Director_Depto extends javax.swing.JFrame {
     private void btn_ayudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ayudaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_ayudaActionPerformed
+
+    private void btn_notificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_notificacionesActionPerformed
+        // TODO add your handling code here:
+        Notificaciones notificaciones = new Notificaciones();
+        notificaciones.setVisible(true);
+    }//GEN-LAST:event_btn_notificacionesActionPerformed
+
+    private void btn_solicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_solicitarActionPerformed
+        // TODO add your handling code here:
+        Solicitar solicitar = new Solicitar();
+        solicitar.setVisible(true);
+    }//GEN-LAST:event_btn_solicitarActionPerformed
 
     /**
      * @param args the command line arguments

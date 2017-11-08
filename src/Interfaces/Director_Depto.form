@@ -204,6 +204,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Solicitar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_solicitarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btn_notificaciones">
               <Properties>
@@ -215,6 +218,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Notificaciones"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_notificacionesActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
