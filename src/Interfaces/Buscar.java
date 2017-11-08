@@ -20,13 +20,13 @@ public class Buscar extends javax.swing.JFrame {
     BDD b;
     public Buscar() {
         initComponents();
+        b = new BDD();
         
-        
-        String [][] c = b.obtenerConsultas("select id_producto, id_categoria, "
-                + "nombre_producto, marca_producto,modelo_producto, stock_producto, "
+        String [][] datos = b.obtenerConsultas("select id_producto,id_categoria,"
+                + "nombre_producto,marca_producto,modelo_producto,stock_producto,"
                 + "status_producto from producto");
         tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
-                c
+                datos
                 ,
             new String [] {
                 "Folio", "Categoria", "Nombre_Producto", "Marca","Modelo","Stock","Status"
