@@ -19,8 +19,14 @@ public class BDD{
 
     public static void main (String [] args){
         BDD b = new BDD();
-        System.out.println(b.obtenerProductos()[0][0]);
-        //System.out.println(b.noregistros(b.connection("select * from producto")));  // si sirve
+        //int a = b.prueba();
+        //System.out.println(a+"");
+        
+        //String [][]a = b.obtenerConsultas("select * from producto");
+        //String [][] c = b.obtenerConsultas("select id_producto, id_categoria, "
+         //       + "nombre_producto, marca_producto,modelo_producto, stock_producto, "
+         //       + "status_producto from producto");
+        //System.out.println(c[0][6]);
     }
     
     
@@ -30,15 +36,6 @@ public class BDD{
             String [] a = new String[2];
             ResultSet myRs = b.connection("select * from usuarios where nombre_usuario = '"+usuario+"'");
         try{
-            /*
-            //1. Conectarse a la base de datos
-            Connection myConn = DriverManager.getConnection
-            ("jdbc:mysql://localhost:3306/dbis","root","root");
-            //2. Crear una declaracion
-            Statement myStmt = myConn.createStatement();
-            //3. Codigo en SQL
-            ResultSet myRs = myStmt.executeQuery("select * from usuarios where nombre_usuario = '"+usuario+"'");
-            //4. Resultado */
             while(myRs.next()){
             a[0]=myRs.getString("nombre_usuario");
             a[1]=myRs.getString("password_usuario");
@@ -50,17 +47,36 @@ public class BDD{
         return a;
     }   
     
-    public String [][]  obtenerProductos(){
+    private int columnCounter(String query){
         BDD b = new BDD();
-        ResultSet resul = b.connection("select * from producto");
-        String [][] datos = new String [b.noregistros(b.connection("select * from producto"))][16]; 
+        int a=0;
+        ResultSet resul = b.connection(query);
+        try{            
+            while(resul.next()){
+                for(int i=1;i<20;i++){
+                    String aux = resul.getString(i);
+                    if(resul.wasNull() || !resul.wasNull()){
+                        a++;
+                    }
+                }
+            }
+        }catch(Exception e){
+            return a;
+        }
+        
+        return a;
+    }
+    public String [][]  obtenerConsultas(String query){
+        BDD b = new BDD();
+        ResultSet resul = b.connection(query);
+        String [][] datos = new String [b.noregistros(b.connection(query))][b.columnCounter(query)]; 
                 // el metodo noregistros te regresa la cantidad de registros que encuentra
                 // del query que se le ha pasado como parametro
             
             int counter =0;
             try{while(resul.next()){
                 for(int i=0; i<16;i++){
-                    datos[counter][i]=resul.getString(i);
+                    datos[counter][i]=resul.getString(i+1);
                 }
                 counter ++; 
             }

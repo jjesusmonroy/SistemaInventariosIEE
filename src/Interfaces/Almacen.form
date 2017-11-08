@@ -265,7 +265,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Interfaces/delivery-worker-giving-a-box-to-a-receiver.png"/>
+                  <Image iconType="3" name="/Interfaces/hand-finger-with-a-ribbon.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Solicitar"/>
               </Properties>

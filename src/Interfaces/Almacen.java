@@ -96,7 +96,7 @@ public class Almacen extends javax.swing.JFrame {
         btn_baja.setText("Baja");
 
         btn_solicitar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_solicitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/delivery-worker-giving-a-box-to-a-receiver.png"))); // NOI18N
+        btn_solicitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/hand-finger-with-a-ribbon.png"))); // NOI18N
         btn_solicitar.setText("Solicitar");
 
         btn_notificaciones.setBackground(new java.awt.Color(255, 255, 255));

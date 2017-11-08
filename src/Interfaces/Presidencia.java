@@ -31,10 +31,10 @@ public class Presidencia extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        btn_buscar = new javax.swing.JButton();
         btn_salir = new javax.swing.JButton();
         btn_solicitar = new javax.swing.JButton();
         btn_notificaciones = new javax.swing.JButton();
+        btn_buscar1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -67,21 +67,26 @@ public class Presidencia extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        btn_buscar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/loupe.png"))); // NOI18N
-        btn_buscar.setText("Buscar");
-
         btn_salir.setBackground(new java.awt.Color(255, 255, 255));
         btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/power-button-off.png"))); // NOI18N
         btn_salir.setText("Cerrar Sesión");
 
         btn_solicitar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_solicitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/delivery-worker-giving-a-box-to-a-receiver.png"))); // NOI18N
+        btn_solicitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/hand-finger-with-a-ribbon.png"))); // NOI18N
         btn_solicitar.setText("Solicitar");
 
         btn_notificaciones.setBackground(new java.awt.Color(255, 255, 255));
         btn_notificaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/notification-bell.png"))); // NOI18N
         btn_notificaciones.setText("Notificaciones");
+        btn_notificaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_notificacionesActionPerformed(evt);
+            }
+        });
+
+        btn_buscar1.setBackground(new java.awt.Color(255, 255, 255));
+        btn_buscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/loupe.png"))); // NOI18N
+        btn_buscar1.setText("Buscar");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -90,9 +95,9 @@ public class Presidencia extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btn_notificaciones)
+                .addGap(18, 18, 18)
+                .addComponent(btn_buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_solicitar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(87, 87, 87)
                 .addComponent(btn_salir)
@@ -103,10 +108,10 @@ public class Presidencia extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_buscar)
                     .addComponent(btn_notificaciones)
                     .addComponent(btn_solicitar)
-                    .addComponent(btn_salir))
+                    .addComponent(btn_salir)
+                    .addComponent(btn_buscar1))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
@@ -133,7 +138,7 @@ public class Presidencia extends javax.swing.JFrame {
         jLabel3.setText("Bienvenido!");
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        jLabel4.setText("Señor de Precidencia");
+        jLabel4.setText("Señor de Presidencia");
 
         btn_ayuda.setBackground(new java.awt.Color(255, 255, 255));
         btn_ayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/ic_help_outline_black_24dp_1x.png"))); // NOI18N
@@ -231,6 +236,10 @@ public class Presidencia extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_ayudaActionPerformed
 
+    private void btn_notificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_notificacionesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_notificacionesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -268,7 +277,7 @@ public class Presidencia extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_ayuda;
-    private javax.swing.JButton btn_buscar;
+    private javax.swing.JButton btn_buscar1;
     private javax.swing.JButton btn_notificaciones;
     private javax.swing.JButton btn_salir;
     private javax.swing.JButton btn_solicitar;
