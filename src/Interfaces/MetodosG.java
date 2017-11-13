@@ -37,4 +37,14 @@ public class MetodosG {
         Date date = new Date();
         return dateFormat.format(date);
     }
+    
+    public boolean checkAnotherID(String [][] obtener){
+        int x = Integer.parseInt(obtener[0][0]);
+        for(String a[]:obtener){
+            for(String b:a){
+                if(x==Integer.parseInt(b))return false;
+            }
+        }
+        return true;
+    }
 }

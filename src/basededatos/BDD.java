@@ -21,7 +21,7 @@ public class BDD{
     
     public static void main (String [] args){
         BDD b = new BDD();
-        MetodosG m = new MetodosG();
+        MetodosG m = new MetodosG();        
     }
     
     

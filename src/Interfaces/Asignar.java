@@ -5,6 +5,9 @@
  */
 package Interfaces;
 
+import basededatos.BDD;
+
+
 /**
  *
  * @author Cherne
@@ -14,22 +17,22 @@ public class Asignar extends javax.swing.JFrame {
     /**
      * Creates new form Asignar
      */
+    BDD b;
     public Asignar() {
         initComponents();
-        
+        b = new BDD();
+               
+        String [][] datos = b.obtenerConsultas("select id_producto,"
+                + "nombre_producto,marca_producto,modelo_producto,stock_producto"
+                + " from producto where status_producto = 'Disponible'");
         tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-                                   
-            },
+                datos
+                ,
             new String [] {
-                "Folio","Nombre_Producto", "Marca","Modelo","Stock"
+                "Folio", "Nombre_Producto", "Marca","Modelo","Stock"
             }
         ));
+        tbl_productos.setEnabled(false);       
         
     }
 
@@ -111,7 +114,7 @@ public class Asignar extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        jLabel3.setText("Buscar productos");
+        jLabel3.setText("Asignar productos");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -131,6 +134,11 @@ public class Asignar extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbl_productos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_productosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbl_productos);
 
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/error.png"))); // NOI18N
@@ -290,6 +298,17 @@ public class Asignar extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void tbl_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productosMouseClicked
+        // TODO add your handling code here:
+       
+        if(evt.getClickCount() == 2 && !evt.isConsumed()){
+            int rows = tbl_productos.rowAtPoint(evt.getPoint());
+            String id = tbl_productos.getValueAt(rows, 0)+"";
+            System.out.println(id);            
+        }
+        
+    }//GEN-LAST:event_tbl_productosMouseClicked
 
     /**
      * @param args the command line arguments
