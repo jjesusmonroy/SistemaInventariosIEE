@@ -21,12 +21,7 @@ public class BDD{
     
     public static void main (String [] args){
         BDD b = new BDD();
-        //b.execute("insert into categoria values (3,'400ASK2018','panchomas',3)");
-        //b.convertir2d1d(b.obtenerConsultas("select nombre_categoria from categoria"));
         MetodosG m = new MetodosG();
-        String [][] a = b.obtenerConsultas("select id_categoria from categoria");
-        int aa = m.getMax(a);
-        System.out.println(aa+"");
     }
     
     
@@ -69,7 +64,7 @@ public class BDD{
     public String[][]  obtenerConsultas(String query){
         BDD b = new BDD();
         String [] columnNames = b.columnNames(query);
-        ResultSet resul = b.connection(query);
+        ResultSet resul = b.connection(query);        
         int columnas = b.columnCounter(query);
         int renglones = b.noregistros(b.connection(query));
         String [][] datos = new String [renglones][columnas]; 
@@ -107,13 +102,37 @@ public class BDD{
     
     public void execute(String query){
         try{
+            
             Connection con = DriverManager.getConnection
-                ("jdbc:mysql://localhost:3306/dbis","root","root");
+                ("jdbc:mysql://localhost:3306/dbis","root","root");       
             Statement st = con.createStatement();
             st.executeUpdate(query);
             st.close();
         }catch(Exception e){
-            System.out.println(e);
+            System.out.println("error m execute c BDD \n"+e.getMessage());
+        }
+    }
+    
+    public void insertar(String tabla, String [] elementos){
+        String insertar="insert into "+ tabla+" values (";
+        for(int i=0; i<elementos.length;i++){
+            if(i==elementos.length-1){
+                if(elementos[i]==null){insertar+="null";}
+                else insertar+="'"+elementos[i]+"'";}
+            else {
+                if(elementos[i]==null){insertar+="null,";}
+                else insertar+="'"+elementos[i]+"',";}
+        }
+        insertar+=")";
+        try{
+            
+            Connection con = DriverManager.getConnection
+                ("jdbc:mysql://localhost:3306/dbis","root","root");       
+            Statement st = con.createStatement();
+            st.executeUpdate(insertar);
+            st.close();
+        }catch(Exception e){
+            System.out.println("error en m insertar c BDD\n"+e.getMessage());
         }
     }
     

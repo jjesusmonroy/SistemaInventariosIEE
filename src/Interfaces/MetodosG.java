@@ -5,6 +5,10 @@
  */
 package Interfaces;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author pasto
@@ -17,25 +21,20 @@ public class MetodosG {
     public String ignoreCase(String string){
         return string.toLowerCase();
     }
-    /*public int getMax(String [][] obtener){
-        int x=Integer.parseInt(obtener[0][0]);
-        for(String a[]:obtener){
-            for(String b:a){
-                if(x<Integer.parseInt(b))
-                    x=Integer.parseInt(b);
-            }
-        }
-        return x;          
-            
-    }*/
     public int getMax(String [][] obtener){
+        if(obtener.length==0){return 1;}
         int x=Integer.parseInt(obtener[0][0]);
         for(String a[]:obtener){
             for(String b:a){
                 x=x<Integer.parseInt(b)?Integer.parseInt(b):x;
             }
         }
-        return x;          
+        return x+1;          
             
+    }
+    public String getDate(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 }
