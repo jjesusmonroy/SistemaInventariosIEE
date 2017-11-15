@@ -235,7 +235,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Interfaces/note.png"/>
+                  <Image iconType="3" name="/Recursos/note.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Alta"/>
               </Properties>

@@ -59,7 +59,7 @@ public class Administracion extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/close.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/close.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -67,7 +67,7 @@ public class Administracion extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/minimize.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minimize.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -77,7 +77,7 @@ public class Administracion extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         btn_asignar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_asignar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/delivery-worker-giving-a-box-to-a-receiver.png"))); // NOI18N
+        btn_asignar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/delivery-worker-giving-a-box-to-a-receiver.png"))); // NOI18N
         btn_asignar.setText("Asignar");
         btn_asignar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,7 +86,7 @@ public class Administracion extends javax.swing.JFrame {
         });
 
         btn_alta.setBackground(new java.awt.Color(255, 255, 255));
-        btn_alta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/note.png"))); // NOI18N
+        btn_alta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/note.png"))); // NOI18N
         btn_alta.setText("Alta");
         btn_alta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,7 +95,7 @@ public class Administracion extends javax.swing.JFrame {
         });
 
         btn_modificar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/edit.png"))); // NOI18N
+        btn_modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/edit.png"))); // NOI18N
         btn_modificar.setText("Modificar");
         btn_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +104,7 @@ public class Administracion extends javax.swing.JFrame {
         });
 
         btn_recoleccion.setBackground(new java.awt.Color(255, 255, 255));
-        btn_recoleccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/delivery-packages-on-a-trolley.png"))); // NOI18N
+        btn_recoleccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/delivery-packages-on-a-trolley.png"))); // NOI18N
         btn_recoleccion.setText("Recolección");
         btn_recoleccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,7 +113,7 @@ public class Administracion extends javax.swing.JFrame {
         });
 
         btn_buscar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/loupe.png"))); // NOI18N
+        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/loupe.png"))); // NOI18N
         btn_buscar.setText("Buscar");
         btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,7 +122,7 @@ public class Administracion extends javax.swing.JFrame {
         });
 
         btn_salir.setBackground(new java.awt.Color(255, 255, 255));
-        btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/power-button-off.png"))); // NOI18N
+        btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/power-button-off.png"))); // NOI18N
         btn_salir.setText("Cerrar Sesión");
         btn_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,7 +131,7 @@ public class Administracion extends javax.swing.JFrame {
         });
 
         btn_baja.setBackground(new java.awt.Color(255, 255, 255));
-        btn_baja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/download.png"))); // NOI18N
+        btn_baja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/download.png"))); // NOI18N
         btn_baja.setText("Baja");
         btn_baja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,7 +140,7 @@ public class Administracion extends javax.swing.JFrame {
         });
 
         btn_usuarios.setBackground(new java.awt.Color(255, 255, 255));
-        btn_usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/user.png"))); // NOI18N
+        btn_usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/user.png"))); // NOI18N
         btn_usuarios.setText("Usuarios");
         btn_usuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,7 +149,7 @@ public class Administracion extends javax.swing.JFrame {
         });
 
         btn_solicitar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_solicitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/hand-finger-with-a-ribbon.png"))); // NOI18N
+        btn_solicitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/hand-finger-with-a-ribbon.png"))); // NOI18N
         btn_solicitar.setText("Solicitar");
         btn_solicitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,7 +158,7 @@ public class Administracion extends javax.swing.JFrame {
         });
 
         btn_notificaciones.setBackground(new java.awt.Color(255, 255, 255));
-        btn_notificaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/notification-bell.png"))); // NOI18N
+        btn_notificaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/notification-bell.png"))); // NOI18N
         btn_notificaciones.setText("Notificaciones");
         btn_notificaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -229,7 +229,7 @@ public class Administracion extends javax.swing.JFrame {
         );
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/IEE.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IEE.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel2.setText("Sistema de Control de Inventario IEEN");
@@ -241,7 +241,7 @@ public class Administracion extends javax.swing.JFrame {
         jLabel4.setText("Señor de Administracion");
 
         btn_ayuda.setBackground(new java.awt.Color(255, 255, 255));
-        btn_ayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/ic_help_outline_black_24dp_1x.png"))); // NOI18N
+        btn_ayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/ic_help_outline_black_24dp_1x.png"))); // NOI18N
         btn_ayuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ayudaActionPerformed(evt);
