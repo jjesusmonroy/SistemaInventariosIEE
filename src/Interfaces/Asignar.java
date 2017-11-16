@@ -122,7 +122,7 @@ public class Asignar extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tbl_productos1);
 
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/delivery-worker-giving-a-box-to-a-receiver.png"))); // NOI18N
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/search-user-wearing-tie.png"))); // NOI18N
         jButton12.setText("Asignar a");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
