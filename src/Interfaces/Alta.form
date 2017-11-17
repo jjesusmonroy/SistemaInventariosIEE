@@ -159,7 +159,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Interfaces/IEE.png"/>
+                  <Image iconType="3" name="/Recursos/IEE.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -258,9 +258,8 @@
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <Component id="altalImporte" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="altat11" max="32767" attributes="0"/>
-                                              <EmptySpace min="-2" pref="227" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="altat11" min="-2" pref="77" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -417,6 +416,10 @@
                     <StringItem index="3" value="Item 4"/>
                   </StringArray>
                 </Property>
+                <Property name="name" type="java.lang.String" value="" noResource="true"/>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="altat2"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBox1ItemStateChanged"/>
@@ -538,12 +541,18 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="altat10"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="altat2">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="0"/>
+                </Property>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="altat5"/>
                 </Property>
               </Properties>
             </Component>
@@ -552,12 +561,18 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="altat3"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="altat5">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="0"/>
+                </Property>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="altat7"/>
                 </Property>
               </Properties>
             </Component>
@@ -566,12 +581,18 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="altat4"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="altat7">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="0"/>
+                </Property>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="altat6"/>
                 </Property>
               </Properties>
             </Component>
@@ -580,12 +601,18 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="altat9"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="altat11">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="0"/>
+                </Property>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="altat12"/>
                 </Property>
               </Properties>
             </Component>
@@ -600,6 +627,9 @@
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="3"/>
+                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="altat13"/>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -615,6 +645,9 @@
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
+                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="altatv3"/>
+                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -622,9 +655,12 @@
             <Component class="javax.swing.JButton" name="jButton9">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Interfaces/save.png"/>
+                  <Image iconType="3" name="/Recursos/save.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Guardar"/>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="jButton10"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9ActionPerformed"/>
@@ -633,7 +669,7 @@
             <Component class="javax.swing.JButton" name="jButton10">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Interfaces/eraser.png"/>
+                  <Image iconType="3" name="/Recursos/eraser.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Limpiar"/>
               </Properties>
@@ -641,12 +677,17 @@
             <Component class="javax.swing.JButton" name="jButton11">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Interfaces/error.png"/>
+                  <Image iconType="3" name="/Recursos/delete-button.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cancelar"/>
               </Properties>
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="altat9">
+              <Properties>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="altat11"/>
+                </Property>
+              </Properties>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel4">
               <Properties>
@@ -735,6 +776,9 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="14" style="0"/>
                     </Property>
+                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="altatv4"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="altalNoMotor">
@@ -749,6 +793,9 @@
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="14" style="0"/>
+                    </Property>
+                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="altatv5"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -765,6 +812,9 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="14" style="0"/>
                     </Property>
+                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="altatv6"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="altalKmSer">
@@ -779,6 +829,9 @@
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="14" style="0"/>
+                    </Property>
+                    <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="jButton9"/>
                     </Property>
                   </Properties>
                 </Component>

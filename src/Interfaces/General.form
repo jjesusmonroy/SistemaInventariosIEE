@@ -170,7 +170,7 @@
                   <Font name="Arial" size="14" style="1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Interfaces/delivery-worker-giving-a-box-to-a-receiver.png"/>
+                  <Image iconType="3" name="/Recursos/delivery-worker-giving-a-box-to-a-receiver.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Asignar"/>
               </Properties>
