@@ -53,7 +53,7 @@ public class Presidencia extends javax.swing.JFrame {
 
         btn_buscar.setBackground(new java.awt.Color(255, 255, 255));
         btn_buscar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/loupe.png"))); // NOI18N
+        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/loupe.png"))); // NOI18N
         btn_buscar.setText("Buscar");
         btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,7 +63,7 @@ public class Presidencia extends javax.swing.JFrame {
 
         btn_salir.setBackground(new java.awt.Color(255, 255, 255));
         btn_salir.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/power-button-off.png"))); // NOI18N
+        btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/power-button-off.png"))); // NOI18N
         btn_salir.setText("Cerrar Sesión");
         btn_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,7 +73,7 @@ public class Presidencia extends javax.swing.JFrame {
 
         btn_solicitar.setBackground(new java.awt.Color(255, 255, 255));
         btn_solicitar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btn_solicitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/hand-finger-with-a-ribbon.png"))); // NOI18N
+        btn_solicitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/hand-finger-with-a-ribbon.png"))); // NOI18N
         btn_solicitar.setText("Solicitar");
         btn_solicitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,7 +83,7 @@ public class Presidencia extends javax.swing.JFrame {
 
         btn_notificaciones.setBackground(new java.awt.Color(255, 255, 255));
         btn_notificaciones.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btn_notificaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/notification-bell.png"))); // NOI18N
+        btn_notificaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/notification-bell.png"))); // NOI18N
         btn_notificaciones.setText("Notificaciones");
         btn_notificaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

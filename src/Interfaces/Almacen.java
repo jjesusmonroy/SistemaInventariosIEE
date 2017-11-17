@@ -55,7 +55,7 @@ public class Almacen extends javax.swing.JFrame {
 
         btn_asignar3.setBackground(new java.awt.Color(255, 255, 255));
         btn_asignar3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btn_asignar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/delivery-worker-giving-a-box-to-a-receiver.png"))); // NOI18N
+        btn_asignar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/delivery-worker-giving-a-box-to-a-receiver.png"))); // NOI18N
         btn_asignar3.setText("Asignar");
         btn_asignar3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,7 +65,7 @@ public class Almacen extends javax.swing.JFrame {
 
         btn_recoleccion3.setBackground(new java.awt.Color(255, 255, 255));
         btn_recoleccion3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btn_recoleccion3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/delivery-packages-on-a-trolley.png"))); // NOI18N
+        btn_recoleccion3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/delivery-packages-on-a-trolley.png"))); // NOI18N
         btn_recoleccion3.setText("Recolección");
         btn_recoleccion3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,7 +75,7 @@ public class Almacen extends javax.swing.JFrame {
 
         btn_buscar3.setBackground(new java.awt.Color(255, 255, 255));
         btn_buscar3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btn_buscar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/loupe.png"))); // NOI18N
+        btn_buscar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/loupe.png"))); // NOI18N
         btn_buscar3.setText("Buscar");
         btn_buscar3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,7 +85,7 @@ public class Almacen extends javax.swing.JFrame {
 
         btn_salir3.setBackground(new java.awt.Color(255, 255, 255));
         btn_salir3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btn_salir3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/power-button-off.png"))); // NOI18N
+        btn_salir3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/power-button-off.png"))); // NOI18N
         btn_salir3.setText("Cerrar Sesión");
         btn_salir3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,7 +95,7 @@ public class Almacen extends javax.swing.JFrame {
 
         btn_solicitar3.setBackground(new java.awt.Color(255, 255, 255));
         btn_solicitar3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btn_solicitar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/hand-finger-with-a-ribbon.png"))); // NOI18N
+        btn_solicitar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/hand-finger-with-a-ribbon.png"))); // NOI18N
         btn_solicitar3.setText("Solicitar");
         btn_solicitar3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +105,7 @@ public class Almacen extends javax.swing.JFrame {
 
         btn_notificaciones3.setBackground(new java.awt.Color(255, 255, 255));
         btn_notificaciones3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btn_notificaciones3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/notification-bell.png"))); // NOI18N
+        btn_notificaciones3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/notification-bell.png"))); // NOI18N
         btn_notificaciones3.setText("Notificaciones");
         btn_notificaciones3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,10 +136,11 @@ public class Almacen extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_asignar3)
-                    .addComponent(btn_solicitar3)
-                    .addComponent(btn_buscar3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_buscar3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_asignar3)
+                        .addComponent(btn_solicitar3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_salir3)
@@ -216,18 +217,19 @@ public class Almacen extends javax.swing.JFrame {
                 .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(jLabel3)))
-                .addGap(245, 245, 245))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(141, 141, 141))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGap(73, 73, 73)
+                                .addComponent(jLabel3)))
+                        .addGap(104, 104, 104))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(81, 81, 81))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,36 +346,12 @@ public class Almacen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_alta;
-    private javax.swing.JButton btn_alta1;
-    private javax.swing.JButton btn_alta2;
-    private javax.swing.JButton btn_asignar;
-    private javax.swing.JButton btn_asignar1;
-    private javax.swing.JButton btn_asignar2;
     private javax.swing.JButton btn_asignar3;
-    private javax.swing.JButton btn_buscar;
-    private javax.swing.JButton btn_buscar1;
-    private javax.swing.JButton btn_buscar2;
     private javax.swing.JButton btn_buscar3;
-    private javax.swing.JButton btn_notificaciones;
-    private javax.swing.JButton btn_notificaciones1;
-    private javax.swing.JButton btn_notificaciones2;
     private javax.swing.JButton btn_notificaciones3;
-    private javax.swing.JButton btn_recoleccion;
-    private javax.swing.JButton btn_recoleccion1;
-    private javax.swing.JButton btn_recoleccion2;
     private javax.swing.JButton btn_recoleccion3;
-    private javax.swing.JButton btn_salir;
-    private javax.swing.JButton btn_salir1;
-    private javax.swing.JButton btn_salir2;
     private javax.swing.JButton btn_salir3;
-    private javax.swing.JButton btn_solicitar;
-    private javax.swing.JButton btn_solicitar1;
-    private javax.swing.JButton btn_solicitar2;
     private javax.swing.JButton btn_solicitar3;
-    private javax.swing.JButton btn_usuarios;
-    private javax.swing.JButton btn_usuarios1;
-    private javax.swing.JButton btn_usuarios2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -381,13 +359,7 @@ public class Almacen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     // End of variables declaration//GEN-END:variables

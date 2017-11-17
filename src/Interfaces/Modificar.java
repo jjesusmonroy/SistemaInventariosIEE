@@ -94,7 +94,7 @@ public class Modificar extends javax.swing.JFrame {
         jLabel2.setText("Sistema de Control de Inventario IEEN");
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/IEE.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IEE.png"))); // NOI18N
 
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
         jLabel21.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -229,7 +229,7 @@ public class Modificar extends javax.swing.JFrame {
         altat12.setRows(5);
         jScrollPane2.setViewportView(altat12);
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/save.png"))); // NOI18N
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/save.png"))); // NOI18N
         jButton9.setText("Guardar");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,7 +240,7 @@ public class Modificar extends javax.swing.JFrame {
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/file.png"))); // NOI18N
         jButton10.setText("Restaurar");
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/error.png"))); // NOI18N
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
         jButton11.setText("Cancelar");
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Vehiculo"));

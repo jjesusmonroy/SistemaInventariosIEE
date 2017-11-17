@@ -60,7 +60,7 @@ public class Recoleccion extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btn_buscar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/loupe.png"))); // NOI18N
+        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/loupe.png"))); // NOI18N
         btn_buscar.setText("Buscar");
 
         tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
@@ -76,7 +76,7 @@ public class Recoleccion extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tbl_productos);
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/error.png"))); // NOI18N
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
         jButton11.setText("Cancelar");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,7 +116,7 @@ public class Recoleccion extends javax.swing.JFrame {
         jLabel5.setText("Persona a la que se le asignara este desmadre");
 
         btn_buscar1.setBackground(new java.awt.Color(255, 255, 255));
-        btn_buscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/save.png"))); // NOI18N
+        btn_buscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/save.png"))); // NOI18N
         btn_buscar1.setText("Guardar");
 
         jPanel3.setBackground(new java.awt.Color(255, 102, 255));
@@ -130,7 +130,7 @@ public class Recoleccion extends javax.swing.JFrame {
         jLabel2.setText("Sistema de Control de Inventario IEEN");
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/IEE.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IEE.png"))); // NOI18N
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
