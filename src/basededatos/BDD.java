@@ -6,7 +6,7 @@
 package basededatos;
 
 
-import Interfaces.MetodosG;
+import Clases.MetodosG;
 import java.sql.*;
 /**
  *

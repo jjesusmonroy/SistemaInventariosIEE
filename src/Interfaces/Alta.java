@@ -5,7 +5,10 @@
  */
 package Interfaces;
 
+import Clases.MetodosG;
 import basededatos.BDD;
+import Clases.*;
+import java.awt.Color;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -18,11 +21,11 @@ public class Alta extends javax.swing.JFrame {
     /**
      * Creates new form Alta
      */
-    
+    Validaciones v;
     BDD b;
     MetodosG m;
     public Alta() {
-        
+        v=new Validaciones();
         b = new BDD();
         m = new MetodosG();
         
@@ -154,7 +157,19 @@ public class Alta extends javax.swing.JFrame {
         altatv5 = new javax.swing.JTextField();
         altalKmSer = new javax.swing.JLabel();
         altatv6 = new javax.swing.JTextField();
+        asPlacas = new javax.swing.JLabel();
+        asNoMotor = new javax.swing.JLabel();
+        asKilometraje = new javax.swing.JLabel();
+        asKmServicio = new javax.swing.JLabel();
         jButton12 = new javax.swing.JButton();
+        asNombre = new javax.swing.JLabel();
+        asMarca = new javax.swing.JLabel();
+        asColor = new javax.swing.JLabel();
+        asModelo = new javax.swing.JLabel();
+        asNoSerie = new javax.swing.JLabel();
+        asStock = new javax.swing.JLabel();
+        asNoFact = new javax.swing.JLabel();
+        asImporte = new javax.swing.JLabel();
 
         jTextField3.setText("jTextField3");
 
@@ -346,6 +361,14 @@ public class Alta extends javax.swing.JFrame {
 
         altatv6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
+        asPlacas.setForeground(new java.awt.Color(255, 0, 0));
+
+        asNoMotor.setForeground(new java.awt.Color(255, 0, 0));
+
+        asKilometraje.setForeground(new java.awt.Color(255, 0, 0));
+
+        asKmServicio.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -361,7 +384,14 @@ public class Alta extends javax.swing.JFrame {
                         .addComponent(altalNoMotor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(altatv4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(asPlacas))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(asNoMotor)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(altalKm)
@@ -371,6 +401,10 @@ public class Alta extends javax.swing.JFrame {
                         .addComponent(altalKmSer)
                         .addGap(20, 20, 20)
                         .addComponent(altatv6)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(asKmServicio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(asKilometraje)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -380,23 +414,43 @@ public class Alta extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(altalKm)
-                        .addComponent(altatv5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(altatv5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(asKilometraje))
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(altalPlacas)
-                        .addComponent(altatv3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(altatv3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(asPlacas)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(altalKmSer)
-                        .addComponent(altatv6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(altatv6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(asKmServicio))
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(altalNoMotor)
-                        .addComponent(altatv4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(altatv4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(asNoMotor)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/studio-writing-tools.png"))); // NOI18N
         jButton12.setText("Consumibles");
+
+        asNombre.setForeground(new java.awt.Color(255, 0, 0));
+
+        asMarca.setForeground(new java.awt.Color(255, 0, 0));
+
+        asColor.setForeground(new java.awt.Color(255, 0, 0));
+
+        asModelo.setForeground(new java.awt.Color(255, 0, 0));
+
+        asNoSerie.setForeground(new java.awt.Color(255, 0, 0));
+
+        asStock.setForeground(new java.awt.Color(255, 0, 0));
+
+        asNoFact.setForeground(new java.awt.Color(255, 0, 0));
+
+        asImporte.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -415,35 +469,44 @@ public class Alta extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(altalMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(altalMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(altat5, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(altalColor)
+                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                                    .addComponent(altalNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(altat2))
+                                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGap(3, 3, 3)
+                                        .addComponent(asColor))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(altat7, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                                    .addComponent(altalModelo)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(altat6))
+                                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                                    .addComponent(altalNoSerie)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(altat4))
+                                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                                    .addComponent(altalDes)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(altat5, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(altalColor)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addComponent(altalNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(altat2))
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(altat7, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(altalModelo)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(altat6))
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(altalNoSerie)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(altat4))
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(altalDes)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(18, 18, 18)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(asNoSerie)
+                                            .addComponent(asModelo))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(altalObser)
@@ -453,14 +516,21 @@ public class Alta extends javax.swing.JFrame {
                                         .addComponent(altalImporte)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(altat11)
-                                        .addGap(227, 227, 227))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(asImporte)
+                                        .addGap(183, 183, 183))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(asNombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(asMarca, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addComponent(altalCantidad)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(altat13, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(altat13, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(asStock))
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
@@ -471,10 +541,11 @@ public class Alta extends javax.swing.JFrame {
                                                         .addComponent(altalFecha)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                         .addComponent(altat9, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                .addGap(14, 14, 14))))))))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(asNoFact))))))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(42, 42, 42)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -499,25 +570,31 @@ public class Alta extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(altalCantidad)
-                            .addComponent(altat13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(altat13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(asStock))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(altalNombre)
                             .addComponent(altat2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(altat10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(altalNoFact))
+                            .addComponent(altalNoFact)
+                            .addComponent(asNombre)
+                            .addComponent(asNoFact))
                         .addGap(9, 9, 9)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(altalMarca)
                             .addComponent(altat5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(altalFecha)))
+                            .addComponent(altalFecha)
+                            .addComponent(asMarca)))
                     .addComponent(altat9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(altalColor)
                     .addComponent(altat7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(altalImporte)
-                    .addComponent(altat11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(altat11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(asColor)
+                    .addComponent(asImporte))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -525,18 +602,22 @@ public class Alta extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(altalNoSerie)
-                            .addComponent(altat4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(altat4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(asNoSerie))
                         .addGap(12, 12, 12)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(altalDes))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(altalObser, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(altat6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(altat6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(asModelo)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -558,7 +639,7 @@ public class Alta extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 52, Short.MAX_VALUE))
             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -620,7 +701,51 @@ public class Alta extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+       // TODO add your handling code here:
+       int cont=0;
+        if(v.soloLetras(altat2.getText())==true){
+            cont++;
+            asNombre.setText("*");
+            altat2.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(altat4.getText())==true){
+             cont++;
+            asMarca.setText("*");
+            altat4.setBackground(Color.PINK);
+        }
+        if(v.soloNumeros(altat13.getText())==true){
+             cont++;
+            asStock.setText("*");
+            altat13.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(altat5.getText())==true){
+             cont++;
+            asModelo.setText("*");
+            altat5.setBackground(Color.PINK);
+        }
+        if(v.soloNumeros(altat6.getText())==true){
+             cont++;
+            asNoSerie.setText("*");
+            altat6.setBackground(Color.PINK);
+        }
+        if(v.soloLetras(altat7.getText())==true){
+           cont++;
+            asColor.setText("*");
+            altat7.setBackground(Color.PINK);
+        }
+         if(v.soloNumeros(altat10.getText())==true){
+             cont++;
+            asNoFact.setText("*");
+            altat10.setBackground(Color.PINK);
+        }
+        if(v.soloDineros(altat11.getText())==true){
+             cont++;
+            asImporte.setText("*");
+            altat11.setBackground(Color.PINK);
+        }
+        if(cont>0){
+            javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
+        }
         altaProductos();
     }//GEN-LAST:event_jButton9ActionPerformed
 
@@ -634,8 +759,106 @@ public class Alta extends javax.swing.JFrame {
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_jLabel14MouseClicked
+    private void altat2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat2FocusGained
+       // TODO add your handling code here:
+        altat2.setBackground(Color.WHITE);
+        asNombre.setText("");
+    }//GEN-LAST:event_altat2FocusGained
 
-    /**
+    private void altat13FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat13FocusGained
+        // TODO add your handling code here:
+         altat13.setBackground(Color.WHITE);
+         asStock.setText("");
+    }//GEN-LAST:event_altat13FocusGained
+
+    private void altat4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat4FocusGained
+        // TODO add your handling code here:
+        altat4.setBackground(Color.white);
+        asMarca.setText("");
+    }//GEN-LAST:event_altat4FocusGained
+
+    private void altat5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat5FocusGained
+        // TODO add your handling code here:
+        altat5.setBackground(Color.white);
+       asModelo.setText("");
+    }//GEN-LAST:event_altat5FocusGained
+
+    private void altat6FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat6FocusGained
+        // TODO add your handling code here:
+        altat6.setBackground(Color.white);
+        asNoSerie.setText("");
+    }//GEN-LAST:event_altat6FocusGained
+
+    private void altat7FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat7FocusGained
+        // TODO add your handling code here:
+        altat7.setBackground(Color.white);
+        asColor.setText("");
+    }//GEN-LAST:event_altat7FocusGained
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        altat10.setText("");
+        altat11.setText("");
+        altat12.setText("");
+        altat13.setText("");
+        altat2.setText("");
+        altat3.setText("");
+        altat4.setText("");
+        altat5.setText("");
+        altat6.setText("");
+        altat7.setText("");
+        altatv3.setText("");
+        altatv4.setText("");
+        altatv5.setText("");
+        altatv6.setText("");
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void altat10FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat10FocusGained
+        // TODO add your handling code here:
+        altat10.setBackground(Color.white);
+        asNoFact.setText("");
+    }//GEN-LAST:event_altat10FocusGained
+
+    private void altat9FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat9FocusGained
+     
+    }//GEN-LAST:event_altat9FocusGained
+
+    private void altat11FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat11FocusGained
+        // TODO add your handling code here:
+        altat11.setBackground(Color.white);
+        asImporte.setText("");
+    }//GEN-LAST:event_altat11FocusGained
+
+    private void altatv3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altatv3FocusGained
+        // TODO add your handling code here:
+        altatv3.setBackground(Color.white);
+        asPlacas.setText("");
+    }//GEN-LAST:event_altatv3FocusGained
+
+    private void altatv5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altatv5FocusGained
+        // TODO add your handling code here:
+        altatv5.setBackground(Color.white);
+        asKilometraje.setText("");
+    }//GEN-LAST:event_altatv5FocusGained
+
+    private void altatv6FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altatv6FocusGained
+        // TODO add your handling code here:
+        altatv6.setBackground(Color.white);
+        asKmServicio.setText("");
+    }//GEN-LAST:event_altatv6FocusGained
+
+    private void altatv4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altatv4FocusGained
+        // TODO add your handling code here:
+        altatv4.setBackground(Color.white);
+        asNoMotor.setText("");
+    }//GEN-LAST:event_altatv4FocusGained
+
+    private void altat11FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat11FocusLost
+        // TODO add your handling code here:
+        float a=Float.parseFloat(altat11.getText());
+        altat11.setText(a+"");
+    }//GEN-LAST:event_altat11FocusLost
+   /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -701,6 +924,18 @@ public class Alta extends javax.swing.JFrame {
     private javax.swing.JTextField altatv4;
     private javax.swing.JTextField altatv5;
     private javax.swing.JTextField altatv6;
+    private javax.swing.JLabel asColor;
+    private javax.swing.JLabel asImporte;
+    private javax.swing.JLabel asKilometraje;
+    private javax.swing.JLabel asKmServicio;
+    private javax.swing.JLabel asMarca;
+    private javax.swing.JLabel asModelo;
+    private javax.swing.JLabel asNoFact;
+    private javax.swing.JLabel asNoMotor;
+    private javax.swing.JLabel asNoSerie;
+    private javax.swing.JLabel asNombre;
+    private javax.swing.JLabel asPlacas;
+    private javax.swing.JLabel asStock;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
