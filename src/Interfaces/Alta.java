@@ -180,16 +180,16 @@ public class Alta extends javax.swing.JFrame {
         jLabel2.setText("Sistema de Control de Inventario IEEN");
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IEE.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/IEE.png"))); // NOI18N
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/minus-sign.png"))); // NOI18N
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel13MouseClicked(evt);
             }
         });
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/salir2.png"))); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/salir2.png"))); // NOI18N
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel14MouseClicked(evt);
@@ -327,7 +327,7 @@ public class Alta extends javax.swing.JFrame {
         altat12.setNextFocusableComponent(altatv3);
         jScrollPane2.setViewportView(altat12);
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/save.png"))); // NOI18N
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/save.png"))); // NOI18N
         jButton9.setText("Guardar");
         jButton9.setNextFocusableComponent(jButton10);
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -336,10 +336,10 @@ public class Alta extends javax.swing.JFrame {
             }
         });
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/eraser.png"))); // NOI18N
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/eraser.png"))); // NOI18N
         jButton10.setText("Limpiar");
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/delete-button.png"))); // NOI18N
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/delete-button.png"))); // NOI18N
         jButton11.setText("Cancelar");
 
         altat9.setNextFocusableComponent(altat11);
@@ -419,7 +419,7 @@ public class Alta extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/studio-writing-tools.png"))); // NOI18N
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/studio-writing-tools.png"))); // NOI18N
         jButton12.setText("Consumibles");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

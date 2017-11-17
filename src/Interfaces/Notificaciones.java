@@ -47,7 +47,7 @@ public class Notificaciones extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/close.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/close.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -55,7 +55,7 @@ public class Notificaciones extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minimize.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/minimize.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -76,7 +76,7 @@ public class Notificaciones extends javax.swing.JFrame {
         );
 
         btn_ayuda.setBackground(new java.awt.Color(255, 255, 255));
-        btn_ayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/ic_help_outline_black_24dp_1x.png"))); // NOI18N
+        btn_ayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/ic_help_outline_black_24dp_1x.png"))); // NOI18N
         btn_ayuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ayudaActionPerformed(evt);
@@ -113,7 +113,7 @@ public class Notificaciones extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
         );
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/error.png"))); // NOI18N
         jButton3.setText("Cerrar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
