@@ -43,7 +43,7 @@ public class Validaciones {
            return true;
         }
         for(int i=0;i<cad.length();i++){
-            if((cad.charAt(i)<'a'||cad.charAt(i)<'z')&&(cad.charAt(i)<'A'||cad.charAt(i)<'Z')){
+            if((cad.charAt(i)<'a'||cad.charAt(i)>'z')&&(cad.charAt(i)<'A'||cad.charAt(i)>'Z')){
                 return true;
             }
         }

@@ -44,22 +44,12 @@ public class BDD{
     
     private int columnCounter(String query){
         BDD b = new BDD();
-        int a=0;
+        int columnas=0;
         ResultSet resul = b.connection(query);
-        try{            
-            while(resul.next()){
-                for(int i=1;i<20;i++){
-                    String aux = resul.getString(i);
-                    if(resul.wasNull() || !resul.wasNull()){
-                        a++;
-                    }
-                }
-            }
-        }catch(Exception e){
-            return a;
-        }
-        
-        return a;
+        try{ResultSetMetaData rsmd = resul.getMetaData();
+             columnas = rsmd.getColumnCount();
+        }catch(Exception e ){System.out.println("Error en m columnCounter c BDD\n"+e.getMessage());}
+        return columnas;        
     }
     public String[][]  obtenerConsultas(String query){
         BDD b = new BDD();

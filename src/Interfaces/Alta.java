@@ -9,6 +9,7 @@ import Clases.MetodosG;
 import basededatos.BDD;
 import Clases.*;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -37,34 +38,36 @@ public class Alta extends javax.swing.JFrame {
     private void altaProductos(){
         int id = m.getMax(b.obtenerConsultas("select id_producto from producto"));
         int id2 = b.getId("select * from categoria where nombre_categoria = '"+jComboBox1.getSelectedItem().toString()+"'");        
-        String [] insertar = new String [16];
+        String [] insertar = new String [17];
         insertar[0]=id+"";
-        insertar[1]=id2+"";
-        insertar[2]=jtextfield(altat2);
-        insertar[3]=jtextarea(altat3);
-        insertar[4]=jtextfield(altat4);
-        insertar[5]=jtextfield(altat5);
-        insertar[6]=jtextfield(altat6);
-        insertar[7]=jtextfield(altat7);
-        insertar[8]=null;
-        insertar[9] = jtextfield(new JTextField(altat9.getDate().getYear()+"-"+altat9.getDate().getMonth()+"-"+altat9.getDate().getDay()));        
-        insertar[10]=jtextfield(altat10);
-        insertar[11]=jtextfield(altat11);    
-        insertar[12]=jtextarea(altat12);
+        insertar[16]=id2+"";
+        insertar[1]=jtextfield(altat2);
+        insertar[2]=jtextarea(altat3);
+        insertar[5]=jtextfield(altat4);
+        insertar[3]=jtextfield(altat5);
+        insertar[4]=jtextfield(altat6);
+        insertar[6]=jtextfield(altat7);
+        insertar[7]=null;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        insertar[8] = sdf.format(altat9.getDate());
+        insertar[9]=jtextfield(altat10);
+        insertar[10]=jtextfield(altat11);    
+        insertar[11]=jtextarea(altat12);
+        insertar[12]=jtextfield(altat13);
         insertar[13]=jtextfield(altat13);
-        insertar[14]=jtextfield(altat13);
-        insertar[15]="Disponible";
+        insertar[14]="Disponible";
+        insertar[15]=jLabel6.getText();
         b.insertar("producto", insertar);
         if(id2==3){ // el id = 3 corresponde al de Vehiculos
             int idcar= m.getMax(b.obtenerConsultas("select id_vehiculo from vehiculo"));
             String [] insertarvehiculo = new String [7];
             insertarvehiculo[0]=idcar+"";
-            insertarvehiculo[1]=id+"";
-            insertarvehiculo[2]=id2+"";
-            insertarvehiculo[3]=jtextfield(altatv3);
-            insertarvehiculo[4]=jtextfield(altatv4);
-            insertarvehiculo[5]=jtextfield(altatv5);
-            insertarvehiculo[6]=jtextfield(altatv6);
+            insertarvehiculo[5]=id+"";
+            insertarvehiculo[6]=id2+"";
+            insertarvehiculo[1]=jtextfield(altatv3);
+            insertarvehiculo[2]=jtextfield(altatv4);
+            insertarvehiculo[3]=jtextfield(altatv5);
+            insertarvehiculo[4]=jtextfield(altatv6);
             b.insertar("vehiculo", insertarvehiculo);
             
         }
@@ -190,16 +193,16 @@ public class Alta extends javax.swing.JFrame {
         jLabel2.setText("Sistema de Control de Inventario IEEN");
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IEE.png"))); // NOI18N
+        //jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IEE.png"))); // NOI18N
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
+        //jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel13MouseClicked(evt);
             }
         });
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/salir2.png"))); // NOI18N
+        //jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/salir2.png"))); // NOI18N
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel14MouseClicked(evt);
@@ -325,7 +328,7 @@ public class Alta extends javax.swing.JFrame {
         altat12.setRows(5);
         jScrollPane2.setViewportView(altat12);
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/save.png"))); // NOI18N
+        //jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/save.png"))); // NOI18N
         jButton9.setText("Guardar");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -333,10 +336,10 @@ public class Alta extends javax.swing.JFrame {
             }
         });
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/eraser.png"))); // NOI18N
+        //jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/eraser.png"))); // NOI18N
         jButton10.setText("Limpiar");
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
+        //Button11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
         jButton11.setText("Cancelar");
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Vehiculo"));
@@ -433,7 +436,7 @@ public class Alta extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/studio-writing-tools.png"))); // NOI18N
+        //jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/studio-writing-tools.png"))); // NOI18N
         jButton12.setText("Consumibles");
 
         asNombre.setForeground(new java.awt.Color(255, 0, 0));
