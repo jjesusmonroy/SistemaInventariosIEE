@@ -72,21 +72,6 @@ public class Alta extends javax.swing.JFrame {
         }
     }
     
-    private void altaVehiculos(int idproducto, int idcategoria){
-       int id= m.getMax(b.obtenerConsultas("select id_vehiculo from vehiculo"));
-       String [] insertar = new String [7];
-       insertar[0]=id+"";
-       insertar[1]=idproducto+"";
-       insertar[2]=idcategoria+"";
-       insertar[3]=jtextfield(altatv3);
-       insertar[4]=jtextfield(altatv4);
-       insertar[5]=jtextfield(altatv5);
-       insertar[6]=jtextfield(altatv6);
-       b.insertar("vehiculo", insertar);
-       
-      
-    }
-    
     private String jtextfield(JTextField e){
         if(!e.getText().equals(""))return e.getText();
         else return null;

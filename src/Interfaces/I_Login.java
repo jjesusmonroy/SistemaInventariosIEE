@@ -241,6 +241,7 @@ public class I_Login extends javax.swing.JFrame {
             if(Arrays.equals(password, pss)){
                 lbl_invisible.setVisible(false);
                 JOptionPane.showMessageDialog(this, "password correcta");
+                
             }
             else {
                 lbl_invisible.setText("password incorrecta");
