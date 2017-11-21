@@ -21,7 +21,7 @@ public class BDD{
     
     public static void main (String [] args){
         BDD b = new BDD();
-        MetodosG m = new MetodosG();        
+        MetodosG m = new MetodosG();
     }
     
     
@@ -33,11 +33,11 @@ public class BDD{
         try{
             while(myRs.next()){
             a[0]=myRs.getString("nombre_usuario");
-            a[1]=myRs.getString("password_usuario");
+            a[1]=myRs.getString("contraseña_usuario");
             }
         }
         catch(Exception e){
-            e.printStackTrace();
+            System.out.println("Error en m validarInicio c BDD\n"+e.getMessage());
         }
         return a;
     }   
