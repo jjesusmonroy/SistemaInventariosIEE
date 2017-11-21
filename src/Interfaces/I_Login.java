@@ -6,6 +6,7 @@
 package Interfaces;
 
 import basededatos.BDD;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
@@ -233,7 +234,7 @@ public class I_Login extends javax.swing.JFrame {
 
     private void btn_iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciarActionPerformed
         // TODO add your handling code here:
-        String [] usuariopass  = a.validarInicio(txt_usuario.getText().toString());
+        String [] usuariopass  = a.validarInicio(txt_usuario.getText());
         
         char[] password = txt_password.getPassword();
         try{char[] pss = usuariopass[1].toCharArray();
@@ -248,7 +249,7 @@ public class I_Login extends javax.swing.JFrame {
                 lbl_invisible.setVisible(true);
             }
         }
-        catch(Exception e){
+        catch(HeadlessException e){
             JOptionPane.showMessageDialog(this, "no existe usuario");
             lbl_invisible.setVisible(false);
         }        
