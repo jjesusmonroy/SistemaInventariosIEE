@@ -7,6 +7,7 @@ package Interfaces;
 
 
 import basededatos.BDD;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,16 +21,14 @@ public class Buscar extends javax.swing.JFrame {
     BDD b;
     public Buscar() {
         initComponents();
+        jLabelParametro.setVisible(false);
         b = new BDD();
-        
-        String [][] datos = b.obtenerConsultas("select id_producto,id_categoria,"
-                + "nombre_producto,marca_producto,modelo_producto,stock_producto,"
-                + "status_producto from producto");
+        String [][] busqueda = b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto,stock_producto,status_producto from producto");
         tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
-                datos
+                busqueda
                 ,
             new String [] {
-                "Folio", "Categoria", "Nombre_Producto", "Marca","Modelo","Stock","Status"
+                "Folio", "Nombre_Producto", "Marca","Modelo","Stock","Status"
             }
         ));
         tbl_productos.setEnabled(false);
@@ -55,6 +54,7 @@ public class Buscar extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_productos = new javax.swing.JTable();
         jButton11 = new javax.swing.JButton();
+        jLabelParametro = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -80,7 +80,7 @@ public class Buscar extends javax.swing.JFrame {
         });
 
         btn_buscar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/search.png"))); // NOI18N
+        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/search.png"))); // NOI18N
         btn_buscar.setText("Buscar");
         btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,13 +101,15 @@ public class Buscar extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tbl_productos);
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/delete-button.png"))); // NOI18N
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/delete-button.png"))); // NOI18N
         jButton11.setText("Cancelar");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
             }
         });
+
+        jLabelParametro.setText("0");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -122,6 +124,8 @@ public class Buscar extends javax.swing.JFrame {
                         .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton11)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelParametro)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
@@ -133,7 +137,8 @@ public class Buscar extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_buscar)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11))
+                    .addComponent(jButton11)
+                    .addComponent(jLabelParametro))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1)
                 .addContainerGap())
@@ -150,10 +155,10 @@ public class Buscar extends javax.swing.JFrame {
         jLabel5.setText("Sistema de Control de Inventario IEEN");
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/IEE.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IEE.png"))); // NOI18N
 
         jButton1.setBackground(new java.awt.Color(255, 51, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/salir2.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/salir2.png"))); // NOI18N
         jButton1.setOpaque(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,7 +167,7 @@ public class Buscar extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(255, 51, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/minus-sign.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
         jButton2.setOpaque(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,14 +262,24 @@ public class Buscar extends javax.swing.JFrame {
         // TODO add your handling code here:
         String parametro=jTextField1.getText();
         String searching="";
-        if(!parametro.equals("")){searching = " where nombre_producto like '%"+parametro+"%'";}
+        int parametroB=Integer.parseInt(jLabelParametro.getText());
+        String conditional="";
+        switch(parametroB){
+            case 0: conditional = "nombre_producto";
+            break;
+            case 1: conditional = "marca_producto";
+            break;
+            case 2: conditional = "modelo_producto";
+        }
+        //if(!parametro.equals("")){searching = " where nombre_producto like '%"+parametro+"%'";}
+        if(!parametro.equals("")){searching = " where "+conditional+" like '%"+parametro+"%'";}
         
-        String [][] busqueda = b.obtenerConsultas("select * from producto"+searching);
+        String [][] busqueda = b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto,stock_producto,status_producto from producto"+searching);
         tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
                 busqueda
                 ,
             new String [] {
-                "Folio", "Categoria", "Nombre_Producto", "Marca","Modelo","Stock","Status"
+                "Folio"/*, "Categoria"*/, "Nombre_Producto", "Marca","Modelo","Stock","Status"
             }
         ));
     }//GEN-LAST:event_jTextField1KeyReleased
@@ -277,6 +292,12 @@ public class Buscar extends javax.swing.JFrame {
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         // TODO add your handling code here:
+        String[] options = new String[]{"Nombre", "Marca", "Modelo"};
+        int response = JOptionPane.showOptionDialog(null, "Selecciona el parametro a buscar", "Busqueda",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+                null, options, options[0]);
+        
+        jLabelParametro.setText(response+""); //si es 0 es por nombre, 1 marca y 2 modelo
     }//GEN-LAST:event_btn_buscarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -328,6 +349,7 @@ public class Buscar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabelParametro;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
