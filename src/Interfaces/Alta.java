@@ -28,15 +28,19 @@ public class Alta extends javax.swing.JFrame {
     public Alta() {
         v=new Validaciones();
         b = new BDD();
-        m = new MetodosG();
-        
+        m = new MetodosG();        
         initComponents();
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(b.convertir2d1d
         (b.obtenerConsultas("select nombre_categoria from categoria order by nombre_categoria"))));
+        folio();
     }
-    
-    private void altaProductos(){
+    private void folio(){
         int id = m.getMax(b.obtenerConsultas("select id_producto from producto"));
+        jLabel6.setText(id+"");
+    }
+    private void altaProductos(){
+        //int id = m.getMax(b.obtenerConsultas("select id_producto from producto"));
+        int id = Integer.parseInt(jLabel6.getText()); // opcional en lo que se resuelve lo del folio
         int id2 = b.getId("select * from categoria where nombre_categoria = '"+jComboBox1.getSelectedItem().toString()+"'");        
         String [] insertar = new String [17];
         insertar[0]=id+"";
@@ -690,28 +694,6 @@ public class Alta extends javax.swing.JFrame {
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         // TODO add your handling code here:
-        /*String var = jComboBox1.getSelectedItem().toString();
-        if(m.ignoreCase(var).equals("vehiculo")){
-            altatPlacas.setVisible(true);
-            altatKm.setVisible(true);
-            altatKmSer.setVisible(true);
-            altatNoMotor.setVisible(true);
-            altalPlacas.setVisible(true);
-            altalKm.setVisible(true);
-            altalKmSer.setVisible(true);
-            altalNoMotor.setVisible(true); 
-        }
-        else if(m.ignoreCase(var).equals("consumibles")){
-             
-        }
-        else altatPlacas.setVisible(false);
-            altatKm.setVisible(false);
-            altatKmSer.setVisible(false);
-            altatNoMotor.setVisible(false);
-            altalPlacas.setVisible(false);
-            altalKm.setVisible(false);
-            altalKmSer.setVisible(false);
-            altalNoMotor.setVisible(false);*/
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -773,6 +755,7 @@ public class Alta extends javax.swing.JFrame {
         }
         altaProductos();
         javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
+        folio();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked

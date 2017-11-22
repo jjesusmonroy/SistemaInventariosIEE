@@ -22,9 +22,8 @@ public class BDD{
     public static void main (String [] args){
         BDD b = new BDD();
         MetodosG m = new MetodosG();
+        b.execute("update producto set nombre_producto ='MEMO' where id_producto=3");
     }
-    
-    
     //metodo para validar inicio de sesion de login
     public String[] validarInicio(String usuario){
             BDD b = new BDD();
@@ -141,14 +140,13 @@ public class BDD{
         try{while(r.next()){
             contador++;
         }
-        }catch(Exception e){
+        }catch(SQLException e){
             contador = 0;
         }
         return contador;
     }
     private boolean needColumnNames(String query){
-        if(query.substring(7,8).equals("*"))return false;
-        else return true;
+        return !query.substring(7,8).equals("*");
     }
     private String[] columnNames(String query){
         String c = query.substring(7);
@@ -164,10 +162,22 @@ public class BDD{
         try{
             while(rs.next()){
             id = Integer.parseInt(rs.getString(1)); }
-        }catch(Exception e){
+        }catch(NumberFormatException | SQLException e){
             System.out.println("Error en metodo getId de BDD");
         }
         return id;
+    }
+    
+    public String getOne(String query){
+        BDD b = new BDD();
+        String resultado="";
+        ResultSet rs = b.connection(query);
+        try{    
+            while(rs.next()){
+                resultado=rs.getString(1);
+            }
+        }catch(SQLException e){}
+        return resultado;
     }
     
     

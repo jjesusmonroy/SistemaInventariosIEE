@@ -5,19 +5,117 @@
  */
 package Interfaces;
 
+import Clases.MetodosG;
+import basededatos.BDD;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Cherne
  */
-public class Modificar extends javax.swing.JFrame {
+public final class Modificar extends javax.swing.JFrame {
 
     /**
      * Creates new form Baja
      */
-    public Modificar() {
+    
+    String folio;
+    BDD b;
+    MetodosG m;
+    int idCategoria=0;
+    String idCat;
+    String idProducto;
+    String idVehiculo;
+    public Modificar(String user){
         initComponents();
+        b = new BDD();
+        m = new MetodosG();
+        folio=user;
+        idCat="";
+        idProducto="";
+        idVehiculo="";
+        fillIn();
+        String consulta [] = b.convertir2d1d
+        (b.obtenerConsultas("select nombre_categoria from categoria order by nombre_categoria"));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(consulta));
+        jComboBox1.setSelectedIndex(getPosicionJCombo(consulta, idCat));
     }
 
+    private Modificar() {
+    }
+    
+    private int getPosicionJCombo(String [] consulta, String idCategoria){
+        String id = b.getOne("select nombre_categoria from categoria where id_categoria = '"+idCategoria+"'");
+        int retornar=0;
+        for(int i=0; i<consulta.length;i++){
+            if(consulta[i].equals(id)){
+               retornar = i;
+            }
+        }
+        return retornar;
+    }
+    
+    public void fillIn(){
+        String [][] elementos =b.obtenerConsultas("select * from producto where folio_producto = '"+folio+"'");
+        idCat=elementos[0][16];
+        idProducto=elementos[0][0];
+        altat2.setText(elementos[0][1]);
+        altat5.setText(elementos[0][3]);
+        altat7.setText(elementos[0][6]);
+        altat6.setText(elementos[0][4]);
+        altat4.setText(elementos[0][5]);
+        altat3.setText(elementos[0][2]);
+        java.util.Date date2=null;
+        try{date2 = new SimpleDateFormat("yyyy-MM-dd").parse(elementos[0][8]);}catch(ParseException e){}
+        altat9.setDate(date2);
+        altat10.setText(elementos[0][9]);
+        altat11.setText(elementos[0][10]);
+        altat12.setText(elementos[0][11]);
+        altat13.setText(elementos[0][12]);
+        jLabel6.setText(elementos[0][15]);
+        System.out.println(idProducto+"-"+idCat);
+        if(idCat.equals("3")){
+            String consultavehiculos = "select * from vehiculo where id_producto = '"+idProducto+"' and id_categoria = '"+idCat+"'";
+            String [][] hello = b.obtenerConsultas(consultavehiculos);
+            idVehiculo = hello [0][0];
+            altatv3.setText(hello[0][1]);
+            altatv4.setText(hello[0][2]);
+            altatv5.setText(hello[0][3]);
+            altatv6.setText(hello[0][4]);
+        } 
+    }
+    
+    private void update(){
+        int idcategoria = b.getId("select * from categoria where nombre_categoria = '"+jComboBox1.getSelectedItem().toString()+"'");        
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String fecha = sdf.format(altat9.getDate());
+        String update = "nombre_producto='"+altat2.getText()+"', "+
+                            "descripcion_producto='"+altat3.getText()+"', "+
+                    "marca_producto='"+altat5.getText()+"', "+
+                    "modelo_producto='"+altat6.getText()+"', "+
+                    "num_serie_producto='"+altat4.getText()+"', "+
+                    "color_producto='"+altat7.getText()+"', "+
+                    "fecha_compra_producto='"+fecha+"', "+
+                    "no_factura_producto='"+altat10.getText()+"', "+
+                    "importe_producto='"+altat11.getText()+"', "+
+                    "observaciones_producto='"+altat12.getText()+"', "+
+                    "stock_producto='"+altat13.getText()+"', "+
+                    "min_stock_producto='"+altat13.getText()+"', "+
+                    "id_categoria='"+idcategoria+"'";
+        b.execute("update producto set "+update+" where id_producto ='"+idProducto+"'");
+        if(idVehiculo.equals("") && idcategoria ==3){
+            //if es categoria vehiculo y el vehiculo not equals "" tiene que hacer un update
+            //en caso contrario se hace un insert con el nuevo id de vehiculo
+        }
+    }
+    
+    //contabilida, cambie a vehiculo y tienes que insertar un nuevo vehiculo 
+    //vehiculo, y se queda en vehiculo y solo tienes que actualizar en dos tablas
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -514,8 +612,11 @@ public class Modificar extends javax.swing.JFrame {
 
     private void jLabel22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel22MouseClicked
 
+        Buscar buscar = new Buscar();
+        buscar.iniciarTabla();
         this.setVisible(false);
         this.dispose();
+        
     }//GEN-LAST:event_jLabel22MouseClicked
 
     private void jLabel21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel21MouseClicked
@@ -525,28 +626,6 @@ public class Modificar extends javax.swing.JFrame {
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         // TODO add your handling code here:
-        /*String var = jComboBox1.getSelectedItem().toString();
-        if(m.ignoreCase(var).equals("vehiculo")){
-            altatPlacas.setVisible(true);
-            altatKm.setVisible(true);
-            altatKmSer.setVisible(true);
-            altatNoMotor.setVisible(true);
-            altalPlacas.setVisible(true);
-            altalKm.setVisible(true);
-            altalKmSer.setVisible(true);
-            altalNoMotor.setVisible(true);
-        }
-        else if(m.ignoreCase(var).equals("consumibles")){
-
-        }
-        else altatPlacas.setVisible(false);
-        altatKm.setVisible(false);
-        altatKmSer.setVisible(false);
-        altatNoMotor.setVisible(false);
-        altalPlacas.setVisible(false);
-        altalKm.setVisible(false);
-        altalKmSer.setVisible(false);
-        altalNoMotor.setVisible(false);*/
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -554,8 +633,8 @@ public class Modificar extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-        
+            // TODO add your handling code here:
+            update();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -592,6 +671,7 @@ public class Modificar extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Modificar().setVisible(true);
             }

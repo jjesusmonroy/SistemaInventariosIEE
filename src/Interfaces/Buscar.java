@@ -7,7 +7,11 @@ package Interfaces;
 
 
 import basededatos.BDD;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 
 /**
  *
@@ -22,19 +26,11 @@ public class Buscar extends javax.swing.JFrame {
     public Buscar() {
         initComponents();
         jLabelParametro.setVisible(false);
+        jLabelIdModificar.setVisible(false);
         b = new BDD();
-        String [][] busqueda = b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto,stock_producto,status_producto from producto");
-        tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
-                busqueda
-                ,
-            new String [] {
-                "Folio", "Nombre_Producto", "Marca","Modelo","Stock","Status"
-            }
-        ));
+        iniciarTabla();
         tbl_productos.setEnabled(false);
         jTextField1.requestFocus();
-        
-        
     }
 
     /**
@@ -55,6 +51,7 @@ public class Buscar extends javax.swing.JFrame {
         tbl_productos = new javax.swing.JTable();
         jButton11 = new javax.swing.JButton();
         jLabelParametro = new javax.swing.JLabel();
+        jLabelIdModificar = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -99,6 +96,11 @@ public class Buscar extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbl_productos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tbl_productosMouseReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbl_productos);
 
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/delete-button.png"))); // NOI18N
@@ -110,6 +112,8 @@ public class Buscar extends javax.swing.JFrame {
         });
 
         jLabelParametro.setText("0");
+
+        jLabelIdModificar.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -126,6 +130,8 @@ public class Buscar extends javax.swing.JFrame {
                         .addComponent(jButton11)
                         .addGap(18, 18, 18)
                         .addComponent(jLabelParametro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelIdModificar)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
@@ -138,7 +144,8 @@ public class Buscar extends javax.swing.JFrame {
                     .addComponent(btn_buscar)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton11)
-                    .addComponent(jLabelParametro))
+                    .addComponent(jLabelParametro)
+                    .addComponent(jLabelIdModificar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1)
                 .addContainerGap())
@@ -251,7 +258,17 @@ public class Buscar extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    public void iniciarTabla(){
+        String [][] busqueda = b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto,stock_producto,status_producto from producto");
+        tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
+                busqueda
+                ,
+            new String [] {
+                "Folio", "Nombre_Producto", "Marca","Modelo","Stock","Status"
+            }
+        ));
+        
+    }
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
@@ -296,7 +313,6 @@ public class Buscar extends javax.swing.JFrame {
         int response = JOptionPane.showOptionDialog(null, "Selecciona el parametro a buscar", "Busqueda",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
                 null, options, options[0]);
-        
         jLabelParametro.setText(response+""); //si es 0 es por nombre, 1 marca y 2 modelo
     }//GEN-LAST:event_btn_buscarActionPerformed
 
@@ -306,6 +322,31 @@ public class Buscar extends javax.swing.JFrame {
         jTextField1.requestFocus();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void tbl_productosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productosMouseReleased
+        // TODO add your handling code here:
+        if(evt.getButton()== java.awt.event.MouseEvent.BUTTON3){
+            int rows = tbl_productos.rowAtPoint(evt.getPoint());
+            String id = tbl_productos.getValueAt(rows, 0)+"";
+            jLabelIdModificar.setText(id+"");
+        }
+        
+        final JPopupMenu menu = new JPopupMenu();
+
+        JMenuItem item = new JMenuItem("Modificar");
+        menu.add(item);
+        ActionListener actionListener = new PopupActionListener();
+        item.addActionListener(actionListener);
+        menu.show(evt.getComponent(),evt.getX(),evt.getY());
+    }//GEN-LAST:event_tbl_productosMouseReleased
+
+    class PopupActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            Modificar modificar = null;
+            modificar = new Modificar(jLabelIdModificar.getText());
+            modificar.setVisible(true);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -335,6 +376,7 @@ public class Buscar extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Buscar().setVisible(true);
             }
@@ -349,6 +391,7 @@ public class Buscar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabelIdModificar;
     private javax.swing.JLabel jLabelParametro;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
