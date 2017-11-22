@@ -10,6 +10,9 @@ package Interfaces;
  * @author Cherne
  */
 public class Presidencia extends javax.swing.JFrame {
+    
+    public int id_usuario,id_personal,id_permiso,id_modulo;
+    public int alta,baja,buscar,modificar,usuarios;
 
     /**
      * Creates new form Presidencia

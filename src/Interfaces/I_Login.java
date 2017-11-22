@@ -240,13 +240,15 @@ public class I_Login extends javax.swing.JFrame {
         String nom_usuario = txt_usuario.getText();
         String [] usuariopass  = a.validarInicio(nom_usuario);
         
+        
         char[] password = txt_password.getPassword();
         try{char[] pss = usuariopass[1].toCharArray();
         
             if(Arrays.equals(password, pss)){
                 lbl_invisible.setVisible(false);
                 //Mandar al tipo de usuario
-                mv.getVentanaPrincipal(nom_usuario);
+                String resul[][]= mv.getModulo(nom_usuario);
+                mv.getVentanaPrincipal(resul);
                 this.setVisible(false);
                 this.dispose();
                 
