@@ -12,23 +12,17 @@ package Clases;
  */
 public class Validaciones {
     public boolean estaVacio(String texto){
-        if(texto.length()==0){
-           return true;
-        }
-        return false;
+        return texto.length()==0;
     }
     public boolean soloNumeros(String num){
         if(num.length()==0){
            return true;
         }
-        boolean v=onlyNumbers(num);
-        if(v!=true){
-            return true;
-        }
-        return false;
+        boolean v=soloNumeros2(num);
+        return v!=true;
     }
     
-    public boolean onlyNumbers(String cad){
+    private boolean soloNumeros2(String cad){
         int num;
         try{
             num=Integer.parseInt(cad);
@@ -49,18 +43,18 @@ public class Validaciones {
         }
         return false;
     }
-    public boolean soloDineros(String num){
+    public boolean soloDecimales(String num){
         if(num.length()==0){
            return true;
         }
-        boolean v=onlyDineros(num);
+        boolean v=soloDecimales2(num);
         if(v!=true){
             return true;
         }
         return false;
     }
     
-    public boolean onlyDineros(String cad){
+    private boolean soloDecimales2(String cad){
         float num=0;
         try{
             num=Float.parseFloat(cad);
@@ -71,6 +65,7 @@ public class Validaciones {
     }
     
     public boolean valPlacas(String placa){
+        if(estaVacio(placa)){return false;}
         String p1=placa.substring(0, 3);
         char p2=placa.charAt(3);
         String p3=placa.substring(4, 6);
@@ -84,4 +79,6 @@ public class Validaciones {
         }
         return false;
     }
+    
+  
 }
