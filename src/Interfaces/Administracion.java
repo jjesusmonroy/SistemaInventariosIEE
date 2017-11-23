@@ -12,18 +12,29 @@ import javax.swing.JOptionPane;
  * @author Cherne
  */
 public class Administracion extends javax.swing.JFrame {
+
+    int modificar,baja;
     
-    public int id_usuario,id_personal,id_permiso,id_modulo; 
-    public int alta,baja,buscar,modificar,usuarios;
 
     /**
      * Creates new form Administracion
      */ 
     
-    public Administracion() {
-        initComponents();  
+
+    public Administracion() {}
+
+    public Administracion(String nombre_modulo,String nombre_usuario,int alta,int baja,int buscar,int modificar,int usuarios) {
+        initComponents();
+        lbl_modulo.setText(nombre_modulo.toUpperCase());
+        lbl_nombre.setText(nombre_usuario.toUpperCase());
+        btn_alta.setEnabled(1==alta);
+        btn_buscar.setEnabled(1==buscar);
+        btn_asignar.setEnabled(1==modificar);
+        btn_recoleccion.setEnabled(1==modificar);
+        btn_usuarios.setEnabled(1==usuarios);
         
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,11 +58,13 @@ public class Administracion extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lbl_modulo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lbl_nombre = new javax.swing.JLabel();
+        lbl_modificar = new javax.swing.JLabel();
+        lbl_baja = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -64,7 +77,7 @@ public class Administracion extends javax.swing.JFrame {
 
         btn_asignar.setBackground(new java.awt.Color(255, 255, 255));
         btn_asignar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btn_asignar.setIcon(new javax.swing.ImageIcon(getClass().getResource("..//Recursos//delivery-worker-giving-a-box-to-a-receiver.png"))); // NOI18N
+        btn_asignar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/delivery-worker-giving-a-box-to-a-receiver.png"))); // NOI18N
         btn_asignar.setText("Asignar");
         btn_asignar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,7 +87,7 @@ public class Administracion extends javax.swing.JFrame {
 
         btn_alta.setBackground(new java.awt.Color(255, 255, 255));
         btn_alta.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btn_alta.setIcon(new javax.swing.ImageIcon(getClass().getResource("..//Recursos//note.png"))); // NOI18N
+        btn_alta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/note.png"))); // NOI18N
         btn_alta.setText("Alta");
         btn_alta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,7 +97,7 @@ public class Administracion extends javax.swing.JFrame {
 
         btn_recoleccion.setBackground(new java.awt.Color(255, 255, 255));
         btn_recoleccion.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btn_recoleccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("..//Recursos//delivery-packages-on-a-trolley.png"))); // NOI18N
+        btn_recoleccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/delivery-packages-on-a-trolley.png"))); // NOI18N
         btn_recoleccion.setText("Recolección");
         btn_recoleccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +107,7 @@ public class Administracion extends javax.swing.JFrame {
 
         btn_buscar.setBackground(new java.awt.Color(255, 255, 255));
         btn_buscar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("..//Recursos//loupe.png"))); // NOI18N
+        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/loupe.png"))); // NOI18N
         btn_buscar.setText("Buscar");
         btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +117,7 @@ public class Administracion extends javax.swing.JFrame {
 
         btn_salir.setBackground(new java.awt.Color(255, 255, 255));
         btn_salir.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("..//Recursos//power-button-off.png"))); // NOI18N
+        btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/power-button-off.png"))); // NOI18N
         btn_salir.setText("Cerrar Sesión");
         btn_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +127,7 @@ public class Administracion extends javax.swing.JFrame {
 
         btn_usuarios.setBackground(new java.awt.Color(255, 255, 255));
         btn_usuarios.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btn_usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("..//Recursos//user.png"))); // NOI18N
+        btn_usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/user.png"))); // NOI18N
         btn_usuarios.setText("Usuarios");
         btn_usuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,7 +137,7 @@ public class Administracion extends javax.swing.JFrame {
 
         btn_solicitar.setBackground(new java.awt.Color(255, 255, 255));
         btn_solicitar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btn_solicitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("..//Recursos//hand-finger-with-a-ribbon.png"))); // NOI18N
+        btn_solicitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/hand-finger-with-a-ribbon.png"))); // NOI18N
         btn_solicitar.setText("Solicitar");
         btn_solicitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,7 +147,7 @@ public class Administracion extends javax.swing.JFrame {
 
         btn_notificaciones.setBackground(new java.awt.Color(255, 255, 255));
         btn_notificaciones.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btn_notificaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("..//Recursos//notification-bell.png"))); // NOI18N
+        btn_notificaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/notification-bell.png"))); // NOI18N
         btn_notificaciones.setText("Notificaciones");
         btn_notificaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,24 +199,24 @@ public class Administracion extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 102, 255));
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("..//Recursos//minus-sign.png"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel13MouseClicked(evt);
             }
         });
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("..//Recursos//salir2.png"))); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/salir2.png"))); // NOI18N
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel14MouseClicked(evt);
             }
         });
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("ADMINISTRACION");
+        lbl_modulo.setBackground(new java.awt.Color(255, 255, 255));
+        lbl_modulo.setFont(new java.awt.Font("Candara", 1, 36)); // NOI18N
+        lbl_modulo.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_modulo.setText("ADMINISTRACION");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -211,7 +224,7 @@ public class Administracion extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5)
+                .addComponent(lbl_modulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -223,7 +236,7 @@ public class Administracion extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
+                    .addComponent(lbl_modulo)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel13)
                         .addComponent(jLabel14)))
@@ -231,7 +244,7 @@ public class Administracion extends javax.swing.JFrame {
         );
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("..//Recursos//ieen-cabezera.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/ieen-cabezera.jpg"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel2.setText("SISTEMA DE CONTROL DE INVENTARIOS IEEN");
@@ -239,8 +252,14 @@ public class Administracion extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel3.setText("BIENVENIDO!");
 
-        jLabel4.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        jLabel4.setText("SEÑOR DE ADMINISTRACION");
+        lbl_nombre.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        lbl_nombre.setText("SEÑOR DE ADMINISTRACION");
+
+        lbl_modificar.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        lbl_modificar.setText("BIENVENIDO!");
+
+        lbl_baja.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        lbl_baja.setText("BIENVENIDO!");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -248,23 +267,30 @@ public class Administracion extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(88, 88, 88)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(73, 73, 73)
-                                .addComponent(jLabel3)))
-                        .addGap(104, 104, 104))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(88, 88, 88)
+                                .addComponent(jLabel2))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbl_modificar)
+                                    .addComponent(lbl_baja))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(lbl_nombre)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(73, 73, 73)
+                                        .addComponent(jLabel3)))
+                                .addGap(104, 104, 104)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,12 +298,19 @@ public class Administracion extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(lbl_modificar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbl_baja)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
+                .addComponent(lbl_nombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -357,14 +390,7 @@ public class Administracion extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel14MouseClicked
 
-    private void admin_permisos(){
-        btn_alta.setEnabled(1==alta);
-        btn_buscar.setEnabled(1==buscar);
-        btn_asignar.setEnabled(1==modificar);
-        btn_recoleccion.setEnabled(1==modificar);
-        btn_usuarios.setEnabled(1==usuarios);
-                
-    }
+
     
     /**
      * 
@@ -416,10 +442,12 @@ public class Administracion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lbl_baja;
+    private javax.swing.JLabel lbl_modificar;
+    private javax.swing.JLabel lbl_modulo;
+    private javax.swing.JLabel lbl_nombre;
     // End of variables declaration//GEN-END:variables
 }

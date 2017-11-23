@@ -247,6 +247,7 @@ public class I_Login extends javax.swing.JFrame {
             if(Arrays.equals(password, pss)){
                 lbl_invisible.setVisible(false);
                 //Mandar al tipo de usuario
+                mv.getVentanaPrincipal(mv.getModulo(nom_usuario));
                 String resul[][]= mv.getModulo(nom_usuario);
                 mv.getVentanaPrincipal(resul);
                 this.setVisible(false);
