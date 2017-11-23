@@ -54,7 +54,7 @@ public class BDD{
         String [] columnNames = b.columnNames(query);
         ResultSet resul = b.connection(query);        
         int columnas = b.columnCounter(query);
-        int renglones = b.noregistros(b.connection(query));
+        int renglones = b.noregistros(query);
         String [][] datos = new String [renglones][columnas]; 
             try{
                 int aux=0;
@@ -132,17 +132,17 @@ public class BDD{
         return a;
     }
     
-    private int noregistros(ResultSet r){
-        
-        int contador=0;
-        
-        try{while(r.next()){
-            contador++;
-        }
+    private int noregistros(String query){
+        BDD b = new BDD();
+        int renglones=0;
+        ResultSet resul = b.connection(query);
+        try{
+            resul.last();
+            renglones = resul.getRow();
         }catch(SQLException e){
-            contador = 0;
+            System.out.println("Error en m noregistros c BDD \n"+e.getMessage());
         }
-        return contador;
+        return renglones;
     }
     private boolean needColumnNames(String query){
         return !query.substring(7,8).equals("*");

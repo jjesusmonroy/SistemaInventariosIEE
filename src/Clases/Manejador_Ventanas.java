@@ -32,19 +32,7 @@ public class Manejador_Ventanas {
     public String[][] getModulo(String nombre_usuario){
 
         BDD bd = new BDD();
-        String query =  "SELECT m._nombre_modulo,p.nombre_personal,p.apellido_pat_personal,"
-                + "p.apellido_mat_personal,per.alta_perrmiso,per.baja_permiso,per.consulta_permiso,"
-                + "per.modificar_permiso,per.administrar_usuario_permiso,u.id_usuario FROM usuarios u\n" +
-" INNER JOIN personal p\n" +
-" ON u.id_personal = p.id_personal\n" +
-" INNER JOIN permisos_modulos pm\n" +
-" ON u.id_personal= pm.id_personal AND u.id_usuario = pm.id_usuario\n" +
-" INNER JOIN modulos m\n" +
-" ON m.id_modulo = pm.id_modulo\n" +
-" INNER JOIN permisos per\n" +
-" ON per.id_permiso = pm.id_permiso\n" +
-" WHERE u.nombre_usuario = '"+nombre_usuario+"'\n" +
-" LIMIT 1;";
+        String query = "select m._nombre_modulo,p.nombre_personal,p.apellido_pat_personal,p.apellido_mat_personal,per.alta_perrmiso,per.baja_permiso,per.consulta_permiso,per.modificar_permiso,per.administrar_usuario_permiso,u.id_usuario from usuarios u inner join personal p on u.id_personal=p.id_personal inner join permisos_modulos pm on u.id_personal=pm.id_personal and u.id_usuario=pm.id_usuario inner join modulos m on pm.id_modulo=m.id_modulo inner join permisos per on pm.id_permiso=per.id_permiso where u.nombre_usuario='"+nombre_usuario+"';";
 
         
         return bd.obtenerConsultas(query);
