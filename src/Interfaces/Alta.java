@@ -691,72 +691,6 @@ public class Alta extends javax.swing.JFrame {
     
     
     
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
-    }                                          
-
-    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {                                            
-        // TODO add your handling code here:
-    }                                           
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-       // TODO add your handling code here:
-      
-       int cont=0;
-        if(v.soloLetras(altat2.getText())==true){
-            cont++;
-            //asNombre.setText("*");
-            altat2.setBackground(Color.PINK);
-        }
-        if(v.estaVacio(altat4.getText())==true){
-             cont++;
-            //asMarca.setText("*");
-            altat4.setBackground(Color.PINK);
-        }
-        if(v.soloNumeros(altat13.getText())==true){
-             cont++;
-            //asStock.setText("*");
-            altat13.setBackground(Color.PINK);
-        }
-        if(v.estaVacio(altat5.getText())==true){
-             cont++;
-            //asModelo.setText("*");
-            altat5.setBackground(Color.PINK);
-        }
-        if(v.soloNumeros(altat6.getText())==true){
-             cont++;
-            //asNoSerie.setText("*");
-            altat6.setBackground(Color.PINK);
-        }
-        if(v.soloLetras(altat7.getText())==true){
-           cont++;
-            //asColor.setText("*");
-            altat7.setBackground(Color.PINK);
-        }
-        if(v.soloNumeros(altat10.getText())==true){
-             cont++;
-            //asNoFact.setText("*");
-            altat10.setBackground(Color.PINK);
-        }
-        if(v.valPlacas(altatv3.getText())){
-             cont++;
-            //asImporte.setText("*");
-            altatv3.setBackground(Color.PINK);
-        }
-        if(altatv3.getText().length()!=9){
-            cont++;
-            altatv3.setBackground(Color.PINK);
-        }
-        if(cont>0){
-            javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
-            return;
-        }
-        altaProductos();
-        javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
-        folio();
-        int var = jComboBox1.getSelectedIndex();
-    }                                        
-
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
         // TODO add your handling code here:
         this.setExtendedState(ICONIFIED);
@@ -848,6 +782,36 @@ public class Alta extends javax.swing.JFrame {
         //asImporte.setText("");
     }//GEN-LAST:event_altat11FocusGained
 
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        int var = jComboBox1.getSelectedIndex();
+        int cont=0;
+        if(var==6){
+            if(valVehiculo()==0){
+                altaProductos();
+                javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
+            }else{
+                javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
+            }
+        }else if(var==1){
+            if(valCamposGeneral()==0 && v.soloNumeros(altat13.getText())==false){
+                altaProductos();
+                javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
+            }else{
+                altat13.setBackground(Color.PINK);
+                javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
+            }
+        }else{ 
+            if(valCamposGeneral()==0){
+                altaProductos();
+                javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
+            }else{
+                 javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
+            }
+        }
+        
+    }//GEN-LAST:event_jButton9ActionPerformed
+
     private void altat10FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat10FocusGained
         // TODO add your handling code here:
         altat10.setBackground(Color.white);
@@ -889,6 +853,47 @@ public class Alta extends javax.swing.JFrame {
         altat13.setBackground(Color.WHITE);
         //asStock.setText("");
     }//GEN-LAST:event_altat13FocusGained
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        // TODO add your handling code here:
+        /*String var = jComboBox1.getSelectedItem().toString();
+        if(m.ignoreCase(var).equals("vehiculo")){
+            altatPlacas.setVisible(true);
+            altatKm.setVisible(true);
+            altatKmSer.setVisible(true);
+            altatNoMotor.setVisible(true);
+            altalPlacas.setVisible(true);
+            altalKm.setVisible(true);
+            altalKmSer.setVisible(true);
+            altalNoMotor.setVisible(true);
+        }
+        else if(m.ignoreCase(var).equals("consumibles")){
+
+        }
+        else altatPlacas.setVisible(false);
+        altatKm.setVisible(false);
+        altatKmSer.setVisible(false);
+        altatNoMotor.setVisible(false);
+        altalPlacas.setVisible(false);
+        altalKm.setVisible(false);
+        altalKmSer.setVisible(false);
+        altalNoMotor.setVisible(false);*/
+        int var = jComboBox1.getSelectedIndex();
+        if(var==1){
+            altat13.setEnabled(true);
+            altalCantidad.setForeground(Color.BLACK);
+        }else if(var==6){
+            camposHabVehiculos();
+        }else{
+            camposDesVehiculos();
+            altat13.setEnabled(false);
+            altalCantidad.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
    public int valCamposGeneral(){
        int cont=0;
         if(v.soloLetras(altat2.getText())==true){
