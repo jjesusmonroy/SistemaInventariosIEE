@@ -54,35 +54,4 @@ public class MetodosG {
         }
         return true;
     }
-    public String datetojDateChooser(String a){
-        String [] fecha = a.split("-");
-        String jdate="";
-        switch(fecha[1]){
-            case "01": jdate= "Jan "+fecha[2]+", "+fecha[0];
-            break;
-            case "02": jdate="Jan "+fecha[2]+", "+fecha[0];
-            break;
-            case "03": jdate= "Jan "+fecha[2]+", "+fecha[0];
-            break;
-            case "04": jdate= "Jan "+fecha[2]+", "+fecha[0];
-            break;
-            case "05": jdate= "Jan "+fecha[2]+", "+fecha[0];
-            break;
-            case "06": jdate= "Jan "+fecha[2]+", "+fecha[0];
-            break;
-            case "07": jdate= "Jan "+fecha[2]+", "+fecha[0];
-            break;
-            case "08": jdate= "Jan "+fecha[2]+", "+fecha[0];
-            break;
-            case "09": jdate= "Jan "+fecha[2]+", "+fecha[0];
-            break;
-            case "10": jdate= "Jan "+fecha[2]+", "+fecha[0];
-            break;
-            case "11": jdate= "Jan "+fecha[2]+", "+fecha[0];
-            break;
-            case "12": jdate= "Jan "+fecha[2]+", "+fecha[0];
-            break;
-        }
-        return jdate;
-    }
 }
