@@ -22,7 +22,6 @@ public class BDD{
     public static void main (String [] args){
         BDD b = new BDD();
         MetodosG m = new MetodosG();
-        b.execute("update producto set nombre_producto ='MEMO' where id_producto=3");
     }
     //metodo para validar inicio de sesion de login
     public String[] validarInicio(String usuario){

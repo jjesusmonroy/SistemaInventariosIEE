@@ -9,9 +9,6 @@ import Clases.MetodosG;
 import basededatos.BDD;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -90,7 +87,10 @@ public final class Modificar extends javax.swing.JFrame {
     }
     
     private void update(){
-        int idcategoria = b.getId("select * from categoria where nombre_categoria = '"+jComboBox1.getSelectedItem().toString()+"'");        
+        int idcategoria = b.getId("select * from categoria where nombre_categoria = '"+jComboBox1.getSelectedItem().toString()+"'");
+        if(!idVehiculo.equals("") && idcategoria!=3){
+            b.execute("delete from vehiculo where id_vehiculo = '"+idVehiculo+"'");
+        }
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String fecha = sdf.format(altat9.getDate());
         String update = "nombre_producto='"+altat2.getText()+"', "+
@@ -108,8 +108,23 @@ public final class Modificar extends javax.swing.JFrame {
                     "id_categoria='"+idcategoria+"'";
         b.execute("update producto set "+update+" where id_producto ='"+idProducto+"'");
         if(idVehiculo.equals("") && idcategoria ==3){
-            //if es categoria vehiculo y el vehiculo not equals "" tiene que hacer un update
-            //en caso contrario se hace un insert con el nuevo id de vehiculo
+            int idcar= m.getMax(b.obtenerConsultas("select id_vehiculo from vehiculo"));
+            String [] insertarvehiculo = new String [7];
+            insertarvehiculo[0]=idcar+"";
+            insertarvehiculo[5]=idProducto;
+            insertarvehiculo[6]=idcategoria+"";
+            insertarvehiculo[1]=altatv3.getText();
+            insertarvehiculo[2]=altatv4.getText();
+            insertarvehiculo[3]=altatv5.getText();
+            insertarvehiculo[4]=altatv6.getText();
+            b.insertar("vehiculo", insertarvehiculo);
+        }
+        if(!idVehiculo.equals("") && idcategoria==3){
+            String updateVehiculo = "placas_vehiculo='"+altatv3.getText()+"', "+
+                            "no_motor_vehiculo='"+altatv4.getText()+"', "+
+                    "km_vehiculo='"+altatv5.getText()+"', "+
+                    "km_serv_vehiculo='"+altatv6.getText()+"'";
+        b.execute("update vehiculo set "+updateVehiculo+" where id_vehiculo ='"+idVehiculo+"'");
         }
     }
     

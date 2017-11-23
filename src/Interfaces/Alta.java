@@ -9,7 +9,6 @@ import basededatos.BDD;
 import Clases.*;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
-import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
