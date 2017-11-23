@@ -69,8 +69,8 @@ public class BDD{
                 if(aux<renglones)aux++;   
             }
                 resul.close();
-            }catch(Exception e){
-                System.out.println(e);
+            }catch(SQLException e){
+                System.out.println("Error en m obtener consultas c BDD \n"+e.getMessage());
             } 
         return datos;
     }
