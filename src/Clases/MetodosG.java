@@ -17,7 +17,14 @@ public class MetodosG {
     
     public MetodosG() {
     }
-    
+    public String []  selecCat(String [][] array){
+        String [] a = new String [array.length+1];
+        a[0]="Seleccione una categoria...";
+        for(int i=1; i<array.length; i++){
+            a[i]=array[i][0];
+        }
+        return a;
+    }
     public String ignoreCase(String string){
         return string.toLowerCase();
     }

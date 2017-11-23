@@ -5,6 +5,7 @@
  */
 package Interfaces;
 
+import Clases.Manejador_Ventanas;
 import basededatos.BDD;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
@@ -23,11 +24,13 @@ public class I_Login extends javax.swing.JFrame {
      */
     
     BDD a;
+    Manejador_Ventanas mv;
     
     public I_Login() {
         initComponents();
         lbl_invisible.setVisible(false);
         a = new BDD();
+        mv = new Manejador_Ventanas();
     }
 
     /**
@@ -234,14 +237,20 @@ public class I_Login extends javax.swing.JFrame {
 
     private void btn_iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciarActionPerformed
         // TODO add your handling code here:
-        String [] usuariopass  = a.validarInicio(txt_usuario.getText());
+        String nom_usuario = txt_usuario.getText();
+        String [] usuariopass  = a.validarInicio(nom_usuario);
+        
         
         char[] password = txt_password.getPassword();
         try{char[] pss = usuariopass[1].toCharArray();
         
             if(Arrays.equals(password, pss)){
                 lbl_invisible.setVisible(false);
-                JOptionPane.showMessageDialog(this, "password correcta");
+                //Mandar al tipo de usuario
+                String resul[][]= mv.getModulo(nom_usuario);
+                mv.getVentanaPrincipal(resul);
+                this.setVisible(false);
+                this.dispose();
                 
             }
             else {

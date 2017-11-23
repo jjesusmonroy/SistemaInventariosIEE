@@ -12,13 +12,17 @@ import javax.swing.JOptionPane;
  * @author Cherne
  */
 public class Administracion extends javax.swing.JFrame {
+    
+    public int id_usuario,id_personal,id_permiso,id_modulo; 
+    public int alta,baja,buscar,modificar,usuarios;
 
     /**
      * Creates new form Administracion
      */ 
     
     public Administracion() {
-        initComponents();       
+        initComponents();  
+        
     }
 
     /**
@@ -353,7 +357,17 @@ public class Administracion extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel14MouseClicked
 
+    private void admin_permisos(){
+        btn_alta.setEnabled(1==alta);
+        btn_buscar.setEnabled(1==buscar);
+        btn_asignar.setEnabled(1==modificar);
+        btn_recoleccion.setEnabled(1==modificar);
+        btn_usuarios.setEnabled(1==usuarios);
+                
+    }
+    
     /**
+     * 
      * @param args the command line arguments
      */
     public static void main(String args[]) {
