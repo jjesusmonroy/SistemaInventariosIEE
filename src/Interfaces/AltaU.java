@@ -8,6 +8,7 @@ package Interfaces;
 import Clases.MetodosG;
 import basededatos.BDD;
 import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -206,6 +207,11 @@ public class AltaU extends javax.swing.JFrame {
         });
 
         jButton10.setText("Limpiar");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jButton11.setText("Cancelar");
 
@@ -370,7 +376,7 @@ public class AltaU extends javax.swing.JFrame {
 
     
     private void insertar(){
-        int idPersonal= m.getMax(b.obtenerConsultas("id_personal"));
+        int idPersonal= m.getMax(b.obtenerConsultas("select id_personal from personal"));
         int idPuesto = b.getId("select * from puestos where nombre_puesto = '"+jComboBox1.getSelectedItem().toString()+"'");
         int idArea = b.getId("select * from areas where nombre_area = '"+jComboBox2.getSelectedItem().toString()+"'");
         String [] personal = new String [14];
@@ -411,9 +417,48 @@ public class AltaU extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         // Validaciones aca antes de insertar
-        insertar();
+        if(validarVacio()){insertar();
+            JOptionPane.showMessageDialog(this, "Nuevo usuario insertado");
+            limpiar();
+        }
     }//GEN-LAST:event_jButton9ActionPerformed
 
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+    }//GEN-LAST:event_jButton10ActionPerformed
+    private void limpiar(){
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField8.setText("");
+        jTextField9.setText("");
+        jTextField10.setText("");
+        jTextField11.setText("");
+        jTextField13.setText("");
+        jDateChooser1.setCalendar(null);
+        jTextField4.setText("");
+        jTextField5.setText("");
+        jTextField6.setText("");
+        jTextField7.setText("");
+    }
+    private boolean validarVacio(){
+        boolean a=true;
+        if(jTextField1.getText().equals("") ||
+                jTextField2.getText().equals("") ||
+                jTextField3.getText().equals("") ||
+                jTextField8.getText().equals("") || 
+                jTextField9.getText().equals("") ||
+                jTextField10.getText().equals("") ||
+                jTextField11.getText().equals("") ||
+                jTextField13.getText().equals("") ||
+                jDateChooser1.getCalendar().equals("") ||
+                jTextField4.getText().equals("") ||
+                jTextField5.getText().equals("") ||
+                jTextField6.getText().equals("") ||
+                jTextField7.getText().equals(""))a=false;
+        return a;
+    }
     /**
      * @param args the command line arguments
      */

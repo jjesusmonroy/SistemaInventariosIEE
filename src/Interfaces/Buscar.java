@@ -258,7 +258,7 @@ public class Buscar extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     private void iniciarTabla(){
-        String [][] busqueda = b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto,stock_producto,status_producto from producto");
+        String [][] busqueda = b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto,stock_producto,status_producto from producto where status_producto = 'Disponible'");
         tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
                 busqueda
                 ,
@@ -358,7 +358,7 @@ public class Buscar extends javax.swing.JFrame {
     class PopupActionListener2 implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            if(!jLabelIdModificar.equals("")){
+            /*if(!jLabelIdModificar.equals("")){
                 String [][] consul1 = b.obtenerConsultas("select id_categoria from producto where folio_producto = '"+jLabelIdModificar.getText()+"'");
                 String query ="";
                 if(consul1[0][0].equals("3"))query="select p.nombre_producto,v.id_vehiculo from producto p inner join vehiculo v on p.id_producto=v.id_producto where p.folio_producto = '"+jLabelIdModificar.getText()+"'";
@@ -372,9 +372,10 @@ public class Buscar extends javax.swing.JFrame {
                 }
                 b.execute("delete from producto where folio_producto = '"+jLabelIdModificar.getText()+"'");
                 JOptionPane.showMessageDialog(null, "producto eliminado");
+
             iniciarTabla();
-            }
-        }
+            }*/
+        }   
     }
     
     /**
