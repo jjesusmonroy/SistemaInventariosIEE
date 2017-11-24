@@ -22,7 +22,7 @@ public class BDD{
     public static void main (String [] args){
         BDD b = new BDD();
         MetodosG m = new MetodosG();
-        String query = "select m._nombre_modulo,p.nombre_personal,p.apellido_pat_personal,p.apellido_mat_personal,per.alta_perrmiso,per.baja_permiso,per.consulta_permiso,per.modificar_permiso,per.administrar_usuario_permiso,u.id_usuario from usuarios u inner join personal p on u.id_personal=p.id_personal inner join permisos_modulos pm on u.id_personal=pm.id_personal and u.id_usuario=pm.id_usuario inner join modulos m on pm.id_modulo=m.id_modulo inner join permisos per on pm.id_permiso=per.id_permiso where u.nombre_usuario='jjesusmonroy'";
+        /*String query = "select m._nombre_modulo,p.nombre_personal,p.apellido_pat_personal,p.apellido_mat_personal,per.alta_perrmiso,per.baja_permiso,per.consulta_permiso,per.modificar_permiso,per.administrar_usuario_permiso,u.id_usuario from usuarios u inner join personal p on u.id_personal=p.id_personal inner join permisos_modulos pm on u.id_personal=pm.id_personal and u.id_usuario=pm.id_usuario inner join modulos m on pm.id_modulo=m.id_modulo inner join permisos per on pm.id_permiso=per.id_permiso where u.nombre_usuario='jjesusmonroy'";
         String [][] a = b.obtenerConsultas(query);
         //int a = b.noregistros(query);
         System.out.println(a[0][0]+"\n"+
@@ -34,7 +34,8 @@ public class BDD{
                 a[0][6]+"\n"+
                 a[0][7]+"\n"+
                 a[0][8]+"\n"+
-                a[0][9]+"\n");
+                a[0][9]+"\n");*/
+        
     }
     //metodo para validar inicio de sesion de login
     public String[] validarInicio(String usuario){
@@ -47,7 +48,7 @@ public class BDD{
             a[1]=myRs.getString("contraseña_usuario");
             }
         }
-        catch(Exception e){
+        catch(SQLException e){
             System.out.println("Error en m validarInicio c BDD\n"+e.getMessage());
         }
         return a;
@@ -59,7 +60,7 @@ public class BDD{
         ResultSet resul = b.connection(query);
         try{ResultSetMetaData rsmd = resul.getMetaData();
              columnas = rsmd.getColumnCount();
-        }catch(Exception e ){System.out.println("Error en m columnCounter c BDD\n"+e.getMessage());}
+        }catch(SQLException e ){System.out.println("Error en m columnCounter c BDD\n"+e.getMessage());}
         return columnas;        
     }
     public String[][]  obtenerConsultas(String query){
@@ -95,7 +96,7 @@ public class BDD{
                 ("jdbc:mysql://localhost:3306/dbis","root","root");
             Statement st = con.createStatement();
             a=st.executeQuery(query);
-        }catch(Exception e){
+        }catch(SQLException e){
             System.out.println(e);
         }
         return a;
@@ -106,10 +107,10 @@ public class BDD{
             
             Connection con = DriverManager.getConnection
                 ("jdbc:mysql://localhost:3306/dbis","root","root");       
-            Statement st = con.createStatement();
-            st.executeUpdate(query);
-            st.close();
-        }catch(Exception e){
+            try (Statement st = con.createStatement()) {
+                st.executeUpdate(query);
+            }
+        }catch(SQLException e){
             System.out.println("error m execute c BDD \n"+e.getMessage());
         }
     }
@@ -129,10 +130,10 @@ public class BDD{
             
             Connection con = DriverManager.getConnection
                 ("jdbc:mysql://localhost:3306/dbis","root","root");       
-            Statement st = con.createStatement();
-            st.executeUpdate(insertar);
-            st.close();
-        }catch(Exception e){
+            try (Statement st = con.createStatement()) {
+                st.executeUpdate(insertar);
+            }
+        }catch(SQLException e){
             System.out.println("error en m insertar c BDD\n"+e.getMessage());
         }
     }

@@ -860,33 +860,11 @@ public class Alta extends javax.swing.JFrame {
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         // TODO add your handling code here:
-        /*String var = jComboBox1.getSelectedItem().toString();
-        if(m.ignoreCase(var).equals("vehiculo")){
-            altatPlacas.setVisible(true);
-            altatKm.setVisible(true);
-            altatKmSer.setVisible(true);
-            altatNoMotor.setVisible(true);
-            altalPlacas.setVisible(true);
-            altalKm.setVisible(true);
-            altalKmSer.setVisible(true);
-            altalNoMotor.setVisible(true);
-        }
-        else if(m.ignoreCase(var).equals("consumibles")){
-
-        }
-        else altatPlacas.setVisible(false);
-        altatKm.setVisible(false);
-        altatKmSer.setVisible(false);
-        altatNoMotor.setVisible(false);
-        altalPlacas.setVisible(false);
-        altalKm.setVisible(false);
-        altalKmSer.setVisible(false);
-        altalNoMotor.setVisible(false);*/
-        int var = jComboBox1.getSelectedIndex();
-        if(var==1){
+        String var = jComboBox1.getSelectedItem().toString().toLowerCase();
+        if(var.equals("consumibles")){
             altat13.setEnabled(true);
             altalCantidad.setForeground(Color.BLACK);
-        }else if(var==6){
+        }else if(var.equals("vehiculos")){
             camposHabVehiculos();
         }else{
             camposDesVehiculos();

@@ -258,7 +258,7 @@ public class Buscar extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    public void iniciarTabla(){
+    private void iniciarTabla(){
         String [][] busqueda = b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto,stock_producto,status_producto from producto");
         tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
                 busqueda
@@ -333,9 +333,13 @@ public class Buscar extends javax.swing.JFrame {
         final JPopupMenu menu = new JPopupMenu();
 
         JMenuItem item = new JMenuItem("Modificar");
+        JMenuItem item2 = new JMenuItem("Eliminar");
         menu.add(item);
+        menu.add(item2);
         ActionListener actionListener = new PopupActionListener();
+        ActionListener actionListener2 = new PopupActionListener2();
         item.addActionListener(actionListener);
+        item2.addActionListener(actionListener2);
         menu.show(evt.getComponent(),evt.getX(),evt.getY());
     }//GEN-LAST:event_tbl_productosMouseReleased
 
@@ -347,6 +351,28 @@ public class Buscar extends javax.swing.JFrame {
             modificar.setVisible(true);
         }
     }
+    class PopupActionListener2 implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            if(!jLabelIdModificar.equals("")){
+                String [][] consul1 = b.obtenerConsultas("select id_categoria from producto where folio_producto = '"+jLabelIdModificar.getText()+"'");
+                String query ="";
+                if(consul1[0][0].equals("3"))query="select p.nombre_producto,v.id_vehiculo from producto p inner join vehiculo v on p.id_producto=v.id_producto where p.folio_producto = '"+jLabelIdModificar.getText()+"'";
+                if(!query.equals("")){ String consul[][]= b.obtenerConsultas(query);
+                    int dialogButton = JOptionPane.YES_NO_OPTION;
+                    int dialogResult = JOptionPane.showConfirmDialog (null, "Seguro que deseas eliminar el producto "+consul[0][0],"Advertencia",dialogButton);
+                    if(dialogResult == JOptionPane.YES_OPTION){
+                        // Saving code here
+                    b.execute("delete from vehiculo where id_vehiculo = '"+consul[0][1]+"'");
+                    }
+                }
+                b.execute("delete from producto where folio_producto = '"+jLabelIdModificar.getText()+"'");
+                JOptionPane.showMessageDialog(null, "producto eliminado");
+            iniciarTabla();
+            }
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
