@@ -33,6 +33,7 @@ public class Administracion extends javax.swing.JFrame {
         btn_recoleccion.setEnabled(1==modificar);
         btn_usuarios.setEnabled(1==usuarios);
         
+        
     }
     
 

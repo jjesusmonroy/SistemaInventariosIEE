@@ -29,7 +29,6 @@ public class Buscar extends javax.swing.JFrame {
         jLabelIdModificar.setVisible(false);
         b = new BDD();
         iniciarTabla();
-        tbl_productos.setEnabled(false);
         jTextField1.requestFocus();
     }
 
@@ -266,7 +265,12 @@ public class Buscar extends javax.swing.JFrame {
             new String [] {
                 "Folio", "Nombre_Producto", "Marca","Modelo","Stock","Status"
             }
-        ));
+        ){
+            @Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}}
+        );
         
     }
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -324,23 +328,23 @@ public class Buscar extends javax.swing.JFrame {
 
     private void tbl_productosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productosMouseReleased
         // TODO add your handling code here:
-        if(evt.getButton()== java.awt.event.MouseEvent.BUTTON3){
+        if(evt.getButton()== java.awt.event.MouseEvent.BUTTON3 && (tbl_productos.getSelectedRowCount()!=0)){
             int rows = tbl_productos.rowAtPoint(evt.getPoint());
             String id = tbl_productos.getValueAt(rows, 0)+"";
             jLabelIdModificar.setText(id+"");
-        }
         
-        final JPopupMenu menu = new JPopupMenu();
+            final JPopupMenu menu = new JPopupMenu();
 
-        JMenuItem item = new JMenuItem("Modificar");
-        JMenuItem item2 = new JMenuItem("Eliminar");
-        menu.add(item);
-        menu.add(item2);
-        ActionListener actionListener = new PopupActionListener();
-        ActionListener actionListener2 = new PopupActionListener2();
-        item.addActionListener(actionListener);
-        item2.addActionListener(actionListener2);
-        menu.show(evt.getComponent(),evt.getX(),evt.getY());
+            JMenuItem item = new JMenuItem("Modificar");
+            JMenuItem item2 = new JMenuItem("Eliminar");
+            menu.add(item);
+            menu.add(item2);
+            ActionListener actionListener = new PopupActionListener();
+            ActionListener actionListener2 = new PopupActionListener2();
+            item.addActionListener(actionListener);
+            item2.addActionListener(actionListener2);
+            menu.show(evt.getComponent(),evt.getX(),evt.getY());
+        }
     }//GEN-LAST:event_tbl_productosMouseReleased
 
     class PopupActionListener implements ActionListener {

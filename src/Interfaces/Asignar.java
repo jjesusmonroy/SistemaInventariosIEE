@@ -6,7 +6,8 @@
 package Interfaces;
 
 import basededatos.BDD;
-
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,22 +19,47 @@ public class Asignar extends javax.swing.JFrame {
      * Creates new form Asignar
      */
     BDD b;
+    DefaultTableModel modelo;
+    DefaultTableModel modelo1;
+    
+    ArrayList<String> asignados;
+
     public Asignar() {
         initComponents();
         b = new BDD();
-               
-        String [][] datos = b.obtenerConsultas("select id_producto,"
+        asignados = new ArrayList<>();
+        String[][] datos = b.obtenerConsultas("select id_producto,"
                 + "nombre_producto,marca_producto,modelo_producto,stock_producto"
                 + " from producto where status_producto = 'Disponible'");
-        tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
-                datos
-                ,
-            new String [] {
-                "Folio", "Nombre_Producto", "Marca","Modelo","Stock"
+
+        modelo = new javax.swing.table.DefaultTableModel(
+                datos,
+                new String[]{
+                    "Folio", "Nombre_Producto", "Marca", "Modelo", "Stock"
+                }
+        ) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
             }
-        ));
-        tbl_productos.setEnabled(false);       
+        };
+        tbl_productos.setModel(modelo);
         
+        String aux[][] = new String[0][0];
+        tbl_productos1.setModel(new DefaultTableModel(
+            aux,
+            new String[]{
+                "Folio","Nombre_Producto","Marca","Modelo","Stock"
+            }){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            }
+        
+        );
+        modelo1 = (DefaultTableModel)tbl_productos1.getModel();
+
     }
 
     /**
@@ -76,7 +102,7 @@ public class Asignar extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btn_buscar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/loupe.png"))); // NOI18N
+        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/loupe.png"))); // NOI18N
         btn_buscar.setText("Buscar");
 
         tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
@@ -97,7 +123,7 @@ public class Asignar extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_productos);
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/error.png"))); // NOI18N
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/error.png"))); // NOI18N
         jButton11.setText("Cancelar");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,8 +132,18 @@ public class Asignar extends javax.swing.JFrame {
         });
 
         jButton3.setText(">>");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("<<");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         tbl_productos1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -122,7 +158,7 @@ public class Asignar extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tbl_productos1);
 
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/search-user-wearing-tie.png"))); // NOI18N
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/search-user-wearing-tie.png"))); // NOI18N
         jButton12.setText("Asignar a");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,7 +170,7 @@ public class Asignar extends javax.swing.JFrame {
         jLabel1.setText("Nombre del señor al que se lo voy a asignar");
 
         btn_buscar1.setBackground(new java.awt.Color(255, 255, 255));
-        btn_buscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/save.png"))); // NOI18N
+        btn_buscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/save.png"))); // NOI18N
         btn_buscar1.setText("Guardar");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -202,16 +238,16 @@ public class Asignar extends javax.swing.JFrame {
         jLabel5.setText("Sistema de Control de Inventario IEEN");
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/IEE.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/IEE.png"))); // NOI18N
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/minus-sign.png"))); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel14MouseClicked(evt);
             }
         });
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/salir2.png"))); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/salir2.png"))); // NOI18N
         jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel15MouseClicked(evt);
@@ -296,13 +332,13 @@ public class Asignar extends javax.swing.JFrame {
 
     private void tbl_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productosMouseClicked
         // TODO add your handling code here:
-       
-        if(evt.getClickCount() == 2 && !evt.isConsumed()){
+
+        if (evt.getClickCount() == 2 && !evt.isConsumed()) {
             int rows = tbl_productos.rowAtPoint(evt.getPoint());
-            String id = tbl_productos.getValueAt(rows, 0)+"";
-            System.out.println(id);            
+            String id = tbl_productos.getValueAt(rows, 0) + "";
+            System.out.println(id);
         }
-        
+
     }//GEN-LAST:event_tbl_productosMouseClicked
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
@@ -319,6 +355,26 @@ public class Asignar extends javax.swing.JFrame {
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int x = tbl_productos.getSelectedRow();
+        modelo1.addRow(new Object[]{
+            tbl_productos.getValueAt(x,0),
+            tbl_productos.getValueAt(x,1),
+            tbl_productos.getValueAt(x,2),
+            tbl_productos.getValueAt(x,3)
+        });
+        
+        asignados.add(tbl_productos.getValueAt(x,0)+"");
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        modelo1.removeRow(tbl_productos1.getSelectedRow());
+        asignados.remove(tbl_productos1.getSelectedRow());
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
