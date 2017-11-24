@@ -5,6 +5,8 @@
  */
 package Interfaces;
 
+import basededatos.BDD;
+
 /**
  *
  * @author Cherne
@@ -14,8 +16,12 @@ public class Usuarios extends javax.swing.JFrame {
     /**
      * Creates new form Usuarios
      */
+    BDD b; 
     public Usuarios() {
+        b = new BDD();
         initComponents();
+        iniciarTabla();
+        
     }
 
     /**
@@ -66,6 +72,12 @@ public class Usuarios extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
 
         jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/error.png"))); // NOI18N
         jButton12.setText("Cancelar");
@@ -204,13 +216,28 @@ public class Usuarios extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
-
+    
+    private void iniciarTabla(){
+        String query = "select p.apellido_pat_personal,p.apellido_mat_personal,p.nombre_personal,a.nombre_area,pu.nombre_puesto from personal p inner join personal_puestos pp on p.id_personal=pp.id_personal inner join areas a on pp.id_area=a.id_area inner join puestos pu on pp.id_puesto=pu.id_puesto";
+        String [][] busqueda = b.obtenerConsultas(query);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                busqueda
+                ,
+            new String [] {
+                "Apellido Paterno", "Apellido Materno", "Nombre","Area","Puesto"
+            }
+        ));
+        
+    }
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
+        AltaU altau = new AltaU();
+        altau.setVisible(true);
+        iniciarTabla();
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
@@ -223,6 +250,23 @@ public class Usuarios extends javax.swing.JFrame {
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_jLabel15MouseClicked
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        // TODO add your handling code here:
+        String parametro=jTextField1.getText();
+        String searching="";
+        if(!parametro.equals("")){searching = " where p.nombre_personal like '%"+parametro+"%'";}
+        String query = "select p.apellido_pat_personal,p.apellido_mat_personal,p.nombre_personal,a.nombre_area,pu.nombre_puesto from personal p inner join personal_puestos pp on p.id_personal=pp.id_personal inner join areas a on pp.id_area=a.id_area inner join puestos pu on pp.id_puesto=pu.id_puesto";
+        String [][] busqueda = b.obtenerConsultas(query+searching);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                busqueda
+                ,
+            new String [] {
+                "Apellido Paterno", "Apellido Materno", "Nombre","Area","Puesto"
+            }
+        ));
+        
+    }//GEN-LAST:event_jTextField1KeyReleased
 
     /**
      * @param args the command line arguments
@@ -253,6 +297,7 @@ public class Usuarios extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Usuarios().setVisible(true);
             }
@@ -263,17 +308,12 @@ public class Usuarios extends javax.swing.JFrame {
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
