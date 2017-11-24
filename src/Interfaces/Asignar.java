@@ -6,7 +6,8 @@
 package Interfaces;
 
 import basededatos.BDD;
-
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,22 +19,47 @@ public class Asignar extends javax.swing.JFrame {
      * Creates new form Asignar
      */
     BDD b;
+    DefaultTableModel modelo;
+    DefaultTableModel modelo1;
+    
+    ArrayList<String> asignados;
+
     public Asignar() {
         initComponents();
         b = new BDD();
-               
-        String [][] datos = b.obtenerConsultas("select id_producto,"
+        asignados = new ArrayList<>();
+        String[][] datos = b.obtenerConsultas("select id_producto,"
                 + "nombre_producto,marca_producto,modelo_producto,stock_producto"
                 + " from producto where status_producto = 'Disponible'");
-        tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
-                datos
-                ,
-            new String [] {
-                "Folio", "Nombre_Producto", "Marca","Modelo","Stock"
+
+        modelo = new javax.swing.table.DefaultTableModel(
+                datos,
+                new String[]{
+                    "Folio", "Nombre_Producto", "Marca", "Modelo", "Stock"
+                }
+        ) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
             }
-        ));
-        tbl_productos.setEnabled(false);       
+        };
+        tbl_productos.setModel(modelo);
         
+        String aux[][] = new String[0][0];
+        tbl_productos1.setModel(new DefaultTableModel(
+            aux,
+            new String[]{
+                "Folio","Nombre_Producto","Marca","Modelo","Stock"
+            }){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            }
+        
+        );
+        modelo1 = (DefaultTableModel)tbl_productos1.getModel();
+
     }
 
     /**
@@ -106,8 +132,18 @@ public class Asignar extends javax.swing.JFrame {
         });
 
         jButton3.setText(">>");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("<<");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         tbl_productos1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -296,13 +332,13 @@ public class Asignar extends javax.swing.JFrame {
 
     private void tbl_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productosMouseClicked
         // TODO add your handling code here:
-       
-        if(evt.getClickCount() == 2 && !evt.isConsumed()){
+
+        if (evt.getClickCount() == 2 && !evt.isConsumed()) {
             int rows = tbl_productos.rowAtPoint(evt.getPoint());
-            String id = tbl_productos.getValueAt(rows, 0)+"";
-            System.out.println(id);            
+            String id = tbl_productos.getValueAt(rows, 0) + "";
+            System.out.println(id);
         }
-        
+
     }//GEN-LAST:event_tbl_productosMouseClicked
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
@@ -319,6 +355,26 @@ public class Asignar extends javax.swing.JFrame {
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int x = tbl_productos.getSelectedRow();
+        modelo1.addRow(new Object[]{
+            tbl_productos.getValueAt(x,0),
+            tbl_productos.getValueAt(x,1),
+            tbl_productos.getValueAt(x,2),
+            tbl_productos.getValueAt(x,3)
+        });
+        
+        asignados.add(tbl_productos.getValueAt(x,0)+"");
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        modelo1.removeRow(tbl_productos1.getSelectedRow());
+        asignados.remove(tbl_productos1.getSelectedRow());
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

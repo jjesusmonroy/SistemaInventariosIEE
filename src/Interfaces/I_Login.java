@@ -238,10 +238,12 @@ public class I_Login extends javax.swing.JFrame {
     private void btn_iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciarActionPerformed
         // TODO add your handling code here:
         String nom_usuario = txt_usuario.getText();
+        char[] password = txt_password.getPassword();
+        if(nom_usuario.equals("") || password.length==0)return;
+        
+        
         String [] usuariopass  = a.validarInicio(nom_usuario);
         
-        
-        char[] password = txt_password.getPassword();
         try{char[] pss = usuariopass[1].toCharArray();
         
             if(Arrays.equals(password, pss)){
@@ -255,14 +257,18 @@ public class I_Login extends javax.swing.JFrame {
                 
             }
             else {
-                lbl_invisible.setText("password incorrecta");
+                lbl_invisible.setText("CONTRASEÑA INCORRECTA");
                 lbl_invisible.setVisible(true);
             }
         }
         catch(HeadlessException e){
-            JOptionPane.showMessageDialog(this, "no existe usuario");
-            lbl_invisible.setVisible(false);
-        }        
+            lbl_invisible.setText("NO EXISTE USUARIO");
+            lbl_invisible.setVisible(true);
+        }
+        catch(NullPointerException e){
+            lbl_invisible.setText("NO EXISTE USUARIO");
+            lbl_invisible.setVisible(true);
+        }
     }//GEN-LAST:event_btn_iniciarActionPerformed
 
     private void txt_passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_passwordKeyPressed
