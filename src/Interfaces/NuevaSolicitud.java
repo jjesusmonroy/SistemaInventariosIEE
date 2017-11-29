@@ -6,6 +6,7 @@
  */
 package Interfaces;
 import basededatos.BDD;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,10 +19,15 @@ public class NuevaSolicitud extends javax.swing.JFrame {
      */
     Solicitar s;
     BDD b;
-    String [] nuevo2;
+    Object [] nuevo;
+    String [][]matrix;
+    int valFil;
+        
     public NuevaSolicitud() {
+        valFil=5;
+        matrix=new String [valFil][5];
         b=new BDD();
-        nuevo2=new String[5];
+        nuevo= new Object[5];
         s=new Solicitar();
         initComponents();
         nsComboBox.setModel(new javax.swing.DefaultComboBoxModel(b.convertir2d1d
@@ -70,7 +76,7 @@ public class NuevaSolicitud extends javax.swing.JFrame {
         jLabel3.setText("Cantidad:");
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/save.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/save.png"))); // NOI18N
         jButton1.setText("Aceptar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,7 +85,7 @@ public class NuevaSolicitud extends javax.swing.JFrame {
         });
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/error.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
         jButton2.setText("Cancelar");
 
         nsNombre.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -103,14 +109,14 @@ public class NuevaSolicitud extends javax.swing.JFrame {
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/minus-sign.png"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel13MouseClicked(evt);
             }
         });
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/salir2.png"))); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/salir2.png"))); // NOI18N
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel14MouseClicked(evt);
@@ -244,18 +250,37 @@ public class NuevaSolicitud extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        nuevo2[0]="hola";
-        nuevo2[1]=nsNombre.getText();
-        nuevo2[2]=nsMarca.getText();
-        nuevo2[3]=nsModelo.getText();
-        nuevo2[4]=nsCantidad.getText();
-        s.addTable(nuevo2);
+        nuevo[0]="null";
+        nuevo[1]=nsNombre.getText();
+        nuevo[2]=nsMarca.getText();
+        nuevo[3]=nsModelo.getText();
+        nuevo[4]=nsCantidad.getText();
         
-        this.setVisible(false);
-        this.dispose();
+        dispose();
+        DefaultTableModel model =(DefaultTableModel) s.tbl_productos1.getModel(); 
+//        javax.swing.JOptionPane.showMessageDialog(this, s.tbl_productos1.getValueAt(0, 0));
+        info2a1(matrix);
+        model.addRow(nuevo);
+        s.tbl_productos1.setModel(model);
+                
+       s.setVisible(true);
+       // s.addTable();
+        
+       
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    public void info2a1(String [][]a){
+         DefaultTableModel model =(DefaultTableModel) s.tbl_productos1.getModel();
+         String []vector=new String[5];
+         for (int irow=0;irow<valFil;irow++){
+                for(int icol=0;icol<5;icol++){
+                  //  vector[icol]=a[irow][icol];  
+                    javax.swing.JOptionPane.showMessageDialog(this, a[irow][icol]);
+                }
+                //model.addRow(vector);
+            }//return vector;
+    }
     /**
      * @param args the command line arguments
      */
@@ -305,10 +330,10 @@ public class NuevaSolicitud extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField nsCantidad;
+    public javax.swing.JTextField nsCantidad;
     private javax.swing.JComboBox nsComboBox;
-    private javax.swing.JTextField nsMarca;
-    private javax.swing.JTextField nsModelo;
-    private javax.swing.JTextField nsNombre;
+    public javax.swing.JTextField nsMarca;
+    public javax.swing.JTextField nsModelo;
+    public javax.swing.JTextField nsNombre;
     // End of variables declaration//GEN-END:variables
 }

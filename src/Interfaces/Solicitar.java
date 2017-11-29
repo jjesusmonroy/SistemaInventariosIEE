@@ -21,13 +21,17 @@ public class Solicitar extends javax.swing.JFrame {
     public String [] nuevo2;
     Validaciones v;
     BDD b;
-    //NuevaSolicitud n;
+    NuevaSolicitud n;
     int id_cambio,id_cambio2;
     int cont;
     String []datos;
     Object[][] data;
     int Cantidad;
+    //String [][]matrix;
+    int valFil;
     public Solicitar() {
+      //  valFil=5;
+        //matrix=new String [valFil][5];
         nuevo2=new String[5];
         v=new Validaciones();
         b= new BDD();
@@ -87,6 +91,7 @@ public class Solicitar extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_productos1 = new javax.swing.JTable();
         btnNuevo = new javax.swing.JButton();
+        btnActual = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -197,6 +202,13 @@ public class Solicitar extends javax.swing.JFrame {
             }
         });
 
+        btnActual.setText("Actualizar");
+        btnActual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -214,15 +226,19 @@ public class Solicitar extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtCantidad, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.LEADING)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(35, 35, 35)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel4)
+                                            .addComponent(btnAgregar)
+                                            .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnActual)))
+                                .addGap(29, 29, 29)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -256,7 +272,10 @@ public class Solicitar extends javax.swing.JFrame {
                         .addGap(1, 1, 1)
                         .addComponent(btnAgregar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBorrar))
+                        .addComponent(btnBorrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnActual)
+                        .addGap(48, 48, 48))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(101, 101, 101)
@@ -392,6 +411,7 @@ public class Solicitar extends javax.swing.JFrame {
                 model.addRow(nuevo);
             }else{
                 javax.swing.JOptionPane.showMessageDialog(this, "Inserte cantidad");
+                txtCantidad.requestFocus(true);
             }
                 txtCantidad.setText("");}
         /*if(!busIguales(id_cambio)){
@@ -449,7 +469,7 @@ public class Solicitar extends javax.swing.JFrame {
             
         nuevo2[0]="null";
         nuevo2[1]=javax.swing.JOptionPane.showInputDialog(this, "Nombre del producto");
-        nuevo2[2]=javax.swing.JOptionPane.showInputDialog(this, "Marca del producto");
+        nuevo2[2]=javax.swing.JOptionPane.showInputDialog(this, "Marca del producto ");
         nuevo2[3]=javax.swing.JOptionPane.showInputDialog(this, "Modelo del producto");
         nuevo2[4]=javax.swing.JOptionPane.showInputDialog(this, "Cantidad");
         addTable(nuevo2);
@@ -459,6 +479,8 @@ public class Solicitar extends javax.swing.JFrame {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
+        obtInfo();
+        dispose();
         NuevaSolicitud ns= new NuevaSolicitud();
         ns.setVisible(true);
     }//GEN-LAST:event_btnNuevoActionPerformed
@@ -501,6 +523,17 @@ public class Solicitar extends javax.swing.JFrame {
              
         }
     }//GEN-LAST:event_tbl_productos1MouseClicked
+
+    private void btnActualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualActionPerformed
+        // TODO add your handling code here:
+       // javax.swing.JOptionPane.showMessageDialog(this, n.nuevo.length); //n.nuevo[0]+"     "+n.nuevo[1]+"     "+n.nuevo[2]+"     "+n.nuevo[3]+"     "+n.nuevo[4]);
+        datos[0]="null";
+        datos[1]=n.nsNombre.getText();
+        datos[2]=n.nsMarca.getText();
+        datos[3]=n.nsModelo.getText();
+        datos[4]=n.nsCantidad.getText();
+        addTable(datos);
+    }//GEN-LAST:event_btnActualActionPerformed
     /*private boolean busIguales(String id){
         Cantidad=Integer.parseInt(txtCantidad.getText());
         for(int i=0;i<tbl_productos1.getRowCount();i++){
@@ -514,10 +547,28 @@ public class Solicitar extends javax.swing.JFrame {
         }
         return false;
     }*/
-    public void addTable(String n[]){
+    public String[][] obtInfo(){
+        
+        DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
+            int numFilas=model.getRowCount();
+            int numColumnas=model.getColumnCount();
+            
+            valFil=numFilas;
+            
+//matrix[][]=new String[numFilas][numColumnas];
+            for (int irow=0;irow<numFilas;irow++){
+                for(int icol=0;icol<numColumnas;icol++){
+                    n.matrix[irow][icol]=(String)model.getValueAt(irow, icol);
+                }
+            }
+            return n.matrix;
+    }
+    
+    public void addTable(String []arr){
+       
                 DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
-                model.addRow(n);
-               // javax.swing.JOptionPane.showMessageDialog(this, nuevo2[1]);
+                model.addRow(arr);
+               //javax.swing.JOptionPane.showMessageDialog(this, n[0]+"     "+n[1]+"     "+n[2]+"     "+n[3]+"     "+n[4]);
     }
     /**
      * @param args the command line arguments
@@ -555,6 +606,7 @@ public class Solicitar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActual;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnBuscar;
@@ -577,7 +629,7 @@ public class Solicitar extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tbl_productos;
-    private javax.swing.JTable tbl_productos1;
+    public javax.swing.JTable tbl_productos1;
     private javax.swing.JTextField txtCantidad;
     // End of variables declaration//GEN-END:variables
 }
