@@ -395,9 +395,9 @@
                                   <Component id="altalObser" alignment="0" min="-2" pref="17" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblImage" alignment="3" min="-2" pref="140" max="-2" attributes="0"/>
-                                  <Component id="btnCargarFoto" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="lblImage" min="-2" pref="140" max="-2" attributes="0"/>
+                                  <Component id="btnCargarFoto" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>

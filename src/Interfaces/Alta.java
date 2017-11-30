@@ -13,6 +13,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import java.io.File;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.FileInputStream;
+import java.sql.PreparedStatement;
 import javax.swing.JFileChooser;
 import javax.swing.ImageIcon;
 import javax.swing.Icon;
@@ -29,6 +31,7 @@ public class Alta extends javax.swing.JFrame {
     Validaciones v;
     BDD b;
     MetodosG m;
+    File fichero;
     public Alta() {
         v=new Validaciones();
         b = new BDD();
@@ -50,6 +53,12 @@ public class Alta extends javax.swing.JFrame {
     }
     private void altaProductos(){
         //int id = m.getMax(b.obtenerConsultas("select id_producto from producto"));
+      //  java.sql.Connection cn = b.conexion();
+        /*try{
+            FileInputStream archivoFoto= new FileInputStream(lblImage.getText());
+            
+            
+        }catch(){}*/
         int id = Integer.parseInt(jLabel6.getText()); // opcional en lo que se resuelve lo del folio
         int id2 = b.getId("select * from categoria where nombre_categoria = '"+jComboBox1.getSelectedItem().toString()+"'");        
         String [] insertar = new String [17];
@@ -61,7 +70,7 @@ public class Alta extends javax.swing.JFrame {
         insertar[3]=jtextfield(altat5);
         insertar[4]=jtextfield(altat6);
         insertar[6]=jtextfield(altat7);
-        insertar[7]=null;
+        insertar[7]=rutaChida(fichero+"");//lblImage.getText();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         insertar[8] = sdf.format(altat9.getDate());
         insertar[9]=jtextfield(altat10);
@@ -671,7 +680,7 @@ public class Alta extends javax.swing.JFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(altalObser, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCargarFoto))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -901,7 +910,7 @@ public class Alta extends javax.swing.JFrame {
             altalCantidad.setForeground(Color.GRAY);
         }
     }//GEN-LAST:event_jComboBox1ItemStateChanged
-    File fichero;
+
     private void btnCargarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarFotoActionPerformed
         // TODO add your handling code here:
         int resultado;
@@ -912,7 +921,9 @@ public class Alta extends javax.swing.JFrame {
         ventana.jfcCargarFoto.setFileFilter(filtro);
         resultado=ventana.jfcCargarFoto.showOpenDialog(null);
         if(JFileChooser.APPROVE_OPTION==resultado){
+
             fichero=ventana.jfcCargarFoto.getSelectedFile();
+            javax.swing.JOptionPane.showMessageDialog(this, fichero.getAbsolutePath());
             try{
                     ImageIcon icon=new ImageIcon(fichero.toString());
                     Icon icono=new ImageIcon(icon.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(),Image.SCALE_DEFAULT));
@@ -1032,6 +1043,13 @@ public class Alta extends javax.swing.JFrame {
         altalKm.setForeground(Color.BLACK);
         altalKmSer.setForeground(Color.BLACK);
         altalPlacas.setForeground(Color.BLACK);
+   }
+   public String rutaChida(String ru){
+       String nuevoPath="";
+       String a[]=ru.split("/");
+       for(int i=0;i<a.length;i++){
+           nuevoPath+=a[i]+"$";
+       }return nuevoPath;
    }
     /**
      * @param args the command line arguments

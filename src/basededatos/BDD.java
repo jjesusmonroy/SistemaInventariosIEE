@@ -101,6 +101,18 @@ public class BDD{
         }
         return a;
     }
+    /*public Connection conexion(){
+        Connection conectar=null;
+         try {
+           Class.forName("com.mysql.jdbc.Driver");
+           conectar=DriverManager.getConnection("jdbc:mysql://localhost:3306/dbis","root","root");
+           
+            
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(null, e);
+        }
+        return conectar;
+    }*/
     
     public void execute(String query){
         try{
