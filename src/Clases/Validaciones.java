@@ -19,7 +19,7 @@ public class Validaciones {
            return true;
         }
         boolean v=soloNumeros2(num);
-        return v!=true;
+        return !v;
     }
     
     private boolean soloNumeros2(String cad){
@@ -37,7 +37,7 @@ public class Validaciones {
            return true;
         }
         for(int i=0;i<cad.length();i++){
-            if((cad.charAt(i)<'a'||cad.charAt(i)>'z')&&(cad.charAt(i)<'A'||cad.charAt(i)>'Z')){
+            if((cad.charAt(i)<'a'||cad.charAt(i)>'z')&&(cad.charAt(i)<'A'||cad.charAt(i)>'Z')&& cad.charAt(i)!=32){
                 return true;
             }
         }

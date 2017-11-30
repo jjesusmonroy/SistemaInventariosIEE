@@ -9,6 +9,7 @@ import Clases.MetodosG;
 import basededatos.BDD;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
+import java.awt.Color;
 
 /**
  *
@@ -52,30 +53,30 @@ public class AltaU extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
         jLabel16 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        auNombre = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        auApellidoP = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        auApellidoM = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        auCurp = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        auRFC = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        auNoLicencia = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        auNoCredencial = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
+        auTelefono = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        auCalle = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        auNum = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        auColonia = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        auCp = new javax.swing.JTextField();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
@@ -163,23 +164,99 @@ public class AltaU extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel16.setText("Nombre:");
 
+        auNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                auNombreFocusGained(evt);
+            }
+        });
+
         jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel7.setText("Apellido paterno:");
+
+        auApellidoP.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                auApellidoPFocusGained(evt);
+            }
+        });
 
         jLabel18.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel18.setText("Apellido materno:");
 
+        auApellidoM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                auApellidoMActionPerformed(evt);
+            }
+        });
+        auApellidoM.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                auApellidoMFocusGained(evt);
+            }
+        });
+
         jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel6.setText("CURP:");
+
+        auCurp.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                auCurpFocusGained(evt);
+            }
+        });
+        auCurp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                auCurpKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                auCurpKeyTyped(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel10.setText("RFC:");
 
+        auRFC.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                auRFCFocusGained(evt);
+            }
+        });
+        auRFC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                auRFCKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                auRFCKeyTyped(evt);
+            }
+        });
+
         jLabel17.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel17.setText("No. Licencia:");
 
+        auNoLicencia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                auNoLicenciaFocusGained(evt);
+            }
+        });
+        auNoLicencia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                auNoLicenciaKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                auNoLicenciaKeyTyped(evt);
+            }
+        });
+
         jLabel12.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel12.setText("No. Credencial:");
+
+        auNoCredencial.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                auNoCredencialFocusGained(evt);
+            }
+        });
+        auNoCredencial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                auNoCredencialKeyTyped(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel11.setText("Fecha de nacimiento:");
@@ -187,17 +264,57 @@ public class AltaU extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel15.setText("Telefono:");
 
+        auTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                auTelefonoFocusGained(evt);
+            }
+        });
+        auTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                auTelefonoKeyTyped(evt);
+            }
+        });
+
         jLabel19.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel19.setText("Calle:");
+
+        auCalle.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                auCalleFocusGained(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel9.setText("Numero:");
 
+        auNum.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                auNumFocusGained(evt);
+            }
+        });
+
         jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel8.setText("Colonia:");
 
+        auColonia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                auColoniaFocusGained(evt);
+            }
+        });
+
         jLabel20.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel20.setText("Codigo postal:");
+
+        auCp.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                auCpFocusGained(evt);
+            }
+        });
+        auCp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                auCpKeyTyped(evt);
+            }
+        });
 
         jButton9.setText("Guardar");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -233,11 +350,11 @@ public class AltaU extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(auNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField6))
+                        .addComponent(auNoLicencia))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -250,15 +367,15 @@ public class AltaU extends javax.swing.JFrame {
                                 .addGroup(jPanel4Layout.createSequentialGroup()
                                     .addComponent(jLabel12)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField7))
+                                    .addComponent(auNoCredencial))
                                 .addGroup(jPanel4Layout.createSequentialGroup()
                                     .addComponent(jLabel10)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField5))
+                                    .addComponent(auRFC))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                                     .addComponent(jLabel6)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jTextField4))
+                                    .addComponent(auCurp))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                                     .addComponent(jLabel11)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -266,33 +383,33 @@ public class AltaU extends javax.swing.JFrame {
                                 .addGroup(jPanel4Layout.createSequentialGroup()
                                     .addComponent(jLabel18)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
+                                    .addComponent(auApellidoM, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
                                 .addGroup(jPanel4Layout.createSequentialGroup()
                                     .addComponent(jLabel7)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField2))))
+                                    .addComponent(auApellidoP))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addGap(5, 5, 5)
-                                .addComponent(jTextField10))
+                                .addComponent(auColonia))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel15)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField13))
+                                .addComponent(auTelefono))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel20)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField11))
+                                .addComponent(auCp))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel19)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField8))
+                                .addComponent(auCalle))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField9)))))
+                                .addComponent(auNum)))))
                 .addGap(5, 5, 5))
         );
         jPanel4Layout.setVerticalGroup(
@@ -306,45 +423,45 @@ public class AltaU extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(auNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(auNoLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(auApellidoP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
-                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(auTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(auApellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(auCalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel11)
                         .addComponent(jLabel9)
-                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(auNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(auCurp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(auColonia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(auRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel20)
-                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(auCp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(auNoCredencial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton9)
@@ -382,20 +499,20 @@ public class AltaU extends javax.swing.JFrame {
         String [] personal = new String [14];
         String [] personalP = new String [3]; 
         personal[0]=idPersonal+"";
-        personal[1]=jTextField1.getText();
-        personal[2]=jTextField2.getText();
-        personal[3]=jTextField3.getText();
-        personal[4]=jTextField8.getText();
-        personal[5]=jTextField9.getText();
-        personal[6]=jTextField10.getText();
-        personal[7]=jTextField11.getText();
-        personal[8]=jTextField13.getText();
+        personal[1]=auNombre.getText();
+        personal[2]=auApellidoP.getText();
+        personal[3]=auApellidoM.getText();
+        personal[4]=auCalle.getText();
+        personal[5]=auNum.getText();
+        personal[6]=auColonia.getText();
+        personal[7]=auCp.getText();
+        personal[8]=auTelefono.getText();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         personal[9] = sdf.format(jDateChooser1.getDate());
-        personal[10]=jTextField4.getText();
-        personal[11]=jTextField5.getText();
-        personal[12]=jTextField6.getText();
-        personal[13]=jTextField7.getText();
+        personal[10]=auCurp.getText();
+        personal[11]=auRFC.getText();
+        personal[12]=auNoLicencia.getText();
+        personal[13]=auNoCredencial.getText();
         b.insertar("personal", personal);
         personalP[0]=idPersonal+"";
         personalP[1]=idArea+"";
@@ -415,48 +532,236 @@ public class AltaU extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        
+        int contErr=0;
+        Clases.Validaciones v= new Clases.Validaciones();
+        if(v.soloLetras(auNombre.getText())){
+            contErr++;
+            auNombre.setBackground(Color.PINK); 
+            
+        }
+        if(v.soloLetras(auApellidoP.getText())){
+            contErr++;
+            //asNombre.setText("*");
+            auApellidoP.setBackground(Color.PINK);
+        }
+        if(v.soloLetras(auApellidoM.getText())){
+            contErr++;
+            //asMarca.setText("*");
+            auApellidoM.setBackground(Color.PINK);
+        }
+        if(auCurp.getText().length()!=18){
+            contErr++;
+            //asModelo.setText("*");
+            auCurp.setBackground(Color.PINK);
+        }
+        if(auRFC.getText().length()!=13){
+            contErr++;
+            //asNoSerie.setText("*");
+            auRFC.setBackground(Color.PINK);
+        }
+        if(v.soloNumeros(auNoCredencial.getText()) || auNoCredencial.getText().length()!=10){
+            contErr++;
+            //asColor.setText("*");
+            auNoCredencial.setBackground(Color.PINK);
+        }
+        if(auNoLicencia.getText().length()!=8){
+            contErr++;
+            //asNoFact.setText("*");
+            auNoLicencia.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(auCalle.getText())){
+            contErr++;
+            //asImporte.setText("*");
+            auCalle.setBackground(Color.PINK);
+        }
+        ///////////////
+         if(v.soloNumeros(auTelefono.getText()) || auTelefono.getText().length()!=10){
+            contErr++;
+            //asNoSerie.setText("*");
+            auTelefono.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(auColonia.getText())){
+            contErr++;
+            //asColor.setText("*");
+            auColonia.setBackground(Color.PINK);
+        }
+        if(v.soloNumeros(auNum.getText())){
+            contErr++;
+            //asNoFact.setText("*");
+            auNum.setBackground(Color.PINK);
+        }
+        if(v.soloNumeros(auCp.getText()) || auCp.getText().length()!=5){
+            contErr++;
+            //asImporte.setText("*");
+            auCp.setBackground(Color.PINK);
+        }
+        if(contErr>0){
+            javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
+            
+        }else{
         // Validaciones aca antes de insertar
-        if(validarVacio()){insertar();
+        //if(validarVacio()){
+            insertar();
             JOptionPane.showMessageDialog(this, "Nuevo usuario insertado");
             limpiar();
-        }
+        }contErr=0;
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
         limpiar();
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void auNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auNombreFocusGained
+        // TODO add your handling code here:
+        auNombre.setBackground(Color.white);
+    }//GEN-LAST:event_auNombreFocusGained
+
+    private void auApellidoPFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auApellidoPFocusGained
+        // TODO add your handling code here:
+        auApellidoP.setBackground(Color.white);
+    }//GEN-LAST:event_auApellidoPFocusGained
+
+    private void auApellidoMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_auApellidoMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_auApellidoMActionPerformed
+
+    private void auApellidoMFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auApellidoMFocusGained
+        // TODO add your handling code here:
+        auApellidoM.setBackground(Color.white);
+    }//GEN-LAST:event_auApellidoMFocusGained
+
+    private void auCurpFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auCurpFocusGained
+        // TODO add your handling code here:
+        auCurp.setBackground(Color.white);
+    }//GEN-LAST:event_auCurpFocusGained
+
+    private void auRFCFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auRFCFocusGained
+        // TODO add your handling code here:
+        auRFC.setBackground(Color.white);
+    }//GEN-LAST:event_auRFCFocusGained
+
+    private void auNoCredencialFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auNoCredencialFocusGained
+        // TODO add your handling code here:
+        auNoCredencial.setBackground(Color.white);
+    }//GEN-LAST:event_auNoCredencialFocusGained
+
+    private void auNoLicenciaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auNoLicenciaFocusGained
+        // TODO add your handling code here:
+        auNoLicencia.setBackground(Color.white);
+    }//GEN-LAST:event_auNoLicenciaFocusGained
+
+    private void auTelefonoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auTelefonoFocusGained
+        // TODO add your handling code here:
+        auTelefono.setBackground(Color.white);
+    }//GEN-LAST:event_auTelefonoFocusGained
+
+    private void auCalleFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auCalleFocusGained
+        // TODO add your handling code here:
+        auCalle.setBackground(Color.white);
+    }//GEN-LAST:event_auCalleFocusGained
+
+    private void auNumFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auNumFocusGained
+        // TODO add your handling code here:
+        auNum.setBackground(Color.white);
+    }//GEN-LAST:event_auNumFocusGained
+
+    private void auColoniaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auColoniaFocusGained
+        // TODO add your handling code here:
+        auColonia.setBackground(Color.white);
+    }//GEN-LAST:event_auColoniaFocusGained
+
+    private void auCpFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auCpFocusGained
+        // TODO add your handling code here:
+        auCp.setBackground(Color.white);
+    }//GEN-LAST:event_auCpFocusGained
+
+    private void auCurpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auCurpKeyTyped
+        // TODO add your handling code here:
+        if(auCurp.getText().length()>=18){
+            evt.consume();
+        }
+    }//GEN-LAST:event_auCurpKeyTyped
+
+    private void auRFCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auRFCKeyTyped
+        // TODO add your handling code here:
+        if(auRFC.getText().length()>=13){
+            evt.consume();
+        }
+    }//GEN-LAST:event_auRFCKeyTyped
+
+    private void auNoCredencialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auNoCredencialKeyTyped
+        // TODO add your handling code here:
+        if(auNoCredencial.getText().length()>=10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_auNoCredencialKeyTyped
+
+    private void auNoLicenciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auNoLicenciaKeyTyped
+        // TODO add your handling code here:
+        if(auNoLicencia.getText().length()>=8){
+            evt.consume();
+        }
+    }//GEN-LAST:event_auNoLicenciaKeyTyped
+
+    private void auCurpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auCurpKeyReleased
+        // TODO add your handling code here:
+        auCurp.setText(auCurp.getText().toUpperCase());
+    }//GEN-LAST:event_auCurpKeyReleased
+
+    private void auRFCKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auRFCKeyReleased
+        // TODO add your handling code here:
+        auRFC.setText(auRFC.getText().toUpperCase());
+    }//GEN-LAST:event_auRFCKeyReleased
+
+    private void auNoLicenciaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auNoLicenciaKeyReleased
+        // TODO add your handling code here:
+        auNoLicencia.setText(auNoLicencia.getText().toUpperCase());
+    }//GEN-LAST:event_auNoLicenciaKeyReleased
+
+    private void auTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auTelefonoKeyTyped
+        // TODO add your handling code here:
+        if(auTelefono.getText().length()>=10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_auTelefonoKeyTyped
+
+    private void auCpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auCpKeyTyped
+        // TODO add your handling code here:
+        if(auCp.getText().length()>=5){
+            evt.consume();
+        }
+    }//GEN-LAST:event_auCpKeyTyped
     private void limpiar(){
-        jTextField1.setText("");
-        jTextField2.setText("");
-        jTextField3.setText("");
-        jTextField8.setText("");
-        jTextField9.setText("");
-        jTextField10.setText("");
-        jTextField11.setText("");
-        jTextField13.setText("");
+        auNombre.setText("");
+        auApellidoP.setText("");
+        auApellidoM.setText("");
+        auCalle.setText("");
+        auNum.setText("");
+        auColonia.setText("");
+        auCp.setText("");
+        auTelefono.setText("");
         jDateChooser1.setCalendar(null);
-        jTextField4.setText("");
-        jTextField5.setText("");
-        jTextField6.setText("");
-        jTextField7.setText("");
+        auCurp.setText("");
+        auRFC.setText("");
+        auNoLicencia.setText("");
+        auNoCredencial.setText("");
     }
     private boolean validarVacio(){
         boolean a=true;
-        if(jTextField1.getText().equals("") ||
-                jTextField2.getText().equals("") ||
-                jTextField3.getText().equals("") ||
-                jTextField8.getText().equals("") || 
-                jTextField9.getText().equals("") ||
-                jTextField10.getText().equals("") ||
-                jTextField11.getText().equals("") ||
-                jTextField13.getText().equals("") ||
+        if(auNombre.getText().equals("") ||
+                auApellidoP.getText().equals("") ||
+                auApellidoM.getText().equals("") ||
+                auCalle.getText().equals("") || 
+                auNum.getText().equals("") ||
+                auColonia.getText().equals("") ||
+                auCp.getText().equals("") ||
+                auTelefono.getText().equals("") ||
                 jDateChooser1.getCalendar().equals("") ||
-                jTextField4.getText().equals("") ||
-                jTextField5.getText().equals("") ||
-                jTextField6.getText().equals("") ||
-                jTextField7.getText().equals(""))a=false;
+                auCurp.getText().equals("") ||
+                auRFC.getText().equals("") ||
+                auNoLicencia.getText().equals("") ||
+                auNoCredencial.getText().equals(""))a=false;
         return a;
     }
     /**
@@ -495,6 +800,18 @@ public class AltaU extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField auApellidoM;
+    private javax.swing.JTextField auApellidoP;
+    private javax.swing.JTextField auCalle;
+    private javax.swing.JTextField auColonia;
+    private javax.swing.JTextField auCp;
+    private javax.swing.JTextField auCurp;
+    private javax.swing.JTextField auNoCredencial;
+    private javax.swing.JTextField auNoLicencia;
+    private javax.swing.JTextField auNombre;
+    private javax.swing.JTextField auNum;
+    private javax.swing.JTextField auRFC;
+    private javax.swing.JTextField auTelefono;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton9;
@@ -523,17 +840,5 @@ public class AltaU extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }

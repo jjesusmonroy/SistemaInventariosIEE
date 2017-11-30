@@ -923,7 +923,7 @@ public class Alta extends javax.swing.JFrame {
         if(JFileChooser.APPROVE_OPTION==resultado){
 
             fichero=ventana.jfcCargarFoto.getSelectedFile();
-            javax.swing.JOptionPane.showMessageDialog(this, fichero.getAbsolutePath());
+            javax.swing.JOptionPane.showMessageDialog(this, fichero);
             try{
                     ImageIcon icon=new ImageIcon(fichero.toString());
                     Icon icono=new ImageIcon(icon.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(),Image.SCALE_DEFAULT));
@@ -1049,6 +1049,7 @@ public class Alta extends javax.swing.JFrame {
        String a[]=ru.split("/");
        for(int i=0;i<a.length;i++){
            nuevoPath+=a[i]+"$";
+           javax.swing.JOptionPane.showMessageDialog(this, nuevoPath);
        }return nuevoPath;
    }
     /**
