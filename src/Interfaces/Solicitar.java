@@ -5,9 +5,24 @@
  */
 package Interfaces;
 import Clases.Validaciones;
+import Reportes.ListaVale;
 
 import basededatos.BDD;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -390,7 +405,44 @@ public class Solicitar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSolicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarActionPerformed
-        // TODO add your handling code here:
+        String cad="";
+        try{cad = tbl_productos1.getValueAt(0,0)+"";}catch(ArrayIndexOutOfBoundsException ex){
+            javax.swing.JOptionPane.showMessageDialog(this, "No hay ningún elemento seleccionado");
+            return;
+        }
+        System.out.println(tbl_productos1.getColumnCount() + " -  Row"+ tbl_productos1.getRowCount());
+        String [][] arr = new String[tbl_productos1.getRowCount()][tbl_productos1.getColumnCount()];
+        for(int i = 0;i<tbl_productos1.getColumnCount();i++){   
+            for(int j = 0; j<tbl_productos1.getRowCount();j++){
+                arr[j][i]=tbl_productos1.getValueAt(j,i)+"";
+                 System.out.println(arr[j][i]);
+            }
+        }
+        
+        List lista = new ArrayList();
+        
+        try{
+                for(int i = 0;i<tbl_productos1.getRowCount();i++){
+                    ListaVale listaedad = new ListaVale(tbl_productos1.getValueAt(i,0).toString(),
+                                                        tbl_productos1.getValueAt(i,1).toString(),
+                                                        tbl_productos1.getValueAt(i,2).toString(),
+                                                        tbl_productos1.getValueAt(i,3).toString(),
+                                                        tbl_productos1.getValueAt(i,4).toString());
+                    lista.add(listaedad);
+                }
+                try {
+                JasperReport reporte = (JasperReport)  JRLoader.loadObject("src/Reportes/Vale.jasper");
+                
+                Map parametro = new HashMap();
+                JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, new JRBeanCollectionDataSource(lista));
+                JasperViewer jas = new JasperViewer(jprint,false); 
+                jas.setVisible( true );
+                }catch (JRException ex) {
+                }
+            }catch(ArrayIndexOutOfBoundsException e){
+                JOptionPane.showMessageDialog(null,"No existen datos para generar reporte","ERROR",JOptionPane.WARNING_MESSAGE);
+            }
+       
     }//GEN-LAST:event_btnSolicitarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
