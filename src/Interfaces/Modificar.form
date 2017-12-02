@@ -544,6 +544,9 @@
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat13KeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="altat2">
               <Properties>
@@ -551,6 +554,9 @@
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat2KeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="altat4">
               <Properties>
@@ -558,6 +564,9 @@
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat4KeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="altat5">
               <Properties>
@@ -565,6 +574,9 @@
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat5KeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="altat6">
               <Properties>
@@ -572,6 +584,10 @@
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="altat6ActionPerformed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat6KeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="altat7">
               <Properties>
@@ -579,6 +595,9 @@
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat7KeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="altat10">
               <Properties>
@@ -586,6 +605,9 @@
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat10KeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="altat11">
               <Properties>
@@ -593,6 +615,9 @@
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat11KeyTyped"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
               <AuxValues>
@@ -606,6 +631,9 @@
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="3"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat3KeyTyped"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -621,6 +649,9 @@
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat12KeyTyped"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -744,6 +775,9 @@
                       <Font name="Arial" size="14" style="0"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altatv3KeyTyped"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="altalNoMotor">
                   <Properties>
@@ -759,6 +793,9 @@
                       <Font name="Arial" size="14" style="0"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altatv4KeyTyped"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="altalKm">
                   <Properties>
@@ -774,6 +811,9 @@
                       <Font name="Arial" size="14" style="0"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altatv5KeyTyped"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="altalKmSer">
                   <Properties>
@@ -789,6 +829,9 @@
                       <Font name="Arial" size="14" style="0"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altatv6KeyTyped"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -811,6 +854,7 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="altat14ActionPerformed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat14KeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="altalCantidad1">
