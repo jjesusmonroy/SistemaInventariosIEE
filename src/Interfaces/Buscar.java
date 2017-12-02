@@ -25,7 +25,6 @@ public class Buscar extends javax.swing.JFrame {
     BDD b;
     public Buscar() {
         initComponents();
-        jLabelParametro.setVisible(false);
         jLabelIdModificar.setVisible(false);
         b = new BDD();
         iniciarTabla();
@@ -45,12 +44,13 @@ public class Buscar extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
-        btn_buscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_productos = new javax.swing.JTable();
         jButton11 = new javax.swing.JButton();
-        jLabelParametro = new javax.swing.JLabel();
         jLabelIdModificar = new javax.swing.JLabel();
+        jParametro = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jStatus = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -72,15 +72,6 @@ public class Buscar extends javax.swing.JFrame {
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField1KeyReleased(evt);
-            }
-        });
-
-        btn_buscar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/search.png"))); // NOI18N
-        btn_buscar.setText("Buscar");
-        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_buscarActionPerformed(evt);
             }
         });
 
@@ -110,9 +101,20 @@ public class Buscar extends javax.swing.JFrame {
             }
         });
 
-        jLabelParametro.setText("0");
-
         jLabelIdModificar.setText("jLabel1");
+
+        jParametro.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jParametro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre producto ", "Marca producto", "Modelo producto" }));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/search.png"))); // NOI18N
+
+        jStatus.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Pendiente", "Agotado" }));
+        jStatus.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jStatusItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -123,13 +125,15 @@ public class Buscar extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jParametro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton11)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelParametro)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelIdModificar)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
@@ -140,15 +144,18 @@ public class Buscar extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_buscar)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton11)
-                    .addComponent(jLabelParametro)
-                    .addComponent(jLabelIdModificar))
+                    .addComponent(jLabelIdModificar)
+                    .addComponent(jParametro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1)
                 .addContainerGap())
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton11, jParametro, jStatus});
 
         jPanel4.setBackground(new java.awt.Color(255, 102, 255));
 
@@ -193,11 +200,11 @@ public class Buscar extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
+                        .addGap(72, 72, 72)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,11 +218,11 @@ public class Buscar extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
                                 .addComponent(jLabel5))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2)
-                                    .addComponent(jButton1))))
+                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addGap(12, 12, 12)
                         .addComponent(jLabel4)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -249,16 +256,14 @@ public class Buscar extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     private void iniciarTabla(){
-        String [][] busqueda = b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto,stock_producto,status_producto from producto where status_producto = 'Disponible'");
+        String [][] busqueda = b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto,stock_producto,status_producto from producto where status_producto = '"+jStatus.getSelectedItem().toString()+"'");
         tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
                 busqueda
                 ,
@@ -283,7 +288,7 @@ public class Buscar extends javax.swing.JFrame {
         // TODO add your handling code here:
         String parametro=jTextField1.getText();
         String searching="";
-        int parametroB=Integer.parseInt(jLabelParametro.getText());
+        int parametroB=jParametro.getSelectedIndex();
         String conditional="";
         switch(parametroB){
             case 0: conditional = "nombre_producto";
@@ -293,9 +298,9 @@ public class Buscar extends javax.swing.JFrame {
             case 2: conditional = "modelo_producto";
         }
         //if(!parametro.equals("")){searching = " where nombre_producto like '%"+parametro+"%'";}
-        if(!parametro.equals("")){searching = " where "+conditional+" like '%"+parametro+"%'";}
+        if(!parametro.equals("")){searching = " and "+conditional+" like '%"+parametro+"%'";}
         
-        String [][] busqueda = b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto,stock_producto,status_producto from producto"+searching);
+        String [][] busqueda = b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto,stock_producto,status_producto from producto where status_producto = '"+jStatus.getSelectedItem().toString()+"'"+searching);
         tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
                 busqueda
                 ,
@@ -310,15 +315,6 @@ public class Buscar extends javax.swing.JFrame {
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
-        // TODO add your handling code here:
-        String[] options = new String[]{"Nombre", "Marca", "Modelo"};
-        int response = JOptionPane.showOptionDialog(null, "Selecciona el parametro a buscar", "Busqueda",
-                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
-                null, options, options[0]);
-        jLabelParametro.setText(response+""); //si es 0 es por nombre, 1 marca y 2 modelo
-    }//GEN-LAST:event_btn_buscarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -346,6 +342,11 @@ public class Buscar extends javax.swing.JFrame {
             menu.show(evt.getComponent(),evt.getX(),evt.getY());
         }
     }//GEN-LAST:event_tbl_productosMouseReleased
+
+    private void jStatusItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jStatusItemStateChanged
+        // TODO add your handling code here:
+        iniciarTabla();
+    }//GEN-LAST:event_jStatusItemStateChanged
 
     class PopupActionListener implements ActionListener {
         @Override
@@ -415,19 +416,20 @@ public class Buscar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_buscar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelIdModificar;
-    private javax.swing.JLabel jLabelParametro;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JComboBox<String> jParametro;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> jStatus;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTable tbl_productos;

@@ -13,12 +13,11 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import java.io.File;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.io.FileInputStream;
-import java.sql.PreparedStatement;
 import javax.swing.JFileChooser;
 import javax.swing.ImageIcon;
 import javax.swing.Icon;
 import java.awt.Image;
+import java.util.Date;
 /**
  *
  * @author Cherne
@@ -45,7 +44,7 @@ public class Alta extends javax.swing.JFrame {
         altat13.setEnabled(false);
         altalCantidad.setForeground(Color.GRAY);
         camposDesVehiculos();
-        
+        limpiar();
     }
     private void folio(){
         int id = m.getMax(b.obtenerConsultas("select id_producto from producto"));
@@ -94,6 +93,7 @@ public class Alta extends javax.swing.JFrame {
             b.insertar("vehiculo", insertarvehiculo);
             
         }
+        folio();
     }
     
     private String jtextfield(JTextField e){
@@ -105,11 +105,24 @@ public class Alta extends javax.swing.JFrame {
         else return null;
     }
     
-    private String date(JTextField e){
-        if(e.getText().equals(""))return m.getDate(); 
-        else return null;
+    private void limpiar(){
+        altat2.setText("");
+        altat3.setText("");
+        altat4.setText("");
+        altat5.setText("");
+        altat6.setText("");
+        altat7.setText("");
+        Date date = new Date();
+        altat9.setDate(date);
+        altat10.setText("");
+        altat11.setText("");
+        altat12.setText("");
+        altat13.setText("");
+        altatv3.setText("");
+        altatv4.setText("");
+        altatv5.setText("");
+        altatv6.setText("");
     }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -798,20 +811,7 @@ public class Alta extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        altat10.setText("");
-        altat11.setText("");
-        altat12.setText("");
-        altat13.setText("");
-        altat2.setText("");
-        altat3.setText("");
-        altat4.setText("");
-        altat5.setText("");
-        altat6.setText("");
-        altat7.setText("");
-        altatv3.setText("");
-        altatv4.setText("");
-        altatv5.setText("");
-        altatv6.setText("");
+        limpiar();
     }//GEN-LAST:event_jButton10ActionPerformed
 	
     private void altat11FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat11FocusGained
