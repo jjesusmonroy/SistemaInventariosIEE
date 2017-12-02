@@ -73,7 +73,8 @@ public class Alta extends javax.swing.JFrame {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         insertar[8] = sdf.format(altat9.getDate());
         insertar[9]=m.jtextfield(altat10);
-        insertar[10]=m.jtextfield(altat11);    
+        
+        insertar[10]=m.jtextfield(altat11Formate);    
         insertar[11]=m.jtextarea(altat12);
         insertar[12]=m.jtextfield(altat13);
         insertar[13]=m.jtextfield(altat13);
@@ -97,6 +98,8 @@ public class Alta extends javax.swing.JFrame {
     }
     
     private void limpiar(){
+        jComboBox1.setSelectedIndex(0);
+        lblImage.setIcon(null);
         altat2.setText("");
         altat3.setText("");
         altat4.setText("");
@@ -106,7 +109,7 @@ public class Alta extends javax.swing.JFrame {
         Date date = new Date();
         altat9.setDate(date);
         altat10.setText("");
-        altat11.setText("");
+        altat11Formate.setText("");
         altat12.setText("");
         altat13.setText("");
         altatv3.setText("");
@@ -154,7 +157,6 @@ public class Alta extends javax.swing.JFrame {
         altat6 = new javax.swing.JTextField();
         altat7 = new javax.swing.JTextField();
         altat10 = new javax.swing.JTextField();
-        altat11 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         altat3 = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -175,6 +177,7 @@ public class Alta extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
         lblImage = new javax.swing.JLabel();
         btnCargarFoto = new javax.swing.JButton();
+        altat11Formate = new javax.swing.JFormattedTextField();
 
         jTextField3.setText("jTextField3");
 
@@ -399,20 +402,8 @@ public class Alta extends javax.swing.JFrame {
             }
         });
 
-        altat11.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altat11.setNextFocusableComponent(altat12);
-        altat11.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                altat11FocusGained(evt);
-            }
-        });
-        altat11.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                altat11KeyTyped(evt);
-            }
-        });
-
         altat3.setColumns(20);
+        altat3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altat3.setRows(3);
         altat3.setNextFocusableComponent(altat13);
         altat3.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -423,6 +414,7 @@ public class Alta extends javax.swing.JFrame {
         jScrollPane1.setViewportView(altat3);
 
         altat12.setColumns(20);
+        altat12.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altat12.setRows(5);
         altat12.setNextFocusableComponent(altatv3);
         altat12.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -457,7 +449,6 @@ public class Alta extends javax.swing.JFrame {
             }
         });
 
-        altat9.setNextFocusableComponent(altat11);
         altat9.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 altat9FocusGained(evt);
@@ -595,6 +586,13 @@ public class Alta extends javax.swing.JFrame {
             }
         });
 
+        altat11Formate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        altat11Formate.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat11FormateKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -666,20 +664,22 @@ public class Alta extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(altalImporte)
+                                                .addComponent(altalFecha))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(altat9, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(altat11Formate, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(altalCantidad)
                                                 .addComponent(altalNoFact))
                                             .addGap(32, 32, 32)
                                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(altat13, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(altat10)))
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(altalImporte)
-                                                .addComponent(altalFecha))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(altat11)
-                                                .addComponent(altat9, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))))
+                                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                                    .addComponent(altat13, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(0, 0, Short.MAX_VALUE))
+                                                .addComponent(altat10))))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(26, 26, 26)
                                         .addComponent(btnCargarFoto)
@@ -712,9 +712,9 @@ public class Alta extends javax.swing.JFrame {
                             .addComponent(altalMarca)
                             .addComponent(altat5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(altalNoFact)
-                            .addComponent(altat10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(altat10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(altalFecha)
@@ -740,11 +740,14 @@ public class Alta extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(altalImporte)
-                            .addComponent(altat11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(19, 19, 19)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(altalImporte))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(altat11Formate, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(altalObser, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -811,8 +814,8 @@ public class Alta extends javax.swing.JFrame {
 
     private void altat11FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat11FocusLost
         // TODO add your handling code here:
-        float a=Float.parseFloat(altat11.getText());
-        altat11.setText(a+"");
+        float a=Float.parseFloat(altat11Formate.getText());
+        altat11Formate.setText(a+"");
     }//GEN-LAST:event_altat11FocusLost
 
     private void altatv6FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altatv6FocusGained
@@ -858,7 +861,7 @@ public class Alta extends javax.swing.JFrame {
     }//GEN-LAST:event_altatv3FocusGained
 
     private void altat9FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat9FocusGained
-            altat11.hasFocus();
+            altat11Formate.hasFocus();
     }//GEN-LAST:event_altat9FocusGained
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -872,12 +875,6 @@ public class Alta extends javax.swing.JFrame {
         limpiar();
     }//GEN-LAST:event_jButton10ActionPerformed
 	
-    private void altat11FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat11FocusGained
-        // TODO add your handling code here:
-        altat11.setBackground(Color.white);
-        //asImporte.setText("");
-    }//GEN-LAST:event_altat11FocusGained
-
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
         int var = jComboBox1.getSelectedIndex();
@@ -886,6 +883,7 @@ public class Alta extends javax.swing.JFrame {
             if(valVehiculo()==0){
                 altaProductos();
                 javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
+                limpiar();
             }else{
                 javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
             }
@@ -893,6 +891,7 @@ public class Alta extends javax.swing.JFrame {
             if(valCamposGeneral()==0 && v.soloNumeros(altat13.getText())==false){
                 altaProductos();
                 javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
+                limpiar();
             }else{
                 altat13.setBackground(Color.PINK);
                 javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
@@ -901,6 +900,7 @@ public class Alta extends javax.swing.JFrame {
             if(valCamposGeneral()==0){
                 altaProductos();
                 javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
+                limpiar();
             }else{
                  javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
             }
@@ -1017,7 +1017,7 @@ public class Alta extends javax.swing.JFrame {
     private void altat7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat7KeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if((c<'a' || c>'z') && (c<'A' || c>'Z') ) evt.consume();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!=' ' ) evt.consume();
     }//GEN-LAST:event_altat7KeyTyped
 
     private void altat6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat6KeyTyped
@@ -1043,12 +1043,6 @@ public class Alta extends javax.swing.JFrame {
         char c = evt.getKeyChar();
         if((c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_altat10KeyTyped
-
-    private void altat11KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat11KeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if((c<'0' || c>'9')&& c!='.') evt.consume();
-    }//GEN-LAST:event_altat11KeyTyped
 
     private void altat12KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat12KeyTyped
         // TODO add your handling code here:
@@ -1083,6 +1077,12 @@ public class Alta extends javax.swing.JFrame {
          char c = evt.getKeyChar();
         if((c<'0' || c>'9')&& c!='.') evt.consume();
     }//GEN-LAST:event_altatv6KeyTyped
+
+    private void altat11FormateKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat11FormateKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'0' || c>'9')&& c!='.') evt.consume();
+    }//GEN-LAST:event_altat11FormateKeyTyped
    public int valCamposGeneral(){
        int cont=0;
         if(v.soloLetras(altat2.getText())==true){
@@ -1115,10 +1115,10 @@ public class Alta extends javax.swing.JFrame {
             //asNoFact.setText("*");
             altat10.setBackground(Color.PINK);
         }
-        if(v.soloDecimales(altat11.getText())==true){
+        if(v.soloDecimales(altat11Formate.getText())==true){
             cont++;
             //asImporte.setText("*");
-            altat11.setBackground(Color.PINK);
+            altat11Formate.setBackground(Color.PINK);
         }
         return cont;
    }
@@ -1248,7 +1248,7 @@ public class Alta extends javax.swing.JFrame {
     private javax.swing.JLabel altalObser;
     private javax.swing.JLabel altalPlacas;
     private javax.swing.JTextField altat10;
-    private javax.swing.JTextField altat11;
+    private javax.swing.JFormattedTextField altat11Formate;
     private javax.swing.JTextArea altat12;
     private javax.swing.JTextField altat13;
     private javax.swing.JTextField altat2;
