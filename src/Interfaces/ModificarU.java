@@ -7,31 +7,42 @@ package Interfaces;
 
 import Clases.MetodosG;
 import basededatos.BDD;
+import java.awt.Color;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
-import java.awt.Color;
 
 /**
  *
  * @author pasto
  */
-public class AltaU extends javax.swing.JFrame {
+public class ModificarU extends javax.swing.JFrame {
 
     /**
-     * Creates new form AltaU
+     * Creates new form ModificarU
      */
+    String apellido,nombre,idarea,idpuestos,idPersonal;
     BDD b;
+    boolean bandera;
     MetodosG m;
-    public AltaU() {
-        b = new BDD();
+    public ModificarU(String ap, String nombre) {
         m = new MetodosG();
+        b= new BDD();
+        bandera=false;
+        apellido=ap;
+        this.nombre=nombre;
         initComponents();
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(b.convertir2d1d
         (b.obtenerConsultas("select nombre_puesto from puestos order by salario_puesto"))));
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(b.convertir2d1d
         (b.obtenerConsultas("select nombre_area from areas order by nombre_area"))));
+        fillIn();
     }
 
+    public ModificarU() {
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,14 +94,12 @@ public class AltaU extends javax.swing.JFrame {
         jButton11 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setForeground(java.awt.Color.white);
 
         jPanel3.setBackground(new java.awt.Color(255, 102, 255));
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Alta de usuarios");
+        jLabel3.setText("Modificación de Usuarios");
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -155,11 +164,21 @@ public class AltaU extends javax.swing.JFrame {
         jLabel4.setText("Puesto:");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel5.setText("Area:");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox2ItemStateChanged(evt);
+            }
+        });
 
         jLabel16.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel16.setText("Nombre:");
@@ -336,8 +355,25 @@ public class AltaU extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(auNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(auNoLicencia))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -392,28 +428,7 @@ public class AltaU extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(auNum))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(auNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(67, 67, 67))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel17)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(auNoLicencia)))))
+                                .addComponent(auNum)))))
                 .addGap(5, 5, 5))
         );
         jPanel4Layout.setVerticalGroup(
@@ -466,7 +481,7 @@ public class AltaU extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(auNoCredencial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton9)
                     .addComponent(jButton10)
@@ -494,35 +509,53 @@ public class AltaU extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    
-    private void insertar(){
-        int idPersonal= m.getMax(b.obtenerConsultas("select id_personal from personal"));
-        int idPuesto = b.getId("select * from puestos where nombre_puesto = '"+jComboBox1.getSelectedItem().toString()+"'");
-        int idArea = b.getId("select * from areas where nombre_area = '"+jComboBox2.getSelectedItem().toString()+"'");
-        String [] personal = new String [14];
-        String [] personalP = new String [3]; 
-        personal[0]=idPersonal+"";
-        personal[1]=auNombre.getText();
-        personal[2]=auApellidoP.getText();
-        personal[3]=auApellidoM.getText();
-        personal[4]=auCalle.getText();
-        personal[5]=auNum.getText();
-        personal[6]=auColonia.getText();
-        personal[7]=auCp.getText();
-        personal[8]=auTelefono.getText();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        personal[9] = sdf.format(jDateChooser1.getDate());
-        personal[10]=auCurp.getText();
-        personal[11]=auRFC.getText();
-        personal[12]=auNoLicencia.getText();
-        personal[13]=auNoCredencial.getText();
-        b.insertar("personal", personal);
-        personalP[0]=idPersonal+"";
-        personalP[1]=idArea+"";
-        personalP[2]=idPuesto+"";
-        b.insertar("personal_puestos", personalP);
+    private void fillIn(){
+        String query = "select p.id_personal,p.nombre_personal,p.apellido_pat_personal,p.apellido_mat_personal,p.domicilio_calle_personal,p.domicilio_numero_personal,p.domicilio_colonia_personal,p.domicilio_cp_personal,p.telefono_personal,p.fechanac_personal,p.curp_personal,p.rfc_personal,p.nolic_personal,p.nocredencial_personal,a.nombre_area,ps.nombre_puesto from personal p inner join personal_puestos pp on p.id_personal=pp.id_personal inner join areas a on pp.id_area=a.id_area inner join puestos ps on pp.id_puesto=ps.id_puesto where nombre_personal = '"+nombre+"' and apellido_pat_personal = '"+apellido+"'";
+        String [][] consulta = b.obtenerConsultas(query);
+        auNombre.setText(consulta[0][1]);
+        auApellidoP.setText(consulta[0][2]);
+        auApellidoM.setText(consulta[0][3]);
+        auCalle.setText(consulta[0][4]);
+        auNum.setText(consulta[0][5]);
+        auColonia.setText(consulta[0][6]);
+        auCp.setText(consulta[0][7]);
+        auTelefono.setText(consulta[0][8]);
+        java.util.Date date2=null;
+        try{date2 = new SimpleDateFormat("yyyy-MM-dd").parse(consulta[0][9]);}catch(ParseException e){}
+        jDateChooser1.setDate(date2);
+        auCurp.setText(consulta[0][10]);
+        auRFC.setText(consulta[0][11]);
+        auNoLicencia.setText(consulta[0][12]);
+        auNoCredencial.setText(consulta[0][13]);
+        jComboBox1.setSelectedItem(consulta[0][15]);
+        jComboBox2.setSelectedItem(consulta[0][14]);
+        idPersonal=consulta[0][0];
     }
+    
+    private void update(){
+        if(bandera){
+            int idArea = b.getId("select id_area from areas where nombre_area='"+jComboBox2.getSelectedItem().toString()+"'");
+            int idPuesto = b.getId("select id_puesto from puestos where nombre_puesto='"+jComboBox1.getSelectedItem().toString()+"'");
+            b.execute("update personal_puestos set id_area ='"+idArea+"', id_puesto='"+idPuesto+"' where id_personal = '"+idPersonal+"'");
+        }    
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String fecha = sdf.format(jDateChooser1.getDate());
+        String update = "nombre_personal ='"+m.jtextfield(auNombre)+"', "
+                + "apellido_pat_personal ='"+m.jtextfield(auApellidoP)+"', "
+                + "apellido_mat_personal ='"+m.jtextfield(auApellidoP)+"', "
+                + "domicilio_calle_personal ='"+m.jtextfield(auApellidoP)+"', "
+                + "domicilio_numero_personal ='"+m.jtextfield(auApellidoP)+"', "
+                + "domicilio_colonia_personal ='"+m.jtextfield(auApellidoP)+"', "
+                + "domicilio_cp_personal ='"+m.jtextfield(auApellidoP)+"', "
+                + "telefono_personal ='"+m.jtextfield(auApellidoP)+"', "
+                + "fechanac_personal ='"+fecha+"', "
+                + "curp_personal ='"+m.jtextfield(auApellidoP)+"', "
+                + "rfc_personal ='"+m.jtextfield(auApellidoP)+"', "
+                + "nolic_personal ='"+m.jtextfield(auApellidoP)+"', "
+                + "nocredencial_personal ='"+m.jtextfield(auApellidoP)+"'";
+        b.execute("update personal set "+update+" where id_personal ='"+idPersonal+"'");
+    }
+    
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
         // TODO add your handling code here:
         this.setExtendedState(ICONIFIED);
@@ -534,14 +567,135 @@ public class AltaU extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel14MouseClicked
 
+    private void auNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auNombreFocusGained
+        // TODO add your handling code here:
+        auNombre.setBackground(Color.white);
+    }//GEN-LAST:event_auNombreFocusGained
+
+    private void auApellidoPFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auApellidoPFocusGained
+        // TODO add your handling code here:
+        auApellidoP.setBackground(Color.white);
+    }//GEN-LAST:event_auApellidoPFocusGained
+
+    private void auApellidoMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_auApellidoMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_auApellidoMActionPerformed
+
+    private void auApellidoMFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auApellidoMFocusGained
+        // TODO add your handling code here:
+        auApellidoM.setBackground(Color.white);
+    }//GEN-LAST:event_auApellidoMFocusGained
+
+    private void auCurpFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auCurpFocusGained
+        // TODO add your handling code here:
+        auCurp.setBackground(Color.white);
+    }//GEN-LAST:event_auCurpFocusGained
+
+    private void auCurpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auCurpKeyReleased
+        // TODO add your handling code here:
+        auCurp.setText(auCurp.getText().toUpperCase());
+    }//GEN-LAST:event_auCurpKeyReleased
+
+    private void auCurpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auCurpKeyTyped
+        // TODO add your handling code here:
+        if(auCurp.getText().length()>=18){
+            evt.consume();
+        }
+    }//GEN-LAST:event_auCurpKeyTyped
+
+    private void auRFCFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auRFCFocusGained
+        // TODO add your handling code here:
+        auRFC.setBackground(Color.white);
+    }//GEN-LAST:event_auRFCFocusGained
+
+    private void auRFCKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auRFCKeyReleased
+        // TODO add your handling code here:
+        auRFC.setText(auRFC.getText().toUpperCase());
+    }//GEN-LAST:event_auRFCKeyReleased
+
+    private void auRFCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auRFCKeyTyped
+        // TODO add your handling code here:
+        if(auRFC.getText().length()>=13){
+            evt.consume();
+        }
+    }//GEN-LAST:event_auRFCKeyTyped
+
+    private void auNoLicenciaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auNoLicenciaFocusGained
+        // TODO add your handling code here:
+        auNoLicencia.setBackground(Color.white);
+    }//GEN-LAST:event_auNoLicenciaFocusGained
+
+    private void auNoLicenciaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auNoLicenciaKeyReleased
+        // TODO add your handling code here:
+        auNoLicencia.setText(auNoLicencia.getText().toUpperCase());
+    }//GEN-LAST:event_auNoLicenciaKeyReleased
+
+    private void auNoLicenciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auNoLicenciaKeyTyped
+        // TODO add your handling code here:
+        if(auNoLicencia.getText().length()>=8){
+            evt.consume();
+        }
+    }//GEN-LAST:event_auNoLicenciaKeyTyped
+
+    private void auNoCredencialFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auNoCredencialFocusGained
+        // TODO add your handling code here:
+        auNoCredencial.setBackground(Color.white);
+    }//GEN-LAST:event_auNoCredencialFocusGained
+
+    private void auNoCredencialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auNoCredencialKeyTyped
+        // TODO add your handling code here:
+        if(auNoCredencial.getText().length()>=10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_auNoCredencialKeyTyped
+
+    private void auTelefonoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auTelefonoFocusGained
+        // TODO add your handling code here:
+        auTelefono.setBackground(Color.white);
+    }//GEN-LAST:event_auTelefonoFocusGained
+
+    private void auTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auTelefonoKeyTyped
+        // TODO add your handling code here:
+        if(auTelefono.getText().length()>=10){
+            evt.consume();
+        }
+    }//GEN-LAST:event_auTelefonoKeyTyped
+
+    private void auCalleFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auCalleFocusGained
+        // TODO add your handling code here:
+        auCalle.setBackground(Color.white);
+    }//GEN-LAST:event_auCalleFocusGained
+
+    private void auNumFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auNumFocusGained
+        // TODO add your handling code here:
+        auNum.setBackground(Color.white);
+    }//GEN-LAST:event_auNumFocusGained
+
+    private void auColoniaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auColoniaFocusGained
+        // TODO add your handling code here:
+        auColonia.setBackground(Color.white);
+    }//GEN-LAST:event_auColoniaFocusGained
+
+    private void auCpFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auCpFocusGained
+        // TODO add your handling code here:
+        auCp.setBackground(Color.white);
+    }//GEN-LAST:event_auCpFocusGained
+
+    private void auCpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auCpKeyTyped
+        // TODO add your handling code here:
+        if(auCp.getText().length()>=5){
+            evt.consume();
+        }
+    }//GEN-LAST:event_auCpKeyTyped
+
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        int contErr=0;
+        /*int contErr=0;
         Clases.Validaciones v= new Clases.Validaciones();
         if(v.soloLetras(auNombre.getText())){
             contErr++;
-            auNombre.setBackground(Color.PINK); 
-            
+            auNombre.setBackground(Color.PINK);
+
         }
         if(v.soloLetras(auApellidoP.getText())){
             contErr++;
@@ -579,7 +733,7 @@ public class AltaU extends javax.swing.JFrame {
             auCalle.setBackground(Color.PINK);
         }
         ///////////////
-         if(v.soloNumeros(auTelefono.getText()) || auTelefono.getText().length()!=10){
+        if(v.soloNumeros(auTelefono.getText()) || auTelefono.getText().length()!=10){
             contErr++;
             //asNoSerie.setText("*");
             auTelefono.setBackground(Color.PINK);
@@ -601,14 +755,13 @@ public class AltaU extends javax.swing.JFrame {
         }
         if(contErr>0){
             javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
-            
-        }else{
-        // Validaciones aca antes de insertar
-        //if(validarVacio()){
-            insertar();
-            JOptionPane.showMessageDialog(this, "Nuevo usuario insertado");
-            limpiar();
-        }contErr=0;
+
+        }else{*/
+            update();
+            JOptionPane.showMessageDialog(this, "Se han guardado los cambios");
+            this.dispose();
+    //}
+        //contErr=0;
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -616,126 +769,15 @@ public class AltaU extends javax.swing.JFrame {
         limpiar();
     }//GEN-LAST:event_jButton10ActionPerformed
 
-    private void auNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auNombreFocusGained
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         // TODO add your handling code here:
-        auNombre.setBackground(Color.white);
-    }//GEN-LAST:event_auNombreFocusGained
+        bandera=true;
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
-    private void auApellidoPFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auApellidoPFocusGained
-        // TODO add your handling code here:
-        auApellidoP.setBackground(Color.white);
-    }//GEN-LAST:event_auApellidoPFocusGained
-
-    private void auApellidoMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_auApellidoMActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_auApellidoMActionPerformed
-
-    private void auApellidoMFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auApellidoMFocusGained
-        // TODO add your handling code here:
-        auApellidoM.setBackground(Color.white);
-    }//GEN-LAST:event_auApellidoMFocusGained
-
-    private void auCurpFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auCurpFocusGained
-        // TODO add your handling code here:
-        auCurp.setBackground(Color.white);
-    }//GEN-LAST:event_auCurpFocusGained
-
-    private void auRFCFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auRFCFocusGained
-        // TODO add your handling code here:
-        auRFC.setBackground(Color.white);
-    }//GEN-LAST:event_auRFCFocusGained
-
-    private void auNoCredencialFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auNoCredencialFocusGained
-        // TODO add your handling code here:
-        auNoCredencial.setBackground(Color.white);
-    }//GEN-LAST:event_auNoCredencialFocusGained
-
-    private void auNoLicenciaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auNoLicenciaFocusGained
-        // TODO add your handling code here:
-        auNoLicencia.setBackground(Color.white);
-    }//GEN-LAST:event_auNoLicenciaFocusGained
-
-    private void auTelefonoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auTelefonoFocusGained
-        // TODO add your handling code here:
-        auTelefono.setBackground(Color.white);
-    }//GEN-LAST:event_auTelefonoFocusGained
-
-    private void auCalleFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auCalleFocusGained
-        // TODO add your handling code here:
-        auCalle.setBackground(Color.white);
-    }//GEN-LAST:event_auCalleFocusGained
-
-    private void auNumFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auNumFocusGained
-        // TODO add your handling code here:
-        auNum.setBackground(Color.white);
-    }//GEN-LAST:event_auNumFocusGained
-
-    private void auColoniaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auColoniaFocusGained
-        // TODO add your handling code here:
-        auColonia.setBackground(Color.white);
-    }//GEN-LAST:event_auColoniaFocusGained
-
-    private void auCpFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auCpFocusGained
-        // TODO add your handling code here:
-        auCp.setBackground(Color.white);
-    }//GEN-LAST:event_auCpFocusGained
-
-    private void auCurpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auCurpKeyTyped
-        // TODO add your handling code here:
-        if(auCurp.getText().length()>=18){
-            evt.consume();
-        }
-    }//GEN-LAST:event_auCurpKeyTyped
-
-    private void auRFCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auRFCKeyTyped
-        // TODO add your handling code here:
-        if(auRFC.getText().length()>=13){
-            evt.consume();
-        }
-    }//GEN-LAST:event_auRFCKeyTyped
-
-    private void auNoCredencialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auNoCredencialKeyTyped
-        // TODO add your handling code here:
-        if(auNoCredencial.getText().length()>=10){
-            evt.consume();
-        }
-    }//GEN-LAST:event_auNoCredencialKeyTyped
-
-    private void auNoLicenciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auNoLicenciaKeyTyped
-        // TODO add your handling code here:
-        if(auNoLicencia.getText().length()>=8){
-            evt.consume();
-        }
-    }//GEN-LAST:event_auNoLicenciaKeyTyped
-
-    private void auCurpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auCurpKeyReleased
-        // TODO add your handling code here:
-        auCurp.setText(auCurp.getText().toUpperCase());
-    }//GEN-LAST:event_auCurpKeyReleased
-
-    private void auRFCKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auRFCKeyReleased
-        // TODO add your handling code here:
-        auRFC.setText(auRFC.getText().toUpperCase());
-    }//GEN-LAST:event_auRFCKeyReleased
-
-    private void auNoLicenciaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auNoLicenciaKeyReleased
-        // TODO add your handling code here:
-        auNoLicencia.setText(auNoLicencia.getText().toUpperCase());
-    }//GEN-LAST:event_auNoLicenciaKeyReleased
-
-    private void auTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auTelefonoKeyTyped
-        // TODO add your handling code here:
-        if(auTelefono.getText().length()>=10){
-            evt.consume();
-        }
-    }//GEN-LAST:event_auTelefonoKeyTyped
-
-    private void auCpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auCpKeyTyped
-        // TODO add your handling code here:
-        if(auCp.getText().length()>=5){
-            evt.consume();
-        }
-    }//GEN-LAST:event_auCpKeyTyped
+    private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
+         // TODO add your handling code here:
+         bandera=true;
+    }//GEN-LAST:event_jComboBox2ItemStateChanged
     private void limpiar(){
         auNombre.setText("");
         auApellidoP.setText("");
@@ -750,23 +792,6 @@ public class AltaU extends javax.swing.JFrame {
         auRFC.setText("");
         auNoLicencia.setText("");
         auNoCredencial.setText("");
-    }
-    private boolean validarVacio(){
-        boolean a=true;
-        if(auNombre.getText().equals("") ||
-                auApellidoP.getText().equals("") ||
-                auApellidoM.getText().equals("") ||
-                auCalle.getText().equals("") || 
-                auNum.getText().equals("") ||
-                auColonia.getText().equals("") ||
-                auCp.getText().equals("") ||
-                auTelefono.getText().equals("") ||
-                jDateChooser1.getCalendar().equals("") ||
-                auCurp.getText().equals("") ||
-                auRFC.getText().equals("") ||
-                auNoLicencia.getText().equals("") ||
-                auNoCredencial.getText().equals(""))a=false;
-        return a;
     }
     /**
      * @param args the command line arguments
@@ -785,20 +810,20 @@ public class AltaU extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AltaU.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarU.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AltaU.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarU.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AltaU.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarU.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AltaU.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ModificarU.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AltaU().setVisible(true);
+                new ModificarU().setVisible(true);
             }
         });
     }

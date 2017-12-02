@@ -393,6 +393,7 @@ public class Permisos extends javax.swing.JFrame {
             b.execute("update permisos set "+uPermisos+" where id_permiso ='"+usuario[0][3]+"'");
             b.execute("update permisos_modulos set id_modulo='"+idModulo+"' where id_usuario='"+usuario[0][0]+"'");
             JOptionPane.showMessageDialog(this, "Actualizado con exito");
+            bandera=true;
         }
         else{
             int idPermiso = m.getMax(b.obtenerConsultas("select id_permiso from permisos"));
@@ -404,6 +405,7 @@ public class Permisos extends javax.swing.JFrame {
             String ipermisos_modulos [] = new String []{idU+"",idPersonal[0][0],idPermiso+"",idModulo+""};
             b.insertar("permisos_modulos", ipermisos_modulos);
             JOptionPane.showMessageDialog(this, "Insertado con exito");
+            bandera=true;
         }
         limpiar();
         iniciarTabla();
@@ -468,6 +470,7 @@ public class Permisos extends javax.swing.JFrame {
             }
             if(bandera){
             usuario= b.obtenerConsultas("select u.id_usuario,u.nombre_usuario,u.contraseña_usuario,pe.id_permiso,m._nombre_modulo,pe.alta_perrmiso,pe.baja_permiso,pe.consulta_permiso,pe.modificar_permiso,pe.administrar_usuario_permiso,u.id_personal from usuarios u inner join permisos_modulos pm on u.id_personal=pm.id_personal and u.id_usuario=pm.id_usuario inner join modulos m on pm.id_modulo=m.id_modulo inner join permisos pe on pm.id_permiso=pe.id_permiso where u.id_personal='"+idPersonal[0][0]+"'");
+            if(usuario.length==0){bandera=false; return;}
             jTextField1.setText(usuario[0][1]);
             jTextField2.setText(usuario[0][2]);
             jComboBox1.setSelectedItem(usuario[0][4]);

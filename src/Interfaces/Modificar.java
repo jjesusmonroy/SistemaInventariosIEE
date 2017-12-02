@@ -67,7 +67,6 @@ public final class Modificar extends javax.swing.JFrame {
        }return nuevoPath;
    }
     public void fillIn(){
-        
         String [][] elementos =b.obtenerConsultas("select * from producto where folio_producto = '"+folio+"'");
         idCat=elementos[0][16];
         idProducto=elementos[0][0];
@@ -77,7 +76,6 @@ public final class Modificar extends javax.swing.JFrame {
         altat6.setText(elementos[0][4]);
         altat4.setText(elementos[0][5]);
         altat3.setText(elementos[0][2]);
-        javax.swing.JOptionPane.showMessageDialog(this, elementos[0][7]+"");
         try{
                     ImageIcon icon=new ImageIcon(rutaALaNormalidad(elementos[0][7]));
                     Icon icono=new ImageIcon(icon.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(),Image.SCALE_DEFAULT));
@@ -95,7 +93,6 @@ public final class Modificar extends javax.swing.JFrame {
         altat13.setText(elementos[0][13]);
         altat14.setText(elementos[0][12]);
         jLabel6.setText(elementos[0][15]);
-        System.out.println(idProducto+"-"+idCat);
         if(idCat.equals("3")){
             String consultavehiculos = "select * from vehiculo where id_producto = '"+idProducto+"' and id_categoria = '"+idCat+"'";
             String [][] hello = b.obtenerConsultas(consultavehiculos);

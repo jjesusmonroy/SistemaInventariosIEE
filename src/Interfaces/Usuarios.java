@@ -6,6 +6,11 @@
 package Interfaces;
 
 import basededatos.BDD;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 
 /**
  *
@@ -17,11 +22,13 @@ public class Usuarios extends javax.swing.JFrame {
      * Creates new form Usuarios
      */
     BDD b; 
+    String apellido,nombre;
     public Usuarios() {
         b = new BDD();
         initComponents();
         iniciarTabla();
-        
+        apellido="";
+        nombre="";
     }
 
     /**
@@ -49,11 +56,18 @@ public class Usuarios extends javax.swing.JFrame {
         jButtonAdministrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/loupe.png"))); // NOI18N
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/loupe.png"))); // NOI18N
         jButton11.setText("Buscar");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +86,11 @@ public class Usuarios extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTable1MouseReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -80,7 +99,7 @@ public class Usuarios extends javax.swing.JFrame {
             }
         });
 
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/error.png"))); // NOI18N
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
         jButton12.setText("Cancelar");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,7 +107,7 @@ public class Usuarios extends javax.swing.JFrame {
             }
         });
 
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/new-user.png"))); // NOI18N
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/new-user.png"))); // NOI18N
         jButton13.setText("Agregar");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,16 +126,16 @@ public class Usuarios extends javax.swing.JFrame {
         jLabel5.setText("Sistema de Control de Inventario IEEN");
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/IEE.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IEE.png"))); // NOI18N
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/minus-sign.png"))); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel14MouseClicked(evt);
             }
         });
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/salir2.png"))); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/salir2.png"))); // NOI18N
         jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel15MouseClicked(evt);
@@ -134,7 +153,7 @@ public class Usuarios extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel15)
@@ -159,7 +178,7 @@ public class Usuarios extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButtonAdministrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/error.png"))); // NOI18N
+        jButtonAdministrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
         jButtonAdministrar.setText("Permisos");
         jButtonAdministrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,7 +245,7 @@ public class Usuarios extends javax.swing.JFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        
     }//GEN-LAST:event_jButton11ActionPerformed
     
     private void iniciarTabla(){
@@ -249,7 +268,6 @@ public class Usuarios extends javax.swing.JFrame {
         // TODO add your handling code here:
         AltaU altau = new AltaU();
         altau.setVisible(true);
-        iniciarTabla();
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
@@ -286,6 +304,67 @@ public class Usuarios extends javax.swing.JFrame {
         permisos.setVisible(true);
     }//GEN-LAST:event_jButtonAdministrarActionPerformed
 
+    private void jTable1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseReleased
+        // TODO add your handling code here:
+        if(evt.getButton()== java.awt.event.MouseEvent.BUTTON3 && (jTable1.getSelectedRowCount()!=0)){
+            int rows = jTable1.rowAtPoint(evt.getPoint());
+            this.apellido = jTable1.getValueAt(rows, 0)+"";
+            this.nombre = jTable1.getValueAt(rows, 2)+"";
+            
+        
+            final JPopupMenu menu = new JPopupMenu();
+
+            JMenuItem item = new JMenuItem("Modificar");
+            JMenuItem item2 = new JMenuItem("Eliminar");
+            menu.add(item);
+            menu.add(item2);
+            ActionListener actionListener = new PopupActionListener();
+            ActionListener actionListener2 = new PopupActionListener2();
+            item.addActionListener(actionListener);
+            item2.addActionListener(actionListener2);
+            menu.show(evt.getComponent(),evt.getX(),evt.getY());
+            
+        }
+    }//GEN-LAST:event_jTable1MouseReleased
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        iniciarTabla();
+    }//GEN-LAST:event_formWindowGainedFocus
+        class PopupActionListener implements ActionListener {
+        @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ModificarU modificaru = new ModificarU(apellido,nombre);
+                modificaru.setVisible(true);
+            }
+        }
+        class PopupActionListener2 implements ActionListener {
+        @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                int idPersonal=b.getId("select id_personal from personal where nombre_personal ='"+nombre+"' and apellido_pat_personal='"+apellido+"'");
+                String[] options = new String[]{"Cancelar","Eliminación usuario/password", "Eliminación de personal"};
+                int response = JOptionPane.showOptionDialog(getContentPane(), "Elegir modo de eliminación del personal "+apellido+" "+nombre, "Eliminar Usuario",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+                null, options, options[0]);
+                if(response==1){
+                    b.execute("delete from permisos_modulos where id_personal = '"+idPersonal+"'");
+                    b.execute("delete from usuarios where id_persona = '"+idPersonal+"'");
+                    JOptionPane.showMessageDialog(getContentPane(), "Eliminado de usuario/password exitoso");
+                }
+                if(response==2){
+                    b.execute("delete from permisos_modulos where id_personal = '"+idPersonal+"'");
+                    b.execute("delete from usuarios where id_personal = '"+idPersonal+"'");
+                    b.execute("delete from personal_puestos where id_personal='"+idPersonal+"'");
+                    b.execute("delete from personal where id_personal = '"+idPersonal+"'");
+                    JOptionPane.showMessageDialog(getContentPane(), "Eliminado de personal exitosa");
+                }
+                iniciarTabla();
+                //si es 0 es por nombre, 1 marca y 2 modelo
+            }
+        }
+        
+
+    
     /**
      * @param args the command line arguments
      */

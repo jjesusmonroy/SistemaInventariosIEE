@@ -22,20 +22,7 @@ public class BDD{
     public static void main (String [] args){
         BDD b = new BDD();
         MetodosG m = new MetodosG();
-        /*String query = "select m._nombre_modulo,p.nombre_personal,p.apellido_pat_personal,p.apellido_mat_personal,per.alta_perrmiso,per.baja_permiso,per.consulta_permiso,per.modificar_permiso,per.administrar_usuario_permiso,u.id_usuario from usuarios u inner join personal p on u.id_personal=p.id_personal inner join permisos_modulos pm on u.id_personal=pm.id_personal and u.id_usuario=pm.id_usuario inner join modulos m on pm.id_modulo=m.id_modulo inner join permisos per on pm.id_permiso=per.id_permiso where u.nombre_usuario='jjesusmonroy'";
-        String [][] a = b.obtenerConsultas(query);
-        //int a = b.noregistros(query);
-        System.out.println(a[0][0]+"\n"+
-                a[0][1]+"\n"+
-                a[0][2]+"\n"+
-                a[0][3]+"\n"+
-                a[0][4]+"\n"+
-                a[0][5]+"\n"+
-                a[0][6]+"\n"+
-                a[0][7]+"\n"+
-                a[0][8]+"\n"+
-                a[0][9]+"\n");*/
-        
+        b.execute("update personal_puestos set id_area = '4' where id_personal = '4'");
     }
     //metodo para validar inicio de sesion de login
     public String[] validarInicio(String usuario){
