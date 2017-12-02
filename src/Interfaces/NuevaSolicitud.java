@@ -89,10 +89,25 @@ public class NuevaSolicitud extends javax.swing.JFrame {
         jButton2.setText("Cancelar");
 
         nsNombre.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        nsNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nsNombreKeyTyped(evt);
+            }
+        });
 
         nsMarca.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        nsMarca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nsMarcaKeyTyped(evt);
+            }
+        });
 
         nsCantidad.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        nsCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nsCantidadKeyTyped(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setText("Categoría: ");
@@ -164,6 +179,12 @@ public class NuevaSolicitud extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel8.setText("Modelo");
+
+        nsModelo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nsModeloKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -270,6 +291,34 @@ public class NuevaSolicitud extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void nsNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nsNombreKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
+                && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
+                && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' ) evt.consume();
+    }//GEN-LAST:event_nsNombreKeyTyped
+
+    private void nsMarcaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nsMarcaKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
+                && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
+                && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' &&(c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_nsMarcaKeyTyped
+
+    private void nsModeloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nsModeloKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_nsModeloKeyTyped
+
+    private void nsCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nsCantidadKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_nsCantidadKeyTyped
     public void info2a1(String [][]a){
          DefaultTableModel model =(DefaultTableModel) s.tbl_productos1.getModel();
          String []vector=new String[5];

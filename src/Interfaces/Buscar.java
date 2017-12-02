@@ -48,9 +48,9 @@ public class Buscar extends javax.swing.JFrame {
         tbl_productos = new javax.swing.JTable();
         jButton11 = new javax.swing.JButton();
         jLabelIdModificar = new javax.swing.JLabel();
-        jParametro = new javax.swing.JComboBox<>();
+        jParametro = new javax.swing.JComboBox<String>();
         jLabel1 = new javax.swing.JLabel();
-        jStatus = new javax.swing.JComboBox<>();
+        jStatus = new javax.swing.JComboBox<String>();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -85,6 +85,9 @@ public class Buscar extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField1KeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
         });
 
         tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
@@ -116,12 +119,12 @@ public class Buscar extends javax.swing.JFrame {
         jLabelIdModificar.setText("jLabel1");
 
         jParametro.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jParametro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre producto ", "Marca producto", "Modelo producto" }));
+        jParametro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nombre producto ", "Marca producto", "Modelo producto" }));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/search.png"))); // NOI18N
 
         jStatus.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Pendiente", "Agotado" }));
+        jStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Disponible", "Pendiente", "Agotado" }));
         jStatus.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jStatusItemStateChanged(evt);
@@ -155,13 +158,14 @@ public class Buscar extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11)
-                    .addComponent(jLabelIdModificar)
-                    .addComponent(jParametro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jParametro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton11)
+                        .addComponent(jLabelIdModificar)
+                        .addComponent(jStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1)
                 .addContainerGap())
@@ -368,6 +372,14 @@ public class Buscar extends javax.swing.JFrame {
         // TODO add your handling code here:
         iniciarTabla();
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
+                && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
+                && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' &&(c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_jTextField1KeyTyped
 
     class PopupActionListener implements ActionListener {
         @Override

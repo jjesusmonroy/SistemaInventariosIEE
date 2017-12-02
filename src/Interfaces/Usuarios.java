@@ -53,7 +53,7 @@ public class Usuarios extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/loupe.png"))); // NOI18N
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/loupe.png"))); // NOI18N
         jButton11.setText("Buscar");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,9 +78,12 @@ public class Usuarios extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField1KeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
         });
 
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/error.png"))); // NOI18N
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/error.png"))); // NOI18N
         jButton12.setText("Cancelar");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,7 +91,7 @@ public class Usuarios extends javax.swing.JFrame {
             }
         });
 
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/new-user.png"))); // NOI18N
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/new-user.png"))); // NOI18N
         jButton13.setText("Agregar");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,16 +110,16 @@ public class Usuarios extends javax.swing.JFrame {
         jLabel5.setText("Sistema de Control de Inventario IEEN");
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/IEE.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/IEE.png"))); // NOI18N
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/minus-sign.png"))); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel14MouseClicked(evt);
             }
         });
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/salir2.png"))); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/salir2.png"))); // NOI18N
         jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel15MouseClicked(evt);
@@ -159,7 +162,7 @@ public class Usuarios extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButtonAdministrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/error.png"))); // NOI18N
+        jButtonAdministrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/error.png"))); // NOI18N
         jButtonAdministrar.setText("Permisos");
         jButtonAdministrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -285,6 +288,12 @@ public class Usuarios extends javax.swing.JFrame {
         Permisos permisos = new Permisos();
         permisos.setVisible(true);
     }//GEN-LAST:event_jButtonAdministrarActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') &&(c<'0' || c>'9')&& c!='_') evt.consume();
+    }//GEN-LAST:event_jTextField1KeyTyped
 
     /**
      * @param args the command line arguments
