@@ -260,6 +260,10 @@
                                                       <Component id="altalCantidad" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                       <Component id="altat13" min="-2" pref="50" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="altalCantidad1" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <Component id="altat14" min="-2" pref="50" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" alignment="1" attributes="0">
                                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -309,8 +313,6 @@
                               <Component id="jButton9" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                               <Component id="jButton10" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                              <Component id="jButton12" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -333,6 +335,8 @@
                                   <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="altalCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="altat13" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="altat14" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="altalCantidad1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -386,13 +390,10 @@
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButton12" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jButton9" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton10" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton11" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jButton9" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton10" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton11" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -791,17 +792,6 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="jButton12">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Recursos/rubbish-bin.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Eliminar"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton12ActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JLabel" name="lblImage">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
@@ -811,6 +801,24 @@
                     <EtchetBorder/>
                   </Border>
                 </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="altat14">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="14" style="0"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="altat14ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="altalCantidad1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Stock_producto"/>
               </Properties>
             </Component>
           </SubComponents>

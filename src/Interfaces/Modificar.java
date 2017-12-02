@@ -92,7 +92,8 @@ public final class Modificar extends javax.swing.JFrame {
         altat10.setText(elementos[0][9]);
         altat11.setText(elementos[0][10]);
         altat12.setText(elementos[0][11]);
-        altat13.setText(elementos[0][12]);
+        altat13.setText(elementos[0][13]);
+        altat14.setText(elementos[0][12]);
         jLabel6.setText(elementos[0][15]);
         System.out.println(idProducto+"-"+idCat);
         if(idCat.equals("3")){
@@ -123,7 +124,7 @@ public final class Modificar extends javax.swing.JFrame {
                     "no_factura_producto='"+m.jtextfield(altat10)+"', "+
                     "importe_producto='"+m.jtextfield(altat11)+"', "+
                     "observaciones_producto='"+m.jtextarea(altat12)+"', "+
-                    "stock_producto='"+m.jtextfield(altat13)+"', "+
+                    "stock_producto='"+m.jtextfield(altat14)+"', "+
                     "min_stock_producto='"+m.jtextfield(altat13)+"', "+
                     "id_categoria='"+idcategoria+"'";
         b.execute("update producto set "+update+" where id_producto ='"+idProducto+"'");
@@ -147,10 +148,6 @@ public final class Modificar extends javax.swing.JFrame {
         b.execute("update vehiculo set "+updateVehiculo+" where id_vehiculo ='"+idVehiculo+"'");
         }
     }
-    
-    //contabilida, cambie a vehiculo y tienes que insertar un nuevo vehiculo 
-    //vehiculo, y se queda en vehiculo y solo tienes que actualizar en dos tablas
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -208,8 +205,9 @@ public final class Modificar extends javax.swing.JFrame {
         altatv5 = new javax.swing.JTextField();
         altalKmSer = new javax.swing.JLabel();
         altatv6 = new javax.swing.JTextField();
-        jButton12 = new javax.swing.JButton();
         lblImage = new javax.swing.JLabel();
+        altat14 = new javax.swing.JTextField();
+        altalCantidad1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -458,17 +456,19 @@ public final class Modificar extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/rubbish-bin.png"))); // NOI18N
-        jButton12.setText("Eliminar");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
-
         lblImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImage.setText("FOTO");
         lblImage.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        altat14.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altat14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                altat14ActionPerformed(evt);
+            }
+        });
+
+        altalCantidad1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altalCantidad1.setText("Stock_producto");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -528,7 +528,11 @@ public final class Modificar extends javax.swing.JFrame {
                                             .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addComponent(altalCantidad)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(altat13, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(altat13, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(altalCantidad1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(altat14, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
@@ -560,9 +564,7 @@ public final class Modificar extends javax.swing.JFrame {
                         .addGap(126, 126, 126)
                         .addComponent(jButton9)
                         .addGap(42, 42, 42)
-                        .addComponent(jButton10)
-                        .addGap(65, 65, 65)
-                        .addComponent(jButton12)))
+                        .addComponent(jButton10)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -579,7 +581,9 @@ public final class Modificar extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(altalCantidad)
-                            .addComponent(altat13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(altat13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(altat14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(altalCantidad1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(altalNombre)
@@ -621,12 +625,10 @@ public final class Modificar extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton12)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton9)
-                        .addComponent(jButton10)
-                        .addComponent(jButton11)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton9)
+                    .addComponent(jButton10)
+                    .addComponent(jButton11))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -667,10 +669,8 @@ public final class Modificar extends javax.swing.JFrame {
 
     private void jLabel22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel22MouseClicked
 
-        
         this.setVisible(false);
-        this.dispose();
-        
+        this.dispose();  
     }//GEN-LAST:event_jLabel22MouseClicked
 
     private void jLabel21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel21MouseClicked
@@ -693,10 +693,6 @@ public final class Modificar extends javax.swing.JFrame {
             this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
-
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
         fillIn();
@@ -705,6 +701,10 @@ public final class Modificar extends javax.swing.JFrame {
     private void formFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusLost
         // TODO add your handling code here:
     }//GEN-LAST:event_formFocusLost
+
+    private void altat14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altat14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_altat14ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -745,6 +745,7 @@ public final class Modificar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel altalCantidad;
+    private javax.swing.JLabel altalCantidad1;
     private javax.swing.JLabel altalColor;
     private javax.swing.JLabel altalDes;
     private javax.swing.JLabel altalFecha;
@@ -763,6 +764,7 @@ public final class Modificar extends javax.swing.JFrame {
     private javax.swing.JTextField altat11;
     private javax.swing.JTextArea altat12;
     private javax.swing.JTextField altat13;
+    private javax.swing.JTextField altat14;
     private javax.swing.JTextField altat2;
     private javax.swing.JTextArea altat3;
     private javax.swing.JTextField altat4;
@@ -776,7 +778,6 @@ public final class Modificar extends javax.swing.JFrame {
     private javax.swing.JTextField altatv6;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
