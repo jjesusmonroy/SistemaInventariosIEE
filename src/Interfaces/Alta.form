@@ -566,6 +566,7 @@
               </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="altat13FocusGained"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat13KeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="altat2">
@@ -579,6 +580,7 @@
               </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="altat2FocusGained"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat2KeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="altat4">
@@ -592,6 +594,7 @@
               </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="altat4FocusGained"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat4KeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="altat5">
@@ -605,6 +608,7 @@
               </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="altat5FocusGained"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat5KeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="altat6">
@@ -618,6 +622,7 @@
               </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="altat6FocusGained"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat6KeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="altat7">
@@ -631,6 +636,7 @@
               </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="altat7FocusGained"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat7KeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="altat10">
@@ -644,6 +650,7 @@
               </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="altat10FocusGained"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat10KeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="altat11">
@@ -657,6 +664,7 @@
               </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="altat11FocusGained"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat11KeyTyped"/>
               </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -674,6 +682,9 @@
                       <ComponentRef name="altat13"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat3KeyTyped"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -692,6 +703,9 @@
                       <ComponentRef name="altatv3"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat12KeyTyped"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -852,6 +866,7 @@
                   </Properties>
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="altatv4FocusGained"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altatv4KeyTyped"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="altalKm">
@@ -873,6 +888,7 @@
                   </Properties>
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="altatv5FocusGained"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altatv5KeyTyped"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="altalKmSer">
@@ -894,6 +910,7 @@
                   </Properties>
                   <Events>
                     <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="altatv6FocusGained"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altatv6KeyTyped"/>
                   </Events>
                 </Component>
               </SubComponents>

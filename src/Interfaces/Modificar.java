@@ -340,27 +340,82 @@ public final class Modificar extends javax.swing.JFrame {
         altalCantidad.setText("Stock minimo:");
 
         altat13.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altat13.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat13KeyTyped(evt);
+            }
+        });
 
         altat2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altat2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat2KeyTyped(evt);
+            }
+        });
 
         altat4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altat4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat4KeyTyped(evt);
+            }
+        });
 
         altat5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altat5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat5KeyTyped(evt);
+            }
+        });
 
         altat6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altat6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                altat6ActionPerformed(evt);
+            }
+        });
+        altat6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat6KeyTyped(evt);
+            }
+        });
 
         altat7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altat7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat7KeyTyped(evt);
+            }
+        });
 
         altat10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altat10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat10KeyTyped(evt);
+            }
+        });
 
         altat11.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altat11.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat11KeyTyped(evt);
+            }
+        });
 
         altat3.setColumns(20);
         altat3.setRows(3);
+        altat3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat3KeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(altat3);
 
         altat12.setColumns(20);
         altat12.setRows(5);
+        altat12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat12KeyTyped(evt);
+            }
+        });
         jScrollPane2.setViewportView(altat12);
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/save.png"))); // NOI18N
@@ -388,21 +443,41 @@ public final class Modificar extends javax.swing.JFrame {
         altalPlacas.setText("Placas:");
 
         altatv3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altatv3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altatv3KeyTyped(evt);
+            }
+        });
 
         altalNoMotor.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altalNoMotor.setText("No. Motor: ");
 
         altatv4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altatv4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altatv4KeyTyped(evt);
+            }
+        });
 
         altalKm.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altalKm.setText("Kilometraje:");
 
         altatv5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altatv5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altatv5KeyTyped(evt);
+            }
+        });
 
         altalKmSer.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altalKmSer.setText("Km Servicio:");
 
         altatv6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altatv6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altatv6KeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -461,6 +536,11 @@ public final class Modificar extends javax.swing.JFrame {
         altat14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 altat14ActionPerformed(evt);
+            }
+        });
+        altat14.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat14KeyTyped(evt);
             }
         });
 
@@ -702,6 +782,111 @@ public final class Modificar extends javax.swing.JFrame {
     private void altat14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altat14ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_altat14ActionPerformed
+
+    private void altat2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat2KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
+                && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
+                && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó') evt.consume();
+    }//GEN-LAST:event_altat2KeyTyped
+
+    private void altat5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat5KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
+                && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
+                && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' &&(c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_altat5KeyTyped
+
+    private void altat7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat7KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') ) evt.consume();
+    }//GEN-LAST:event_altat7KeyTyped
+
+    private void altat6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altat6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_altat6ActionPerformed
+
+    private void altat6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat6KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_altat6KeyTyped
+
+    private void altat4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat4KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_altat4KeyTyped
+
+    private void altat13KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat13KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_altat13KeyTyped
+
+    private void altat14KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat14KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_altat14KeyTyped
+
+    private void altat10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat10KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_altat10KeyTyped
+
+    private void altat11KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat11KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'0' || c>'9')&& c!='.') evt.consume();
+    }//GEN-LAST:event_altat11KeyTyped
+
+    private void altatv3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatv3KeyTyped
+        // TODO add your handling code here:
+         if(altatv3.getText().length()>=9){
+            evt.consume();
+        }
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') &&(c<'0' || c>'9') && c!='-') evt.consume();
+    }//GEN-LAST:event_altatv3KeyTyped
+
+    private void altatv4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatv4KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_altatv4KeyTyped
+
+    private void altatv5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatv5KeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if((c<'0' || c>'9')&& c!='.') evt.consume();
+    }//GEN-LAST:event_altatv5KeyTyped
+
+    private void altatv6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatv6KeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if((c<'0' || c>'9')&& c!='.') evt.consume();
+    }//GEN-LAST:event_altatv6KeyTyped
+
+    private void altat3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat3KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
+                && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
+                && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' &&(c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_altat3KeyTyped
+
+    private void altat12KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat12KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
+                && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
+                && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' &&(c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_altat12KeyTyped
 
     /**
      * @param args the command line arguments

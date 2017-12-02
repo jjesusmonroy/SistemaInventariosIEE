@@ -67,7 +67,7 @@ public class Permisos extends javax.swing.JFrame {
         jcAdministrar = new javax.swing.JCheckBox();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         idUsuario = new javax.swing.JLabel();
         apPaterno = new javax.swing.JLabel();
         apMaterno = new javax.swing.JLabel();
@@ -202,7 +202,19 @@ public class Permisos extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
+
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         idUsuario.setText("idUsuario");
 
@@ -453,6 +465,18 @@ public class Permisos extends javax.swing.JFrame {
         if(lAdministrar.getText().equals("1"))lAdministrar.setText("0");
         else lAdministrar.setText("1");
     }//GEN-LAST:event_jcAdministrarActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') &&(c<'0' || c>'9')&& c!='_') evt.consume();
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') &&(c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_jTextField2KeyTyped
     class PopupActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
