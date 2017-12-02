@@ -468,12 +468,18 @@ public class Permisos extends javax.swing.JFrame {
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
         // TODO add your handling code here:
+        if(jTextField1.getText().length()>45){
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if((c<'a' || c>'z') && (c<'A' || c>'Z') &&(c<'0' || c>'9')&& c!='_') evt.consume();
     }//GEN-LAST:event_jTextField1KeyTyped
 
     private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
         // TODO add your handling code here:
+        if(jTextField2.getText().length()>16){
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if((c<'a' || c>'z') && (c<'A' || c>'Z') &&(c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_jTextField2KeyTyped

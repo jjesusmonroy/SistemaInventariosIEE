@@ -454,6 +454,11 @@ public class Alta extends javax.swing.JFrame {
                 altat9FocusGained(evt);
             }
         });
+        altat9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat9KeyTyped(evt);
+            }
+        });
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Vehiculo"));
 
@@ -603,15 +608,15 @@ public class Alta extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(altalNoSerie))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
+                        .addGap(168, 168, 168)
                         .addComponent(jButton9)
                         .addGap(43, 43, 43)
                         .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
+                        .addGap(46, 46, 46)
                         .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
+                        .addGap(46, 46, 46)
                         .addComponent(jButton12)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 146, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -714,8 +719,8 @@ public class Alta extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(altalNoFact)
-                            .addComponent(altat10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(altat10, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(altalFecha)
                             .addComponent(altat9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -744,15 +749,13 @@ public class Alta extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
                                 .addComponent(altalImporte))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(altat11Formate, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(altat11Formate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(altalObser, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCargarFoto))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -992,14 +995,14 @@ public class Alta extends javax.swing.JFrame {
             }
         
         }
-        
-        
-        
-        
+     
     }//GEN-LAST:event_btnCargarFotoActionPerformed
 
     private void altat2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat2KeyTyped
         // TODO add your handling code here:
+        if(altat2.getText().length()>30){
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
                 && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
@@ -1008,6 +1011,9 @@ public class Alta extends javax.swing.JFrame {
 
     private void altat5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat5KeyTyped
         // TODO add your handling code here:
+        if(altat5.getText().length()>45){
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
                 && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
@@ -1016,36 +1022,54 @@ public class Alta extends javax.swing.JFrame {
 
     private void altat7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat7KeyTyped
         // TODO add your handling code here:
+        if(altat7.getText().length()>45){
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!=' ' ) evt.consume();
     }//GEN-LAST:event_altat7KeyTyped
 
     private void altat6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat6KeyTyped
         // TODO add your handling code here:
+        if(altat6.getText().length()>45){
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if((c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_altat6KeyTyped
 
     private void altat4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat4KeyTyped
         // TODO add your handling code here:
+        if(altat4.getText().length()>45){
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if((c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_altat4KeyTyped
 
     private void altat13KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat13KeyTyped
         // TODO add your handling code here:
+        if(altat13.getText().length()>15){
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if((c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_altat13KeyTyped
 
     private void altat10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat10KeyTyped
         // TODO add your handling code here:
+        if(altat10.getText().length()>20){
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if((c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_altat10KeyTyped
 
     private void altat12KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat12KeyTyped
         // TODO add your handling code here:
+        if(altat12.getText().length()>80){
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
                 && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
@@ -1054,6 +1078,9 @@ public class Alta extends javax.swing.JFrame {
 
     private void altat3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat3KeyTyped
         // TODO add your handling code here:
+        if(altat3.getText().length()>45){
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
                 && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
@@ -1062,18 +1089,27 @@ public class Alta extends javax.swing.JFrame {
 
     private void altatv4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatv4KeyTyped
         // TODO add your handling code here:
+        if(altatv4.getText().length()>45){
+            evt.consume();
+        }
          char c = evt.getKeyChar();
         if((c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_altatv4KeyTyped
 
     private void altatv5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatv5KeyTyped
         // TODO add your handling code here:
+        if(altatv5.getText().length()>45){
+            evt.consume();
+        }
          char c = evt.getKeyChar();
         if((c<'0' || c>'9')&& c!='.') evt.consume();
     }//GEN-LAST:event_altatv5KeyTyped
 
     private void altatv6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatv6KeyTyped
         // TODO add your handling code here:
+         if(altatv6.getText().length()>45){
+            evt.consume();
+        }
          char c = evt.getKeyChar();
         if((c<'0' || c>'9')&& c!='.') evt.consume();
     }//GEN-LAST:event_altatv6KeyTyped
@@ -1083,6 +1119,11 @@ public class Alta extends javax.swing.JFrame {
         char c = evt.getKeyChar();
         if((c<'0' || c>'9')&& c!='.') evt.consume();
     }//GEN-LAST:event_altat11FormateKeyTyped
+
+    private void altat9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat9KeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_altat9KeyTyped
    public int valCamposGeneral(){
        int cont=0;
         if(v.soloLetras(altat2.getText())==true){

@@ -203,17 +203,17 @@
                               <Component id="altalNoSerie" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="168" max="-2" attributes="0"/>
                               <Component id="jButton9" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                               <Component id="jButton11" min="-2" pref="127" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                               <Component id="jButton10" min="-2" pref="107" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                               <Component id="jButton12" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="146" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
@@ -352,9 +352,9 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="altalNoFact" min="-2" max="-2" attributes="0"/>
-                                  <Component id="altat10" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="altat10" min="-2" pref="26" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="altalFecha" min="-2" max="-2" attributes="0"/>
                                   <Component id="altat9" min="-2" max="-2" attributes="0"/>
@@ -392,10 +392,7 @@
                                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                       <Component id="altalImporte" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                                      <Component id="altat11Formate" min="-2" pref="22" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="altat11Formate" min="-2" pref="26" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -403,17 +400,17 @@
                                   <Component id="altalObser" alignment="0" min="-2" pref="17" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="lblImage" min="-2" pref="140" max="-2" attributes="0"/>
-                                  <Component id="btnCargarFoto" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblImage" alignment="3" min="-2" pref="140" max="-2" attributes="0"/>
+                                  <Component id="btnCargarFoto" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton11" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton10" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton9" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton11" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton10" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton12" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="28" max="32767" attributes="0"/>
@@ -753,6 +750,7 @@
               </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="altat9FocusGained"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat9KeyTyped"/>
               </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel4">
