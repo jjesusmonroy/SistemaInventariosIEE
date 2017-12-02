@@ -195,16 +195,16 @@ public class Alta extends javax.swing.JFrame {
         jLabel2.setText("Sistema de Control de Inventario IEEN");
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IEE.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/IEE.png"))); // NOI18N
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/minus-sign.png"))); // NOI18N
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel13MouseClicked(evt);
             }
         });
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/salir2.png"))); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/salir2.png"))); // NOI18N
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel14MouseClicked(evt);
@@ -315,12 +315,22 @@ public class Alta extends javax.swing.JFrame {
                 altat13FocusGained(evt);
             }
         });
+        altat13.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat13KeyTyped(evt);
+            }
+        });
 
         altat2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altat2.setNextFocusableComponent(altat5);
         altat2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 altat2FocusGained(evt);
+            }
+        });
+        altat2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat2KeyTyped(evt);
             }
         });
 
@@ -331,12 +341,22 @@ public class Alta extends javax.swing.JFrame {
                 altat4FocusGained(evt);
             }
         });
+        altat4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat4KeyTyped(evt);
+            }
+        });
 
         altat5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altat5.setNextFocusableComponent(altat7);
         altat5.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 altat5FocusGained(evt);
+            }
+        });
+        altat5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat5KeyTyped(evt);
             }
         });
 
@@ -347,12 +367,22 @@ public class Alta extends javax.swing.JFrame {
                 altat6FocusGained(evt);
             }
         });
+        altat6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat6KeyTyped(evt);
+            }
+        });
 
         altat7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altat7.setNextFocusableComponent(altat6);
         altat7.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 altat7FocusGained(evt);
+            }
+        });
+        altat7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat7KeyTyped(evt);
             }
         });
 
@@ -363,6 +393,11 @@ public class Alta extends javax.swing.JFrame {
                 altat10FocusGained(evt);
             }
         });
+        altat10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat10KeyTyped(evt);
+            }
+        });
 
         altat11.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altat11.setNextFocusableComponent(altat12);
@@ -371,18 +406,33 @@ public class Alta extends javax.swing.JFrame {
                 altat11FocusGained(evt);
             }
         });
+        altat11.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat11KeyTyped(evt);
+            }
+        });
 
         altat3.setColumns(20);
         altat3.setRows(3);
         altat3.setNextFocusableComponent(altat13);
+        altat3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat3KeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(altat3);
 
         altat12.setColumns(20);
         altat12.setRows(5);
         altat12.setNextFocusableComponent(altatv3);
+        altat12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altat12KeyTyped(evt);
+            }
+        });
         jScrollPane2.setViewportView(altat12);
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/save.png"))); // NOI18N
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/save.png"))); // NOI18N
         jButton9.setText("Guardar");
         jButton9.setNextFocusableComponent(jButton10);
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -391,7 +441,7 @@ public class Alta extends javax.swing.JFrame {
             }
         });
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/eraser.png"))); // NOI18N
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/eraser.png"))); // NOI18N
         jButton10.setText("Limpiar");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -399,7 +449,7 @@ public class Alta extends javax.swing.JFrame {
             }
         });
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/delete-button.png"))); // NOI18N
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/delete-button.png"))); // NOI18N
         jButton11.setText("Cancelar");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -448,6 +498,11 @@ public class Alta extends javax.swing.JFrame {
                 altatv4FocusGained(evt);
             }
         });
+        altatv4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altatv4KeyTyped(evt);
+            }
+        });
 
         altalKm.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altalKm.setText("Kilometraje:");
@@ -459,6 +514,11 @@ public class Alta extends javax.swing.JFrame {
                 altatv5FocusGained(evt);
             }
         });
+        altatv5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altatv5KeyTyped(evt);
+            }
+        });
 
         altalKmSer.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altalKmSer.setText("Km Servicio:");
@@ -468,6 +528,11 @@ public class Alta extends javax.swing.JFrame {
         altatv6.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 altatv6FocusGained(evt);
+            }
+        });
+        altatv6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                altatv6KeyTyped(evt);
             }
         });
 
@@ -516,7 +581,7 @@ public class Alta extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/studio-writing-tools.png"))); // NOI18N
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/studio-writing-tools.png"))); // NOI18N
         jButton12.setText("Consumibles");
 
         lblImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -773,6 +838,8 @@ public class Alta extends javax.swing.JFrame {
         if(altatv3.getText().length()>=9){
             evt.consume();
         }
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') &&(c<'0' || c>'9') && c!='-') evt.consume();
     }//GEN-LAST:event_altatv3KeyTyped
 
     private void altatv3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatv3KeyReleased
@@ -930,6 +997,92 @@ public class Alta extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnCargarFotoActionPerformed
+
+    private void altat2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat2KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
+                && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
+                && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó') evt.consume();
+    }//GEN-LAST:event_altat2KeyTyped
+
+    private void altat5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat5KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
+                && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
+                && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' &&(c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_altat5KeyTyped
+
+    private void altat7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat7KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') ) evt.consume();
+    }//GEN-LAST:event_altat7KeyTyped
+
+    private void altat6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat6KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_altat6KeyTyped
+
+    private void altat4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat4KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_altat4KeyTyped
+
+    private void altat13KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat13KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_altat13KeyTyped
+
+    private void altat10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat10KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_altat10KeyTyped
+
+    private void altat11KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat11KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'0' || c>'9')&& c!='.') evt.consume();
+    }//GEN-LAST:event_altat11KeyTyped
+
+    private void altat12KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat12KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
+                && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
+                && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' &&(c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_altat12KeyTyped
+
+    private void altat3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat3KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
+                && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
+                && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' &&(c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_altat3KeyTyped
+
+    private void altatv4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatv4KeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if((c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_altatv4KeyTyped
+
+    private void altatv5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatv5KeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if((c<'0' || c>'9')&& c!='.') evt.consume();
+    }//GEN-LAST:event_altatv5KeyTyped
+
+    private void altatv6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatv6KeyTyped
+        // TODO add your handling code here:
+         char c = evt.getKeyChar();
+        if((c<'0' || c>'9')&& c!='.') evt.consume();
+    }//GEN-LAST:event_altatv6KeyTyped
    public int valCamposGeneral(){
        int cont=0;
         if(v.soloLetras(altat2.getText())==true){
