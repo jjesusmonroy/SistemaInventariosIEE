@@ -113,18 +113,18 @@ public final class Modificar extends javax.swing.JFrame {
         }
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String fecha = sdf.format(altat9.getDate());
-        String update = "nombre_producto='"+altat2.getText()+"', "+
-                            "descripcion_producto='"+altat3.getText()+"', "+
-                    "marca_producto='"+altat5.getText()+"', "+
-                    "modelo_producto='"+altat6.getText()+"', "+
-                    "num_serie_producto='"+altat4.getText()+"', "+
-                    "color_producto='"+altat7.getText()+"', "+
+        String update = "nombre_producto='"+m.jtextfield(altat2)+"', "+
+                            "descripcion_producto='"+m.jtextarea(altat3)+"', "+
+                    "marca_producto='"+m.jtextfield(altat5)+"', "+
+                    "modelo_producto='"+m.jtextfield(altat6)+"', "+
+                    "num_serie_producto='"+m.jtextfield(altat4)+"', "+
+                    "color_producto='"+m.jtextfield(altat7)+"', "+
                     "fecha_compra_producto='"+fecha+"', "+
-                    "no_factura_producto='"+altat10.getText()+"', "+
-                    "importe_producto='"+altat11.getText()+"', "+
-                    "observaciones_producto='"+altat12.getText()+"', "+
-                    "stock_producto='"+altat13.getText()+"', "+
-                    "min_stock_producto='"+altat13.getText()+"', "+
+                    "no_factura_producto='"+m.jtextfield(altat10)+"', "+
+                    "importe_producto='"+m.jtextfield(altat11)+"', "+
+                    "observaciones_producto='"+m.jtextarea(altat12)+"', "+
+                    "stock_producto='"+m.jtextfield(altat13)+"', "+
+                    "min_stock_producto='"+m.jtextfield(altat13)+"', "+
                     "id_categoria='"+idcategoria+"'";
         b.execute("update producto set "+update+" where id_producto ='"+idProducto+"'");
         if(idVehiculo.equals("") && idcategoria ==3){
@@ -133,10 +133,10 @@ public final class Modificar extends javax.swing.JFrame {
             insertarvehiculo[0]=idcar+"";
             insertarvehiculo[5]=idProducto;
             insertarvehiculo[6]=idcategoria+"";
-            insertarvehiculo[1]=altatv3.getText();
-            insertarvehiculo[2]=altatv4.getText();
-            insertarvehiculo[3]=altatv5.getText();
-            insertarvehiculo[4]=altatv6.getText();
+            insertarvehiculo[1]=m.jtextfield(altatv3);
+            insertarvehiculo[2]=m.jtextfield(altatv4);
+            insertarvehiculo[3]=m.jtextfield(altatv5);
+            insertarvehiculo[4]=m.jtextfield(altatv6);
             b.insertar("vehiculo", insertarvehiculo);
         }
         if(!idVehiculo.equals("") && idcategoria==3){
@@ -213,6 +213,11 @@ public final class Modificar extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                formFocusLost(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -228,16 +233,16 @@ public final class Modificar extends javax.swing.JFrame {
         jLabel2.setText("Sistema de Control de Inventario IEEN");
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/IEE.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IEE.png"))); // NOI18N
 
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/minus-sign.png"))); // NOI18N
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
         jLabel21.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel21MouseClicked(evt);
             }
         });
 
-        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/salir2.png"))); // NOI18N
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/salir2.png"))); // NOI18N
         jLabel22.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel22MouseClicked(evt);
@@ -363,7 +368,7 @@ public final class Modificar extends javax.swing.JFrame {
         altat12.setRows(5);
         jScrollPane2.setViewportView(altat12);
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/save.png"))); // NOI18N
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/save.png"))); // NOI18N
         jButton9.setText("Guardar");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -371,7 +376,7 @@ public final class Modificar extends javax.swing.JFrame {
             }
         });
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/file.png"))); // NOI18N
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/file.png"))); // NOI18N
         jButton10.setText("Restaurar");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -379,7 +384,7 @@ public final class Modificar extends javax.swing.JFrame {
             }
         });
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/error.png"))); // NOI18N
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
         jButton11.setText("Cancelar");
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Vehiculo"));
@@ -453,7 +458,7 @@ public final class Modificar extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/rubbish-bin.png"))); // NOI18N
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/rubbish-bin.png"))); // NOI18N
         jButton12.setText("Eliminar");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -616,11 +621,12 @@ public final class Modificar extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton9)
-                    .addComponent(jButton10)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton12)
-                    .addComponent(jButton11))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton9)
+                        .addComponent(jButton10)
+                        .addComponent(jButton11)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -684,7 +690,7 @@ public final class Modificar extends javax.swing.JFrame {
             // TODO add your handling code here:
             update();
             JOptionPane.showMessageDialog(this, "Se han guardado los cambios");
-            
+            this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -695,6 +701,10 @@ public final class Modificar extends javax.swing.JFrame {
         // TODO add your handling code here:
         fillIn();
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void formFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formFocusLost
 
     /**
      * @param args the command line arguments

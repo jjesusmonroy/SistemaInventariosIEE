@@ -63,20 +63,20 @@ public class Alta extends javax.swing.JFrame {
         String [] insertar = new String [17];
         insertar[0]=id+"";
         insertar[16]=id2+"";
-        insertar[1]=jtextfield(altat2);
-        insertar[2]=jtextarea(altat3);
-        insertar[5]=jtextfield(altat4);
-        insertar[3]=jtextfield(altat5);
-        insertar[4]=jtextfield(altat6);
-        insertar[6]=jtextfield(altat7);
+        insertar[1]=m.jtextfield(altat2);
+        insertar[2]=m.jtextarea(altat3);
+        insertar[5]=m.jtextfield(altat4);
+        insertar[3]=m.jtextfield(altat5);
+        insertar[4]=m.jtextfield(altat6);
+        insertar[6]=m.jtextfield(altat7);
         insertar[7]=rutaChida(fichero+"");//lblImage.getText();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         insertar[8] = sdf.format(altat9.getDate());
-        insertar[9]=jtextfield(altat10);
-        insertar[10]=jtextfield(altat11);    
-        insertar[11]=jtextarea(altat12);
-        insertar[12]=jtextfield(altat13);
-        insertar[13]=jtextfield(altat13);
+        insertar[9]=m.jtextfield(altat10);
+        insertar[10]=m.jtextfield(altat11);    
+        insertar[11]=m.jtextarea(altat12);
+        insertar[12]=m.jtextfield(altat13);
+        insertar[13]=m.jtextfield(altat13);
         insertar[14]="Disponible";
         insertar[15]=jLabel6.getText();
         b.insertar("producto", insertar);
@@ -86,23 +86,14 @@ public class Alta extends javax.swing.JFrame {
             insertarvehiculo[0]=idcar+"";
             insertarvehiculo[5]=id+"";
             insertarvehiculo[6]=id2+"";
-            insertarvehiculo[1]=jtextfield(altatv3);
-            insertarvehiculo[2]=jtextfield(altatv4);
-            insertarvehiculo[3]=jtextfield(altatv5);
-            insertarvehiculo[4]=jtextfield(altatv6);
+            insertarvehiculo[1]=m.jtextfield(altatv3);
+            insertarvehiculo[2]=m.jtextfield(altatv4);
+            insertarvehiculo[3]=m.jtextfield(altatv5);
+            insertarvehiculo[4]=m.jtextfield(altatv6);
             b.insertar("vehiculo", insertarvehiculo);
             
         }
         folio();
-    }
-    
-    private String jtextfield(JTextField e){
-        if(!e.getText().equals(""))return e.getText();
-        else return null;
-    }
-    private String jtextarea(JTextArea e){
-        if(!e.getText().equals(""))return e.getText();
-        else return null;
     }
     
     private void limpiar(){

@@ -8,6 +8,8 @@ package Clases;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -17,6 +19,16 @@ public class MetodosG {
     
     public MetodosG() {
     }
+    
+    public String jtextfield(JTextField e){
+        if(!e.getText().equals(""))return e.getText();
+        else return null;
+    }
+    public String jtextarea(JTextArea e){
+        if(!e.getText().equals(""))return e.getText();
+        else return null;
+    }
+    
     public String []  selecCat(String [][] array){
         String [] a = new String [array.length+1];
         a[0]="Seleccione una categoria...";

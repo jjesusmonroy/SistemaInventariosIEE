@@ -62,6 +62,18 @@ public class Buscar extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -348,34 +360,32 @@ public class Buscar extends javax.swing.JFrame {
         iniciarTabla();
     }//GEN-LAST:event_jStatusItemStateChanged
 
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+         // TODO add your handling code here:
+    }//GEN-LAST:event_formFocusGained
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        iniciarTabla();
+    }//GEN-LAST:event_formWindowGainedFocus
+
     class PopupActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            Modificar modificar = null;
-            modificar = new Modificar(jLabelIdModificar.getText());
+            Modificar modificar =new Modificar(jLabelIdModificar.getText());
             modificar.setVisible(true);
         }
     }
     class PopupActionListener2 implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            /*if(!jLabelIdModificar.equals("")){
-                String [][] consul1 = b.obtenerConsultas("select id_categoria from producto where folio_producto = '"+jLabelIdModificar.getText()+"'");
-                String query ="";
-                if(consul1[0][0].equals("3"))query="select p.nombre_producto,v.id_vehiculo from producto p inner join vehiculo v on p.id_producto=v.id_producto where p.folio_producto = '"+jLabelIdModificar.getText()+"'";
-                if(!query.equals("")){ String consul[][]= b.obtenerConsultas(query);
-                    int dialogButton = JOptionPane.YES_NO_OPTION;
-                    int dialogResult = JOptionPane.showConfirmDialog (null, "Seguro que deseas eliminar el producto "+consul[0][0],"Advertencia",dialogButton);
-                    if(dialogResult == JOptionPane.YES_OPTION){
-                        // Saving code here
-                    b.execute("delete from vehiculo where id_vehiculo = '"+consul[0][1]+"'");
-                    }
-                }
-                b.execute("delete from producto where folio_producto = '"+jLabelIdModificar.getText()+"'");
-                JOptionPane.showMessageDialog(null, "producto eliminado");
-
-            iniciarTabla();
-            }*/
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog (null, "El producto se pondra en status Agotado, desea proceder?","Advertencia",dialogButton);
+            if(dialogResult == JOptionPane.YES_OPTION){
+                // Saving code here
+                b.execute("update producto set status_producto = 'Agotado' where folio_producto = '"+jLabelIdModificar.getText()+"'");
+                iniciarTabla();
+            }
         }   
     }
     
