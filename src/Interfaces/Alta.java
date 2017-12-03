@@ -759,7 +759,7 @@ public class Alta extends javax.swing.JFrame {
                             .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCargarFoto))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton9)
                     .addComponent(jButton11)
                     .addComponent(jButton10)
@@ -880,9 +880,9 @@ public class Alta extends javax.swing.JFrame {
 	
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        int var = jComboBox1.getSelectedIndex();
+        String var = jComboBox1.getSelectedItem().toString();
         int cont=0;
-        if(var==6){
+        if(var.equals("Vehiculo")){
             if(valVehiculo()==0){
                 altaProductos();
                 javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
@@ -890,7 +890,7 @@ public class Alta extends javax.swing.JFrame {
             }else{
                 javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
             }
-        }else if(var==1){
+        }else if(var.equals("Consumibles")){
             if(valCamposGeneral()==0 && v.soloNumeros(altat13.getText())==false){
                 altaProductos();
                 javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
