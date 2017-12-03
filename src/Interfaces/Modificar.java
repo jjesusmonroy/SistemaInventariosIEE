@@ -7,6 +7,7 @@ package Interfaces;
 
 import Clases.MetodosG;
 import basededatos.BDD;
+import java.awt.Color;
 import java.awt.Image;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,8 +32,11 @@ public final class Modificar extends javax.swing.JFrame {
     String idCat;
     String idProducto;
     String idVehiculo;
+    boolean vehiculo,consumible;
     public Modificar(String user){
         initComponents();
+        vehiculo=false;
+        consumible=false;
         b = new BDD();
         m = new MetodosG();
         folio=user;
@@ -757,8 +761,42 @@ public final class Modificar extends javax.swing.JFrame {
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         // TODO add your handling code here:
+        String var = jComboBox1.getSelectedItem().toString().toLowerCase();
+        if(var.equals("consumibles")){
+            altat13.setEnabled(true);
+            altat14.setEnabled(true);
+            altalCantidad.setForeground(Color.BLACK);
+        }else if(var.equals("vehiculos")){
+            camposHabVehiculos();
+        }else{
+            camposDesVehiculos();
+            altat13.setEnabled(false);
+            altat14.setEnabled(false);            
+            altalCantidad.setForeground(Color.GRAY);
+        }
     }//GEN-LAST:event_jComboBox1ItemStateChanged
-
+    private void camposDesVehiculos(){
+       altatv3.setEnabled(false);
+        altatv4.setEnabled(false);
+        altatv5.setEnabled(false);
+        altatv6.setEnabled(false);
+        altat13.setEnabled(false);
+        altalNoMotor.setForeground(Color.GRAY);
+        altalKm.setForeground(Color.GRAY);
+        altalKmSer.setForeground(Color.GRAY);
+        altalPlacas.setForeground(Color.GRAY);
+   }
+   private void camposHabVehiculos(){
+      // jPanel4.setEnabled(true);
+        altatv3.setEnabled(true);
+        altatv4.setEnabled(true);
+        altatv5.setEnabled(true);
+        altatv6.setEnabled(true);
+        altalNoMotor.setForeground(Color.BLACK);
+        altalKm.setForeground(Color.BLACK);
+        altalKmSer.setForeground(Color.BLACK);
+        altalPlacas.setForeground(Color.BLACK);
+   }
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed

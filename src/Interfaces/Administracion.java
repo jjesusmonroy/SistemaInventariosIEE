@@ -386,9 +386,21 @@ public class Administracion extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel13MouseClicked
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
-
+        String[] options = new String[]{"Cancelar","Cerrar sesión", "Salir del sistema"};
+        int response = JOptionPane.showOptionDialog(getContentPane(),"¿Que desea hacer?", "Inventory System",
+        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+        null, options, options[0]);
+        if(response==0){return;}
+        if(response==1){
+            I_Login i = new I_Login();
+            this.setVisible(false);
+            this.dispose();
+            i.setVisible(true);
+        }
+        if(response==2){
         this.setVisible(false);
         this.dispose();
+        }
     }//GEN-LAST:event_jLabel14MouseClicked
 
 

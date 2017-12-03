@@ -250,8 +250,6 @@ public class I_Login extends javax.swing.JFrame {
                 lbl_invisible.setVisible(false);
                 //Mandar al tipo de usuario
                 mv.getVentanaPrincipal(mv.getModulo(nom_usuario));
-                String resul[][]= mv.getModulo(nom_usuario);
-                mv.getVentanaPrincipal(resul);
                 this.setVisible(false);
                 this.dispose();
                 
