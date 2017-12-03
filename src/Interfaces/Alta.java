@@ -9,8 +9,6 @@ import basededatos.BDD;
 import Clases.*;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import java.io.File;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JFileChooser;
