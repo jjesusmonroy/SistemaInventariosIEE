@@ -621,10 +621,6 @@ public class Solicitar extends javax.swing.JFrame {
                     tbl_productos1.setValueAt(cantidad,i, 4);
                     txtCantidad.setText("");
                 }
-              // javax.swing.JOptionPane.showMessageDialog(this,tbl_productos1.getValueAt(i,4)+ "");
-               //javax.swing.JOptionPane.showMessageDialog(this,(Cantidad+Integer.parseInt(tbl_productos1.getValueAt(i,4).toString()))+ "");
-               // tbl_productos.setValueAt((Cantidad+Integer.parseInt(tbl_productos1.getValueAt(i,4)+""))+"",i,4);
-               // Cantidad=Cantidad+Integer.parseInt(tbl_productos1.getValueAt(i,4).toString());
                 return true;
             }
         }
