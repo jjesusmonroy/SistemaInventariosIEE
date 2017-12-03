@@ -487,59 +487,7 @@ public class Solicitar extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-         if(id_cambio==0){
-            javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una fila");
-        }else{
-             if(!v.soloNumeros(txtCantidad.getText())){
-                Cantidad=Integer.parseInt(txtCantidad.getText());
-                String [][] busqueda = (b.obtenerConsultas("select id_producto,nombre_producto,marca_producto,modelo_producto from producto where id_producto="+id_cambio));
-                String [] nuevo=new String[5];
-                nuevo[0]=busqueda[0][0];
-                nuevo[1]=busqueda[0][1];
-                nuevo[2]=busqueda[0][2];
-                nuevo[3]=busqueda[0][3];
-                nuevo[4]=Cantidad+"";
-                DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
-                model.addRow(nuevo);
-            }else{
-                javax.swing.JOptionPane.showMessageDialog(this, "Inserte cantidad");
-                txtCantidad.requestFocus(true);
-            }
-                txtCantidad.setText("");}
-        /*if(!busIguales(id_cambio)){
-            if(!v.soloNumeros(txtCantidad.getText())){
-                Cantidad=Integer.parseInt(txtCantidad.getText());
-                String [][] busqueda = (b.obtenerConsultas("select id_producto,nombre_producto,marca_producto,modelo_producto from producto where id_producto="+id_cambio));
-                String [] nuevo=new String[5];
-                nuevo[0]=busqueda[0][0];
-                nuevo[1]=busqueda[0][1];
-                nuevo[2]=busqueda[0][2];
-                nuevo[3]=busqueda[0][3];
-                nuevo[4]=Cantidad+"";
-                DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
-                model.addRow(nuevo);
-            }else{
-                javax.swing.JOptionPane.showMessageDialog(null, "Inserte cantidad");
-            }
-                txtCantidad.setText("");
-        }else{
-           DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
-            model.removeRow(Integer.parseInt(id_cambio));
-            if(!v.soloNumeros(txtCantidad.getText())){
-                String [][] busqueda = (b.obtenerConsultas("select id_producto,nombre_producto,marca_producto,modelo_producto from producto where id_producto="+id_cambio));
-                String [] nuevo=new String[5];
-                nuevo[0]=busqueda[0][0];
-                nuevo[1]=busqueda[0][1];
-                nuevo[2]=busqueda[0][2];
-                nuevo[3]=busqueda[0][3];
-                nuevo[4]=Cantidad+"";
-                DefaultTableModel model2 =(DefaultTableModel) tbl_productos1.getModel(); 
-                model2.addRow(nuevo);
-            }else{
-                javax.swing.JOptionPane.showMessageDialog(null, "Inserte cantidad");
-            }
-                txtCantidad.setText("");
-        }*/
+         cambiarDeTabla();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
@@ -592,7 +540,7 @@ public class Solicitar extends javax.swing.JFrame {
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         // TODO add your handling code here:
         if(tbl_productos1.getRowCount()==0){
-             javax.swing.JOptionPane.showMessageDialog(this, "No hay mÃ¡s elementos que borrar");
+             javax.swing.JOptionPane.showMessageDialog(this, "No hay más elementos que borrar");
          }else{
         if(cont==0){
             id_cambio2=tbl_productos1.getRowCount()-1;
@@ -636,9 +584,15 @@ public class Solicitar extends javax.swing.JFrame {
     private void txtCantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyPressed
         // TODO add your handling code here:
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            if(id_cambio==0){
+            cambiarDeTabla();
+        }
+    }//GEN-LAST:event_txtCantidadKeyPressed
+    private void cambiarDeTabla(){
+        if(id_cambio==0){
             javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una fila");
         }else{
+            if(busIguales(id_cambio)){              
+             }else{
              if(!v.soloNumeros(txtCantidad.getText())){
                 Cantidad=Integer.parseInt(txtCantidad.getText());
                 String [][] busqueda = (b.obtenerConsultas("select id_producto,nombre_producto,marca_producto,modelo_producto from producto where id_producto="+id_cambio));
@@ -655,21 +609,27 @@ public class Solicitar extends javax.swing.JFrame {
                 txtCantidad.requestFocus(true);
             }
                 txtCantidad.setText("");}
-        }
-    }//GEN-LAST:event_txtCantidadKeyPressed
-    /*private boolean busIguales(String id){
-        Cantidad=Integer.parseInt(txtCantidad.getText());
+            }
+    }
+    private boolean busIguales(int id){
+       // Cantidad=Integer.parseInt(txtCantidad.getText());
         for(int i=0;i<tbl_productos1.getRowCount();i++){
-            if(id.equals(tbl_productos1.getValueAt(i,0))){
+            //javax.swing.JOptionPane.showMessageDialog(this,tbl_productos1.getValueAt(i,0)+ " Buscando ");
+            if(id==Integer.parseInt(tbl_productos1.getValueAt(i,0)+"")){
+                if(javax.swing.JOptionPane.showConfirmDialog(this, "Producto previamente seleccionado "+"\n"+"¿Desea aumentar la cantidad?")==0){
+                    int cantidad=Integer.parseInt(javax.swing.JOptionPane.showInputDialog(this,"Cantidad"));
+                    tbl_productos1.setValueAt(cantidad,i, 4);
+                    txtCantidad.setText("");
+                }
               // javax.swing.JOptionPane.showMessageDialog(this,tbl_productos1.getValueAt(i,4)+ "");
                //javax.swing.JOptionPane.showMessageDialog(this,(Cantidad+Integer.parseInt(tbl_productos1.getValueAt(i,4).toString()))+ "");
-                //tbl_productos.setValueAt((Cantidad+Integer.parseInt(tbl_productos1.getValueAt(i,4)+""))+"",i,4);
-                Cantidad=Cantidad+Integer.parseInt(tbl_productos1.getValueAt(i,4).toString());
+               // tbl_productos.setValueAt((Cantidad+Integer.parseInt(tbl_productos1.getValueAt(i,4)+""))+"",i,4);
+               // Cantidad=Cantidad+Integer.parseInt(tbl_productos1.getValueAt(i,4).toString());
                 return true;
             }
         }
         return false;
-    }*/
+    }
   /*  public String[][] obtInfo(){
         
         DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 

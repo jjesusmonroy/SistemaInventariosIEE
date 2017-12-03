@@ -26,11 +26,13 @@ public class Asignar extends javax.swing.JFrame {
     ArrayList<String> asignados;
     TableModel pasar;
     String datos[][];
-    int idCambio;
+    int id_cambio, id_cambio2, cont;
     public Asignar() {
         initComponents();
         tp= new TablaPersonal();
-        idCambio=0;
+        id_cambio=0;
+        id_cambio2=0;
+        cont =0;
         b = new BDD();
         asignados = new ArrayList<>();
         String[][] datos = b.obtenerConsultas("select id_producto,"
@@ -83,8 +85,8 @@ public class Asignar extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_productos = new javax.swing.JTable();
         jButton11 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
+        btnBorrar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_productos1 = new javax.swing.JTable();
         jButton12 = new javax.swing.JButton();
@@ -136,17 +138,19 @@ public class Asignar extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText(">>");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregar.setText(">>");
+        btnAgregar.setEnabled(false);
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnAgregarActionPerformed(evt);
             }
         });
 
-        jButton4.setText("<<");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnBorrar.setText("<<");
+        btnBorrar.setEnabled(false);
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnBorrarActionPerformed(evt);
             }
         });
 
@@ -161,6 +165,11 @@ public class Asignar extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbl_productos1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_productos1MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tbl_productos1);
 
         jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/search-user-wearing-tie.png"))); // NOI18N
@@ -183,7 +192,7 @@ public class Asignar extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -194,10 +203,10 @@ public class Asignar extends javax.swing.JFrame {
                         .addComponent(jButton11))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(btnBorrar)
+                            .addComponent(btnAgregar))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -224,10 +233,10 @@ public class Asignar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jButton3)
-                        .addGap(28, 28, 28)
-                        .addComponent(jButton4))
+                        .addGap(55, 55, 55)
+                        .addComponent(btnAgregar)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnBorrar))
                     .addComponent(jScrollPane2)
                     .addComponent(jScrollPane1))
                 .addContainerGap(12, Short.MAX_VALUE))
@@ -338,12 +347,19 @@ public class Asignar extends javax.swing.JFrame {
 
     private void tbl_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productosMouseClicked
         // TODO add your handling code here:
-
-        if (evt.getClickCount() == 2 && !evt.isConsumed()) {
+        
+        /*if (evt.getClickCount() == 1 && !evt.isConsumed()) {
+            btnAgregar.setEnabled(true);
             int rows = tbl_productos.rowAtPoint(evt.getPoint());
             String id = tbl_productos.getValueAt(rows, 0) + "";
             System.out.println(id);
             idCambio=Integer.parseInt(tbl_productos.getValueAt(rows, 0).toString());
+        }*/
+        id_cambio2=tbl_productos1.getRowCount();
+        if(evt.getClickCount()==1 ){
+            btnAgregar.setEnabled(true);
+            int rows = tbl_productos.rowAtPoint(evt.getPoint());
+            id_cambio=Integer.parseInt(tbl_productos.getValueAt(rows, 0).toString());           
         }
 
     }//GEN-LAST:event_tbl_productosMouseClicked
@@ -368,13 +384,13 @@ public class Asignar extends javax.swing.JFrame {
         tp.setVisible(true);
     }//GEN-LAST:event_jButton12ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
         if(jLabel1.getText().equals("")){
              javax.swing.JOptionPane.showMessageDialog(this,"Seleccione primero usuario a asignar");
              return;
         }
-        if(idCambio==0){
+        if(id_cambio==0){
             javax.swing.JOptionPane.showMessageDialog(this,"Seleccione una fila");
              return;
         }
@@ -388,13 +404,38 @@ public class Asignar extends javax.swing.JFrame {
         
         asignados.add(tbl_productos.getValueAt(x,0)+"");
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         // TODO add your handling code here:
-        modelo1.removeRow(tbl_productos1.getSelectedRow());
-        asignados.remove(tbl_productos1.getSelectedRow());
-    }//GEN-LAST:event_jButton4ActionPerformed
+       // modelo1.removeRow(tbl_productos1.getSelectedRow());
+       // asignados.remove(tbl_productos1.getSelectedRow());
+        if(tbl_productos1.getRowCount()==0){
+             javax.swing.JOptionPane.showMessageDialog(this, "No hay más elementos que borrar");
+         }else{
+        if(cont==0){
+            id_cambio2=tbl_productos1.getRowCount()-1;
+            //javax.swing.JOptionPane.showMessageDialog(this, id_cambio2+"");
+            DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
+            model.removeRow(id_cambio2);
+        }
+        else{
+         DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
+             model.removeRow(id_cambio2);
+            cont=0;}
+         }
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void tbl_productos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productos1MouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount()==1 ){
+            btnBorrar.setEnabled(true);
+            id_cambio2= tbl_productos1.rowAtPoint(evt.getPoint());
+            //= Integer.parseInt(tbl_productos1.getValueAt(rows, 0)+"");
+            cont++;
+             
+        }
+    }//GEN-LAST:event_tbl_productos1MouseClicked
     public void pasarDatos(){
         int x = tbl_productos.getRowCount();
         datos=new String[x][4];
@@ -442,12 +483,12 @@ public class Asignar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_buscar1;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     public javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
