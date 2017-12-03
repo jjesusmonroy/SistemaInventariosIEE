@@ -188,6 +188,11 @@ public class ModificarU extends javax.swing.JFrame {
                 auNombreFocusGained(evt);
             }
         });
+        auNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                auNombreKeyTyped(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel7.setText("Apellido paterno:");
@@ -195,6 +200,11 @@ public class ModificarU extends javax.swing.JFrame {
         auApellidoP.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 auApellidoPFocusGained(evt);
+            }
+        });
+        auApellidoP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                auApellidoPKeyTyped(evt);
             }
         });
 
@@ -209,6 +219,11 @@ public class ModificarU extends javax.swing.JFrame {
         auApellidoM.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 auApellidoMFocusGained(evt);
+            }
+        });
+        auApellidoM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                auApellidoMKeyTyped(evt);
             }
         });
 
@@ -302,6 +317,11 @@ public class ModificarU extends javax.swing.JFrame {
                 auCalleFocusGained(evt);
             }
         });
+        auCalle.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                auCalleKeyTyped(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel9.setText("Numero:");
@@ -311,6 +331,11 @@ public class ModificarU extends javax.swing.JFrame {
                 auNumFocusGained(evt);
             }
         });
+        auNum.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                auNumKeyTyped(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel8.setText("Colonia:");
@@ -318,6 +343,11 @@ public class ModificarU extends javax.swing.JFrame {
         auColonia.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 auColoniaFocusGained(evt);
+            }
+        });
+        auColonia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                auColoniaKeyTyped(evt);
             }
         });
 
@@ -601,6 +631,8 @@ public class ModificarU extends javax.swing.JFrame {
         if(auCurp.getText().length()>=18){
             evt.consume();
         }
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') &&(c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_auCurpKeyTyped
 
     private void auRFCFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auRFCFocusGained
@@ -618,6 +650,8 @@ public class ModificarU extends javax.swing.JFrame {
         if(auRFC.getText().length()>=13){
             evt.consume();
         }
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') &&(c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_auRFCKeyTyped
 
     private void auNoLicenciaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auNoLicenciaFocusGained
@@ -632,9 +666,11 @@ public class ModificarU extends javax.swing.JFrame {
 
     private void auNoLicenciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auNoLicenciaKeyTyped
         // TODO add your handling code here:
-        if(auNoLicencia.getText().length()>=8){
+       if(auNoLicencia.getText().length()>=8){
             evt.consume();
         }
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') &&(c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_auNoLicenciaKeyTyped
 
     private void auNoCredencialFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auNoCredencialFocusGained
@@ -659,6 +695,8 @@ public class ModificarU extends javax.swing.JFrame {
         if(auTelefono.getText().length()>=10){
             evt.consume();
         }
+        char c = evt.getKeyChar();
+        if((c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_auTelefonoKeyTyped
 
     private void auCalleFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auCalleFocusGained
@@ -686,6 +724,8 @@ public class ModificarU extends javax.swing.JFrame {
         if(auCp.getText().length()>=5){
             evt.consume();
         }
+        char c = evt.getKeyChar();
+        if((c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_auCpKeyTyped
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -778,6 +818,70 @@ public class ModificarU extends javax.swing.JFrame {
          // TODO add your handling code here:
          bandera=true;
     }//GEN-LAST:event_jComboBox2ItemStateChanged
+
+    private void auNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auNombreKeyTyped
+        // TODO add your handling code here:
+        if(auNombre.getText().length()>20){
+            evt.consume();
+        }
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
+                && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
+                && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' && c!=' ') evt.consume();
+    }//GEN-LAST:event_auNombreKeyTyped
+
+    private void auApellidoPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auApellidoPKeyTyped
+        // TODO add your handling code here:
+        if(auApellidoP.getText().length()>20){
+            evt.consume();
+        }
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
+                && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
+                && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' && c!=' ') evt.consume();
+    }//GEN-LAST:event_auApellidoPKeyTyped
+
+    private void auApellidoMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auApellidoMKeyTyped
+        // TODO add your handling code here:
+        if(auApellidoM.getText().length()>20){
+            evt.consume();
+        }
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
+                && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
+                && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' && c!=' ') evt.consume();
+    }//GEN-LAST:event_auApellidoMKeyTyped
+
+    private void auCalleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auCalleKeyTyped
+        // TODO add your handling code here:
+        if(auCalle.getText().length()>40){
+            evt.consume();
+        }
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
+                && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
+                && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' && c!=' ' &&(c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_auCalleKeyTyped
+
+    private void auNumKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auNumKeyTyped
+        // TODO add your handling code here:
+        if(auNum.getText().length()>6){
+            evt.consume();
+        }
+        char c = evt.getKeyChar();
+        if((c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_auNumKeyTyped
+
+    private void auColoniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auColoniaKeyTyped
+        // TODO add your handling code here:
+        if(auColonia.getText().length()>30){
+            evt.consume();
+        }
+        char c = evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
+                && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
+                && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' && c!=' ' &&(c<'0' || c>'9')) evt.consume();
+    }//GEN-LAST:event_auColoniaKeyTyped
     private void limpiar(){
         auNombre.setText("");
         auApellidoP.setText("");

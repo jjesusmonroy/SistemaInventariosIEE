@@ -11,6 +11,9 @@ import java.awt.Color;
 import java.awt.Image;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.io.File;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.JFileChooser;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -24,7 +27,7 @@ public final class Modificar extends javax.swing.JFrame {
     /**
      * Creates new form Baja
      */
-    
+    File fichero;
     String folio;
     BDD b;
     MetodosG m;
@@ -209,6 +212,7 @@ public final class Modificar extends javax.swing.JFrame {
         lblImage = new javax.swing.JLabel();
         altat14 = new javax.swing.JTextField();
         altalCantidad1 = new javax.swing.JLabel();
+        btnCargarFoto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -551,6 +555,13 @@ public final class Modificar extends javax.swing.JFrame {
         altalCantidad1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altalCantidad1.setText("Stock_producto");
 
+        btnCargarFoto.setText("Cargar Foto");
+        btnCargarFoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargarFotoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -636,6 +647,8 @@ public final class Modificar extends javax.swing.JFrame {
                                         .addContainerGap())))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnCargarFoto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())))))
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -704,7 +717,9 @@ public final class Modificar extends javax.swing.JFrame {
                         .addGap(13, 13, 13)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCargarFoto))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton9)
@@ -823,6 +838,9 @@ public final class Modificar extends javax.swing.JFrame {
 
     private void altat2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat2KeyTyped
         // TODO add your handling code here:
+        if(altat2.getText().length()>30){
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
                 && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
@@ -831,6 +849,9 @@ public final class Modificar extends javax.swing.JFrame {
 
     private void altat5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat5KeyTyped
         // TODO add your handling code here:
+        if(altat5.getText().length()>45){
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
                 && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
@@ -839,6 +860,9 @@ public final class Modificar extends javax.swing.JFrame {
 
     private void altat7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat7KeyTyped
         // TODO add your handling code here:
+        if(altat7.getText().length()>45){
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if((c<'a' || c>'z') && (c<'A' || c>'Z') ) evt.consume();
     }//GEN-LAST:event_altat7KeyTyped
@@ -849,18 +873,27 @@ public final class Modificar extends javax.swing.JFrame {
 
     private void altat6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat6KeyTyped
         // TODO add your handling code here:
+        if(altat6.getText().length()>45){
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if((c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_altat6KeyTyped
 
     private void altat4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat4KeyTyped
         // TODO add your handling code here:
+        if(altat4.getText().length()>45){
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if((c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_altat4KeyTyped
 
     private void altat13KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat13KeyTyped
         // TODO add your handling code here:
+        if(altat13.getText().length()>15){
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if((c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_altat13KeyTyped
@@ -873,6 +906,9 @@ public final class Modificar extends javax.swing.JFrame {
 
     private void altat10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat10KeyTyped
         // TODO add your handling code here:
+        if(altat10.getText().length()>20){
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if((c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_altat10KeyTyped
@@ -894,24 +930,36 @@ public final class Modificar extends javax.swing.JFrame {
 
     private void altatv4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatv4KeyTyped
         // TODO add your handling code here:
+        if(altatv4.getText().length()>45){
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if((c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_altatv4KeyTyped
 
     private void altatv5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatv5KeyTyped
         // TODO add your handling code here:
-         char c = evt.getKeyChar();
+        if(altatv5.getText().length()>45){
+            evt.consume();
+        } 
+        char c = evt.getKeyChar();
         if((c<'0' || c>'9')&& c!='.') evt.consume();
     }//GEN-LAST:event_altatv5KeyTyped
 
     private void altatv6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatv6KeyTyped
         // TODO add your handling code here:
+        if(altatv6.getText().length()>45){
+            evt.consume();
+        }
          char c = evt.getKeyChar();
         if((c<'0' || c>'9')&& c!='.') evt.consume();
     }//GEN-LAST:event_altatv6KeyTyped
 
     private void altat3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat3KeyTyped
         // TODO add your handling code here:
+        if(altat3.getText().length()>45){
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
                 && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
@@ -920,11 +968,40 @@ public final class Modificar extends javax.swing.JFrame {
 
     private void altat12KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat12KeyTyped
         // TODO add your handling code here:
+        if(altat12.getText().length()>80){
+            evt.consume();
+        }
         char c = evt.getKeyChar();
         if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
                 && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
                 && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' &&(c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_altat12KeyTyped
+
+    private void btnCargarFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarFotoActionPerformed
+        // TODO add your handling code here:
+        int resultado;
+
+        CargarFoto ventana= new CargarFoto();
+        FileNameExtensionFilter filtro= new FileNameExtensionFilter("JPG y PNG","jpg","png");
+
+        ventana.jfcCargarFoto.setFileFilter(filtro);
+        resultado=ventana.jfcCargarFoto.showOpenDialog(null);
+        if(JFileChooser.APPROVE_OPTION==resultado){
+
+            fichero=ventana.jfcCargarFoto.getSelectedFile();
+            javax.swing.JOptionPane.showMessageDialog(this, fichero);
+            try{
+                ImageIcon icon=new ImageIcon(fichero.toString());
+                Icon icono=new ImageIcon(icon.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(),Image.SCALE_DEFAULT));
+                lblImage.setText("");
+                lblImage.setIcon(icono);
+            }catch(Exception e){
+                javax.swing.JOptionPane.showMessageDialog(this, "Error abriendo imagen");
+            }
+
+        }
+
+    }//GEN-LAST:event_btnCargarFotoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -996,6 +1073,7 @@ public final class Modificar extends javax.swing.JFrame {
     private javax.swing.JTextField altatv4;
     private javax.swing.JTextField altatv5;
     private javax.swing.JTextField altatv6;
+    private javax.swing.JButton btnCargarFoto;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton9;

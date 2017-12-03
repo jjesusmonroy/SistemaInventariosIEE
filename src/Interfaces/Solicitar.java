@@ -6,16 +6,18 @@
 package Interfaces;
 import Clases.Validaciones;
 import Reportes.ListaVale;
-
+import javax.swing.JButton;
 import basededatos.BDD;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.awt.event.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -45,6 +47,8 @@ public class Solicitar extends javax.swing.JFrame {
     //String [][]matrix;
     int valFil;
     public Solicitar() {
+       
+       // btnBorrar.setEnabled(false);
       //  valFil=5;
         //matrix=new String [valFil][5];
         nuevo2=new String[5];
@@ -58,23 +62,58 @@ public class Solicitar extends javax.swing.JFrame {
         datos=new String [5];
 //        btnNuevo.setVisible(false);
         initComponents();
-       
+ 
       // tbl_productos1.setEnabled(false);
       //b = new BDD();
-        String [][] busqueda = b.obtenerConsultas("select id_producto,nombre_producto,marca_producto,modelo_producto,stock_producto,status_producto from producto");
+        String [][] busqueda = b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto,stock_producto,status_producto from producto");
         tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
                 busqueda
                 ,
             new String [] {
-                "Id", "Nombre_Producto", "Marca","Modelo","Stock","Status"
+                "Folio", "Nombre_Producto", "Marca","Modelo","Stock","Status"
             }
-        ));
+                 ){
+            @SuppressWarnings("rawtypes")
+            Class[] columnTypes = new Class[] {
+                String.class, String.class, String.class, Integer.class, Integer.class, String.class
+            };
+            @SuppressWarnings({ "unchecked", "rawtypes" })
+            @Override
+            public Class getColumnClass(int columnIndex) {
+                return columnTypes[columnIndex];
+            }
+            boolean[] columnEditables = new boolean[] {
+                false, false, false, false, false, false
+            };
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return columnEditables[column];
+            }
+        });
+      
            tbl_productos1.setModel(new javax.swing.table.DefaultTableModel(
              data,
             new String [] {
-                "Id", "Nombre_Producto", "Marca","Modelo","Cantidad"
+                "Folio", "Nombre_Producto", "Marca","Modelo","Cantidad"
             }
-        ));
+        ){
+            @SuppressWarnings("rawtypes")
+            Class[] columnTypes = new Class[] {
+                String.class, String.class, String.class, Integer.class, Integer.class
+            };
+            @SuppressWarnings({ "unchecked", "rawtypes" })
+            @Override
+            public Class getColumnClass(int columnIndex) {
+                return columnTypes[columnIndex];
+            }
+            boolean[] columnEditables = new boolean[] {
+                false, false, false, false, false
+            };
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return columnEditables[column];
+            }
+        });
    
     }
     
@@ -106,7 +145,6 @@ public class Solicitar extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_productos1 = new javax.swing.JTable();
         btnNuevo = new javax.swing.JButton();
-        btnActual = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -122,13 +160,13 @@ public class Solicitar extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/save.png"))); // NOI18N
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/save.png"))); // NOI18N
         jButton9.setText("Guardar");
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/eraser.png"))); // NOI18N
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/eraser.png"))); // NOI18N
         jButton10.setText("Limpiar");
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/error.png"))); // NOI18N
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/error.png"))); // NOI18N
         jButton11.setText("Cancelar");
 
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -138,7 +176,7 @@ public class Solicitar extends javax.swing.JFrame {
         });
 
         btnBuscar.setBackground(new java.awt.Color(255, 255, 255));
-        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/loupe.png"))); // NOI18N
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/loupe.png"))); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,7 +184,7 @@ public class Solicitar extends javax.swing.JFrame {
             }
         });
 
-        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/error.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,7 +192,7 @@ public class Solicitar extends javax.swing.JFrame {
             }
         });
 
-        btnSolicitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/hand-finger-with-a-ribbon.png"))); // NOI18N
+        btnSolicitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/hand-finger-with-a-ribbon.png"))); // NOI18N
         btnSolicitar.setText("Solicitar");
         btnSolicitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,12 +222,16 @@ public class Solicitar extends javax.swing.JFrame {
         jLabel4.setText("Cantidad:");
 
         txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCantidadKeyTyped(evt);
             }
         });
 
         btnAgregar.setText(">>");
+        btnAgregar.setEnabled(false);
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
@@ -197,6 +239,7 @@ public class Solicitar extends javax.swing.JFrame {
         });
 
         btnBorrar.setText("<<");
+        btnBorrar.setEnabled(false);
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBorrarActionPerformed(evt);
@@ -221,18 +264,11 @@ public class Solicitar extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tbl_productos1);
 
-        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/note.png"))); // NOI18N
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/note.png"))); // NOI18N
         btnNuevo.setText("Nuevo");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoActionPerformed(evt);
-            }
-        });
-
-        btnActual.setText("Actualizar");
-        btnActual.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualActionPerformed(evt);
             }
         });
 
@@ -254,19 +290,14 @@ public class Solicitar extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(35, 35, 35)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel4)
-                                            .addComponent(btnAgregar)
-                                            .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnActual)))
-                                .addGap(29, 29, 29)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(btnAgregar)
+                                    .addComponent(btnBorrar))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -276,8 +307,9 @@ public class Solicitar extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnSolicitar)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnNuevo)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(btnNuevo)
+                                .addGap(0, 224, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,12 +328,10 @@ public class Solicitar extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
+                        .addGap(18, 18, 18)
                         .addComponent(btnAgregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(btnBorrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnActual)
                         .addGap(48, 48, 48))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -324,16 +354,16 @@ public class Solicitar extends javax.swing.JFrame {
         jLabel2.setText("Sistema de Control de Inventario IEEN");
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/IEE.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/IEE.png"))); // NOI18N
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/minus-sign.png"))); // NOI18N
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel13MouseClicked(evt);
             }
         });
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/salir2.png"))); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/salir2.png"))); // NOI18N
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel14MouseClicked(evt);
@@ -399,9 +429,7 @@ public class Solicitar extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -543,7 +571,7 @@ public class Solicitar extends javax.swing.JFrame {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
-        obtInfo();
+        //obtInfo();
         dispose();
         NuevaSolicitud ns= new NuevaSolicitud();
         ns.setVisible(true);
@@ -553,11 +581,12 @@ public class Solicitar extends javax.swing.JFrame {
         // TODO add your handling code here:
         id_cambio2=tbl_productos1.getRowCount();
         if(evt.getClickCount()==1 ){
+            btnAgregar.setEnabled(true);
             int rows = tbl_productos.rowAtPoint(evt.getPoint());
-            id_cambio=Integer.parseInt(tbl_productos.getValueAt(rows, 0).toString());
-            
-            
+            id_cambio=Integer.parseInt(tbl_productos.getValueAt(rows, 0).toString());           
         }
+           
+            
     }//GEN-LAST:event_tbl_productosMouseClicked
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
@@ -581,23 +610,13 @@ public class Solicitar extends javax.swing.JFrame {
     private void tbl_productos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productos1MouseClicked
         // TODO add your handling code here:
         if(evt.getClickCount()==1 ){
+            btnBorrar.setEnabled(true);
             id_cambio2= tbl_productos1.rowAtPoint(evt.getPoint());
             //= Integer.parseInt(tbl_productos1.getValueAt(rows, 0)+"");
             cont++;
              
         }
     }//GEN-LAST:event_tbl_productos1MouseClicked
-
-    private void btnActualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualActionPerformed
-        // TODO add your handling code here:
-       // javax.swing.JOptionPane.showMessageDialog(this, n.nuevo.length); //n.nuevo[0]+"     "+n.nuevo[1]+"     "+n.nuevo[2]+"     "+n.nuevo[3]+"     "+n.nuevo[4]);
-        datos[0]="null";
-        datos[1]=n.nsNombre.getText();
-        datos[2]=n.nsMarca.getText();
-        datos[3]=n.nsModelo.getText();
-        datos[4]=n.nsCantidad.getText();
-        addTable(datos);
-    }//GEN-LAST:event_btnActualActionPerformed
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
         // TODO add your handling code here:
@@ -611,7 +630,33 @@ public class Solicitar extends javax.swing.JFrame {
         // TODO add your handling code here:
         char c = evt.getKeyChar();
         if((c<'0' || c>'9')) evt.consume();
+        
     }//GEN-LAST:event_txtCantidadKeyTyped
+
+    private void txtCantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            if(id_cambio==0){
+            javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una fila");
+        }else{
+             if(!v.soloNumeros(txtCantidad.getText())){
+                Cantidad=Integer.parseInt(txtCantidad.getText());
+                String [][] busqueda = (b.obtenerConsultas("select id_producto,nombre_producto,marca_producto,modelo_producto from producto where id_producto="+id_cambio));
+                String [] nuevo=new String[5];
+                nuevo[0]=busqueda[0][0];
+                nuevo[1]=busqueda[0][1];
+                nuevo[2]=busqueda[0][2];
+                nuevo[3]=busqueda[0][3];
+                nuevo[4]=Cantidad+"";
+                DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
+                model.addRow(nuevo);
+            }else{
+                javax.swing.JOptionPane.showMessageDialog(this, "Inserte cantidad");
+                txtCantidad.requestFocus(true);
+            }
+                txtCantidad.setText("");}
+        }
+    }//GEN-LAST:event_txtCantidadKeyPressed
     /*private boolean busIguales(String id){
         Cantidad=Integer.parseInt(txtCantidad.getText());
         for(int i=0;i<tbl_productos1.getRowCount();i++){
@@ -625,7 +670,7 @@ public class Solicitar extends javax.swing.JFrame {
         }
         return false;
     }*/
-    public String[][] obtInfo(){
+  /*  public String[][] obtInfo(){
         
         DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
             int numFilas=model.getRowCount();
@@ -640,7 +685,7 @@ public class Solicitar extends javax.swing.JFrame {
                 }
             }
             return n.matrix;
-    }
+    }*/
     
     public void addTable(String []arr){
        
@@ -684,7 +729,6 @@ public class Solicitar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnActual;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnBuscar;
