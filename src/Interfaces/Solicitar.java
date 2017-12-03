@@ -487,9 +487,66 @@ public class Solicitar extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
+         if(id_cambio==0){
+            javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una fila");
+        }else{
+             if(!v.soloNumeros(txtCantidad.getText())){
+                Cantidad=Integer.parseInt(txtCantidad.getText());
+                String [][] busqueda = (b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto from producto where folio_producto="+id_cambio));
+                String [] nuevo=new String[5];
+                nuevo[0]=busqueda[0][0];
+                nuevo[1]=busqueda[0][1];
+                nuevo[2]=busqueda[0][2];
+                nuevo[3]=busqueda[0][3];
+                nuevo[4]=Cantidad+"";
+                DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
+                model.addRow(nuevo);
+            }else{
+                javax.swing.JOptionPane.showMessageDialog(this, "Inserte cantidad");
+                txtCantidad.requestFocus(true);
+            }
+                txtCantidad.setText("");}
+        /*if(!busIguales(id_cambio)){
+            if(!v.soloNumeros(txtCantidad.getText())){
+                Cantidad=Integer.parseInt(txtCantidad.getText());
+                String [][] busqueda = (b.obtenerConsultas("select id_producto,nombre_producto,marca_producto,modelo_producto from producto where id_producto="+id_cambio));
+                String [] nuevo=new String[5];
+                nuevo[0]=busqueda[0][0];
+                nuevo[1]=busqueda[0][1];
+                nuevo[2]=busqueda[0][2];
+                nuevo[3]=busqueda[0][3];
+                nuevo[4]=Cantidad+"";
+                DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
+                model.addRow(nuevo);
+            }else{
+                javax.swing.JOptionPane.showMessageDialog(null, "Inserte cantidad");
+            }
+                txtCantidad.setText("");
+        }else{
+           DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
+            model.removeRow(Integer.parseInt(id_cambio));
+            if(!v.soloNumeros(txtCantidad.getText())){
+                String [][] busqueda = (b.obtenerConsultas("select id_producto,nombre_producto,marca_producto,modelo_producto from producto where id_producto="+id_cambio));
+                String [] nuevo=new String[5];
+                nuevo[0]=busqueda[0][0];
+                nuevo[1]=busqueda[0][1];
+                nuevo[2]=busqueda[0][2];
+                nuevo[3]=busqueda[0][3];
+                nuevo[4]=Cantidad+"";
+                DefaultTableModel model2 =(DefaultTableModel) tbl_productos1.getModel(); 
+                model2.addRow(nuevo);
+            }else{
+                javax.swing.JOptionPane.showMessageDialog(null, "Inserte cantidad");
+            }
+                txtCantidad.setText("");
+        }*/
          cambiarDeTabla();
     }//GEN-LAST:event_btnAgregarActionPerformed
-
+    
+    private void addingRow(DefaultTableModel d){
+        d.getValueAt(ERROR, cont);
+    }
+    
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
         // TODO add your handling code here:
         this.setExtendedState(ICONIFIED);

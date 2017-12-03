@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.7715610000000017"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="358"/>
+	<property name="ireport.x" value="49"/>
+	<property name="ireport.y" value="249"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -141,12 +141,6 @@
 				<reportElement x="0" y="20" width="76" height="20" backcolor="#CCCCCC"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="66" y="20" width="87" height="20" backcolor="#CCCCCC"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="143" y="20" width="233" height="20" backcolor="#CCCCCC"/>
-			</rectangle>
-			<rectangle>
 				<reportElement x="366" y="20" width="72" height="20" backcolor="#CCCCCC"/>
 			</rectangle>
 			<rectangle>
@@ -161,25 +155,11 @@
 				<text><![CDATA[RELACIÓN DE MOVILIARIO Y EQUIPO DE CÓMPUTO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="20" width="66" height="20" backcolor="#CCCCCC"/>
+				<reportElement x="0" y="20" width="76" height="20" backcolor="#CCCCCC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[No. Inventario]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="66" y="20" width="77" height="20" backcolor="#CCCCCC"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[No. Serie]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="143" y="20" width="223" height="20" backcolor="#CCCCCC"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[Descripción]]></text>
+				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="366" y="20" width="72" height="20" backcolor="#CCCCCC"/>

@@ -379,9 +379,8 @@ public class Asignar extends javax.swing.JFrame {
         // TODO add your handling code here:
        // pasar=tbl_productos1.getModel();
         pasarDatos();
-        TablaPersonal  tp=new TablaPersonal();
-        this.dispose();
-        tp.setVisible(true);
+        TablaPersonal  tablaPersonal=new TablaPersonal();
+        tablaPersonal.setVisible(true);
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
