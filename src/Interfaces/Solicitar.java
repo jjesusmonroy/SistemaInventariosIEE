@@ -492,7 +492,7 @@ public class Solicitar extends javax.swing.JFrame {
         }else{
              if(!v.soloNumeros(txtCantidad.getText())){
                 Cantidad=Integer.parseInt(txtCantidad.getText());
-                String [][] busqueda = (b.obtenerConsultas("select id_producto,nombre_producto,marca_producto,modelo_producto from producto where id_producto="+id_cambio));
+                String [][] busqueda = (b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto from producto where folio_producto="+id_cambio));
                 String [] nuevo=new String[5];
                 nuevo[0]=busqueda[0][0];
                 nuevo[1]=busqueda[0][1];
@@ -541,7 +541,11 @@ public class Solicitar extends javax.swing.JFrame {
                 txtCantidad.setText("");
         }*/
     }//GEN-LAST:event_btnAgregarActionPerformed
-
+    
+    private void addingRow(DefaultTableModel d){
+        d.getValueAt(ERROR, cont);
+    }
+    
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
         // TODO add your handling code here:
         this.setExtendedState(ICONIFIED);

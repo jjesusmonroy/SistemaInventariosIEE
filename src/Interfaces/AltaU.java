@@ -164,12 +164,19 @@ public class AltaU extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel16.setText("Nombre:");
 
+        auNombre.setNextFocusableComponent(auApellidoP);
         auNombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 auNombreFocusGained(evt);
             }
         });
         auNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                auNombreKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                auNombreKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 auNombreKeyTyped(evt);
             }
@@ -178,6 +185,7 @@ public class AltaU extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel7.setText("Apellido paterno:");
 
+        auApellidoP.setNextFocusableComponent(auApellidoM);
         auApellidoP.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 auApellidoPFocusGained(evt);
@@ -192,6 +200,7 @@ public class AltaU extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel18.setText("Apellido materno:");
 
+        auApellidoM.setNextFocusableComponent(jDateChooser1);
         auApellidoM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 auApellidoMActionPerformed(evt);
@@ -211,6 +220,7 @@ public class AltaU extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel6.setText("CURP:");
 
+        auCurp.setNextFocusableComponent(auRFC);
         auCurp.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 auCurpFocusGained(evt);
@@ -228,6 +238,7 @@ public class AltaU extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel10.setText("RFC:");
 
+        auRFC.setNextFocusableComponent(auNoCredencial);
         auRFC.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 auRFCFocusGained(evt);
@@ -245,6 +256,7 @@ public class AltaU extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel17.setText("No. Licencia:");
 
+        auNoLicencia.setNextFocusableComponent(auTelefono);
         auNoLicencia.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 auNoLicenciaFocusGained(evt);
@@ -262,6 +274,7 @@ public class AltaU extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel12.setText("No. Credencial:");
 
+        auNoCredencial.setNextFocusableComponent(auNoLicencia);
         auNoCredencial.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 auNoCredencialFocusGained(evt);
@@ -279,6 +292,7 @@ public class AltaU extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel15.setText("Telefono:");
 
+        auTelefono.setNextFocusableComponent(auCalle);
         auTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 auTelefonoFocusGained(evt);
@@ -293,6 +307,7 @@ public class AltaU extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel19.setText("Calle:");
 
+        auCalle.setNextFocusableComponent(auNum);
         auCalle.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 auCalleFocusGained(evt);
@@ -307,6 +322,7 @@ public class AltaU extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel9.setText("Numero:");
 
+        auNum.setNextFocusableComponent(auColonia);
         auNum.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 auNumFocusGained(evt);
@@ -321,6 +337,7 @@ public class AltaU extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel8.setText("Colonia:");
 
+        auColonia.setNextFocusableComponent(auCp);
         auColonia.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 auColoniaFocusGained(evt);
@@ -341,10 +358,15 @@ public class AltaU extends javax.swing.JFrame {
             }
         });
         auCp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                auCpKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 auCpKeyTyped(evt);
             }
         });
+
+        jDateChooser1.setNextFocusableComponent(auCurp);
 
         jButton9.setText("Guardar");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -361,6 +383,11 @@ public class AltaU extends javax.swing.JFrame {
         });
 
         jButton11.setText("Cancelar");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -566,8 +593,12 @@ public class AltaU extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
+        botonguardar();
+    }//GEN-LAST:event_jButton9ActionPerformed
+    private void botonguardar(){
         int contErr=0;
-        Clases.Validaciones v= new Clases.Validaciones();
+        insertar();
+        /*Clases.Validaciones v= new Clases.Validaciones();
         if(v.soloLetras(auNombre.getText())){
             contErr++;
             auNombre.setBackground(Color.PINK); 
@@ -636,11 +667,10 @@ public class AltaU extends javax.swing.JFrame {
         // Validaciones aca antes de insertar
         //if(validarVacio()){
             insertar();
-            JOptionPane.showMessageDialog(this, "Nuevo usuario insertado");
+            JOptionPane.showMessageDialog(this, "Nuevo usuario insertado");*/
             limpiar();
-        }contErr=0;
-    }//GEN-LAST:event_jButton9ActionPerformed
-
+        //}contErr=0;
+    }
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
         limpiar();
@@ -848,6 +878,27 @@ public class AltaU extends javax.swing.JFrame {
                 && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
                 && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' && c!=' ' &&(c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_auColoniaKeyTyped
+
+    private void auNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auNombreKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_auNombreKeyReleased
+
+    private void auNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auNombreKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == 9){
+            JOptionPane.showMessageDialog(this, "tab");
+        }
+    }//GEN-LAST:event_auNombreKeyPressed
+
+    private void auCpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auCpKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == 10){botonguardar();}
+    }//GEN-LAST:event_auCpKeyReleased
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton11ActionPerformed
     private void limpiar(){
         auNombre.setText("");
         auApellidoP.setText("");
