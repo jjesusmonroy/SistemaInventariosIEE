@@ -6,6 +6,7 @@
 package Interfaces;
 
 import Clases.Manejador_Ventanas;
+import Pricipales.Login;
 import basededatos.BDD;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
@@ -232,7 +233,9 @@ public class I_Login extends javax.swing.JFrame {
 
     private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        this.dispose();
+        Inicio in =new Inicio();
+        in.setVisible(true);
     }//GEN-LAST:event_btn_salirActionPerformed
 
     private void btn_iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciarActionPerformed
