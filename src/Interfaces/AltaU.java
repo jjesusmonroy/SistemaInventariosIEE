@@ -387,7 +387,7 @@ public class AltaU extends javax.swing.JFrame {
 
         jPanel1.setName(""); // NOI18N
 
-        auPuesto.setNextFocusableComponent(auApellidoP);
+        auPuesto.setNextFocusableComponent(auPdes);
         auPuesto.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 auPuestoFocusGained(evt);
@@ -411,7 +411,7 @@ public class AltaU extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setText("Puesto:");
 
-        auPdes.setNextFocusableComponent(auApellidoP);
+        auPdes.setNextFocusableComponent(auNombre);
         auPdes.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 auPdesFocusGained(evt);
@@ -822,7 +822,7 @@ public class AltaU extends javax.swing.JFrame {
 
     private void auCurpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auCurpKeyTyped
         // TODO add your handling code here:
-        if(auCurp.getText().length()>=18){
+        if(auCurp.getText().length()>=15){
             evt.consume();
         }
         char c = evt.getKeyChar();
@@ -897,7 +897,7 @@ public class AltaU extends javax.swing.JFrame {
 
     private void auNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auNombreKeyTyped
         // TODO add your handling code here:
-        if(auNombre.getText().length()>20){
+        if(auNombre.getText().length()>15){
             evt.consume();
         }
         char c = evt.getKeyChar();
@@ -908,7 +908,7 @@ public class AltaU extends javax.swing.JFrame {
 
     private void auApellidoPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auApellidoPKeyTyped
         // TODO add your handling code here:
-        if(auApellidoP.getText().length()>20){
+        if(auApellidoP.getText().length()>15){
             evt.consume();
         }
         char c = evt.getKeyChar();
@@ -919,7 +919,7 @@ public class AltaU extends javax.swing.JFrame {
 
     private void auApellidoMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auApellidoMKeyTyped
         // TODO add your handling code here:
-        if(auApellidoM.getText().length()>20){
+        if(auApellidoM.getText().length()>15){
             evt.consume();
         }
         char c = evt.getKeyChar();
@@ -994,6 +994,9 @@ public class AltaU extends javax.swing.JFrame {
 
     private void auPuestoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auPuestoKeyTyped
         // TODO add your handling code here:
+    if(auPuesto.getText().length()>=25) {  
+    evt.consume();
+    }
     }//GEN-LAST:event_auPuestoKeyTyped
 
     private void auPdesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_auPdesFocusGained
@@ -1010,6 +1013,9 @@ public class AltaU extends javax.swing.JFrame {
 
     private void auPdesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auPdesKeyTyped
         // TODO add your handling code here:
+    if(auPdes.getText().length()>=15) {  
+        evt.consume();
+    }
     }//GEN-LAST:event_auPdesKeyTyped
     private void limpiar(){
         auNombre.setText("");
