@@ -31,7 +31,7 @@ public class Manejador_Ventanas {
     public String[][] getModulo(String nombre_usuario){
 
         BDD bd = new BDD();
-        String query = "select m._nombre_modulo,p.nombre_personal,p.apellido_pat_personal,p.apellido_mat_personal,per.alta_perrmiso,per.baja_permiso,per.consulta_permiso,per.modificar_permiso,per.administrar_usuario_permiso,u.id_usuario from usuarios u inner join personal p on u.id_personal=p.id_personal inner join permisos_modulos pm on u.id_personal=pm.id_personal and u.id_usuario=pm.id_usuario inner join modulos m on pm.id_modulo=m.id_modulo inner join permisos per on pm.id_permiso=per.id_permiso where u.nombre_usuario='"+nombre_usuario+"';";
+        String query = "select m._nombre_modulo,p.nombre,p.apellido_pa,p.apellido_ma,per.alta_permiso,per.baja_permiso,per.consulta_permiso,per.modificar_permiso,per.administrar_usuario_permiso,u.id_usuario from usuario u inner join personal p on u.personal_id_personal=p.id_personal inner join permisos_modulos pm on u.id_usuario=pm.usuario_id_usuario inner join modulos m on pm.modulos_id_modulo=m.id_modulo inner join permisos per on pm.permisos_id_permiso=per.id_permiso where u.usuario='"+nombre_usuario+"';";
 
         
         return bd.obtenerConsultas(query);

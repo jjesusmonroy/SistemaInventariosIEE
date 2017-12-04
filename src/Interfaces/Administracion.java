@@ -378,6 +378,10 @@ public class Administracion extends javax.swing.JFrame {
 
     private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
         // TODO add your handling code here:
+            I_Login i = new I_Login();
+            this.setVisible(false);
+            this.dispose();
+            i.setVisible(true);
     }//GEN-LAST:event_btn_salirActionPerformed
 
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
@@ -386,7 +390,7 @@ public class Administracion extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel13MouseClicked
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
-        String[] options = new String[]{"Cancelar","Cerrar sesión", "Salir del sistema"};
+        /*String[] options = new String[]{"Cancelar","Cerrar sesión", "Salir del sistema"};
         int response = JOptionPane.showOptionDialog(getContentPane(),"¿Que desea hacer?", "Inventory System",
         JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
         null, options, options[0]);
@@ -400,6 +404,13 @@ public class Administracion extends javax.swing.JFrame {
         if(response==2){
         this.setVisible(false);
         this.dispose();
+        }*/
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog (getContentPane(), "Desea salir del sistema?","Advertencia",dialogButton);
+        if(dialogResult == JOptionPane.YES_OPTION){
+        // Saving code here
+            this.setVisible(false);
+            this.dispose();
         }
     }//GEN-LAST:event_jLabel14MouseClicked
 

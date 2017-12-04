@@ -282,9 +282,13 @@ public class I_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel13MouseClicked
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
-
-        this.setVisible(false);
-        this.dispose();
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog (getContentPane(), "Desea salir del sistema?","Advertencia",dialogButton);
+        if(dialogResult == JOptionPane.YES_OPTION){
+        // Saving code here
+            this.setVisible(false);
+            this.dispose();
+        }
     }//GEN-LAST:event_jLabel14MouseClicked
 
     /**

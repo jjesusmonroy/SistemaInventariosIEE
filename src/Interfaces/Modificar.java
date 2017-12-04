@@ -55,13 +55,12 @@ public final class Modificar extends javax.swing.JFrame {
 
     private Modificar() {
     }
-    public String rutaALaNormalidad(String ru){
-       String nuevoPath="";
-       String a[]=ru.split("$");
-       for(int i=0;i<a.length;i++){
-           nuevoPath+=a[i]+"/";
-       }return nuevoPath;
-   }
+    private String rutanormal(String ru){
+        return ru.replace("$", "\\");
+    }
+    private String rutachida(String ru){
+        return ru.replace("\\", "$$");
+    }
     public void fillIn(){
         String query="select p.id_producto,p.folio_producto,p.nombre_producto,p.descripcion_producto,p.marca_producto,p.modelo_producto,p.num_serie_producto,p.color_producto,p.foto_producto,p.fecha_compra_producto,p.no_factura_producto,p.importe_producto,p.observaciones_producto,p.stock_producto,p.min_stock_producto,p.status_producto,p.id_categoria,c.nombre_categoria from producto p inner join categoria c on p.id_categoria=c.id_categoria where p.folio_producto = '"+folio+"'";
         String [][] elementos =b.obtenerConsultas(query);
@@ -74,7 +73,7 @@ public final class Modificar extends javax.swing.JFrame {
         noserie.setText(elementos[0][6]);
         descripcion.setText(elementos[0][3]);
         try{
-                    ImageIcon icon=new ImageIcon(rutaALaNormalidad(elementos[0][8]));
+                    ImageIcon icon=new ImageIcon(rutanormal(elementos[0][8]));
                     Icon icono=new ImageIcon(icon.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(),Image.SCALE_DEFAULT));
                     lblImage.setText("");
                     lblImage.setIcon(icono);
@@ -124,6 +123,8 @@ public final class Modificar extends javax.swing.JFrame {
                     "min_stock_producto='"+m.jtextfield(stockmin)+"', "+
                     "id_categoria='"+idcategoria+"'";
         b.execute("update producto set "+update+" where id_producto ='"+idProducto+"'");
+        if(!fichero.toString().equals("")){
+        b.execute("update producto set foto_producto ='"+rutachida(fichero.toString())+"' where id_producto ='"+idProducto+"'");}
         if(idVehiculo.equals("") && jComboBox1.getSelectedItem().toString().toLowerCase().equals("vehiculos")){
             int idcar= m.getMax(b.obtenerConsultas("select id_vehiculo from vehiculo"));
             String [] insertarvehiculo = new String [8];
@@ -440,6 +441,11 @@ public final class Modificar extends javax.swing.JFrame {
 
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
         jButton11.setText("Cancelar");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Vehiculo"));
 
@@ -527,12 +533,13 @@ public final class Modificar extends javax.swing.JFrame {
                     .addComponent(altalPlacas1)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(altalPlacas)
-                    .addComponent(placas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(altalKm)
-                        .addComponent(kilometraje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(kilometraje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(altalPlacas)
+                        .addComponent(placas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1008,7 +1015,6 @@ public final class Modificar extends javax.swing.JFrame {
         if(JFileChooser.APPROVE_OPTION==resultado){
 
             fichero=ventana.jfcCargarFoto.getSelectedFile();
-            javax.swing.JOptionPane.showMessageDialog(this, fichero);
             try{
                 ImageIcon icon=new ImageIcon(fichero.toString());
                 Icon icono=new ImageIcon(icon.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(),Image.SCALE_DEFAULT));
@@ -1021,6 +1027,11 @@ public final class Modificar extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnCargarFotoActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments

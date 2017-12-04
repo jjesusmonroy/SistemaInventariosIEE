@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.Icon;
 import java.awt.Image;
 import java.util.Date;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Cherne
@@ -29,7 +30,9 @@ public class Alta extends javax.swing.JFrame {
     BDD b;
     MetodosG m;
     File fichero;
+    String ficherovalidacion;
     public Alta() {
+        ficherovalidacion="";
         v=new Validaciones();
         b = new BDD();
         m = new MetodosG();        
@@ -60,7 +63,8 @@ public class Alta extends javax.swing.JFrame {
         insertar[5]=m.jtextfield(altatmodelo);
         insertar[6]=m.jtextfield(altatnoserie);
         insertar[7]=m.jtextfield(altatcolor);
-        insertar[8]=rutaChida(fichero+"");//lblImage.getText();
+        if(ficherovalidacion.equals("")){insertar[8]=null;}
+        else {insertar[8]=rutaChida(fichero.toString());}
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         insertar[9] = sdf.format(altatfecha.getDate());
         insertar[10]=m.jtextfield(altatnofactura);
@@ -980,9 +984,9 @@ public class Alta extends javax.swing.JFrame {
         if(JFileChooser.APPROVE_OPTION==resultado){
 
             fichero=ventana.jfcCargarFoto.getSelectedFile();
-            javax.swing.JOptionPane.showMessageDialog(this, fichero);
             try{
                     ImageIcon icon=new ImageIcon(fichero.toString());
+                    ficherovalidacion=fichero.toString();
                     Icon icono=new ImageIcon(icon.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(),Image.SCALE_DEFAULT));
                     lblImage.setText("");
                     lblImage.setIcon(icono);
@@ -1230,12 +1234,7 @@ public class Alta extends javax.swing.JFrame {
         altalPlacas.setForeground(Color.BLACK);
    }
    public String rutaChida(String ru){
-       String nuevoPath="";
-       String a[]=ru.split("/");
-       for(int i=0;i<a.length;i++){
-           nuevoPath+=a[i]+"$";
-           javax.swing.JOptionPane.showMessageDialog(this, nuevoPath);
-       }return nuevoPath;
+       return ru.replace("\\", "$");
    }
     /**
      * @param args the command line arguments

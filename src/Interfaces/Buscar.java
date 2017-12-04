@@ -23,6 +23,7 @@ public class Buscar extends javax.swing.JFrame {
      * Creates new form 
      */
     BDD b;
+    String [][] check;
     public Buscar() {
         initComponents();
         jLabelIdModificar.setVisible(false);
@@ -341,10 +342,26 @@ public class Buscar extends javax.swing.JFrame {
         if(evt.getButton()== java.awt.event.MouseEvent.BUTTON3 && (tbl_productos.getSelectedRowCount()!=0)){
             int rows = tbl_productos.rowAtPoint(evt.getPoint());
             String id = tbl_productos.getValueAt(rows, 0)+"";
+            check = b.obtenerConsultas("select foto_producto from producto where folio_producto ='"+id+"'");
             jLabelIdModificar.setText(id+"");
-        
+            if(check[0][0]!=null){
             final JPopupMenu menu = new JPopupMenu();
-
+            JMenuItem item = new JMenuItem("Modificar");
+            JMenuItem item2 = new JMenuItem("Eliminar");
+            JMenuItem item3 = new JMenuItem("Ver foto");
+            menu.add(item);
+            menu.add(item2);
+            menu.add(item3);
+            ActionListener actionListener = new PopupActionListener();
+            ActionListener actionListener2 = new PopupActionListener2();
+            ActionListener al3 = new PopupActionListener3();
+            item.addActionListener(actionListener);
+            item2.addActionListener(actionListener2);
+            item3.addActionListener(al3);
+            menu.show(evt.getComponent(),evt.getX(),evt.getY());
+            }
+            else {
+               final JPopupMenu menu = new JPopupMenu();
             JMenuItem item = new JMenuItem("Modificar");
             JMenuItem item2 = new JMenuItem("Eliminar");
             menu.add(item);
@@ -353,7 +370,8 @@ public class Buscar extends javax.swing.JFrame {
             ActionListener actionListener2 = new PopupActionListener2();
             item.addActionListener(actionListener);
             item2.addActionListener(actionListener2);
-            menu.show(evt.getComponent(),evt.getX(),evt.getY());
+            menu.show(evt.getComponent(),evt.getX(),evt.getY()); 
+            }
         }
     }//GEN-LAST:event_tbl_productosMouseReleased
 
@@ -398,7 +416,16 @@ public class Buscar extends javax.swing.JFrame {
             }
         }   
     }
-    
+    class PopupActionListener3 implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            VerFoto vf = new VerFoto(rutanormal(check[0][0]));
+            vf.setVisible(true);
+            }
+    }   
+    private String rutanormal(String ru){
+        return ru.replace("$", "\\");
+    }
     /**
      * @param args the command line arguments
      */
