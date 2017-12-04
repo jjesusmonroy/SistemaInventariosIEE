@@ -9,6 +9,7 @@ import basededatos.BDD;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import java.awt.event.*;
 
 /**
  *
@@ -27,8 +28,11 @@ public class Asignar extends javax.swing.JFrame {
     TableModel pasar;
     String datos[][];
     int id_cambio, id_cambio2, cont;
+    int Cantidad;
+    Clases.Validaciones v;
     public Asignar() {
         initComponents();
+        v=new Clases.Validaciones();
         tp= new TablaPersonal();
         id_cambio=0;
         id_cambio2=0;
@@ -56,7 +60,7 @@ public class Asignar extends javax.swing.JFrame {
         tbl_productos1.setModel(new DefaultTableModel(
             aux,
             new String[]{
-                "Folio","Nombre_Producto","Marca","Modelo","Stock"
+                "Folio","Nombre_Producto","Marca","Modelo","Cantidad"
             }){
                 @Override
                 public boolean isCellEditable(int row, int column) {
@@ -91,7 +95,9 @@ public class Asignar extends javax.swing.JFrame {
         tbl_productos1 = new javax.swing.JTable();
         jButton12 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btn_buscar1 = new javax.swing.JButton();
+        btn_Guardar = new javax.swing.JButton();
+        txtCantidad = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -182,9 +188,25 @@ public class Asignar extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        btn_buscar1.setBackground(new java.awt.Color(255, 255, 255));
-        btn_buscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/save.png"))); // NOI18N
-        btn_buscar1.setText("Guardar");
+        btn_Guardar.setBackground(new java.awt.Color(255, 255, 255));
+        btn_Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/save.png"))); // NOI18N
+        btn_Guardar.setText("Guardar");
+        btn_Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_GuardarActionPerformed(evt);
+            }
+        });
+
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyTyped(evt);
+            }
+        });
+
+        jLabel2.setText("Cantidad:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -198,7 +220,7 @@ public class Asignar extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton11))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -206,7 +228,9 @@ public class Asignar extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnBorrar)
-                            .addComponent(btnAgregar))))
+                            .addComponent(btnAgregar)
+                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -228,12 +252,15 @@ public class Asignar extends javax.swing.JFrame {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton11)
                     .addComponent(jButton12)
-                    .addComponent(btn_buscar1)
+                    .addComponent(btn_Guardar)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
+                        .addComponent(jLabel2)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnAgregar)
                         .addGap(26, 26, 26)
                         .addComponent(btnBorrar))
@@ -394,13 +421,13 @@ public class Asignar extends javax.swing.JFrame {
              return;
         }
         int x = tbl_productos.getSelectedRow();
-        modelo1.addRow(new Object[]{
+        /*modelo1.addRow(new Object[]{
             tbl_productos.getValueAt(x,0),
             tbl_productos.getValueAt(x,1),
             tbl_productos.getValueAt(x,2),
             tbl_productos.getValueAt(x,3)
-        });
-        
+        });*/
+        cambiarDeTabla();
         asignados.add(tbl_productos.getValueAt(x,0)+"");
 
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -435,6 +462,37 @@ public class Asignar extends javax.swing.JFrame {
              
         }
     }//GEN-LAST:event_tbl_productos1MouseClicked
+
+    private void btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GuardarActionPerformed
+        // TODO add your handling code here:
+        String [] insertar = new String [5];
+        insertar[0]="1"; //id de asignación
+        insertar[1]="1"; //cantidad
+        insertar[2]="id personal"; //id personal
+        insertar[3]=""; //id producto
+        insertar[4]=""; //id categoría
+        for(int i=0;i<tbl_productos1.getRowCount();i++){
+            // folio    prodcto     marca   modelo  Cantidad
+            insertar[3]=tbl_productos1.getValueAt(i,0).toString();
+            String query="select id_categoria from productos where id_producto="+tbl_productos1.getValueAt(i,0).toString();
+          //  insertar[4]=b.convertir2d1d(b.obtenerConsultas(query));
+            b.insertar("asignacion", insertar);
+        }
+    }//GEN-LAST:event_btn_GuardarActionPerformed
+
+    private void txtCantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            cambiarDeTabla();
+        }
+    }//GEN-LAST:event_txtCantidadKeyPressed
+
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'0' || c>'9')) evt.consume();
+
+    }//GEN-LAST:event_txtCantidadKeyTyped
     public void pasarDatos(){
         int x = tbl_productos.getRowCount();
         datos=new String[x][4];
@@ -445,6 +503,45 @@ public class Asignar extends javax.swing.JFrame {
             datos[i][2]=tbl_productos.getValueAt(i,2)+"";
             datos[i][3]=tbl_productos.getValueAt(i,3)+"";
         }
+    }
+     private void cambiarDeTabla(){
+        if(id_cambio==0){
+            javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una fila");
+        }else{
+            if(busIguales(id_cambio)){              
+             }else{
+             if(!v.soloNumeros(txtCantidad.getText())){
+                Cantidad=Integer.parseInt(txtCantidad.getText());
+                String [][] busqueda = (b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto from producto where id_producto="+id_cambio));
+                String [] nuevo=new String[5];
+                nuevo[0]=busqueda[0][0];
+                nuevo[1]=busqueda[0][1];
+                nuevo[2]=busqueda[0][2];
+                nuevo[3]=busqueda[0][3];
+                nuevo[4]=Cantidad+"";
+                DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
+                model.addRow(nuevo);
+            }else{
+                javax.swing.JOptionPane.showMessageDialog(this, "Inserte cantidad");
+                txtCantidad.requestFocus(true);
+            }
+                txtCantidad.setText("");}
+            }
+    }
+    private boolean busIguales(int id){
+       // Cantidad=Integer.parseInt(txtCantidad.getText());
+        for(int i=0;i<tbl_productos1.getRowCount();i++){
+            //javax.swing.JOptionPane.showMessageDialog(this,tbl_productos1.getValueAt(i,0)+ " Buscando ");
+            if(id==Integer.parseInt(tbl_productos1.getValueAt(i,0)+"")){
+                if(javax.swing.JOptionPane.showConfirmDialog(this, "Producto previamente seleccionado "+"\n"+"¿Desea aumentar la cantidad?")==0){
+                    int cantidad=Integer.parseInt(javax.swing.JOptionPane.showInputDialog(this,"Cantidad"));
+                    tbl_productos1.setValueAt(cantidad,i, 4);
+                    txtCantidad.setText("");
+                }
+                return true;
+            }
+        }
+        return false;
     }
     /**
      * @param args the command line arguments
@@ -484,13 +581,14 @@ public class Asignar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBorrar;
+    private javax.swing.JButton btn_Guardar;
     private javax.swing.JButton btn_buscar;
-    private javax.swing.JButton btn_buscar1;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     public javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -502,5 +600,6 @@ public class Asignar extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tbl_productos;
     private javax.swing.JTable tbl_productos1;
+    private javax.swing.JTextField txtCantidad;
     // End of variables declaration//GEN-END:variables
 }
