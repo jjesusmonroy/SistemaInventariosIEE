@@ -30,9 +30,12 @@ public class Asignar extends javax.swing.JFrame {
     int id_cambio, id_cambio2, cont;
     int Cantidad;
     Clases.Validaciones v;
+    Clases.MetodosG m;
     public Asignar() {
+
         initComponents();
         v=new Clases.Validaciones();
+        m=new Clases.MetodosG();
         tp= new TablaPersonal();
         id_cambio=0;
         id_cambio2=0;
@@ -98,6 +101,7 @@ public class Asignar extends javax.swing.JFrame {
         btn_Guardar = new javax.swing.JButton();
         txtCantidad = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        lblId = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -237,7 +241,9 @@ public class Asignar extends javax.swing.JFrame {
                         .addComponent(jButton12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(133, 133, 133))
+                        .addGap(55, 55, 55)
+                        .addComponent(lblId)
+                        .addGap(44, 44, 44))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,15 +252,21 @@ public class Asignar extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_buscar)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11)
-                    .addComponent(jButton12)
-                    .addComponent(btn_Guardar)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_buscar)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton11)
+                            .addComponent(jButton12)
+                            .addComponent(btn_Guardar)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(lblId)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -406,6 +418,7 @@ public class Asignar extends javax.swing.JFrame {
         // TODO add your handling code here:
        // pasar=tbl_productos1.getModel();
         pasarDatos();
+        dispose();
         TablaPersonal  tablaPersonal=new TablaPersonal();
         tablaPersonal.setVisible(true);
     }//GEN-LAST:event_jButton12ActionPerformed
@@ -465,18 +478,20 @@ public class Asignar extends javax.swing.JFrame {
 
     private void btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GuardarActionPerformed
         // TODO add your handling code here:
-        String [] insertar = new String [5];
-        insertar[0]="1"; //id de asignación
-        insertar[1]="1"; //cantidad
-        insertar[2]="id personal"; //id personal
-        insertar[3]=""; //id producto
-        insertar[4]=""; //id categoría
+
+        int id = m.getMax(b.obtenerConsultas("select id_asignacion from asignacion"));
+
+    
+        String [] insertar = new String [3];
         for(int i=0;i<tbl_productos1.getRowCount();i++){
             // folio    prodcto     marca   modelo  Cantidad
-            insertar[3]=tbl_productos1.getValueAt(i,0).toString();
-            String query="select id_categoria from productos where id_producto="+tbl_productos1.getValueAt(i,0).toString();
-          //  insertar[4]=b.convertir2d1d(b.obtenerConsultas(query));
+           // int id = m.getMax(b.obtenerConsultas("select id_asignacion from asignacion"));
+            insertar[0]=id+"";
+            String query="select id_producto from producto where folio_producto="+tbl_productos1.getValueAt(i,0).toString();
+            insertar[1]=b.getId(query)+"";
+            insertar[2]=lblId.getText();        
             b.insertar("asignacion", insertar);
+            javax.swing.JOptionPane.showMessageDialog(this, "Se insertó el registro"+insertar[0]);
         }
     }//GEN-LAST:event_btn_GuardarActionPerformed
 
@@ -598,6 +613,7 @@ public class Asignar extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
+    public javax.swing.JLabel lblId;
     private javax.swing.JTable tbl_productos;
     private javax.swing.JTable tbl_productos1;
     private javax.swing.JTextField txtCantidad;

@@ -132,7 +132,7 @@ public class BDD{
         return a;
     }
     
-    private int noregistros(String query){
+    public int noregistros(String query){
         BDD b = new BDD();
         int renglones=0;
         ResultSet resul = b.connection(query);
