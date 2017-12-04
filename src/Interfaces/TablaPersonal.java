@@ -24,7 +24,7 @@ public class TablaPersonal extends javax.swing.JFrame {
         initComponents();
         nombre="";
         b=new BDD();
-        String[][] datos = b.obtenerConsultas("select id_personal,nombre_personal,apellido_pat_personal,apellido_mat_personal from personal;");
+        String[][] datos = b.obtenerConsultas("select id_personal,nombre,apellido_pa,apellido_ma from personal;");
 
         modelo = new javax.swing.table.DefaultTableModel(
                 datos,
@@ -215,6 +215,7 @@ public class TablaPersonal extends javax.swing.JFrame {
             tbl_personal.getValueAt(x,3);
         Asignar a=new Asignar();
         a.jLabel1.setText(nombre);
+        a.lblId.setText(tbl_personal.getValueAt(x,0)+" ");
         
        
         /*pasar = new javax.swing.table.DefaultTableModel(
