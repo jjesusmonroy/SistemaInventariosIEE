@@ -38,8 +38,8 @@ public class Alta extends javax.swing.JFrame {
         (b.obtenerConsultas("select nombre_categoria from categoria order by nombre_categoria"))));
         folio();
        // jPanel4.setEnabled(false);
-        altat9.setFocusable(false);
-        altat13.setEnabled(false);
+        altatfecha.setFocusable(false);
+        altatstockmin.setEnabled(false);
         altalCantidad.setForeground(Color.GRAY);
         camposDesVehiculos();
         limpiar();
@@ -49,48 +49,40 @@ public class Alta extends javax.swing.JFrame {
         jLabel6.setText(id+"");
     }
     private void altaProductos(){
-        //int id = m.getMax(b.obtenerConsultas("select id_producto from producto"));
-      //  java.sql.Connection cn = b.conexion();
-        /*try{
-            FileInputStream archivoFoto= new FileInputStream(lblImage.getText());
-            
-            
-        }catch(){}*/
         int id = Integer.parseInt(jLabel6.getText()); // opcional en lo que se resuelve lo del folio
         int id2 = b.getId("select * from categoria where nombre_categoria = '"+jComboBox1.getSelectedItem().toString()+"'");        
         String [] insertar = new String [17];
         insertar[0]=id+"";
-        insertar[16]=id2+"";
-        insertar[1]=m.jtextfield(altat2);
-        insertar[2]=m.jtextarea(altat3);
-        insertar[5]=m.jtextfield(altat4);
-        insertar[3]=m.jtextfield(altat5);
-        insertar[4]=m.jtextfield(altat6);
-        insertar[6]=m.jtextfield(altat7);
-        insertar[7]=rutaChida(fichero+"");//lblImage.getText();
+        insertar[1]=jLabel6.getText();
+        insertar[2]=m.jtextfield(altatnombre);
+        insertar[3]=m.jtextarea(altatdescripcion);
+        insertar[4]=m.jtextfield(altatmarca);
+        insertar[5]=m.jtextfield(altatmodelo);
+        insertar[6]=m.jtextfield(altatnoserie);
+        insertar[7]=m.jtextfield(altatcolor);
+        insertar[8]=rutaChida(fichero+"");//lblImage.getText();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        insertar[8] = sdf.format(altat9.getDate());
-        insertar[9]=m.jtextfield(altat10);
-        
-        insertar[10]=m.jtextfield(altat11Formate);    
-        insertar[11]=m.jtextarea(altat12);
-        insertar[12]=m.jtextfield(altat13);
-        insertar[13]=m.jtextfield(altat13);
-        insertar[14]="Disponible";
-        insertar[15]=jLabel6.getText();
+        insertar[9] = sdf.format(altatfecha.getDate());
+        insertar[10]=m.jtextfield(altatnofactura);
+        insertar[11]=m.jtextfield(altatimprote);    
+        insertar[12]=m.jtextarea(altatobserv);
+        insertar[13]=m.jtextfield(altatstockmin);
+        insertar[14]=m.jtextfield(altatstockmin);
+        insertar[15]="Disponible";
+        insertar[16]=id2+"";
         b.insertar("producto", insertar);
-        if(id2==3){ // el id = 3 corresponde al de Vehiculos
+        if(jComboBox1.getSelectedItem().toString().toLowerCase().equals("vehiculo") || jComboBox1.getSelectedItem().toString().toLowerCase().equals("vehiculos")){
             int idcar= m.getMax(b.obtenerConsultas("select id_vehiculo from vehiculo"));
-            String [] insertarvehiculo = new String [7];
+            String [] insertarvehiculo = new String [8];
             insertarvehiculo[0]=idcar+"";
-            insertarvehiculo[5]=id+"";
-            insertarvehiculo[6]=id2+"";
-            insertarvehiculo[1]=m.jtextfield(altatv3);
-            insertarvehiculo[2]=m.jtextfield(altatv4);
-            insertarvehiculo[3]=m.jtextfield(altatv5);
-            insertarvehiculo[4]=m.jtextfield(altatv6);
+            insertarvehiculo[1]=m.jtextfield(altatvplacas);
+            insertarvehiculo[2]=m.jtextfield(altatvnomotor);
+            insertarvehiculo[3]=m.jtextfield(altatvkm);
+            insertarvehiculo[4]=m.jtextfield(altatvservicio);
+            insertarvehiculo[5]=jComboBox2.getSelectedItem().toString();
+            insertarvehiculo[6]=idcar+"";
+            insertarvehiculo[7]=id+"";
             b.insertar("vehiculo", insertarvehiculo);
-            
         }
         folio();
     }
@@ -98,22 +90,22 @@ public class Alta extends javax.swing.JFrame {
     private void limpiar(){
         jComboBox1.setSelectedIndex(0);
         lblImage.setIcon(null);
-        altat2.setText("");
-        altat3.setText("");
-        altat4.setText("");
-        altat5.setText("");
-        altat6.setText("");
-        altat7.setText("");
+        altatnombre.setText("");
+        altatdescripcion.setText("");
+        altatnoserie.setText("");
+        altatmarca.setText("");
+        altatmodelo.setText("");
+        altatcolor.setText("");
         Date date = new Date();
-        altat9.setDate(date);
-        altat10.setText("");
-        altat11Formate.setText("");
-        altat12.setText("");
-        altat13.setText("");
-        altatv3.setText("");
-        altatv4.setText("");
-        altatv5.setText("");
-        altatv6.setText("");
+        altatfecha.setDate(date);
+        altatnofactura.setText("");
+        altatimprote.setText("");
+        altatobserv.setText("");
+        altatstockmin.setText("");
+        altatvplacas.setText("");
+        altatvnomotor.setText("");
+        altatvkm.setText("");
+        altatvservicio.setText("");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -148,34 +140,35 @@ public class Alta extends javax.swing.JFrame {
         altalImporte = new javax.swing.JLabel();
         altalObser = new javax.swing.JLabel();
         altalCantidad = new javax.swing.JLabel();
-        altat13 = new javax.swing.JTextField();
-        altat2 = new javax.swing.JTextField();
-        altat4 = new javax.swing.JTextField();
-        altat5 = new javax.swing.JTextField();
-        altat6 = new javax.swing.JTextField();
-        altat7 = new javax.swing.JTextField();
-        altat10 = new javax.swing.JTextField();
+        altatstockmin = new javax.swing.JTextField();
+        altatnombre = new javax.swing.JTextField();
+        altatnoserie = new javax.swing.JTextField();
+        altatmarca = new javax.swing.JTextField();
+        altatmodelo = new javax.swing.JTextField();
+        altatcolor = new javax.swing.JTextField();
+        altatnofactura = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        altat3 = new javax.swing.JTextArea();
+        altatdescripcion = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        altat12 = new javax.swing.JTextArea();
+        altatobserv = new javax.swing.JTextArea();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
-        altat9 = new com.toedter.calendar.JDateChooser();
+        altatfecha = new com.toedter.calendar.JDateChooser();
         jPanel4 = new javax.swing.JPanel();
         altalPlacas = new javax.swing.JLabel();
-        altatv3 = new javax.swing.JTextField();
+        altatvplacas = new javax.swing.JTextField();
         altalNoMotor = new javax.swing.JLabel();
-        altatv4 = new javax.swing.JTextField();
+        altatvnomotor = new javax.swing.JTextField();
         altalKm = new javax.swing.JLabel();
-        altatv5 = new javax.swing.JTextField();
+        altatvkm = new javax.swing.JTextField();
         altalKmSer = new javax.swing.JLabel();
-        altatv6 = new javax.swing.JTextField();
-        jButton12 = new javax.swing.JButton();
+        altatvservicio = new javax.swing.JTextField();
+        altatvtipo = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
         lblImage = new javax.swing.JLabel();
         btnCargarFoto = new javax.swing.JButton();
-        altat11Formate = new javax.swing.JFormattedTextField();
+        altatimprote = new javax.swing.JFormattedTextField();
 
         jTextField3.setText("jTextField3");
 
@@ -256,7 +249,7 @@ public class Alta extends javax.swing.JFrame {
         jComboBox1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.setName(""); // NOI18N
-        jComboBox1.setNextFocusableComponent(altat2);
+        jComboBox1.setNextFocusableComponent(altatnombre);
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox1ItemStateChanged(evt);
@@ -309,118 +302,118 @@ public class Alta extends javax.swing.JFrame {
         altalCantidad.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altalCantidad.setText("Stock minimo:");
 
-        altat13.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altat13.setNextFocusableComponent(altat10);
-        altat13.addFocusListener(new java.awt.event.FocusAdapter() {
+        altatstockmin.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altatstockmin.setNextFocusableComponent(altatnofactura);
+        altatstockmin.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                altat13FocusGained(evt);
+                altatstockminFocusGained(evt);
             }
         });
-        altat13.addKeyListener(new java.awt.event.KeyAdapter() {
+        altatstockmin.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                altat13KeyTyped(evt);
+                altatstockminKeyTyped(evt);
             }
         });
 
-        altat2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altat2.setNextFocusableComponent(altat5);
-        altat2.addFocusListener(new java.awt.event.FocusAdapter() {
+        altatnombre.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altatnombre.setNextFocusableComponent(altatmarca);
+        altatnombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                altat2FocusGained(evt);
+                altatnombreFocusGained(evt);
             }
         });
-        altat2.addKeyListener(new java.awt.event.KeyAdapter() {
+        altatnombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                altat2KeyTyped(evt);
+                altatnombreKeyTyped(evt);
             }
         });
 
-        altat4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altat4.setNextFocusableComponent(altat3);
-        altat4.addFocusListener(new java.awt.event.FocusAdapter() {
+        altatnoserie.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altatnoserie.setNextFocusableComponent(altatdescripcion);
+        altatnoserie.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                altat4FocusGained(evt);
+                altatnoserieFocusGained(evt);
             }
         });
-        altat4.addKeyListener(new java.awt.event.KeyAdapter() {
+        altatnoserie.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                altat4KeyTyped(evt);
+                altatnoserieKeyTyped(evt);
             }
         });
 
-        altat5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altat5.setNextFocusableComponent(altat7);
-        altat5.addFocusListener(new java.awt.event.FocusAdapter() {
+        altatmarca.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altatmarca.setNextFocusableComponent(altatcolor);
+        altatmarca.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                altat5FocusGained(evt);
+                altatmarcaFocusGained(evt);
             }
         });
-        altat5.addKeyListener(new java.awt.event.KeyAdapter() {
+        altatmarca.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                altat5KeyTyped(evt);
+                altatmarcaKeyTyped(evt);
             }
         });
 
-        altat6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altat6.setNextFocusableComponent(altat4);
-        altat6.addFocusListener(new java.awt.event.FocusAdapter() {
+        altatmodelo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altatmodelo.setNextFocusableComponent(altatnoserie);
+        altatmodelo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                altat6FocusGained(evt);
+                altatmodeloFocusGained(evt);
             }
         });
-        altat6.addKeyListener(new java.awt.event.KeyAdapter() {
+        altatmodelo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                altat6KeyTyped(evt);
+                altatmodeloKeyTyped(evt);
             }
         });
 
-        altat7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altat7.setNextFocusableComponent(altat6);
-        altat7.addFocusListener(new java.awt.event.FocusAdapter() {
+        altatcolor.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altatcolor.setNextFocusableComponent(altatmodelo);
+        altatcolor.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                altat7FocusGained(evt);
+                altatcolorFocusGained(evt);
             }
         });
-        altat7.addKeyListener(new java.awt.event.KeyAdapter() {
+        altatcolor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                altat7KeyTyped(evt);
+                altatcolorKeyTyped(evt);
             }
         });
 
-        altat10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altat10.setNextFocusableComponent(altat9);
-        altat10.addFocusListener(new java.awt.event.FocusAdapter() {
+        altatnofactura.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altatnofactura.setNextFocusableComponent(altatfecha);
+        altatnofactura.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                altat10FocusGained(evt);
+                altatnofacturaFocusGained(evt);
             }
         });
-        altat10.addKeyListener(new java.awt.event.KeyAdapter() {
+        altatnofactura.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                altat10KeyTyped(evt);
+                altatnofacturaKeyTyped(evt);
             }
         });
 
-        altat3.setColumns(20);
-        altat3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altat3.setRows(3);
-        altat3.setNextFocusableComponent(altat13);
-        altat3.addKeyListener(new java.awt.event.KeyAdapter() {
+        altatdescripcion.setColumns(20);
+        altatdescripcion.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altatdescripcion.setRows(3);
+        altatdescripcion.setNextFocusableComponent(altatstockmin);
+        altatdescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                altat3KeyTyped(evt);
+                altatdescripcionKeyTyped(evt);
             }
         });
-        jScrollPane1.setViewportView(altat3);
+        jScrollPane1.setViewportView(altatdescripcion);
 
-        altat12.setColumns(20);
-        altat12.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altat12.setRows(5);
-        altat12.setNextFocusableComponent(altatv3);
-        altat12.addKeyListener(new java.awt.event.KeyAdapter() {
+        altatobserv.setColumns(20);
+        altatobserv.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altatobserv.setRows(5);
+        altatobserv.setNextFocusableComponent(altatvplacas);
+        altatobserv.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                altat12KeyTyped(evt);
+                altatobservKeyTyped(evt);
             }
         });
-        jScrollPane2.setViewportView(altat12);
+        jScrollPane2.setViewportView(altatobserv);
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/save.png"))); // NOI18N
         jButton9.setText("Guardar");
@@ -447,14 +440,14 @@ public class Alta extends javax.swing.JFrame {
             }
         });
 
-        altat9.addFocusListener(new java.awt.event.FocusAdapter() {
+        altatfecha.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                altat9FocusGained(evt);
+                altatfechaFocusGained(evt);
             }
         });
-        altat9.addKeyListener(new java.awt.event.KeyAdapter() {
+        altatfecha.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                altat9KeyTyped(evt);
+                altatfechaKeyTyped(evt);
             }
         });
 
@@ -463,72 +456,77 @@ public class Alta extends javax.swing.JFrame {
         altalPlacas.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altalPlacas.setText("Placas:");
 
-        altatv3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altatv3.setNextFocusableComponent(altatv4);
-        altatv3.addFocusListener(new java.awt.event.FocusAdapter() {
+        altatvplacas.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altatvplacas.setNextFocusableComponent(altatvnomotor);
+        altatvplacas.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                altatv3FocusGained(evt);
+                altatvplacasFocusGained(evt);
             }
         });
-        altatv3.addKeyListener(new java.awt.event.KeyAdapter() {
+        altatvplacas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                altatv3KeyPressed(evt);
+                altatvplacasKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                altatv3KeyReleased(evt);
+                altatvplacasKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                altatv3KeyTyped(evt);
+                altatvplacasKeyTyped(evt);
             }
         });
 
         altalNoMotor.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altalNoMotor.setText("No. Motor: ");
 
-        altatv4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altatv4.setNextFocusableComponent(altatv5);
-        altatv4.addFocusListener(new java.awt.event.FocusAdapter() {
+        altatvnomotor.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altatvnomotor.setNextFocusableComponent(altatvkm);
+        altatvnomotor.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                altatv4FocusGained(evt);
+                altatvnomotorFocusGained(evt);
             }
         });
-        altatv4.addKeyListener(new java.awt.event.KeyAdapter() {
+        altatvnomotor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                altatv4KeyTyped(evt);
+                altatvnomotorKeyTyped(evt);
             }
         });
 
         altalKm.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altalKm.setText("Kilometraje:");
 
-        altatv5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altatv5.setNextFocusableComponent(altatv6);
-        altatv5.addFocusListener(new java.awt.event.FocusAdapter() {
+        altatvkm.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altatvkm.setNextFocusableComponent(altatvservicio);
+        altatvkm.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                altatv5FocusGained(evt);
+                altatvkmFocusGained(evt);
             }
         });
-        altatv5.addKeyListener(new java.awt.event.KeyAdapter() {
+        altatvkm.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                altatv5KeyTyped(evt);
+                altatvkmKeyTyped(evt);
             }
         });
 
         altalKmSer.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altalKmSer.setText("Km Servicio:");
 
-        altatv6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altatv6.setNextFocusableComponent(jButton9);
-        altatv6.addFocusListener(new java.awt.event.FocusAdapter() {
+        altatvservicio.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altatvservicio.setNextFocusableComponent(jButton9);
+        altatvservicio.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                altatv6FocusGained(evt);
+                altatvservicioFocusGained(evt);
             }
         });
-        altatv6.addKeyListener(new java.awt.event.KeyAdapter() {
+        altatvservicio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                altatv6KeyTyped(evt);
+                altatvservicioKeyTyped(evt);
             }
         });
+
+        altatvtipo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altatvtipo.setText("Tipo:");
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Camioneta", "Pickup", "Auto", "Motocicleta" }));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -538,45 +536,48 @@ public class Alta extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(altalNoMotor)
-                    .addComponent(altalPlacas))
+                    .addComponent(altalPlacas)
+                    .addComponent(altatvtipo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(altatv3)
-                    .addComponent(altatv4, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
+                    .addComponent(altatvplacas)
+                    .addComponent(altatvnomotor, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(altalKmSer)
                     .addComponent(altalKm))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(altatv5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(altatv6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(altatvkm, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(altatvservicio, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(altatvtipo)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(altalKm)
-                        .addComponent(altatv5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(altatvkm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(altalPlacas)
-                        .addComponent(altatv3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(altatvplacas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(altalKmSer)
-                        .addComponent(altatv6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(altatvservicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(altalNoMotor)
-                        .addComponent(altatv4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(altatvnomotor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
-
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/studio-writing-tools.png"))); // NOI18N
-        jButton12.setText("Consumibles");
 
         lblImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImage.setText("FOTO");
@@ -589,10 +590,10 @@ public class Alta extends javax.swing.JFrame {
             }
         });
 
-        altat11Formate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        altat11Formate.addKeyListener(new java.awt.event.KeyAdapter() {
+        altatimprote.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        altatimprote.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                altat11FormateKeyTyped(evt);
+                altatimproteKeyTyped(evt);
             }
         });
 
@@ -611,10 +612,8 @@ public class Alta extends javax.swing.JFrame {
                         .addGap(43, 43, 43)
                         .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46)
-                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(jButton12)))
-                .addGap(0, 146, Short.MAX_VALUE))
+                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 319, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -647,12 +646,12 @@ public class Alta extends javax.swing.JFrame {
                                                 .addComponent(altalModelo))
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(altat2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(altatnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(altat5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(altat7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(altat6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(altat4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(altatmarca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(altatcolor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(altatmodelo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(altatnoserie, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(49, 49, 49)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -671,8 +670,8 @@ public class Alta extends javax.swing.JFrame {
                                                 .addComponent(altalFecha))
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(altat9, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(altat11Formate, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(altatfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(altatimprote, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(altalCantidad)
@@ -680,9 +679,9 @@ public class Alta extends javax.swing.JFrame {
                                             .addGap(32, 32, 32)
                                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(jPanel2Layout.createSequentialGroup()
-                                                    .addComponent(altat13, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(altatstockmin, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addGap(0, 0, Short.MAX_VALUE))
-                                                .addComponent(altat10))))
+                                                .addComponent(altatnofactura))))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(26, 26, 26)
                                         .addComponent(btnCargarFoto)
@@ -703,39 +702,39 @@ public class Alta extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(altalCantidad)
-                    .addComponent(altat13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(altatstockmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(altalNombre)
-                            .addComponent(altat2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(altatnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(altalMarca)
-                            .addComponent(altat5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(altatmarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(altalNoFact)
-                            .addComponent(altat10, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(altatnofactura, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(altalFecha)
-                            .addComponent(altat9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(altatfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(altalColor, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(altat7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(altatcolor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(altalModelo)
-                            .addComponent(altat6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(altatmodelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(altalNoSerie)
-                            .addComponent(altat4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(altatnoserie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(altalDes)
@@ -747,7 +746,7 @@ public class Alta extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
                                 .addComponent(altalImporte))
-                            .addComponent(altat11Formate, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(altatimprote, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -760,8 +759,7 @@ public class Alta extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton9)
                     .addComponent(jButton11)
-                    .addComponent(jButton10)
-                    .addComponent(jButton12))
+                    .addComponent(jButton10))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -815,55 +813,55 @@ public class Alta extends javax.swing.JFrame {
 
     private void altat11FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat11FocusLost
         // TODO add your handling code here:
-        float a=Float.parseFloat(altat11Formate.getText());
-        altat11Formate.setText(a+"");
+        float a=Float.parseFloat(altatimprote.getText());
+        altatimprote.setText(a+"");
     }//GEN-LAST:event_altat11FocusLost
 
-    private void altatv6FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altatv6FocusGained
+    private void altatvservicioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altatvservicioFocusGained
         // TODO add your handling code here:
-        altatv6.setBackground(Color.white);
+        altatvservicio.setBackground(Color.white);
         //asKmServicio.setText("");
-    }//GEN-LAST:event_altatv6FocusGained
+    }//GEN-LAST:event_altatvservicioFocusGained
 
-    private void altatv5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altatv5FocusGained
+    private void altatvkmFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altatvkmFocusGained
         // TODO add your handling code here:
-        altatv5.setBackground(Color.white);
+        altatvkm.setBackground(Color.white);
         //asKilometraje.setText("");
-    }//GEN-LAST:event_altatv5FocusGained
+    }//GEN-LAST:event_altatvkmFocusGained
 
-    private void altatv4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altatv4FocusGained
+    private void altatvnomotorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altatvnomotorFocusGained
         // TODO add your handling code here:
-        altatv4.setBackground(Color.white);
+        altatvnomotor.setBackground(Color.white);
         //asNoMotor.setText("");
-    }//GEN-LAST:event_altatv4FocusGained
+    }//GEN-LAST:event_altatvnomotorFocusGained
 
-    private void altatv3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatv3KeyTyped
+    private void altatvplacasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatvplacasKeyTyped
         // TODO add your handling code here:
-        if(altatv3.getText().length()>=9){
+        if(altatvplacas.getText().length()>=9){
             evt.consume();
         }
         char c = evt.getKeyChar();
         if((c<'a' || c>'z') && (c<'A' || c>'Z') &&(c<'0' || c>'9') && c!='-') evt.consume();
-    }//GEN-LAST:event_altatv3KeyTyped
+    }//GEN-LAST:event_altatvplacasKeyTyped
 
-    private void altatv3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatv3KeyReleased
+    private void altatvplacasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatvplacasKeyReleased
         // TODO add your handling code here:
-        altatv3.setText(altatv3.getText().toUpperCase());
-    }//GEN-LAST:event_altatv3KeyReleased
+        altatvplacas.setText(altatvplacas.getText().toUpperCase());
+    }//GEN-LAST:event_altatvplacasKeyReleased
 
-    private void altatv3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatv3KeyPressed
+    private void altatvplacasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatvplacasKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_altatv3KeyPressed
+    }//GEN-LAST:event_altatvplacasKeyPressed
 
-    private void altatv3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altatv3FocusGained
+    private void altatvplacasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altatvplacasFocusGained
         // TODO add your handling code here:
-        altatv3.setBackground(Color.white);
+        altatvplacas.setBackground(Color.white);
         //asPlacas.setText("");
-    }//GEN-LAST:event_altatv3FocusGained
+    }//GEN-LAST:event_altatvplacasFocusGained
 
-    private void altat9FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat9FocusGained
-            altat11Formate.hasFocus();
-    }//GEN-LAST:event_altat9FocusGained
+    private void altatfechaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altatfechaFocusGained
+            altatimprote.hasFocus();
+    }//GEN-LAST:event_altatfechaFocusGained
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
@@ -878,9 +876,9 @@ public class Alta extends javax.swing.JFrame {
 	
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        String var = jComboBox1.getSelectedItem().toString();
+        String var = jComboBox1.getSelectedItem().toString().toLowerCase();
         int cont=0;
-        if(var.equals("Vehiculo")){
+        if(var.equals("vehiculos")){
             if(valVehiculo()==0){
                 altaProductos();
                 javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
@@ -888,13 +886,13 @@ public class Alta extends javax.swing.JFrame {
             }else{
                 javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
             }
-        }else if(var.equals("Consumibles")){
-            if(valCamposGeneral()==0 && v.soloNumeros(altat13.getText())==false){
+        }else if(var.equals("consumibles")){
+            if(valCamposGeneral()==0 && v.soloNumeros(altatstockmin.getText())==false){
                 altaProductos();
                 javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
                 limpiar();
             }else{
-                altat13.setBackground(Color.PINK);
+                altatstockmin.setBackground(Color.PINK);
                 javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
             }
         }else{ 
@@ -909,47 +907,47 @@ public class Alta extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton9ActionPerformed
 
-    private void altat10FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat10FocusGained
+    private void altatnofacturaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altatnofacturaFocusGained
         // TODO add your handling code here:
-        altat10.setBackground(Color.white);
+        altatnofactura.setBackground(Color.white);
         //asNoFact.setText("");
-    }//GEN-LAST:event_altat10FocusGained
+    }//GEN-LAST:event_altatnofacturaFocusGained
 
-    private void altat7FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat7FocusGained
+    private void altatcolorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altatcolorFocusGained
         // TODO add your handling code here:
-        altat7.setBackground(Color.white);
+        altatcolor.setBackground(Color.white);
         //asColor.setText("");
-    }//GEN-LAST:event_altat7FocusGained
+    }//GEN-LAST:event_altatcolorFocusGained
 
-    private void altat6FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat6FocusGained
+    private void altatmodeloFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altatmodeloFocusGained
         // TODO add your handling code here:
-        altat6.setBackground(Color.white);
+        altatmodelo.setBackground(Color.white);
         //asNoSerie.setText("");
-    }//GEN-LAST:event_altat6FocusGained
+    }//GEN-LAST:event_altatmodeloFocusGained
 
-    private void altat5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat5FocusGained
+    private void altatmarcaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altatmarcaFocusGained
         // TODO add your handling code here:
-        altat5.setBackground(Color.white);
+        altatmarca.setBackground(Color.white);
         //asModelo.setText("");
-    }//GEN-LAST:event_altat5FocusGained
+    }//GEN-LAST:event_altatmarcaFocusGained
 
-    private void altat4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat4FocusGained
+    private void altatnoserieFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altatnoserieFocusGained
         // TODO add your handling code here:
-        altat4.setBackground(Color.white);
+        altatnoserie.setBackground(Color.white);
         //asMarca.setText("");
-    }//GEN-LAST:event_altat4FocusGained
+    }//GEN-LAST:event_altatnoserieFocusGained
 
-    private void altat2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat2FocusGained
+    private void altatnombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altatnombreFocusGained
         // TODO add your handling code here:
-        altat2.setBackground(Color.WHITE);
+        altatnombre.setBackground(Color.WHITE);
         //asNombre.setText("");
-    }//GEN-LAST:event_altat2FocusGained
+    }//GEN-LAST:event_altatnombreFocusGained
 
-    private void altat13FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altat13FocusGained
+    private void altatstockminFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_altatstockminFocusGained
         // TODO add your handling code here:
-        altat13.setBackground(Color.WHITE);
+        altatstockmin.setBackground(Color.WHITE);
         //asStock.setText("");
-    }//GEN-LAST:event_altat13FocusGained
+    }//GEN-LAST:event_altatstockminFocusGained
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
@@ -959,13 +957,13 @@ public class Alta extends javax.swing.JFrame {
         // TODO add your handling code here:
         String var = jComboBox1.getSelectedItem().toString().toLowerCase();
         if(var.equals("consumibles")){
-            altat13.setEnabled(true);
+            altatstockmin.setEnabled(true);
             altalCantidad.setForeground(Color.BLACK);
         }else if(var.equals("vehiculos")){
             camposHabVehiculos();
         }else{
             camposDesVehiculos();
-            altat13.setEnabled(false);
+            altatstockmin.setEnabled(false);
             altalCantidad.setForeground(Color.GRAY);
         }
     }//GEN-LAST:event_jComboBox1ItemStateChanged
@@ -996,168 +994,168 @@ public class Alta extends javax.swing.JFrame {
      
     }//GEN-LAST:event_btnCargarFotoActionPerformed
 
-    private void altat2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat2KeyTyped
+    private void altatnombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatnombreKeyTyped
         // TODO add your handling code here:
-        if(altat2.getText().length()>30){
+        if(altatnombre.getText().length()>30){
             evt.consume();
         }
         char c = evt.getKeyChar();
         if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
                 && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
                 && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó') evt.consume();
-    }//GEN-LAST:event_altat2KeyTyped
+    }//GEN-LAST:event_altatnombreKeyTyped
 
-    private void altat5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat5KeyTyped
+    private void altatmarcaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatmarcaKeyTyped
         // TODO add your handling code here:
-        if(altat5.getText().length()>45){
+        if(altatmarca.getText().length()>45){
             evt.consume();
         }
         char c = evt.getKeyChar();
         if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
                 && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
                 && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' &&(c<'0' || c>'9')) evt.consume();
-    }//GEN-LAST:event_altat5KeyTyped
+    }//GEN-LAST:event_altatmarcaKeyTyped
 
-    private void altat7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat7KeyTyped
+    private void altatcolorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatcolorKeyTyped
         // TODO add your handling code here:
-        if(altat7.getText().length()>45){
+        if(altatcolor.getText().length()>45){
             evt.consume();
         }
         char c = evt.getKeyChar();
         if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!=' ' ) evt.consume();
-    }//GEN-LAST:event_altat7KeyTyped
+    }//GEN-LAST:event_altatcolorKeyTyped
 
-    private void altat6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat6KeyTyped
+    private void altatmodeloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatmodeloKeyTyped
         // TODO add your handling code here:
-        if(altat6.getText().length()>45){
+        if(altatmodelo.getText().length()>45){
             evt.consume();
         }
         char c = evt.getKeyChar();
         if((c<'0' || c>'9')) evt.consume();
-    }//GEN-LAST:event_altat6KeyTyped
+    }//GEN-LAST:event_altatmodeloKeyTyped
 
-    private void altat4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat4KeyTyped
+    private void altatnoserieKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatnoserieKeyTyped
         // TODO add your handling code here:
-        if(altat4.getText().length()>45){
+        if(altatnoserie.getText().length()>45){
             evt.consume();
         }
         char c = evt.getKeyChar();
         if((c<'0' || c>'9')) evt.consume();
-    }//GEN-LAST:event_altat4KeyTyped
+    }//GEN-LAST:event_altatnoserieKeyTyped
 
-    private void altat13KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat13KeyTyped
+    private void altatstockminKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatstockminKeyTyped
         // TODO add your handling code here:
-        if(altat13.getText().length()>15){
+        if(altatstockmin.getText().length()>15){
             evt.consume();
         }
         char c = evt.getKeyChar();
         if((c<'0' || c>'9')) evt.consume();
-    }//GEN-LAST:event_altat13KeyTyped
+    }//GEN-LAST:event_altatstockminKeyTyped
 
-    private void altat10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat10KeyTyped
+    private void altatnofacturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatnofacturaKeyTyped
         // TODO add your handling code here:
-        if(altat10.getText().length()>20){
+        if(altatnofactura.getText().length()>20){
             evt.consume();
         }
         char c = evt.getKeyChar();
         if((c<'0' || c>'9')) evt.consume();
-    }//GEN-LAST:event_altat10KeyTyped
+    }//GEN-LAST:event_altatnofacturaKeyTyped
 
-    private void altat12KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat12KeyTyped
+    private void altatobservKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatobservKeyTyped
         // TODO add your handling code here:
-        if(altat12.getText().length()>80){
+        if(altatobserv.getText().length()>80){
             evt.consume();
         }
         char c = evt.getKeyChar();
         if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
                 && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
                 && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' &&(c<'0' || c>'9')) evt.consume();
-    }//GEN-LAST:event_altat12KeyTyped
+    }//GEN-LAST:event_altatobservKeyTyped
 
-    private void altat3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat3KeyTyped
+    private void altatdescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatdescripcionKeyTyped
         // TODO add your handling code here:
-        if(altat3.getText().length()>45){
+        if(altatdescripcion.getText().length()>45){
             evt.consume();
         }
         char c = evt.getKeyChar();
         if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
                 && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
                 && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' &&(c<'0' || c>'9')) evt.consume();
-    }//GEN-LAST:event_altat3KeyTyped
+    }//GEN-LAST:event_altatdescripcionKeyTyped
 
-    private void altatv4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatv4KeyTyped
+    private void altatvnomotorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatvnomotorKeyTyped
         // TODO add your handling code here:
-        if(altatv4.getText().length()>45){
+        if(altatvnomotor.getText().length()>45){
             evt.consume();
         }
          char c = evt.getKeyChar();
         if((c<'0' || c>'9')) evt.consume();
-    }//GEN-LAST:event_altatv4KeyTyped
+    }//GEN-LAST:event_altatvnomotorKeyTyped
 
-    private void altatv5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatv5KeyTyped
+    private void altatvkmKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatvkmKeyTyped
         // TODO add your handling code here:
-        if(altatv5.getText().length()>45){
+        if(altatvkm.getText().length()>45){
             evt.consume();
         }
          char c = evt.getKeyChar();
         if((c<'0' || c>'9')&& c!='.') evt.consume();
-    }//GEN-LAST:event_altatv5KeyTyped
+    }//GEN-LAST:event_altatvkmKeyTyped
 
-    private void altatv6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatv6KeyTyped
+    private void altatvservicioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatvservicioKeyTyped
         // TODO add your handling code here:
-         if(altatv6.getText().length()>45){
+         if(altatvservicio.getText().length()>45){
             evt.consume();
         }
          char c = evt.getKeyChar();
         if((c<'0' || c>'9')&& c!='.') evt.consume();
-    }//GEN-LAST:event_altatv6KeyTyped
+    }//GEN-LAST:event_altatvservicioKeyTyped
 
-    private void altat11FormateKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat11FormateKeyTyped
+    private void altatimproteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatimproteKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
         if((c<'0' || c>'9')&& c!='.') evt.consume();
-    }//GEN-LAST:event_altat11FormateKeyTyped
+    }//GEN-LAST:event_altatimproteKeyTyped
 
-    private void altat9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altat9KeyTyped
+    private void altatfechaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatfechaKeyTyped
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_altat9KeyTyped
+    }//GEN-LAST:event_altatfechaKeyTyped
    public int valCamposGeneral(){
        int cont=0;
-        if(v.soloLetras(altat2.getText())==true){
+        if(v.soloLetras(altatnombre.getText())==true){
             cont++;
             //asNombre.setText("*");
-            altat2.setBackground(Color.PINK);
+            altatnombre.setBackground(Color.PINK);
         }
-        if(v.estaVacio(altat4.getText())==true){
+        if(v.estaVacio(altatnoserie.getText())==true){
             cont++;
             //asMarca.setText("*");
-            altat4.setBackground(Color.PINK);
+            altatnoserie.setBackground(Color.PINK);
         }
-        if(v.estaVacio(altat5.getText())==true){
+        if(v.estaVacio(altatmarca.getText())==true){
             cont++;
             //asModelo.setText("*");
-            altat5.setBackground(Color.PINK);
+            altatmarca.setBackground(Color.PINK);
         }
-        if(v.estaVacio(altat6.getText())==true){
+        if(v.estaVacio(altatmodelo.getText())==true){
             cont++;
             //asNoSerie.setText("*");
-            altat6.setBackground(Color.PINK);
+            altatmodelo.setBackground(Color.PINK);
         }
-        if(v.soloLetras(altat7.getText())==true){
+        if(v.soloLetras(altatcolor.getText())==true){
             cont++;
             //asColor.setText("*");
-            altat7.setBackground(Color.PINK);
+            altatcolor.setBackground(Color.PINK);
         }
-        if(v.soloNumeros(altat10.getText())==true){
+        if(v.soloNumeros(altatnofactura.getText())==true){
             cont++;
             //asNoFact.setText("*");
-            altat10.setBackground(Color.PINK);
+            altatnofactura.setBackground(Color.PINK);
         }
-        if(v.soloDecimales(altat11Formate.getText())==true){
+        if(v.soloDecimales(altatimprote.getText())==true){
             cont++;
             //asImporte.setText("*");
-            altat11Formate.setBackground(Color.PINK);
+            altatimprote.setBackground(Color.PINK);
         }
         return cont;
    }
@@ -1165,52 +1163,54 @@ public class Alta extends javax.swing.JFrame {
           int cont=0;
         cont+=valCamposGeneral();
     
-       if(v.estaVacio(altatv3.getText())){
+       if(v.estaVacio(altatvplacas.getText())){
             cont++;
             //asImporte.setText("*");
-            altatv3.setBackground(Color.PINK);
+            altatvplacas.setBackground(Color.PINK);
        }
-       if(altatv3.getText().length()!=9){
+       if(altatvplacas.getText().length()!=9){
             cont++;
-            altatv3.setBackground(Color.PINK);
-        }else if(v.valPlacas(altatv3.getText())){
+            altatvplacas.setBackground(Color.PINK);
+        }else if(v.valPlacas(altatvplacas.getText())){
              cont++;
             //asImporte.setText("*");
-            altatv3.setBackground(Color.PINK);
+            altatvplacas.setBackground(Color.PINK);
         }
         
-        if(v.estaVacio(altatv4.getText())){
+        if(v.estaVacio(altatvnomotor.getText())){
             cont++;
-            altatv4.setBackground(Color.PINK);
+            altatvnomotor.setBackground(Color.PINK);
         }
-        if(v.soloNumeros(altatv4.getText())){
+        if(v.soloNumeros(altatvnomotor.getText())){
             cont++;
-            altatv4.setBackground(Color.PINK);
+            altatvnomotor.setBackground(Color.PINK);
         }
-        if(v.estaVacio(altatv5.getText())){
+        if(v.estaVacio(altatvkm.getText())){
             cont++;
-            altatv5.setBackground(Color.PINK);
+            altatvkm.setBackground(Color.PINK);
         }
-        if(v.soloDecimales(altatv5.getText())){
+        if(v.soloDecimales(altatvkm.getText())){
             cont++;
-            altatv5.setBackground(Color.PINK);
+            altatvkm.setBackground(Color.PINK);
         }
-        if(v.estaVacio(altatv6.getText())){
+        if(v.estaVacio(altatvservicio.getText())){
             cont++;
-            altatv6.setBackground(Color.PINK);
+            altatvservicio.setBackground(Color.PINK);
         }
-        if(v.soloDecimales(altatv6.getText())){
+        if(v.soloDecimales(altatvservicio.getText())){
             cont++;
-            altatv6.setBackground(Color.PINK);
+            altatvservicio.setBackground(Color.PINK);
         }
         return cont;
    }
    public void camposDesVehiculos(){
-       altatv3.setEnabled(false);
-        altatv4.setEnabled(false);
-        altatv5.setEnabled(false);
-        altatv6.setEnabled(false);
-        altat13.setEnabled(false);
+       altatvplacas.setEnabled(false);
+        altatvnomotor.setEnabled(false);
+        altatvkm.setEnabled(false);
+        altatvservicio.setEnabled(false);
+        altatstockmin.setEnabled(false);
+        altatvtipo.setEnabled(false);
+        jComboBox2.setEnabled(false);
         altalNoMotor.setForeground(Color.GRAY);
         altalKm.setForeground(Color.GRAY);
         altalKmSer.setForeground(Color.GRAY);
@@ -1218,10 +1218,12 @@ public class Alta extends javax.swing.JFrame {
    }
    public void camposHabVehiculos(){
       // jPanel4.setEnabled(true);
-        altatv3.setEnabled(true);
-        altatv4.setEnabled(true);
-        altatv5.setEnabled(true);
-        altatv6.setEnabled(true);
+        altatvplacas.setEnabled(true);
+        altatvnomotor.setEnabled(true);
+        altatvkm.setEnabled(true);
+        altatvservicio.setEnabled(true);
+        altatvtipo.setEnabled(true);
+        jComboBox2.setEnabled(true);
         altalNoMotor.setForeground(Color.BLACK);
         altalKm.setForeground(Color.BLACK);
         altalKmSer.setForeground(Color.BLACK);
@@ -1286,27 +1288,28 @@ public class Alta extends javax.swing.JFrame {
     private javax.swing.JLabel altalNombre;
     private javax.swing.JLabel altalObser;
     private javax.swing.JLabel altalPlacas;
-    private javax.swing.JTextField altat10;
-    private javax.swing.JFormattedTextField altat11Formate;
-    private javax.swing.JTextArea altat12;
-    private javax.swing.JTextField altat13;
-    private javax.swing.JTextField altat2;
-    private javax.swing.JTextArea altat3;
-    private javax.swing.JTextField altat4;
-    private javax.swing.JTextField altat5;
-    private javax.swing.JTextField altat6;
-    private javax.swing.JTextField altat7;
-    private com.toedter.calendar.JDateChooser altat9;
-    private javax.swing.JTextField altatv3;
-    private javax.swing.JTextField altatv4;
-    private javax.swing.JTextField altatv5;
-    private javax.swing.JTextField altatv6;
+    private javax.swing.JTextField altatcolor;
+    private javax.swing.JTextArea altatdescripcion;
+    private com.toedter.calendar.JDateChooser altatfecha;
+    private javax.swing.JFormattedTextField altatimprote;
+    private javax.swing.JTextField altatmarca;
+    private javax.swing.JTextField altatmodelo;
+    private javax.swing.JTextField altatnofactura;
+    private javax.swing.JTextField altatnombre;
+    private javax.swing.JTextField altatnoserie;
+    private javax.swing.JTextArea altatobserv;
+    private javax.swing.JTextField altatstockmin;
+    private javax.swing.JTextField altatvkm;
+    private javax.swing.JTextField altatvnomotor;
+    private javax.swing.JTextField altatvplacas;
+    private javax.swing.JTextField altatvservicio;
+    private javax.swing.JLabel altatvtipo;
     private javax.swing.JButton btnCargarFoto;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;

@@ -361,7 +361,7 @@ public class Permisos extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel15MouseClicked
     
     private void iniciarTabla(){
-        String query = "select apellido_pat_personal,apellido_mat_personal,nombre_personal from personal";
+        String query = "select apellido_pa,apellido_ma,nombre from personal";
         String [][] busqueda = b.obtenerConsultas(query);
         tbl_usuarios.setModel(new javax.swing.table.DefaultTableModel(
                 busqueda
@@ -394,9 +394,9 @@ public class Permisos extends javax.swing.JFrame {
         // TODO add your handling code here:
         int idModulo = b.getId("select * from modulos where _nombre_modulo = '"+jComboBox1.getSelectedItem().toString()+"'");
         if(bandera){
-            String uUsuario = "nombre_usuario='"+jTextField1.getText()+"', "+
-                            "contraseña_usuario='"+jTextField2.getText()+"'";
-            b.execute("update usuarios set "+uUsuario+" where id_usuario ='"+usuario[0][0]+"'");
+            String uUsuario = "usuario='"+jTextField1.getText()+"', "+
+                            "pass='"+jTextField2.getText()+"'";
+            b.execute("update usuario set "+uUsuario+" where id_usuario ='"+usuario[0][0]+"'");
             String uPermisos = "alta_perrmiso='"+lAlta.getText()+"', "+
                             "baja_permiso='"+lBaja.getText()+"', "+
                             "consulta_permiso='"+lConsulta.getText()+"', "+
@@ -409,12 +409,12 @@ public class Permisos extends javax.swing.JFrame {
         }
         else{
             int idPermiso = m.getMax(b.obtenerConsultas("select id_permiso from permisos"));
-            int idU = m.getMax(b.obtenerConsultas("select id_usuario from usuarios"));
+            int idU = m.getMax(b.obtenerConsultas("select id_usuario from usuario"));
             String iusuario [] = new String []{idU+"",jTextField1.getText(),jTextField2.getText(),idPersonal[0][0]};
-            b.insertar("usuarios", iusuario);
+            b.insertar("usuario", iusuario);
             String ipermiso [] = new String []{idPermiso+"",lAlta.getText(),lBaja.getText(),lConsulta.getText(),lModificar.getText(),lAdministrar.getText()};
             b.insertar("permisos", ipermiso);
-            String ipermisos_modulos [] = new String []{idU+"",idPersonal[0][0],idPermiso+"",idModulo+""};
+            String ipermisos_modulos [] = new String []{idU+"",idPermiso+"",idModulo+""};
             b.insertar("permisos_modulos", ipermisos_modulos);
             JOptionPane.showMessageDialog(this, "Insertado con exito");
             bandera=true;
@@ -487,19 +487,20 @@ public class Permisos extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             
-            idPersonal = b.obtenerConsultas("select id_personal from personal where nombre_personal ='"+nombre.getText()+"' and apellido_pat_personal ='"+apPaterno.getText()
-            +"' and apellido_mat_personal='"+apMaterno.getText()+"'");
+            idPersonal = b.obtenerConsultas("select id_personal from personal where nombre ='"+nombre.getText()+"' and apellido_pa ='"+apPaterno.getText()
+            +"' and apellido_ma='"+apMaterno.getText()+"'");
             //try{
-            String [] isthere = b.convertir2d1d(b.obtenerConsultas("select p.id_personal from personal p left join usuarios u on p.id_personal=u.id_personal where u.id_usuario is null"));
+            String [] isthere = b.convertir2d1d(b.obtenerConsultas("select p.id_personal from personal p left join usuario u on p.id_personal=u.personal_id_personal where u.id_usuario is null"));
             for (String there : isthere) {
                 if (there.equals(idPersonal[0][0])) {
                     bandera=false;
                     JOptionPane.showMessageDialog(null, "No se encontró un usuario asignado, favor de rellenar los campos para agregar");
+                    limpiar();
                     jTextField1.requestFocus();
                 }
             }
             if(bandera){
-            usuario= b.obtenerConsultas("select u.id_usuario,u.nombre_usuario,u.contraseña_usuario,pe.id_permiso,m._nombre_modulo,pe.alta_perrmiso,pe.baja_permiso,pe.consulta_permiso,pe.modificar_permiso,pe.administrar_usuario_permiso,u.id_personal from usuarios u inner join permisos_modulos pm on u.id_personal=pm.id_personal and u.id_usuario=pm.id_usuario inner join modulos m on pm.id_modulo=m.id_modulo inner join permisos pe on pm.id_permiso=pe.id_permiso where u.id_personal='"+idPersonal[0][0]+"'");
+            usuario= b.obtenerConsultas("select u.id_usuario,u.usuario,u.pass,pe.id_permiso,m._nombre_modulo,pe.alta_permiso,pe.baja_permiso,pe.consulta_permiso,pe.modificar_permiso,pe.administrar_usuario_permiso,u.personal_id_personal from usuario u inner join permisos_modulos pm on u.id_usuario=pm.usuario_id_usuario inner join modulos m on pm.modulos_id_modulo=m.id_modulo inner join permisos pe on pm.permisos_id_permiso=pe.id_permiso where u.personal_id_personal='"+idPersonal[0][0]+"'");
             if(usuario.length==0){bandera=false; return;}
             jTextField1.setText(usuario[0][1]);
             jTextField2.setText(usuario[0][2]);

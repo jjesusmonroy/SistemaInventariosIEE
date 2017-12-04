@@ -22,17 +22,16 @@ public class BDD{
     public static void main (String [] args){
         BDD b = new BDD();
         MetodosG m = new MetodosG();
-        b.execute("update personal_puestos set id_area = '4' where id_personal = '4'");
     }
     //metodo para validar inicio de sesion de login
     public String[] validarInicio(String usuario){
             BDD b = new BDD();
             String [] a = new String[2];
-            ResultSet myRs = b.connection("select * from usuarios where nombre_usuario = '"+usuario+"'");
+            ResultSet myRs = b.connection("select * from usuario where usuario = '"+usuario+"'");
         try{
             while(myRs.next()){
-            a[0]=myRs.getString("nombre_usuario");
-            a[1]=myRs.getString("contraseña_usuario");
+            a[0]=myRs.getString("usuario");
+            a[1]=myRs.getString("pass");
             }
         }
         catch(SQLException e){
@@ -88,18 +87,6 @@ public class BDD{
         }
         return a;
     }
-    /*public Connection conexion(){
-        Connection conectar=null;
-         try {
-           Class.forName("com.mysql.jdbc.Driver");
-           conectar=DriverManager.getConnection("jdbc:mysql://localhost:3306/dbis","root","root");
-           
-            
-        } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(null, e);
-        }
-        return conectar;
-    }*/
     
     public void execute(String query){
         try{

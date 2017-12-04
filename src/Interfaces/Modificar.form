@@ -207,14 +207,14 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="altalMarca" min="-2" pref="54" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="altat5" min="-2" pref="379" max="-2" attributes="0"/>
+                                      <Component id="marca" min="-2" pref="379" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="altalColor" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="altalNombre" min="-2" pref="65" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="altat2" max="32767" attributes="0"/>
+                                          <Component id="nombre" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="jLabel4" min="-2" pref="79" max="-2" attributes="0"/>
@@ -223,17 +223,17 @@
                                       </Group>
                                   </Group>
                                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Component id="altat7" alignment="1" min="-2" pref="381" max="-2" attributes="0"/>
+                                      <Component id="color" alignment="1" min="-2" pref="381" max="-2" attributes="0"/>
                                       <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="altalModelo" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="altat6" max="32767" attributes="0"/>
+                                              <Component id="modelo" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="altalNoSerie" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="altat4" max="32767" attributes="0"/>
+                                              <Component id="noserie" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="altalDes" min="-2" max="-2" attributes="0"/>
@@ -250,7 +250,7 @@
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="altalImporte" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="altat11" max="32767" attributes="0"/>
+                                              <Component id="importe" max="32767" attributes="0"/>
                                               <EmptySpace min="-2" pref="237" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
@@ -259,23 +259,23 @@
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Component id="altalCantidad" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                      <Component id="altat13" min="-2" pref="50" max="-2" attributes="0"/>
+                                                      <Component id="stockmin" min="-2" pref="50" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="altalCantidad1" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                      <Component id="altat14" min="-2" pref="50" max="-2" attributes="0"/>
+                                                      <Component id="stock" min="-2" pref="50" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" alignment="1" attributes="0">
                                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                                           <Group type="102" alignment="0" attributes="0">
                                                               <Component id="altalNoFact" min="-2" max="-2" attributes="0"/>
                                                               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                                              <Component id="altat10" max="32767" attributes="0"/>
+                                                              <Component id="nofact" max="32767" attributes="0"/>
                                                           </Group>
                                                           <Group type="102" alignment="1" attributes="0">
                                                               <Component id="altalFecha" min="-2" max="-2" attributes="0"/>
                                                               <EmptySpace max="-2" attributes="0"/>
-                                                              <Component id="altat9" min="-2" pref="199" max="-2" attributes="0"/>
+                                                              <Component id="fecha" min="-2" pref="199" max="-2" attributes="0"/>
                                                           </Group>
                                                       </Group>
                                                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -336,32 +336,32 @@
                                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="altalCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="altat13" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="altat14" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="stockmin" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="stock" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="altalCantidad1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="altalNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="altat2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="altat10" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nofact" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="altalNoFact" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="altalMarca" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="altat5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="marca" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="altalFecha" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="altat9" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="fecha" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="14" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="altalColor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="altat7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="color" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="altalImporte" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="altat11" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="importe" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -370,7 +370,7 @@
                               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="altalNoSerie" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="altat4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="noserie" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -382,7 +382,7 @@
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                               <Component id="altalObser" alignment="1" min="-2" pref="17" max="-2" attributes="0"/>
-                              <Component id="altat6" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="modelo" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
@@ -543,85 +543,85 @@
                 <Property name="text" type="java.lang.String" value="Stock minimo:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="altat13">
+            <Component class="javax.swing.JTextField" name="stockmin">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat13KeyTyped"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="stockminKeyTyped"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="altat2">
+            <Component class="javax.swing.JTextField" name="nombre">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat2KeyTyped"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nombreKeyTyped"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="altat4">
+            <Component class="javax.swing.JTextField" name="noserie">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat4KeyTyped"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="noserieKeyTyped"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="altat5">
+            <Component class="javax.swing.JTextField" name="marca">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat5KeyTyped"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="marcaKeyTyped"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="altat6">
+            <Component class="javax.swing.JTextField" name="modelo">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="altat6ActionPerformed"/>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat6KeyTyped"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modeloActionPerformed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modeloKeyTyped"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="altat7">
+            <Component class="javax.swing.JTextField" name="color">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat7KeyTyped"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="colorKeyTyped"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="altat10">
+            <Component class="javax.swing.JTextField" name="nofact">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat10KeyTyped"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nofactKeyTyped"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="altat11">
+            <Component class="javax.swing.JTextField" name="importe">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat11KeyTyped"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="importeKeyTyped"/>
               </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -631,13 +631,13 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTextArea" name="altat3">
+                <Component class="javax.swing.JTextArea" name="descripcion">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="3"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat3KeyTyped"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="descripcionKeyTyped"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -649,13 +649,13 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTextArea" name="altat12">
+                <Component class="javax.swing.JTextArea" name="observaciones">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat12KeyTyped"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="observacionesKeyTyped"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -690,7 +690,7 @@
                 <Property name="text" type="java.lang.String" value="Cancelar"/>
               </Properties>
             </Component>
-            <Component class="com.toedter.calendar.JDateChooser" name="altat9">
+            <Component class="com.toedter.calendar.JDateChooser" name="fecha">
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel4">
               <Properties>
@@ -708,14 +708,20 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="altalPlacas" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="altatv3" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="altalNoMotor" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="altatv4" min="-2" pref="134" max="-2" attributes="0"/>
+                                  <Component id="nomotor" min="-2" pref="134" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="altalPlacas" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="altalPlacas1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="placas" max="32767" attributes="0"/>
+                                      <Component id="jComboBox2" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -723,12 +729,12 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="altalKm" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="altatv5" min="-2" pref="134" max="-2" attributes="0"/>
+                                  <Component id="kilometraje" min="-2" pref="134" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="altalKmSer" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Component id="altatv6" max="32767" attributes="0"/>
+                                  <Component id="kmservicio" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
@@ -739,25 +745,28 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="altalPlacas1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="altalPlacas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="placas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
                                   <Component id="altalKm" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="altatv5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                  <Component id="altalPlacas" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="altatv3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="kilometraje" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                   <Component id="altalKmSer" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="altatv6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="kmservicio" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                   <Component id="altalNoMotor" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="altatv4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nomotor" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="14" max="32767" attributes="0"/>
@@ -774,14 +783,14 @@
                     <Property name="text" type="java.lang.String" value="Placas:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="altatv3">
+                <Component class="javax.swing.JTextField" name="placas">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="14" style="0"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altatv3KeyTyped"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="placasKeyTyped"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="altalNoMotor">
@@ -792,14 +801,14 @@
                     <Property name="text" type="java.lang.String" value="No. Motor: "/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="altatv4">
+                <Component class="javax.swing.JTextField" name="nomotor">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="14" style="0"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altatv4KeyTyped"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nomotorKeyTyped"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="altalKm">
@@ -810,14 +819,14 @@
                     <Property name="text" type="java.lang.String" value="Kilometraje:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="altatv5">
+                <Component class="javax.swing.JTextField" name="kilometraje">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="14" style="0"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altatv5KeyTyped"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="kilometrajeKeyTyped"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="altalKmSer">
@@ -828,15 +837,38 @@
                     <Property name="text" type="java.lang.String" value="Km Servicio:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="altatv6">
+                <Component class="javax.swing.JTextField" name="kmservicio">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="14" style="0"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altatv6KeyTyped"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="kmservicioKeyTyped"/>
                   </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="altalPlacas1">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="14" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Tipo:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="jComboBox2">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="4">
+                        <StringItem index="0" value="Camioneta"/>
+                        <StringItem index="1" value="Pickup"/>
+                        <StringItem index="2" value="Auto"/>
+                        <StringItem index="3" value="Motocicleta"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -851,15 +883,15 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="altat14">
+            <Component class="javax.swing.JTextField" name="stock">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="altat14ActionPerformed"/>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="altat14KeyTyped"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stockActionPerformed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="stockKeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="altalCantidad1">

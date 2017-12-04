@@ -248,7 +248,7 @@ public class Usuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
     
     private void iniciarTabla(){
-        String query = "select p.apellido_pat_personal,p.apellido_mat_personal,p.nombre_personal,a.nombre_area,pu.nombre_puesto from personal p inner join personal_puestos pp on p.id_personal=pp.id_personal inner join areas a on pp.id_area=a.id_area inner join puestos pu on pp.id_puesto=pu.id_puesto";
+        String query = "select p.apellido_pa,p.apellido_ma,p.nombre,a.area,pu.puesto from personal p inner join puesto pu on p.puesto_id_puesto=pu.id_puesto inner join area a on pu.area_id_area=a.id_area";
         String [][] busqueda = b.obtenerConsultas(query);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 busqueda
@@ -284,8 +284,8 @@ public class Usuarios extends javax.swing.JFrame {
         // TODO add your handling code here:
         String parametro=jTextField1.getText();
         String searching="";
-        if(!parametro.equals("")){searching = " where p.nombre_personal like '%"+parametro+"%'";}
-        String query = "select p.apellido_pat_personal,p.apellido_mat_personal,p.nombre_personal,a.nombre_area,pu.nombre_puesto from personal p inner join personal_puestos pp on p.id_personal=pp.id_personal inner join areas a on pp.id_area=a.id_area inner join puestos pu on pp.id_puesto=pu.id_puesto";
+        if(!parametro.equals("")){searching = " where p.nombre like '%"+parametro+"%'";}
+        String query = "select p.apellido_pa,p.apellido_ma,p.nombre,a.area,pu.puesto from personal p inner join puesto pu on p.puesto_id_puesto=pu.id_puesto inner join area a on pu.area_id_area=a.id_area";
         String [][] busqueda = b.obtenerConsultas(query+searching);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 busqueda
@@ -340,20 +340,19 @@ public class Usuarios extends javax.swing.JFrame {
         class PopupActionListener2 implements ActionListener {
         @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                int idPersonal=b.getId("select id_personal from personal where nombre_personal ='"+nombre+"' and apellido_pat_personal='"+apellido+"'");
+                int idPersonal=b.getId("select id_personal from personal where nombre ='"+nombre+"' and apellido_pa='"+apellido+"'");
                 String[] options = new String[]{"Cancelar","Eliminación usuario/password", "Eliminación de personal"};
                 int response = JOptionPane.showOptionDialog(getContentPane(), "Elegir modo de eliminación del personal "+apellido+" "+nombre, "Eliminar Usuario",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
                 null, options, options[0]);
                 if(response==1){
                     b.execute("delete from permisos_modulos where id_personal = '"+idPersonal+"'");
-                    b.execute("delete from usuarios where id_persona = '"+idPersonal+"'");
+                    b.execute("delete from usuario where personal_id_personal = '"+idPersonal+"'");
                     JOptionPane.showMessageDialog(getContentPane(), "Eliminado de usuario/password exitoso");
                 }
                 if(response==2){
                     b.execute("delete from permisos_modulos where id_personal = '"+idPersonal+"'");
-                    b.execute("delete from usuarios where id_personal = '"+idPersonal+"'");
-                    b.execute("delete from personal_puestos where id_personal='"+idPersonal+"'");
+                    b.execute("delete from usuario where personal_id_personal = '"+idPersonal+"'");
                     b.execute("delete from personal where id_personal = '"+idPersonal+"'");
                     JOptionPane.showMessageDialog(getContentPane(), "Eliminado de personal exitosa");
                 }
