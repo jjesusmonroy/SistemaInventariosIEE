@@ -801,24 +801,41 @@ public final class Modificar extends javax.swing.JFrame {
                 stockmin.setEnabled(true);
                 stock.setEnabled(true);
                 altalCantidad.setForeground(Color.BLACK);
+                noserie.setEnabled(false);
+                descripcion.setEnabled(false);
+                observaciones.setEnabled(false);
+                modelo.setEnabled(false);
+                jComboBox2.setEnabled(false);
+                placas.setEnabled(false);
+                nomotor.setEnabled(false);
+                kilometraje.setEnabled(false);
+                kmservicio.setEnabled(false);
                 break;
             case "vehiculos":
                 camposHabVehiculos();
+                stock.setEnabled(false);
+                stockmin.setEnabled(false);
                 break;
             default:
                 camposDesVehiculos();
                 stockmin.setEnabled(false);
                 stock.setEnabled(false);
+                noserie.setEnabled(true);
+                descripcion.setEnabled(true);
+                observaciones.setEnabled(true);
+                modelo.setEnabled(true);
                 altalCantidad.setForeground(Color.GRAY);
                 break;
         }
     }
     private void camposDesVehiculos(){
+        nombre.setEnabled(true);
        placas.setEnabled(false);
         nomotor.setEnabled(false);
         kilometraje.setEnabled(false);
         kmservicio.setEnabled(false);
         jComboBox2.setEnabled(false);
+        stockmin.setEnabled(false);
         altalNoMotor.setForeground(Color.GRAY);
         altalKm.setForeground(Color.GRAY);
         altalKmSer.setForeground(Color.GRAY);
@@ -827,6 +844,11 @@ public final class Modificar extends javax.swing.JFrame {
    }
    private void camposHabVehiculos(){
       // jPanel4.setEnabled(true);
+        noserie.setEnabled(true);
+        descripcion.setEnabled(true);
+        observaciones.setEnabled(true);
+        modelo.setEnabled(true);
+        nombre.setEnabled(false);
         placas.setEnabled(true);
         nomotor.setEnabled(true);
         kilometraje.setEnabled(true);
