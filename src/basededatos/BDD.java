@@ -14,8 +14,9 @@ import java.sql.*;
  */
 public class BDD{
 
-    
+    public boolean verificacionInsert;
     public BDD() {
+        verificacionInsert=true;
     
     }
     
@@ -120,6 +121,7 @@ public class BDD{
                 st.executeUpdate(insertar);
             }
         }catch(SQLException e){
+            verificacionInsert=false;
             System.out.println("error en m insertar c BDD\n"+e.getMessage());
         }
     }
