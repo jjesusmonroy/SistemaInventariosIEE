@@ -15,8 +15,13 @@ import javax.swing.JFileChooser;
 import javax.swing.ImageIcon;
 import javax.swing.Icon;
 import java.awt.Image;
+import java.text.ParseException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 /**
  *
  * @author Cherne
@@ -882,16 +887,18 @@ public class Alta extends javax.swing.JFrame {
         // TODO add your handling code here:
         String var = jComboBox1.getSelectedItem().toString().toLowerCase();
         int cont=0;
+        validaFecha();
         if(var.equals("vehiculos")){
-            if(valVehiculo()==0){
+            if(valVehiculo()==0 && validaFecha()){
                 altaProductos();
+                //altatnombre.setEnabled(false);
                 javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
                 limpiar();
             }else{
                 javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
             }
         }else if(var.equals("consumibles")){
-            if(valCamposGeneral()==0 && v.soloNumeros(altatstockmin.getText())==false){
+            if(valCamposConsumibles()==0 && validaFecha()){
                 altaProductos();
                 javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
                 limpiar();
@@ -900,7 +907,7 @@ public class Alta extends javax.swing.JFrame {
                 javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
             }
         }else{ 
-            if(valCamposGeneral()==0){
+            if(valCamposGeneral()==0 && validaFecha()){
                 altaProductos();
                 javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
                 limpiar();
@@ -963,11 +970,19 @@ public class Alta extends javax.swing.JFrame {
         if(var.equals("consumibles")){
             altatstockmin.setEnabled(true);
             altalCantidad.setForeground(Color.BLACK);
+            altatnoserie.setEnabled(false);
+            altatdescripcion.setEnabled(false);
+            altatobserv.setEnabled(false);
+            altatmodelo.setEnabled(false);
         }else if(var.equals("vehiculos")){
             camposHabVehiculos();
         }else{
             camposDesVehiculos();
             altatstockmin.setEnabled(false);
+            altatnoserie.setEnabled(true);
+            altatdescripcion.setEnabled(true);
+            altatobserv.setEnabled(true);
+            altatmodelo.setEnabled(true);
             altalCantidad.setForeground(Color.GRAY);
         }
     }//GEN-LAST:event_jComboBox1ItemStateChanged
@@ -1165,8 +1180,36 @@ public class Alta extends javax.swing.JFrame {
    }
     public int valVehiculo(){
           int cont=0;
-        cont+=valCamposGeneral();
-    
+        if(v.estaVacio(altatnoserie.getText())==true){
+            cont++;
+            //asMarca.setText("*");
+            altatnoserie.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(altatmarca.getText())==true){
+            cont++;
+            //asModelo.setText("*");
+            altatmarca.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(altatmodelo.getText())==true){
+            cont++;
+            //asNoSerie.setText("*");
+            altatmodelo.setBackground(Color.PINK);
+        }
+        if(v.soloLetras(altatcolor.getText())==true){
+            cont++;
+            //asColor.setText("*");
+            altatcolor.setBackground(Color.PINK);
+        }
+        if(v.soloNumeros(altatnofactura.getText())==true){
+            cont++;
+            //asNoFact.setText("*");
+            altatnofactura.setBackground(Color.PINK);
+        }
+        if(v.soloDecimales(altatimprote.getText())==true){
+            cont++;
+            //asImporte.setText("*");
+            altatimprote.setBackground(Color.PINK);
+        }       
        if(v.estaVacio(altatvplacas.getText())){
             cont++;
             //asImporte.setText("*");
@@ -1207,7 +1250,70 @@ public class Alta extends javax.swing.JFrame {
         }
         return cont;
    }
+    public boolean validaFecha() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaDate1;
+        try {
+            fechaDate1 = (altatfecha.getDate());
+            Date fA = new Date();
+            //Date fechaActual=sdf.parse(fA.getYear()+"-"+fA.getMonth()+"-"+fA.getDay());
+           Calendar c = new GregorianCalendar();
+            String dia = Integer.toString(c.get(Calendar.DATE));
+            String mes = Integer.toString(c.get(Calendar.MONTH)+1);
+            String annio = Integer.toString(c.get(Calendar.YEAR));
+             javax.swing.JOptionPane.showMessageDialog(this,"Fecha Actual:"+fA+"\nFecha Seleccionada:"+fechaDate1.toString());
+             Date fechaActual=sdf.parse(annio+"-"+ mes +"-"+ dia);
+             if(fechaActual.toString().equals(fechaDate1.toString()) ){
+            javax.swing.JOptionPane.showMessageDialog(this, "Fecha valida igual");
+            return true;
+        }
+        if(fechaActual.before(fechaDate1) ){
+            javax.swing.JOptionPane.showMessageDialog(this, "Fecha invalida");
+            return false;
+        }
+        } catch (ParseException ex) {
+            Logger.getLogger(Alta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         //formateador.parse(altatfecha.getDateFormatString());
+        javax.swing.JOptionPane.showMessageDialog(this, "Fecha valida");
+        return true;
+    }
+    public int valCamposConsumibles(){
+       int cont=0;
+       if(v.soloNumeros(altatstockmin.getText())==true){
+           cont++;
+            //asNombre.setText("*");
+            altatstockmin.setBackground(Color.PINK);
+       }
+        if(v.soloLetras(altatnombre.getText())==true){
+            cont++;
+            //asNombre.setText("*");
+            altatnombre.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(altatmarca.getText())==true){
+            cont++;
+            //asModelo.setText("*");
+            altatmarca.setBackground(Color.PINK);
+        }
+        if(v.soloLetras(altatcolor.getText())==true){
+            cont++;
+            //asColor.setText("*");
+            altatcolor.setBackground(Color.PINK);
+        }
+        if(v.soloNumeros(altatnofactura.getText())==true){
+            cont++;
+            //asNoFact.setText("*");
+            altatnofactura.setBackground(Color.PINK);
+        }
+        if(v.soloDecimales(altatimprote.getText())==true){
+            cont++;
+            //asImporte.setText("*");
+            altatimprote.setBackground(Color.PINK);
+        }
+        return cont;
+   }
    public void camposDesVehiculos(){
+       altatnombre.setEnabled(true);
        altatvplacas.setEnabled(false);
         altatvnomotor.setEnabled(false);
         altatvkm.setEnabled(false);
@@ -1222,6 +1328,11 @@ public class Alta extends javax.swing.JFrame {
    }
    public void camposHabVehiculos(){
       // jPanel4.setEnabled(true);
+        altatnoserie.setEnabled(true);
+        altatdescripcion.setEnabled(true);
+        altatobserv.setEnabled(true);
+        altatmodelo.setEnabled(true);
+        altatnombre.setEnabled(false);
         altatvplacas.setEnabled(true);
         altatvnomotor.setEnabled(true);
         altatvkm.setEnabled(true);
