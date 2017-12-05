@@ -10,7 +10,6 @@ package Administracion;
  * @author tepic
  */
 public class PrincipalAdministracion extends javax.swing.JFrame {
-
     /**
      * Creates new form PrincipalAdministracion
      */
