@@ -31,9 +31,13 @@ public class Asignar extends javax.swing.JFrame {
     int Cantidad;
     Clases.Validaciones v;
     Clases.MetodosG m;
+    
     public Asignar() {
 
         initComponents();
+        
+        jLabel1.setVisible(false);
+        lblId.setVisible(false);
         v=new Clases.Validaciones();
         m=new Clases.MetodosG();
         tp= new TablaPersonal();
@@ -86,7 +90,7 @@ public class Asignar extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        buscatxt = new javax.swing.JTextField();
         btn_buscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_productos = new javax.swing.JTable();
@@ -118,8 +122,13 @@ public class Asignar extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btn_buscar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/loupe.png"))); // NOI18N
+        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/loupe.png"))); // NOI18N
         btn_buscar.setText("Buscar");
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
 
         tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -139,7 +148,7 @@ public class Asignar extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_productos);
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/error.png"))); // NOI18N
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
         jButton11.setText("Cancelar");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,7 +201,7 @@ public class Asignar extends javax.swing.JFrame {
         });
 
         btn_Guardar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/save.png"))); // NOI18N
+        btn_Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/save.png"))); // NOI18N
         btn_Guardar.setText("Guardar");
         btn_Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,7 +228,7 @@ public class Asignar extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buscatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -256,7 +265,7 @@ public class Asignar extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_buscar)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buscatxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton11)
                             .addComponent(jButton12)
                             .addComponent(btn_Guardar)
@@ -291,7 +300,7 @@ public class Asignar extends javax.swing.JFrame {
         jLabel5.setText("Sistema de Control de Inventario IEEN");
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/IEE.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IEE.png"))); // NOI18N
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -416,7 +425,6 @@ public class Asignar extends javax.swing.JFrame {
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
        // pasar=tbl_productos1.getModel();
-        jLabel1.setVisible(false);
         pasarDatos();
         dispose();
         TablaPersonal  tablaPersonal=new TablaPersonal();
@@ -493,6 +501,18 @@ public class Asignar extends javax.swing.JFrame {
             b.insertar("asignacion", insertar);
             javax.swing.JOptionPane.showMessageDialog(this, "Se insertó el registro"+insertar[0]);
         }
+        
+        buscatxt.setText("");
+        jLabel1.setText("");
+        lblId.setText("");
+        for(int i = tbl_productos1.getRowCount()-1; i>=0;i--){
+            DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
+            model.removeRow(i);
+        }
+        
+        
+        
+        
     }//GEN-LAST:event_btn_GuardarActionPerformed
 
     private void txtCantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyPressed
@@ -508,6 +528,32 @@ public class Asignar extends javax.swing.JFrame {
         if((c<'0' || c>'9')) evt.consume();
 
     }//GEN-LAST:event_txtCantidadKeyTyped
+
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+    String criteriobus = buscatxt.getText();
+    if(criteriobus.equals("")){ javax.swing.JOptionPane.showMessageDialog(this, "Campo de búsqueda vacío"); return; }
+    String[][] busqueda = b.obtenerConsultas("select id_producto"
+            + ",nombre_producto,marca_producto,modelo_producto,stock_producto "
+            + "from producto where nombre_producto = '"+ criteriobus +"' "
+            + "and status_producto = 'Disponible'");
+    
+    modelo = new javax.swing.table.DefaultTableModel(
+                busqueda,
+                new String[]{
+                    "Folio", 
+                    "Nombre_Producto", 
+                    "Marca", 
+                    "Modelo", 
+                    "Stock"
+                }
+        ) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        tbl_productos.setModel(modelo);
+    }//GEN-LAST:event_btn_buscarActionPerformed
     public void pasarDatos(){
         int x = tbl_productos.getRowCount();
         datos=new String[x][4];
@@ -598,6 +644,7 @@ public class Asignar extends javax.swing.JFrame {
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btn_Guardar;
     private javax.swing.JButton btn_buscar;
+    private javax.swing.JTextField buscatxt;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     public javax.swing.JLabel jLabel1;
@@ -612,7 +659,6 @@ public class Asignar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     public javax.swing.JLabel lblId;
     private javax.swing.JTable tbl_productos;
     private javax.swing.JTable tbl_productos1;
