@@ -887,9 +887,9 @@ public class Alta extends javax.swing.JFrame {
         // TODO add your handling code here:
         String var = jComboBox1.getSelectedItem().toString().toLowerCase();
         int cont=0;
-        validaFecha();
+        //validaFecha();
         if(var.equals("vehiculos")){
-            if(valVehiculo()==0 && validaFecha()){
+            if(valVehiculo()==0){// && validaFecha()){
                 altaProductos();
                 //altatnombre.setEnabled(false);
                 javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
@@ -898,7 +898,7 @@ public class Alta extends javax.swing.JFrame {
                 javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
             }
         }else if(var.equals("consumibles")){
-            if(valCamposConsumibles()==0 && validaFecha()){
+            if(valCamposConsumibles()==0){// && validaFecha()){
                 altaProductos();
                 javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
                 limpiar();
@@ -907,7 +907,7 @@ public class Alta extends javax.swing.JFrame {
                 javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
             }
         }else{ 
-            if(valCamposGeneral()==0 && validaFecha()){
+            if(valCamposGeneral()==0){// && validaFecha()){
                 altaProductos();
                 javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
                 limpiar();
@@ -1099,7 +1099,7 @@ public class Alta extends javax.swing.JFrame {
         char c = evt.getKeyChar();
         if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
                 && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
-                && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' &&(c<'0' || c>'9')) evt.consume();
+                && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' &&(c<'0' || c>'9') && c!='.' && c!=',') evt.consume();
     }//GEN-LAST:event_altatdescripcionKeyTyped
 
     private void altatvnomotorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatvnomotorKeyTyped
@@ -1250,18 +1250,18 @@ public class Alta extends javax.swing.JFrame {
         }
         return cont;
    }
-    public boolean validaFecha() {
+   /* public boolean validaFecha() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date fechaDate1;
         try {
             fechaDate1 = (altatfecha.getDate());
-            Date fA = new Date();
+           // Date fA = new Date();
             //Date fechaActual=sdf.parse(fA.getYear()+"-"+fA.getMonth()+"-"+fA.getDay());
            Calendar c = new GregorianCalendar();
             String dia = Integer.toString(c.get(Calendar.DATE));
             String mes = Integer.toString(c.get(Calendar.MONTH)+1);
             String annio = Integer.toString(c.get(Calendar.YEAR));
-             javax.swing.JOptionPane.showMessageDialog(this,"Fecha Actual:"+fA+"\nFecha Seleccionada:"+fechaDate1.toString());
+             javax.swing.JOptionPane.showMessageDialog(this,"Fecha Actual:"+annio+"-"+ mes +"-"+ dia+"\nFecha Seleccionada:"+fechaDate1.toString());
              Date fechaActual=sdf.parse(annio+"-"+ mes +"-"+ dia);
              if(fechaActual.toString().equals(fechaDate1.toString()) ){
             javax.swing.JOptionPane.showMessageDialog(this, "Fecha valida igual");
@@ -1277,7 +1277,7 @@ public class Alta extends javax.swing.JFrame {
          //formateador.parse(altatfecha.getDateFormatString());
         javax.swing.JOptionPane.showMessageDialog(this, "Fecha valida");
         return true;
-    }
+    }*/
     public int valCamposConsumibles(){
        int cont=0;
        if(v.soloNumeros(altatstockmin.getText())==true){
