@@ -397,13 +397,13 @@ public class Permisos extends javax.swing.JFrame {
             String uUsuario = "usuario='"+jTextField1.getText()+"', "+
                             "pass='"+jTextField2.getText()+"'";
             b.execute("update usuario set "+uUsuario+" where id_usuario ='"+usuario[0][0]+"'");
-            String uPermisos = "alta_perrmiso='"+lAlta.getText()+"', "+
+            String uPermisos = "alta_permiso='"+lAlta.getText()+"', "+
                             "baja_permiso='"+lBaja.getText()+"', "+
                             "consulta_permiso='"+lConsulta.getText()+"', "+
                             "modificar_permiso='"+lModificar.getText()+"', "+
                             "administrar_usuario_permiso='"+lAdministrar.getText()+"'";
             b.execute("update permisos set "+uPermisos+" where id_permiso ='"+usuario[0][3]+"'");
-            b.execute("update permisos_modulos set id_modulo='"+idModulo+"' where id_usuario='"+usuario[0][0]+"'");
+            b.execute("update permisos_modulos set modulos_id_modulo='"+idModulo+"' where usuario_id_usuario='"+usuario[0][0]+"'");
             JOptionPane.showMessageDialog(this, "Actualizado con exito");
             bandera=true;
         }

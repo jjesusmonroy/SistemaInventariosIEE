@@ -1021,7 +1021,6 @@ public final class Modificar extends javax.swing.JFrame {
                 lblImage.setText("");
                 lblImage.setIcon(icono);
             }catch(Exception e){
-                javax.swing.JOptionPane.showMessageDialog(this, "Error abriendo imagen");
             }
 
         }
