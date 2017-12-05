@@ -248,7 +248,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel17.setText("No. Licencia:");
 
-        auNoLicencia.setNextFocusableComponent(auTelefono);
+        auNoLicencia.setNextFocusableComponent(auCalle);
         auNoLicencia.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 auNoLicenciaFocusGained(evt);
@@ -284,7 +284,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel15.setText("Telefono:");
 
-        auTelefono.setNextFocusableComponent(auCalle);
+        auTelefono.setNextFocusableComponent(jButton9);
         auTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 auTelefonoFocusGained(evt);
@@ -299,7 +299,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel19.setText("Calle:");
 
-        auCalle.setNextFocusableComponent(auNum);
+        auCalle.setNextFocusableComponent(auColonia);
         auCalle.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 auCalleFocusGained(evt);
@@ -314,7 +314,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel9.setText("Numero:");
 
-        auNum.setNextFocusableComponent(auColonia);
+        auNum.setNextFocusableComponent(auCp);
         auNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 auNumActionPerformed(evt);
@@ -334,7 +334,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel8.setText("Colonia:");
 
-        auColonia.setNextFocusableComponent(auCp);
+        auColonia.setNextFocusableComponent(auNum);
         auColonia.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 auColoniaFocusGained(evt);
@@ -349,6 +349,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel20.setText("Codigo postal:");
 
+        auCp.setNextFocusableComponent(auTelefono);
         auCp.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 auCpFocusGained(evt);

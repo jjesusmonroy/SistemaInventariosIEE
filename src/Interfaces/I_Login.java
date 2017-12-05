@@ -240,6 +240,8 @@ public class I_Login extends javax.swing.JFrame {
 
     private void btn_iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciarActionPerformed
         // TODO add your handling code here:
+        Buscar buscar = new Buscar();
+        buscar.nombreusuario=txt_usuario.getText();
         String nom_usuario = txt_usuario.getText();
         char[] password = txt_password.getPassword();
         if(nom_usuario.equals("") || password.length==0)return;

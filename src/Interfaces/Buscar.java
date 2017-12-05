@@ -9,6 +9,7 @@ package Interfaces;
 import basededatos.BDD;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
@@ -24,12 +25,16 @@ public class Buscar extends javax.swing.JFrame {
      */
     BDD b;
     String [][] check;
+    public static String nombreusuario;
     public Buscar() {
         initComponents();
         jLabelIdModificar.setVisible(false);
+        jlabelidusuario.setVisible(false);
         b = new BDD();
+        fillComboBox();
         iniciarTabla();
         jTextField1.requestFocus();
+        System.out.println(nombreusuario);
     }
 
     /**
@@ -49,15 +54,16 @@ public class Buscar extends javax.swing.JFrame {
         tbl_productos = new javax.swing.JTable();
         jButton11 = new javax.swing.JButton();
         jLabelIdModificar = new javax.swing.JLabel();
-        jParametro = new javax.swing.JComboBox<String>();
+        jParametro = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jStatus = new javax.swing.JComboBox<String>();
+        jStatus = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jlabelidusuario = new javax.swing.JLabel();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -120,12 +126,16 @@ public class Buscar extends javax.swing.JFrame {
         jLabelIdModificar.setText("jLabel1");
 
         jParametro.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jParametro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nombre producto ", "Marca producto", "Modelo producto" }));
+        jParametro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jParametroItemStateChanged(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/search.png"))); // NOI18N
 
         jStatus.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Disponible", "Pendiente", "Agotado" }));
+        jStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Pendiente", "Agotado" }));
         jStatus.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jStatusItemStateChanged(evt);
@@ -205,6 +215,8 @@ public class Buscar extends javax.swing.JFrame {
             }
         });
 
+        jlabelidusuario.setText("jLabel2");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -214,7 +226,10 @@ public class Buscar extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlabelidusuario))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(72, 72, 72)
@@ -241,7 +256,9 @@ public class Buscar extends javax.swing.JFrame {
                                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addGap(12, 12, 12)
-                        .addComponent(jLabel4)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jlabelidusuario))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -279,20 +296,35 @@ public class Buscar extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void fillComboBox(){
+        String [] categorias = b.convertir2d1d(b.obtenerConsultas("select nombre_categoria from categoria order by nombre_categoria"));
+        ArrayList<String> arraycat = new ArrayList<>();
+        arraycat.add("General");
+        for(String p : categorias){
+            arraycat.add(p);
+        }
+        String [] catwithgeneral = arraycat.toArray(new String [arraycat.size()]);
+        jParametro.setModel(new javax.swing.DefaultComboBoxModel(catwithgeneral));
+    }
     private void iniciarTabla(){
-        String [][] busqueda = b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto,stock_producto,status_producto from producto where status_producto = '"+jStatus.getSelectedItem().toString()+"'");
+        String busquedageneral="";
+        if(jParametro.getSelectedIndex()!=0){busquedageneral=" and c.nombre_categoria = '"+jParametro.getSelectedItem().toString()+"'";}
+        String query="select p.folio_producto,c.nombre_categoria,p.nombre_producto,p.marca_producto,p.modelo_producto,p.stock_producto,p.status_producto from producto p inner join categoria c on p.id_categoria=c.id_categoria where status_producto = '"+jStatus.getSelectedItem().toString()+"'"+busquedageneral;
+        String [][] busqueda = b.obtenerConsultas(query);
         tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
                 busqueda
                 ,
             new String [] {
-                "Folio", "Nombre_Producto", "Marca","Modelo","Stock","Status"
+                "Folio","Categoria", "Nombre_Producto", "Marca","Modelo","Stock","Status"
             }
         ){
             @Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
-			}}
+			}}       
         );
+        
         
     }
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -305,22 +337,17 @@ public class Buscar extends javax.swing.JFrame {
         // TODO add your handling code here:
         String parametro=jTextField1.getText();
         String searching="";
-        int parametroB=jParametro.getSelectedIndex();
-        String conditional="";
-        switch(parametroB){
-            case 0: conditional = "nombre_producto";
-            break;
-            case 1: conditional = "marca_producto";
-            break;
-            case 2: conditional = "modelo_producto";
-        }
-        if(!parametro.equals("")){searching = " and "+conditional+" like '%"+parametro+"%'";}
-        String [][] busqueda = b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto,stock_producto,status_producto from producto where status_producto = '"+jStatus.getSelectedItem().toString()+"'"+searching);
+        String busquedageneral="";
+        if(!parametro.equals("")){searching = " and nombre_producto like '%"+parametro+"%'";}
+        
+        if(jParametro.getSelectedIndex()!=0){busquedageneral=" and c.nombre_categoria = '"+jParametro.getSelectedItem().toString()+"'";}
+        String query="select p.folio_producto,c.nombre_categoria,p.nombre_producto,p.marca_producto,p.modelo_producto,p.stock_producto,p.status_producto from producto p inner join categoria c on p.id_categoria=c.id_categoria where p.status_producto = '"+jStatus.getSelectedItem().toString()+"'"+busquedageneral+searching;
+        String [][] busqueda = b.obtenerConsultas(query);
         tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
                 busqueda
                 ,
             new String [] {
-                "Folio"/*, "Categoria"*/, "Nombre_Producto", "Marca","Modelo","Stock","Status"
+                "Folio","Categoria", "Nombre_Producto", "Marca","Modelo","Stock","Status"
             }
         ));
     }//GEN-LAST:event_jTextField1KeyReleased
@@ -339,39 +366,28 @@ public class Buscar extends javax.swing.JFrame {
 
     private void tbl_productosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productosMouseReleased
         // TODO add your handling code here:
-        if(evt.getButton()== java.awt.event.MouseEvent.BUTTON3 && (tbl_productos.getSelectedRowCount()!=0)){
+        //if(evt.getButton()== java.awt.event.MouseEvent.BUTTON3 && (tbl_productos.getSelectedRowCount()!=0)){
+        if(evt.getClickCount()==2){
             int rows = tbl_productos.rowAtPoint(evt.getPoint());
             String id = tbl_productos.getValueAt(rows, 0)+"";
             check = b.obtenerConsultas("select foto_producto from producto where folio_producto ='"+id+"'");
+            String query="select pe.modificar_permiso,pe.baja_permiso from usuario u inner join permisos_modulos pm on u.id_usuario=pm.usuario_id_usuario inner join permisos pe on pm.permisos_id_permiso=pe.id_permiso where u.usuario='"+nombreusuario+"'";
+            String [][] usuario = b.obtenerConsultas(query);
             jLabelIdModificar.setText(id+"");
-            if(check[0][0]!=null){
             final JPopupMenu menu = new JPopupMenu();
-            JMenuItem item = new JMenuItem("Modificar");
+            JMenuItem item1 = new JMenuItem("Modificar");
             JMenuItem item2 = new JMenuItem("Eliminar");
             JMenuItem item3 = new JMenuItem("Ver foto");
-            menu.add(item);
-            menu.add(item2);
-            menu.add(item3);
             ActionListener actionListener = new PopupActionListener();
             ActionListener actionListener2 = new PopupActionListener2();
             ActionListener al3 = new PopupActionListener3();
-            item.addActionListener(actionListener);
+            item1.addActionListener(actionListener);
             item2.addActionListener(actionListener2);
             item3.addActionListener(al3);
+            if(usuario[0][0].equals("1"))menu.add(item1);
+            if(usuario[0][1].equals("1"))menu.add(item2);
+            if(check[0][0]!=null)menu.add(item3);
             menu.show(evt.getComponent(),evt.getX(),evt.getY());
-            }
-            else {
-               final JPopupMenu menu = new JPopupMenu();
-            JMenuItem item = new JMenuItem("Modificar");
-            JMenuItem item2 = new JMenuItem("Eliminar");
-            menu.add(item);
-            menu.add(item2);
-            ActionListener actionListener = new PopupActionListener();
-            ActionListener actionListener2 = new PopupActionListener2();
-            item.addActionListener(actionListener);
-            item2.addActionListener(actionListener2);
-            menu.show(evt.getComponent(),evt.getX(),evt.getY()); 
-            }
         }
     }//GEN-LAST:event_tbl_productosMouseReleased
 
@@ -396,6 +412,11 @@ public class Buscar extends javax.swing.JFrame {
                 && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
                 && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' &&(c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jParametroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jParametroItemStateChanged
+        // TODO add your handling code here:
+        iniciarTabla();
+    }//GEN-LAST:event_jParametroItemStateChanged
 
     class PopupActionListener implements ActionListener {
         @Override
@@ -479,6 +500,7 @@ public class Buscar extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jStatus;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JLabel jlabelidusuario;
     private javax.swing.JTable tbl_productos;
     // End of variables declaration//GEN-END:variables
 }
