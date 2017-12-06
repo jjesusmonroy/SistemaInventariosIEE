@@ -5,11 +5,23 @@
  */
 package Interfaces;
 
+import Reportes.ListaValeResguardo;
 import basededatos.BDD;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.awt.event.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -114,6 +126,12 @@ public class Asignar extends javax.swing.JFrame {
         txtCantidad = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        tipouso = new javax.swing.JTextField();
+        municipio = new javax.swing.JTextField();
+        localidad = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -131,7 +149,7 @@ public class Asignar extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btn_buscar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/loupe.png"))); // NOI18N
+        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/loupe.png"))); // NOI18N
         btn_buscar.setText("Buscar");
         btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,7 +182,7 @@ public class Asignar extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_productos);
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/error.png"))); // NOI18N
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
         jButton11.setText("Cancelar");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -206,7 +224,7 @@ public class Asignar extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tbl_productos1);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 1)); // NOI18N
 
         jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/search-user-wearing-tie.png"))); // NOI18N
         jButton12.setText("Asignar a");
@@ -217,8 +235,8 @@ public class Asignar extends javax.swing.JFrame {
         });
 
         btn_Guardar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/save.png"))); // NOI18N
-        btn_Guardar.setText("Guardar");
+        btn_Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/save.png"))); // NOI18N
+        btn_Guardar.setText("Generar Vale");
         btn_Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_GuardarActionPerformed(evt);
@@ -240,6 +258,24 @@ public class Asignar extends javax.swing.JFrame {
         });
 
         jLabel2.setText("Cantidad:");
+
+        jLabel3.setText("Tipo de Uso:");
+
+        jLabel7.setText("Municipio:");
+
+        jLabel8.setText("Localidad:");
+
+        tipouso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipousoActionPerformed(evt);
+            }
+        });
+
+        municipio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                municipioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -269,10 +305,24 @@ public class Asignar extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(55, 55, 55)
-                        .addComponent(lblId)
-                        .addGap(44, 44, 44))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(tipouso, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(municipio, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(localidad, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(64, 64, 64)))
+                        .addComponent(lblId))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -290,12 +340,22 @@ public class Asignar extends javax.swing.JFrame {
                             .addComponent(jButton11)
                             .addComponent(jButton12)
                             .addComponent(btn_Guardar)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                            .addComponent(jLabel1)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel7)
+                            .addComponent(municipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(tipouso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(localidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(lblId)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(lblId)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -307,7 +367,7 @@ public class Asignar extends javax.swing.JFrame {
                         .addComponent(btnBorrar))
                     .addComponent(jScrollPane2)
                     .addComponent(jScrollPane1))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 102, 255));
@@ -321,7 +381,7 @@ public class Asignar extends javax.swing.JFrame {
         jLabel5.setText("Sistema de Control de Inventario IEEN");
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/IEE.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IEE.png"))); // NOI18N
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -440,7 +500,7 @@ public class Asignar extends javax.swing.JFrame {
             txtCantidad.setEnabled(false);
         }else{
             stock=true;
-            stocko= Integer.parseInt(busqueda[0][0]);
+            //stocko= Integer.parseInt(busqueda[0][0]);
             txtCantidad.setEditable(true);
             txtCantidad.setEnabled(true);
         }
@@ -523,8 +583,79 @@ public class Asignar extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_productos1MouseClicked
 
     private void btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GuardarActionPerformed
-        // TODO add your handling code here:
-
+        String cad="";
+        try{cad = tbl_productos1.getValueAt(0,0)+"";}catch(ArrayIndexOutOfBoundsException ex){
+            javax.swing.JOptionPane.showMessageDialog(this, "No hay ningún elemento seleccionado");
+            return;
+        }
+        System.out.println(tbl_productos1.getColumnCount() + " -  Row"+ tbl_productos1.getRowCount());
+        String [][] arr = new String[tbl_productos1.getRowCount()][tbl_productos1.getColumnCount()];
+        for(int i = 0;i<tbl_productos1.getColumnCount();i++){   
+            for(int j = 0; j<tbl_productos1.getRowCount();j++){
+                arr[j][i]=tbl_productos1.getValueAt(j,i)+"";
+                 System.out.println(arr[j][i]);
+            }
+        }
+        int r=0,s=0,t=0;
+        if(tipouso.getText().equals("")){r=1;}
+        if(municipio.getText().equals("")){s=1;}
+        if(localidad.getText().equals("")){t=1;}
+        String mes = "Campos en blanco";
+        if(r==1){
+            mes = mes + "\n Tipo de uso";
+        }
+        if(s==1){
+            mes = mes + "\n Municipio";
+        }
+        if(t==1){
+            mes = mes + "\n Localidad";
+        }
+        
+        if(r==1 || s==1 || t==1){
+            javax.swing.JOptionPane.showMessageDialog(this,mes);
+            return;
+        }
+        
+        List lista = new ArrayList();
+        String[][] busqueda = b.obtenerConsultas(
+                "select p.puesto from personal pe, puesto p "
+              + "where puesto_id_puesto = id_puesto and id_personal ="+lblId.getText()+";");
+        
+        String[][] busqueda2 = b.obtenerConsultas(
+                "select a.area from personal pe, puesto p, area a where \n" +
+                "area_id_area = id_area and \n" +
+                "puesto_id_puesto = id_puesto and \n" +
+                "id_personal =" + lblId.getText() +";");
+        
+        
+        try{
+                for(int i = 0;i<tbl_productos1.getRowCount();i++){
+                    ListaValeResguardo listaedad = new ListaValeResguardo(
+                            tbl_productos1.getValueAt(i,0).toString(),
+                            tbl_productos1.getValueAt(i,1).toString(),
+                            tbl_productos1.getValueAt(i,2).toString(),
+                            tbl_productos1.getValueAt(i,3).toString());
+                    lista.add(listaedad);
+                }
+                try {
+                JasperReport reporte = (JasperReport)  JRLoader.loadObject("src/Reportes/ValeReguardo.jasper");
+                
+                Map parametro = new HashMap();
+                parametro.put("nombre",jLabel1.getText());
+                parametro.put("cargo", busqueda[0][0]);
+                parametro.put("area", busqueda2[0][0]);
+                parametro.put("tipo",tipouso.getText());
+                parametro.put("muni", municipio.getText());
+                parametro.put("localidad", localidad.getText());
+                JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, new JRBeanCollectionDataSource(lista));
+                JasperViewer jas = new JasperViewer(jprint,false); 
+                jas.setVisible( true );
+                }catch (JRException ex) {
+                }
+            }catch(ArrayIndexOutOfBoundsException e){
+                JOptionPane.showMessageDialog(null,"No existen datos para generar reporte","ERROR",JOptionPane.WARNING_MESSAGE);
+            }
+        
         int id = m.getMax(b.obtenerConsultas("select id_asignacion from asignacion"));
 
     
@@ -547,6 +678,8 @@ public class Asignar extends javax.swing.JFrame {
             DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
             model.removeRow(i);
         }
+        
+        
         
         
         
@@ -600,6 +733,14 @@ public class Asignar extends javax.swing.JFrame {
     private void tbl_productosAncestorMoved(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_tbl_productosAncestorMoved
         // TODO add your handling code here:
     }//GEN-LAST:event_tbl_productosAncestorMoved
+
+    private void tipousoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipousoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tipousoActionPerformed
+
+    private void municipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_municipioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_municipioActionPerformed
     public void pasarDatos(){
         int x = tbl_productos.getRowCount();
         datos=new String[x][4];
@@ -697,17 +838,23 @@ public class Asignar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JLabel lblId;
+    private javax.swing.JTextField localidad;
+    private javax.swing.JTextField municipio;
     private javax.swing.JTable tbl_productos;
     private javax.swing.JTable tbl_productos1;
+    private javax.swing.JTextField tipouso;
     private javax.swing.JTextField txtCantidad;
     // End of variables declaration//GEN-END:variables
 }
