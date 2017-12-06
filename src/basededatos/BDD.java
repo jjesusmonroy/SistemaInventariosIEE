@@ -8,20 +8,25 @@ package basededatos;
 
 import Clases.MetodosG;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author pasto
  */
 public class BDD{
 
-    
+    public boolean verificacionInsert;
+    Connection con;
     public BDD() {
-    
+        con=null;
+        verificacionInsert=true;
     }
     
     public static void main (String [] args){
         BDD b = new BDD();
         MetodosG m = new MetodosG();
+        String [][] a = b.obtenerConsultas("select * from producto");
     }
     //metodo para validar inicio de sesion de login
     public String[] validarInicio(String usuario){
@@ -68,22 +73,30 @@ public class BDD{
                     }
                 if(aux<renglones)aux++;   
             }
-                resul.close();
             }catch(SQLException e){
                 System.out.println("Error en m obtener consultas c BDD \n"+e.getMessage());
-            } 
+            }finally{
+            try {
+                if(resul!=null)resul.close();
+                if(con!=null)con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
         return datos;
     }
     
     public ResultSet connection(String query){
         ResultSet a=null;
         try{
-            Connection con = DriverManager.getConnection
+            con = DriverManager.getConnection
                 ("jdbc:mysql://localhost:3306/dbis","root","root");
             Statement st = con.createStatement();
             a=st.executeQuery(query);
         }catch(SQLException e){
             System.out.println(e);
+        }finally{
+            
         }
         return a;
     }
@@ -91,14 +104,21 @@ public class BDD{
     public void execute(String query){
         try{
             
-            Connection con = DriverManager.getConnection
+            con = DriverManager.getConnection
                 ("jdbc:mysql://localhost:3306/dbis","root","root");       
             try (Statement st = con.createStatement()) {
                 st.executeUpdate(query);
             }
         }catch(SQLException e){
             System.out.println("error m execute c BDD \n"+e.getMessage());
+        }finally{
+            if(con!=null)try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        
     }
     
     public void insertar(String tabla, String [] elementos){
@@ -114,13 +134,20 @@ public class BDD{
         insertar+=")";
         try{
             
-            Connection con = DriverManager.getConnection
+            con = DriverManager.getConnection
                 ("jdbc:mysql://localhost:3306/dbis","root","root");       
             try (Statement st = con.createStatement()) {
                 st.executeUpdate(insertar);
             }
         }catch(SQLException e){
+            verificacionInsert=false;
             System.out.println("error en m insertar c BDD\n"+e.getMessage());
+        }finally{
+            if(con!=null)try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     
@@ -163,6 +190,13 @@ public class BDD{
             id = Integer.parseInt(rs.getString(1)); }
         }catch(NumberFormatException | SQLException e){
             System.out.println("Error en metodo getId de BDD");
+        }finally{
+            try {
+                if(rs!=null)rs.close();
+                if(con!=null)con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return id;
     }
@@ -175,7 +209,14 @@ public class BDD{
             while(rs.next()){
                 resultado=rs.getString(1);
             }
-        }catch(SQLException e){}
+        }catch(SQLException e){}finally{
+            try {
+                if(rs!=null)rs.close();
+                if(con!=null)con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         return resultado;
     }
     
