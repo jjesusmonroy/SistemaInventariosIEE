@@ -27,8 +27,10 @@ public class Asignar extends javax.swing.JFrame {
     ArrayList<String> asignados;
     TableModel pasar;
     String datos[][];
+    String stocknn, stockoo;
     int id_cambio, id_cambio2, cont;
-    int Cantidad;
+    int Cantidad,stockn,stocko;
+    boolean stock;
     Clases.Validaciones v;
     Clases.MetodosG m;
     
@@ -38,11 +40,18 @@ public class Asignar extends javax.swing.JFrame {
         
         jLabel1.setVisible(false);
         lblId.setVisible(false);
+        txtCantidad.setEditable(false);
+        txtCantidad.setEnabled(false);
         v=new Clases.Validaciones();
         m=new Clases.MetodosG();
         tp= new TablaPersonal();
         id_cambio=0;
         id_cambio2=0;
+        stock=false;
+        stocknn=""; 
+        stockoo = ""; 
+        stockn=0;
+        stocko=0;
         cont =0;
         b = new BDD();
         asignados = new ArrayList<>();
@@ -122,7 +131,7 @@ public class Asignar extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btn_buscar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/loupe.png"))); // NOI18N
+        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/loupe.png"))); // NOI18N
         btn_buscar.setText("Buscar");
         btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,6 +150,13 @@ public class Asignar extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbl_productos.addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
+            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
+                tbl_productosAncestorMoved(evt);
+            }
+            public void ancestorResized(java.awt.event.HierarchyEvent evt) {
+            }
+        });
         tbl_productos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_productosMouseClicked(evt);
@@ -148,7 +164,7 @@ public class Asignar extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_productos);
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/error.png"))); // NOI18N
         jButton11.setText("Cancelar");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,7 +217,7 @@ public class Asignar extends javax.swing.JFrame {
         });
 
         btn_Guardar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/save.png"))); // NOI18N
+        btn_Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/save.png"))); // NOI18N
         btn_Guardar.setText("Guardar");
         btn_Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,6 +225,11 @@ public class Asignar extends javax.swing.JFrame {
             }
         });
 
+        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantidadActionPerformed(evt);
+            }
+        });
         txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCantidadKeyPressed(evt);
@@ -300,7 +321,7 @@ public class Asignar extends javax.swing.JFrame {
         jLabel5.setText("Sistema de Control de Inventario IEEN");
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IEE.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/IEE.png"))); // NOI18N
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -402,12 +423,29 @@ public class Asignar extends javax.swing.JFrame {
             System.out.println(id);
             idCambio=Integer.parseInt(tbl_productos.getValueAt(rows, 0).toString());
         }*/
+        
         id_cambio2=tbl_productos1.getRowCount();
         if(evt.getClickCount()==1 ){
             btnAgregar.setEnabled(true);
             int rows = tbl_productos.rowAtPoint(evt.getPoint());
             id_cambio=Integer.parseInt(tbl_productos.getValueAt(rows, 0).toString());           
         }
+        
+        String[][] busqueda = b.obtenerConsultas(
+                "select stock_producto from producto "
+              + "where id_producto = "+id_cambio+";");
+        if(busqueda==null){ 
+            stock=false;
+            txtCantidad.setEditable(false);
+            txtCantidad.setEnabled(false);
+        }else{
+            stock=true;
+            stocko= Integer.parseInt(busqueda[0][0]);
+            txtCantidad.setEditable(true);
+            txtCantidad.setEnabled(true);
+        }
+        
+        
 
     }//GEN-LAST:event_tbl_productosMouseClicked
 
@@ -554,6 +592,14 @@ public class Asignar extends javax.swing.JFrame {
         };
         tbl_productos.setModel(modelo);
     }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadActionPerformed
+
+    private void tbl_productosAncestorMoved(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_tbl_productosAncestorMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbl_productosAncestorMoved
     public void pasarDatos(){
         int x = tbl_productos.getRowCount();
         datos=new String[x][4];
@@ -568,7 +614,7 @@ public class Asignar extends javax.swing.JFrame {
      private void cambiarDeTabla(){
         if(id_cambio==0){
             javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una fila");
-        }else{
+        }else if(stock){
             if(busIguales(id_cambio)){              
              }else{
              if(!v.soloNumeros(txtCantidad.getText())){
