@@ -26,12 +26,14 @@ public class I_Login extends javax.swing.JFrame {
     
     BDD a;
     Manejador_Ventanas mv;
-    
+    public String usuarioActual;
     public I_Login() {
         initComponents();
+        usuarioActual="";
         lbl_invisible.setVisible(false);
         a = new BDD();
         mv = new Manejador_Ventanas();
+        
     }
 
     /**
@@ -243,6 +245,7 @@ public class I_Login extends javax.swing.JFrame {
         Buscar buscar = new Buscar();
         buscar.nombreusuario=txt_usuario.getText();
         String nom_usuario = txt_usuario.getText();
+        usuarioActual=txt_usuario.getText();
         char[] password = txt_password.getPassword();
         if(nom_usuario.equals("") || password.length==0)return;
         

@@ -5,8 +5,11 @@
  * and open the template in the editor.
  */
 package Interfaces;
+import Clases.MetodosG;
 import basededatos.BDD;
 import javax.swing.table.DefaultTableModel;
+import java.util.GregorianCalendar;
+import java.util.Calendar;
 
 /**
  *
@@ -22,16 +25,18 @@ public class NuevaSolicitud extends javax.swing.JFrame {
     Object [] nuevo;
     String [][]matrix;
     int valFil;
+    MetodosG m;
         
     public NuevaSolicitud() {
+        b = new BDD();
+        m = new MetodosG(); 
         valFil=5;
         matrix=new String [valFil][5];
         b=new BDD();
         nuevo= new Object[5];
         s=new Solicitar();
         initComponents();
-        nsComboBox.setModel(new javax.swing.DefaultComboBoxModel(b.convertir2d1d
-        (b.obtenerConsultas("select nombre_categoria from categoria order by nombre_categoria"))));
+        
         //setUndecorated(true);
      
     }
@@ -45,24 +50,27 @@ public class NuevaSolicitud extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSolicitar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         nsNombre = new javax.swing.JTextField();
-        nsMarca = new javax.swing.JTextField();
         nsCantidad = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        nsComboBox = new javax.swing.JComboBox();
-        jLabel8 = new javax.swing.JLabel();
-        nsModelo = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        nsDescripcion = new javax.swing.JTextArea();
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,35 +78,33 @@ public class NuevaSolicitud extends javax.swing.JFrame {
         jLabel1.setText("Nombre:");
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel2.setText("Marca");
+        jLabel2.setText("Descripción:");
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setText("Cantidad:");
 
-        jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/save.png"))); // NOI18N
-        jButton1.setText("Aceptar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSolicitar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnSolicitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/save.png"))); // NOI18N
+        btnSolicitar.setText("Solicitar");
+        btnSolicitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSolicitarActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
-        jButton2.setText("Cancelar");
+        btnCancelar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         nsNombre.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         nsNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 nsNombreKeyTyped(evt);
-            }
-        });
-
-        nsMarca.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        nsMarca.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                nsMarcaKeyTyped(evt);
             }
         });
 
@@ -108,9 +114,6 @@ public class NuevaSolicitud extends javax.swing.JFrame {
                 nsCantidadKeyTyped(evt);
             }
         });
-
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel4.setText("Categoría: ");
 
         jPanel3.setBackground(new java.awt.Color(255, 102, 255));
 
@@ -149,7 +152,7 @@ public class NuevaSolicitud extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel14)
@@ -174,17 +177,9 @@ public class NuevaSolicitud extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        nsComboBox.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        nsComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel8.setText("Modelo");
-
-        nsModelo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                nsModeloKeyTyped(evt);
-            }
-        });
+        nsDescripcion.setColumns(20);
+        nsDescripcion.setRows(5);
+        jScrollPane2.setViewportView(nsDescripcion);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -194,65 +189,55 @@ public class NuevaSolicitud extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(228, 228, 228)
-                        .addComponent(jButton1)
-                        .addGap(41, 41, 41)
-                        .addComponent(jButton2))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel1))
-                                .addGap(42, 42, 42))
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(67, 67, 67)
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(nsNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(nsCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel8))
-                                .addGap(51, 51, 51)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(nsModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                                .addComponent(nsMarca, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(nsNombre, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(nsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addGap(51, 51, 51)
-                        .addComponent(nsCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(75, 75, 75)
+                                        .addComponent(btnSolicitar)
+                                        .addGap(74, 74, 74)
+                                        .addComponent(btnCancelar))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(nsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(nsCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nsNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(nsNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)
+                        .addComponent(nsCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(nsMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(nsModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(71, 71, 71)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addComponent(btnCancelar)
+                    .addComponent(btnSolicitar))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
@@ -269,9 +254,46 @@ public class NuevaSolicitud extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel14MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSolicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarActionPerformed
         // TODO add your handling code here:
-        nuevo[0]="null";
+        String nuevo[]=new String [7];
+        int id=m.getMax(b.obtenerConsultas("select id_solicitud_inventario from solicitud_inventario"));
+        nuevo[0]=id+"";
+        nuevo[1]=nsNombre.getText();
+        nuevo[2]=nsDescripcion.getText();
+        nuevo[3]=nsCantidad.getText();
+        Calendar c = new GregorianCalendar();
+            String dia = Integer.toString(c.get(Calendar.DATE));
+            String mes = Integer.toString(c.get(Calendar.MONTH)+1);
+            String annio = Integer.toString(c.get(Calendar.YEAR));
+            String FechaActual=annio+"-"+ mes +"-"+ dia;
+        nuevo[4]=FechaActual;
+        nuevo[5]="Pendiente";
+        I_Login l=new I_Login();
+        String usuario="betsysaan";
+        String[][] idUsuario=b.obtenerConsultas("select personal_id_personal from usuario");
+        javax.swing.JOptionPane.showMessageDialog(this, idUsuario.length+"IDo");
+        for(int i=0;i<idUsuario.length;i++){
+            if(idUsuario[i][1].equals(usuario)){
+                javax.swing.JOptionPane.showMessageDialog(this, idUsuario[i][1]+"IDo");
+                nuevo[6]=idUsuario[0][0];
+            }
+        }
+        
+       // b.insertar("solicitud_inventario", nuevo);
+        javax.swing.JOptionPane.showMessageDialog(this, "Se agregó solicitud");
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+       /* nuevo[0]="null";
         nuevo[1]=nsNombre.getText();
         nuevo[2]=nsMarca.getText();
         nuevo[3]=nsModelo.getText();
@@ -284,13 +306,13 @@ public class NuevaSolicitud extends javax.swing.JFrame {
         model.addRow(nuevo);
         s.tbl_productos1.setModel(model);
                 
-       s.setVisible(true);
+       s.setVisible(true);*/
        // s.addTable();
         
        
         
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnSolicitarActionPerformed
 
     private void nsNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nsNombreKeyTyped
         // TODO add your handling code here:
@@ -300,25 +322,17 @@ public class NuevaSolicitud extends javax.swing.JFrame {
                 && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' ) evt.consume();
     }//GEN-LAST:event_nsNombreKeyTyped
 
-    private void nsMarcaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nsMarcaKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
-                && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
-                && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' &&(c<'0' || c>'9')) evt.consume();
-    }//GEN-LAST:event_nsMarcaKeyTyped
-
-    private void nsModeloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nsModeloKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if((c<'0' || c>'9')) evt.consume();
-    }//GEN-LAST:event_nsModeloKeyTyped
-
     private void nsCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nsCantidadKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
         if((c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_nsCantidadKeyTyped
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
     public void info2a1(String [][]a){
          DefaultTableModel model =(DefaultTableModel) s.tbl_productos1.getModel();
          String []vector=new String[5];
@@ -366,23 +380,22 @@ public class NuevaSolicitud extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnSolicitar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
     public javax.swing.JTextField nsCantidad;
-    private javax.swing.JComboBox nsComboBox;
-    public javax.swing.JTextField nsMarca;
-    public javax.swing.JTextField nsModelo;
+    private javax.swing.JTextArea nsDescripcion;
     public javax.swing.JTextField nsNombre;
     // End of variables declaration//GEN-END:variables
 }

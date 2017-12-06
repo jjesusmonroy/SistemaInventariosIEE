@@ -116,7 +116,7 @@
                                       <Component id="btnSolicitar" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btnNuevo" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="224" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="198" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -223,7 +223,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Recursos/hand-finger-with-a-ribbon.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Solicitar"/>
+                <Property name="text" type="java.lang.String" value="Generar Vale"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSolicitarActionPerformed"/>
