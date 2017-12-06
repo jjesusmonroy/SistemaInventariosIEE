@@ -88,6 +88,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setForeground(java.awt.Color.white);
+        setUndecorated(true);
 
         jPanel3.setBackground(new java.awt.Color(255, 102, 255));
 
@@ -657,6 +658,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     
