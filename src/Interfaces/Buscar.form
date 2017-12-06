@@ -215,12 +215,13 @@
                   <StringArray count="3">
                     <StringItem index="0" value="Disponible"/>
                     <StringItem index="1" value="Pendiente"/>
-                    <StringItem index="2" value="Agotado"/>
+                    <StringItem index="2" value="Baja"/>
                   </StringArray>
                 </Property>
               </Properties>
               <Events>
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jStatusItemStateChanged"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jStatusActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

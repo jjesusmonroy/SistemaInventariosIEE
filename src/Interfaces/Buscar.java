@@ -7,6 +7,7 @@ package Interfaces;
 
 
 import basededatos.BDD;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -135,10 +136,15 @@ public class Buscar extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/search.png"))); // NOI18N
 
         jStatus.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Pendiente", "Agotado" }));
+        jStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Pendiente", "Baja" }));
         jStatus.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jStatusItemStateChanged(evt);
+            }
+        });
+        jStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jStatusActionPerformed(evt);
             }
         });
 
@@ -373,20 +379,24 @@ public class Buscar extends javax.swing.JFrame {
             check = b.obtenerConsultas("select foto_producto from producto where folio_producto ='"+id+"'");
             String query="select pe.modificar_permiso,pe.baja_permiso from usuario u inner join permisos_modulos pm on u.id_usuario=pm.usuario_id_usuario inner join permisos pe on pm.permisos_id_permiso=pe.id_permiso where u.usuario='"+nombreusuario+"'";
             String [][] usuario = b.obtenerConsultas(query);
-            jLabelIdModificar.setText(id+"");
+            jLabelIdModificar.setText(id);
             final JPopupMenu menu = new JPopupMenu();
             JMenuItem item1 = new JMenuItem("Modificar");
             JMenuItem item2 = new JMenuItem("Eliminar");
             JMenuItem item3 = new JMenuItem("Ver foto");
+            JMenuItem item4 = new JMenuItem("Motivo de baja");
             ActionListener actionListener = new PopupActionListener();
             ActionListener actionListener2 = new PopupActionListener2();
             ActionListener al3 = new PopupActionListener3();
+            ActionListener al4 = new PopupActionListener4();
             item1.addActionListener(actionListener);
             item2.addActionListener(actionListener2);
             item3.addActionListener(al3);
-            if(usuario[0][0].equals("1"))menu.add(item1);
-            if(usuario[0][1].equals("1"))menu.add(item2);
-            if(check[0][0]!=null)menu.add(item3);
+            item4.addActionListener(al4);
+            if(usuario[0][0].equals("1") && !jStatus.getSelectedItem().toString().equals("Baja"))menu.add(item1);
+            if(usuario[0][1].equals("1") && !jStatus.getSelectedItem().toString().equals("Baja"))menu.add(item2);
+            if(check[0][0]!=null && !jStatus.getSelectedItem().toString().equals("Baja"))menu.add(item3);
+            if(jStatus.getSelectedItem().toString().equals("Baja"))menu.add(item4);
             menu.show(evt.getComponent(),evt.getX(),evt.getY());
         }
     }//GEN-LAST:event_tbl_productosMouseReleased
@@ -418,6 +428,10 @@ public class Buscar extends javax.swing.JFrame {
         iniciarTabla();
     }//GEN-LAST:event_jParametroItemStateChanged
 
+    private void jStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jStatusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jStatusActionPerformed
+
     class PopupActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
@@ -428,13 +442,16 @@ public class Buscar extends javax.swing.JFrame {
     class PopupActionListener2 implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            int dialogButton = JOptionPane.YES_NO_OPTION;
+            Baja baja= new Baja();
+            baja.idproducto=jLabelIdModificar.getText();
+            /*int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog (null, "El producto se pondra en status Agotado, desea proceder?","Advertencia",dialogButton);
             if(dialogResult == JOptionPane.YES_OPTION){
                 // Saving code here
-                b.execute("update producto set status_producto = 'Agotado' where folio_producto = '"+jLabelIdModificar.getText()+"'");
+                b.execute("update producto set status_producto = 'Baja' where folio_producto = '"+jLabelIdModificar.getText()+"'");
                 iniciarTabla();
-            }
+            }*/
+            baja.setVisible(true);
         }   
     }
     class PopupActionListener3 implements ActionListener {
@@ -443,7 +460,17 @@ public class Buscar extends javax.swing.JFrame {
             VerFoto vf = new VerFoto(rutanormal(check[0][0]));
             vf.setVisible(true);
             }
-    }   
+    }
+    class PopupActionListener4 implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            String q ="select b.motivo_baja from producto p inner join baja b on p.id_producto=b.id_producto where p.folio_producto='"+jLabelIdModificar+"'";
+            String [][] con = b.obtenerConsultas(q);
+            JOptionPane.showMessageDialog(null, con[0][0]);
+            getContentPane().setBackground(Color.white);
+        }
+    }
+    
     private String rutanormal(String ru){
         return ru.replace("$", "\\");
     }
