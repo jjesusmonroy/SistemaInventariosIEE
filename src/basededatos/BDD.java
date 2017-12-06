@@ -17,10 +17,12 @@ import java.util.logging.Logger;
 public class BDD{
 
     public boolean verificacionInsert;
+    public boolean verificacionExecute;
     Connection con;
     public BDD() {
         con=null;
         verificacionInsert=true;
+        verificacionExecute=true;
     }
     
     public static void main (String [] args){
@@ -110,6 +112,7 @@ public class BDD{
                 st.executeUpdate(query);
             }
         }catch(SQLException e){
+            verificacionExecute=false;
             System.out.println("error m execute c BDD \n"+e.getMessage());
         }finally{
             if(con!=null)try {

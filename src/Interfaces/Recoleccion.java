@@ -14,7 +14,9 @@ import java.awt.event.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -22,7 +24,6 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
-
 /**
  *
  * @author Cherne
@@ -38,8 +39,12 @@ public class Recoleccion extends javax.swing.JFrame {
     Clases.Validaciones v;
     Clases.MetodosG m;
     int id_cambio,id_cambio2;
+    String comentarios,bodega,folioProd;
     public Recoleccion() {
         initComponents();
+        comentarios="";
+        bodega="";
+        folioProd="";
         id_cambio=0;
         id_cambio2=0;
         b=new BDD();
@@ -105,8 +110,6 @@ public class Recoleccion extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        btnBorrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -124,7 +127,7 @@ public class Recoleccion extends javax.swing.JFrame {
         });
 
         btn_buscar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/loupe.png"))); // NOI18N
+        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/loupe.png"))); // NOI18N
         btn_buscar.setText("Buscar");
 
         jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -156,7 +159,7 @@ public class Recoleccion extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_productos);
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/error.png"))); // NOI18N
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
         jButton11.setText("Cancelar");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,17 +188,20 @@ public class Recoleccion extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_productos1MouseClicked(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tbl_productos1MouseReleased(evt);
+            }
         });
         jScrollPane2.setViewportView(tbl_productos1);
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/search-user-wearing-tie.png"))); // NOI18N
-        jButton5.setText("Recolectar a");
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/search-user-wearing-tie.png"))); // NOI18N
+        jButton5.setText("Generar vale");
 
         lblNombre.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblNombre.setText("Persona seleccionada:");
 
         btn_buscar1.setBackground(new java.awt.Color(255, 255, 255));
-        btn_buscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/save.png"))); // NOI18N
+        btn_buscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/save.png"))); // NOI18N
         btn_buscar1.setText("Guardar");
 
         jPanel3.setBackground(new java.awt.Color(255, 102, 255));
@@ -209,16 +215,16 @@ public class Recoleccion extends javax.swing.JFrame {
         jLabel2.setText("Sistema de Control de Inventario IEEN");
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/IEE.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IEE.png"))); // NOI18N
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/minus-sign.png"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel13MouseClicked(evt);
             }
         });
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/salir2.png"))); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/salir2.png"))); // NOI18N
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel14MouseClicked(evt);
@@ -261,23 +267,11 @@ public class Recoleccion extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel4.setText("Usuario:");
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel4.setText("Seleccione Usuario:");
 
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel6.setText("Articulos en resguardo:");
-
-        jButton1.setText("Ver productos asignados");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        btnBorrar.setText("Borrar asignación");
-        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBorrarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -308,16 +302,11 @@ public class Recoleccion extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jButton5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(129, 129, 129)
+                                .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(12, 12, 12)
-                                        .addComponent(btnBorrar)))
-                                .addGap(9, 9, 9)
+                                .addGap(160, 160, 160)
                                 .addComponent(jScrollPane2)))
                         .addContainerGap())))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -338,19 +327,11 @@ public class Recoleccion extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2)
-                            .addComponent(jScrollPane1))
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(jButton1)
-                        .addGap(95, 95, 95)
-                        .addComponent(btnBorrar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -419,25 +400,26 @@ public class Recoleccion extends javax.swing.JFrame {
             int rows = tbl_productos.rowAtPoint(evt.getPoint());
             id_cambio=Integer.parseInt(tbl_productos.getValueAt(rows, 0).toString());  
             lblNombre.setText(tbl_productos.getValueAt(rows, 1)+" "+tbl_productos.getValueAt(rows, 2)+" "+tbl_productos.getValueAt(rows, 3));
-        }
-    }//GEN-LAST:event_tbl_productosMouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        if(id_cambio==0){
+            if(id_cambio==0){
             javax.swing.JOptionPane.showMessageDialog(this,"Seleccione una fila");
              return;
         }
          int x = tbl_productos.getSelectedRow();
+         DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
+         for(int i = tbl_productos1.getRowCount()-1; i>=0;i--){
+            model.removeRow(i);
+        }
          String aux[][] = b.obtenerConsultas("select a.id_asignacion,p.folio_producto,p.nombre_producto,p.marca_producto from asignacion a inner join producto p on p.id_producto=a.producto_id_producto and personal_id_personal="+id_cambio);
          String [] nuevo=new String[4];
-                nuevo[0]=aux[0][0];
-                nuevo[1]=aux[0][1];
-                nuevo[2]=aux[0][2];
-                nuevo[3]=aux[0][3];
-                DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
+         for(int i=0;i<aux.length;i++){
+                nuevo[0]=aux[i][0];
+                nuevo[1]=aux[i][1];
+                nuevo[2]=aux[i][2];
+                nuevo[3]=aux[i][3];
                 model.addRow(nuevo);
-    }//GEN-LAST:event_jButton1ActionPerformed
+         }
+        }
+    }//GEN-LAST:event_tbl_productosMouseClicked
 
     private void jScrollPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane2MouseClicked
         // TODO add your handling code here:
@@ -448,23 +430,36 @@ public class Recoleccion extends javax.swing.JFrame {
         if(evt.getClickCount()==1 ){
             int rows = tbl_productos1.rowAtPoint(evt.getPoint());
             id_cambio2=Integer.parseInt(tbl_productos1.getValueAt(rows, 0).toString());  
-           
+            folioProd=tbl_productos1.getValueAt(rows, 1).toString();
         }
     }//GEN-LAST:event_tbl_productos1MouseClicked
 
-    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+    private void tbl_productos1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productos1MouseReleased
         // TODO add your handling code here:
-        if(id_cambio2==0){
-            javax.swing.JOptionPane.showMessageDialog(this, "Seleccione un producto");
-            return;
-        }else{
-          String comentarios=javax.swing.JOptionPane.showInputDialog("Agregar comentarios:");
-          String bodega=javax.swing.JOptionPane.showInputDialog("Agregar bodega:");
-        //  b.execute("delete from asigacion where id_asignacion="+id_cambio2);
+        if(evt.getButton()== java.awt.event.MouseEvent.BUTTON3 && (tbl_productos1.getSelectedRowCount()!=0)){
+            final JPopupMenu menu = new JPopupMenu();
+            JMenuItem item1 = new JMenuItem("Recolectar");
+            ActionListener actionListener = new PopupActionListener();
+            item1.addActionListener(actionListener);
+            //if(usuario[0][0].equals("1"))menu.add(item1);
+            menu.add(item1);
+            menu.show(evt.getComponent(),evt.getX(),evt.getY());
+        }
+    }//GEN-LAST:event_tbl_productos1MouseReleased
+    class PopupActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+           JOptionPane.showMessageDialog(null, "Hola ");
+           comentarios=javax.swing.JOptionPane.showInputDialog("Agregar comentarios:");
+           bodega=javax.swing.JOptionPane.showInputDialog("Agregar bodega:");
+           b.execute("delete from asignacion where id_asignacion='"+id_cambio2+"'");
+           if(b.verificacionExecute){JOptionPane.showMessageDialog(null, "Producto Recolectado");}
+           String update="status_producto='Disponible'";
+           b.execute("update producto set "+update+" where folio_producto ='"+folioProd+"'");
+           if(b.verificacionExecute){JOptionPane.showMessageDialog(null, "Producto Actualizado");}
           //Actualizar en productos el estado como disponible, agregar el comentario y asignar la bodega
         }
-    }//GEN-LAST:event_btnBorrarActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */
@@ -501,10 +496,8 @@ public class Recoleccion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_buscar1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
