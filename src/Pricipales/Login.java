@@ -11,6 +11,7 @@ package Pricipales;
  *
  * @author tepic
  */
+import javax.swing.ImageIcon.*;
 import Administrador.PrincipalAdministracion;
 import jefatura.PrincipalJefatura;
 import secretaria.PrincipalSecretaria;

@@ -5,8 +5,21 @@
  */
 package Administrador;
 
+import Clases.ConexionBase;
 import Clases.ManejadorAdministracion;
+import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import secretaria.SolicitudesEnviadas;
 
 /**
  *
@@ -14,6 +27,10 @@ import javax.swing.JOptionPane;
  */
 public class ViaticosListado extends javax.swing.JFrame {
 int fila;
+int folio;
+    boolean consultar=false;
+    private Connection conexion;
+    private ConexionBase db;
     /**
      * Creates new form ViaticosListado
      */
@@ -129,6 +146,11 @@ int fila;
         jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/Consultar reportes.png"))); // NOI18N
         jButton1.setText("RECIBO DE COMISION");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
@@ -215,6 +237,25 @@ int fila;
         
         }
     }//GEN-LAST:event_tablaVMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        consultar = true;
+           
+        try {
+            int fila = tablaV.getSelectedRow();
+            folio = (int) tablaV.getValueAt(fila,0);
+           
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("ReporteSecreatria.jasper");
+            Map id = new HashMap();
+            
+            id.put("id",folio);
+            JasperPrint j = JasperFillManager.fillReport(reporte,id,db.getConexion());
+            JasperViewer.viewReport(j);
+            } catch (JRException e) {
+            Logger.getLogger(ViaticosListado.class.getName()).log(Level.SEVERE,null,e);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -195,7 +195,6 @@ public class PrincipalAdministracion extends javax.swing.JFrame {
 
     private void jLabel22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel22MouseClicked
         // TODO add your handling code here:
-
         System.exit(0);
     }//GEN-LAST:event_jLabel22MouseClicked
 
@@ -205,9 +204,7 @@ public class PrincipalAdministracion extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel23MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        // TODO add your handling code here:
-
-        
+        // TODO add your handling code here:       
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
