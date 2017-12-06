@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2530bc10-a2e7-4cba-a584-a708f1cc454a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="30"/>
+	<parameter name="id" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select s.fecha_salida, p.nombre, s.lugar, s.actividad, s.pernotado from solicitud s 
+inner join usuario u on u.id_usuario= s.usuario_id_usuario
+inner join personal p on p.id_personal = u.personal_id_personal where id_solicitud =$P{id};]]>
+	</queryString>
+	<field name="fecha_salida" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="lugar" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="actividad" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pernotado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="176" splitType="Stretch">
+			<image>
+				<reportElement x="19" y="53" width="132" height="84" uuid="24c88806-ce86-4db2-b417-2a5a2eae98df"/>
+				<imageExpression><![CDATA["C:\\Users\\Genaro Carolina\\Documents\\9no Semestre\\Gestion de proyectos\\Proyecto IEEN\\ieen.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="151" y="2" width="404" height="174" uuid="12b05d97-880b-4f73-8e22-6387b2087d17"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Solicitud de viaticos IEEN]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="295" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="38" width="190" height="23" uuid="05be093b-9bfe-4514-b3b3-1667412bc380"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha salida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="80" width="190" height="23" uuid="d7221fc4-08a0-4d1a-b5b8-bfd6aa02227b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="125" width="190" height="23" uuid="4603922e-53ea-48d7-9ad9-29bef6f60739"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lugar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="169" width="190" height="23" uuid="98d7a59f-aa2e-45ec-ac84-e2993a7662b0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Actividad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="259" width="190" height="23" uuid="100a0d6c-bb39-42d5-83a0-c6ec6ad44784"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pernoctado]]></text>
+			</staticText>
+			<line>
+				<reportElement x="239" y="60" width="273" height="1" uuid="0ffe5a81-8ee7-440f-a3cd-2636eb6ef024"/>
+			</line>
+			<line>
+				<reportElement x="239" y="102" width="273" height="1" uuid="6589b19c-5ce1-4c04-807f-40e13eded904"/>
+			</line>
+			<line>
+				<reportElement x="239" y="147" width="273" height="1" uuid="bdc7f03e-11cd-4ea0-8192-e826442ef189"/>
+			</line>
+			<line>
+				<reportElement x="239" y="282" width="273" height="1" uuid="6046c4a3-3b2f-4fdb-b709-4697c0d727b5"/>
+			</line>
+			<textField>
+				<reportElement x="239" y="38" width="273" height="20" uuid="1ae91f04-2c35-42e6-9377-854366023da5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_salida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="239" y="82" width="273" height="20" uuid="694be7f6-0c91-4c3b-9dc7-b81a83046d93"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="239" y="125" width="273" height="20" uuid="97fffc93-6152-4b66-b76f-7a4f1531a396"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lugar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="239" y="172" width="273" height="81" uuid="c3218720-aef8-4a5a-ac73-a8d94eb0f0ef"/>
+				<textElement verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{actividad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="239" y="263" width="273" height="20" uuid="37dc5c08-2843-4dfa-a420-6780f750d514"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pernotado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
