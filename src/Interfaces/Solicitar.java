@@ -46,6 +46,7 @@ public class Solicitar extends javax.swing.JFrame {
     int Cantidad;
     //String [][]matrix;
     int valFil;
+    String stockCambio;
     public Solicitar() {
        
        // btnBorrar.setEnabled(false);
@@ -94,12 +95,12 @@ public class Solicitar extends javax.swing.JFrame {
            tbl_productos1.setModel(new javax.swing.table.DefaultTableModel(
              data,
             new String [] {
-                "Folio", "Nombre_Producto", "Marca","Modelo","Cantidad"
+                "Folio", "Nombre_Producto", "Marca","Modelo","Cantidad","Stock Actual"
             }
         ){
             @SuppressWarnings("rawtypes")
             Class[] columnTypes = new Class[] {
-                String.class, String.class, String.class, Integer.class, Integer.class
+                String.class, String.class, String.class, Integer.class, Integer.class, Integer.class
             };
             @SuppressWarnings({ "unchecked", "rawtypes" })
             @Override
@@ -107,7 +108,7 @@ public class Solicitar extends javax.swing.JFrame {
                 return columnTypes[columnIndex];
             }
             boolean[] columnEditables = new boolean[] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -588,7 +589,9 @@ public class Solicitar extends javax.swing.JFrame {
         if(evt.getClickCount()==1 ){
             btnAgregar.setEnabled(true);
             int rows = tbl_productos.rowAtPoint(evt.getPoint());
-            id_cambio=Integer.parseInt(tbl_productos.getValueAt(rows, 0).toString());           
+            id_cambio=Integer.parseInt(tbl_productos.getValueAt(rows, 0).toString());   
+            stockCambio=tbl_productos.getValueAt(rows, 4)+""; 
+            javax.swing.JOptionPane.showMessageDialog(this, "StockCambio="+stockCambio);
         }
            
             
@@ -648,34 +651,46 @@ public class Solicitar extends javax.swing.JFrame {
         if(id_cambio==0){
             javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una fila");
         }else{
-            if(busIguales(id_cambio)){              
+            if(busIguales(id_cambio)){    
+                
              }else{
-             if(!v.soloNumeros(txtCantidad.getText())){
-                Cantidad=Integer.parseInt(txtCantidad.getText());
-                String [][] busqueda = (b.obtenerConsultas("select id_producto,nombre_producto,marca_producto,modelo_producto from producto where id_producto="+id_cambio));
-                String [] nuevo=new String[5];
-                nuevo[0]=busqueda[0][0];
-                nuevo[1]=busqueda[0][1];
-                nuevo[2]=busqueda[0][2];
-                nuevo[3]=busqueda[0][3];
-                nuevo[4]=Cantidad+"";
-                DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
-                model.addRow(nuevo);
-            }else{
-                javax.swing.JOptionPane.showMessageDialog(this, "Inserte cantidad");
-                txtCantidad.requestFocus(true);
-            }
-                txtCantidad.setText("");}
-            }
+                    if(!v.soloNumeros(txtCantidad.getText())){
+                       Cantidad=Integer.parseInt(txtCantidad.getText());
+                       String [][] busqueda = (b.obtenerConsultas("select id_producto,nombre_producto,marca_producto,modelo_producto from producto where id_producto="+id_cambio));
+                       String [] nuevo=new String[6];
+                       nuevo[0]=busqueda[0][0];
+                       nuevo[1]=busqueda[0][1];
+                       nuevo[2]=busqueda[0][2];
+                       nuevo[3]=busqueda[0][3];
+                       nuevo[4]=Cantidad+"";
+                       javax.swing.JOptionPane.showMessageDialog(this, "Stock Cambio tiene un valor de= "+stockCambio);
+                       if(stockCambio.equals("null")){
+                           nuevo[5]="No Aplica";
+                       }else{
+                            nuevo[5]=(Integer.parseInt(stockCambio)-Cantidad)+"";
+                            stockCambio="";
+                       }
+                       DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
+                       model.addRow(nuevo);
+                   }else{
+                       javax.swing.JOptionPane.showMessageDialog(this, "Inserte cantidad");
+                       txtCantidad.requestFocus(true);
+                   }
+                txtCantidad.setText("");
+              }
+        }
     }
     private boolean busIguales(int id){
        // Cantidad=Integer.parseInt(txtCantidad.getText());
         for(int i=0;i<tbl_productos1.getRowCount();i++){
-            //javax.swing.JOptionPane.showMessageDialog(this,tbl_productos1.getValueAt(i,0)+ " Buscando ");
+            javax.swing.JOptionPane.showMessageDialog(this,tbl_productos1.getValueAt(i,0)+ " Buscando ");
             if(id==Integer.parseInt(tbl_productos1.getValueAt(i,0)+"")){
+            //    javax.swing.JOptionPane.showMessageDialog(this,tbl_productos1.getValueAt(i,0)+ " Buscando ");
                 if(javax.swing.JOptionPane.showConfirmDialog(this, "Producto previamente seleccionado "+"\n"+"¿Desea aumentar la cantidad?")==0){
                     int cantidad=Integer.parseInt(javax.swing.JOptionPane.showInputDialog(this,"Cantidad"));
                     tbl_productos1.setValueAt(cantidad,i, 4);
+                    if(!stockCambio.equals("")){
+                    tbl_productos1.setValueAt(Integer.parseInt(stockCambio)-cantidad, i, 5);}
                     txtCantidad.setText("");
                 }
                 return true;
