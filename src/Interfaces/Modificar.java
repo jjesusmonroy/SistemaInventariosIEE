@@ -12,6 +12,7 @@ import java.awt.Image;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.io.File;
+import java.util.Date;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JFileChooser;
 import javax.swing.Icon;
@@ -109,6 +110,8 @@ public final class Modificar extends javax.swing.JFrame {
         }
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String getfecha = sdf.format(fecha.getDate());
+        Date when = new Date();
+        if(fecha.getDate().after(when)){return;}
         String update = "nombre_producto='"+m.jtextfield(nombre)+"', "+
                             "descripcion_producto='"+m.jtextarea(descripcion)+"', "+
                     "marca_producto='"+m.jtextfield(marca)+"', "+
@@ -444,6 +447,12 @@ public final class Modificar extends javax.swing.JFrame {
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
+            }
+        });
+
+        fecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                fechaPropertyChange(evt);
             }
         });
 
@@ -1053,6 +1062,13 @@ public final class Modificar extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void fechaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_fechaPropertyChange
+        // TODO add your handling code here:
+        Date date = new Date();
+        if(fecha.getDate()==null)return;
+        if(fecha.getDate().after(date)){JOptionPane.showMessageDialog(this, "Fecha posterior a la actual");}
+    }//GEN-LAST:event_fechaPropertyChange
 
     /**
      * @param args the command line arguments

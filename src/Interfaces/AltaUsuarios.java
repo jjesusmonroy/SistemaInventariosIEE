@@ -10,6 +10,7 @@ import basededatos.BDD;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import java.awt.Color;
+import java.util.Date;
 
 /**
  *
@@ -365,6 +366,11 @@ public class AltaUsuarios extends javax.swing.JFrame {
         });
 
         jDateChooser1.setNextFocusableComponent(auCurp);
+        jDateChooser1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jDateChooser1PropertyChange(evt);
+            }
+        });
 
         jButton9.setText("Guardar");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -684,6 +690,8 @@ public class AltaUsuarios extends javax.swing.JFrame {
         personal[7]=auCp.getText();
         personal[8]=auTelefono.getText();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date when =new Date();
+        if(jDateChooser1.getDate().after(when)){return;}
         personal[9] = sdf.format(jDateChooser1.getDate());
         personal[10]=auCurp.getText();
         personal[11]=auRFC.getText();
@@ -785,6 +793,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
             insertar();
             JOptionPane.showMessageDialog(this, "Nuevo usuario insertado");*/
             limpiar();
+            JOptionPane.showMessageDialog(this, "Nuevo usuario insertado");
         //}contErr=0;
     }
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -1059,6 +1068,13 @@ public class AltaUsuarios extends javax.swing.JFrame {
     private void jPanel1AncestorResized(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_jPanel1AncestorResized
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel1AncestorResized
+
+    private void jDateChooser1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooser1PropertyChange
+        // TODO add your handling code here:
+        Date date = new Date();
+        if(jDateChooser1.getDate()==null)return;
+        if(jDateChooser1.getDate().after(date)){JOptionPane.showMessageDialog(this, "Fecha posterior a la actual");}
+    }//GEN-LAST:event_jDateChooser1PropertyChange
     private void limpiar(){
         auNombre.setText("");
         auApellidoP.setText("");

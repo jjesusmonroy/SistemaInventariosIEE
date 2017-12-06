@@ -10,6 +10,7 @@ import basededatos.BDD;
 import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -356,6 +357,12 @@ public class ModificarU extends javax.swing.JFrame {
             }
         });
 
+        jDateChooser1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jDateChooser1PropertyChange(evt);
+            }
+        });
+
         jButton9.setText("Guardar");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -599,6 +606,8 @@ public class ModificarU extends javax.swing.JFrame {
         }    
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String fecha = sdf.format(jDateChooser1.getDate());
+        Date when = new Date();
+        if(jDateChooser1.getDate().after(when)){return;}
         String update = "nombre ='"+m.jtextfield(auNombre)+"', "
                 + "apellido_pa ='"+m.jtextfield(auApellidoP)+"', "
                 + "apellido_ma ='"+m.jtextfield(auApellidoP)+"', "
@@ -909,6 +918,13 @@ public class ModificarU extends javax.swing.JFrame {
                 && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
                 && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' && c!=' ' &&(c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_auColoniaKeyTyped
+
+    private void jDateChooser1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooser1PropertyChange
+        // TODO add your handling code here:
+        Date date = new Date();
+        if(jDateChooser1.getDate()==null)return;
+        if(jDateChooser1.getDate().after(date)){JOptionPane.showMessageDialog(this, "Fecha posterior a la actual");}
+    }//GEN-LAST:event_jDateChooser1PropertyChange
     private void limpiar(){
         auNombre.setText("");
         auApellidoP.setText("");
@@ -970,12 +986,6 @@ public class ModificarU extends javax.swing.JFrame {
     private javax.swing.JTextField auNoLicencia;
     private javax.swing.JTextField auNombre;
     private javax.swing.JTextField auNum;
-    private javax.swing.JTextField auPdes;
-    private javax.swing.JTextField auPdes1;
-    private javax.swing.JTextField auPdes2;
-    private javax.swing.JTextField auPuesto;
-    private javax.swing.JTextField auPuesto1;
-    private javax.swing.JTextField auPuesto2;
     private javax.swing.JTextField auRFC;
     private javax.swing.JTextField auTelefono;
     private javax.swing.JButton jButton10;
@@ -996,12 +1006,6 @@ public class ModificarU extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1009,11 +1013,8 @@ public class ModificarU extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JTextField puesto;
     // End of variables declaration//GEN-END:variables
