@@ -25,6 +25,8 @@ public class Administracion extends javax.swing.JFrame {
 
     public Administracion(String nombre_modulo,String nombre_usuario,int alta,int baja,int buscar,int modificar,int usuarios) {
         initComponents();
+        lbl_baja.setVisible(false);
+        lbl_modificar.setVisible(false);
         lbl_modulo.setText(nombre_modulo.toUpperCase());
         lbl_nombre.setText(nombre_usuario.toUpperCase());
         btn_alta.setEnabled(1==alta);
