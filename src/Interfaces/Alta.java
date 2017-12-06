@@ -36,6 +36,7 @@ public class Alta extends javax.swing.JFrame {
     MetodosG m;
     File fichero;
     String ficherovalidacion;
+    
     public Alta() {
         ficherovalidacion="";
         v=new Validaciones();
@@ -71,6 +72,8 @@ public class Alta extends javax.swing.JFrame {
         if(ficherovalidacion.equals("")){insertar[8]=null;}
         else {insertar[8]=rutaChida(fichero.toString());}
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        if(altatfecha.getDate().after(date)){return;}
         insertar[9] = sdf.format(altatfecha.getDate());
         insertar[10]=m.jtextfield(altatnofactura);
         insertar[11]=m.jtextfield(altatimprote);    
@@ -452,6 +455,11 @@ public class Alta extends javax.swing.JFrame {
         altatfecha.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 altatfechaFocusGained(evt);
+            }
+        });
+        altatfecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                altatfechaPropertyChange(evt);
             }
         });
         altatfecha.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -1139,6 +1147,13 @@ public class Alta extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_altatfechaKeyTyped
+
+    private void altatfechaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_altatfechaPropertyChange
+        // TODO add your handling code here:
+        Date date = new Date();
+        if(altatfecha.getDate()==null)return;
+        if(altatfecha.getDate().after(date)){JOptionPane.showMessageDialog(this, "Fecha posterior a la actual");}
+    }//GEN-LAST:event_altatfechaPropertyChange
    public int valCamposGeneral(){
        int cont=0;
         if(v.soloLetras(altatnombre.getText())==true){
