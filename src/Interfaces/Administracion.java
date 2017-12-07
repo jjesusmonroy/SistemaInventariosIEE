@@ -23,7 +23,7 @@ public class Administracion extends javax.swing.JFrame {
 
     public Administracion() {}
 
-    public Administracion(String nombre_modulo,String nombre_usuario,int alta,int baja,int buscar,int modificar,int usuarios) {
+    public Administracion(String nombre_modulo,String nombre_usuario,int alta,int baja,int buscar,int modificar,int usuarios,int solicitar,int aprobar) {
         initComponents();
         lbl_baja.setVisible(false);
         lbl_modificar.setVisible(false);
@@ -34,8 +34,9 @@ public class Administracion extends javax.swing.JFrame {
         btn_asignar.setEnabled(1==modificar);
         btn_recoleccion.setEnabled(1==modificar);
         btn_usuarios.setEnabled(1==usuarios);
-        
-        
+        btn_solicitar.setEnabled(1==solicitar);
+        btn_notificaciones.setEnabled(1==aprobar);
+                
     }
     
 
