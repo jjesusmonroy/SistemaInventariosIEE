@@ -94,7 +94,6 @@ public class Recoleccion extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
-        btn_buscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_productos = new javax.swing.JTable();
         jButton11 = new javax.swing.JButton();
@@ -116,6 +115,7 @@ public class Recoleccion extends javax.swing.JFrame {
         municipio = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        lblBuscar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -127,14 +127,13 @@ public class Recoleccion extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField1KeyTyped(evt);
             }
         });
-
-        btn_buscar.setBackground(new java.awt.Color(255, 255, 255));
-        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/loupe.png"))); // NOI18N
-        btn_buscar.setText("Buscar");
 
         jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -317,6 +316,8 @@ public class Recoleccion extends javax.swing.JFrame {
 
         jLabel8.setText("Localidad:");
 
+        lblBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/loupe.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -330,8 +331,9 @@ public class Recoleccion extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(lblBuscar)
+                                .addGap(65, 65, 65)))
                         .addGap(18, 18, 18)
                         .addComponent(jButton11)
                         .addGap(18, 18, 18)
@@ -374,10 +376,10 @@ public class Recoleccion extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btn_buscar)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton11)
-                        .addComponent(jButton5))
+                        .addComponent(jButton5)
+                        .addComponent(lblBuscar))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
@@ -453,7 +455,7 @@ public class Recoleccion extends javax.swing.JFrame {
         char c = evt.getKeyChar();
         if((c<'a' || c>'z') && (c<'A' || c>'Z') && c!='ñ' && c!='Ñ' && c!='á'
                 && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
-                && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' &&(c<'0' || c>'9')) evt.consume();
+                && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó') evt.consume();
     }//GEN-LAST:event_jTextField1KeyTyped
 
     private void tbl_productosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbl_productosKeyPressed
@@ -654,6 +656,26 @@ public class Recoleccion extends javax.swing.JFrame {
                 && c!='é' && c!='í' && c!='ó' && c!='ú' && c!=' ' 
                 && c!='Á' && c!='É' && c!='Í' && c!='Ú' && c!='Ó' && c!='.' && c!=',') evt.consume();
     }//GEN-LAST:event_localidadKeyTyped
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        // TODO add your handling code here:
+        String parametro=jTextField1.getText();
+        String searching="";
+        String searching1="";
+        String searching2="";
+        if(!parametro.equals("")){
+            searching = " nombre like '%"+parametro+"%'";
+            searching1 = " or apellido_pa like '%"+parametro+"%'";
+            searching2 = " or apellido_ma like '%"+parametro+"%'";}
+        String query="select id_personal,nombre,apellido_pa,apellido_ma,curp from personal where"+searching+searching1+searching2;
+        String [][] busqueda = b.obtenerConsultas(query);
+        tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
+                busqueda,
+                new String[]{
+                    "IdPersonal", "Nombre", "Apellido Pat.", "Apellido Mat.", "CURP"
+                }
+        ));
+    }//GEN-LAST:event_jTextField1KeyReleased
     /*class PopupActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
@@ -696,7 +718,6 @@ public class Recoleccion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_buscar;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
@@ -715,6 +736,7 @@ public class Recoleccion extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblBuscar;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JTextField localidad;
     private javax.swing.JTextField municipio;
