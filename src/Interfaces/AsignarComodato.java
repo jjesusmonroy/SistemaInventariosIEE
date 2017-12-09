@@ -5,6 +5,8 @@
  */
 package Interfaces;
 
+import Clases.MetodosG;
+import basededatos.BDD;
 import javax.swing.table.TableModel;
 
 /**
@@ -16,11 +18,25 @@ public class AsignarComodato extends javax.swing.JFrame {
     /**
      * Creates new form AsignarComodato
      */
-    public AsignarComodato(TableModel tabla) {
+    
+    int id;
+    BDD bd;
+    MetodosG m;
+    
+    public AsignarComodato(TableModel tabla,int idPersonal) {
         initComponents();
         tbl_datos.setModel(tabla);
         tbl_datos.setEnabled(false);
+        id  = idPersonal;
         
+        bd = new BDD();
+        m = new MetodosG();
+        
+        String[][] persona = bd.obtenerConsultas("select per.nombre, per.apellido_pa,per.apellido_ma,pue.puesto,are.area from personal per inner join puesto pue on per.puesto_id_puesto = pue.id_puesto inner join area are on pue.area_id_area = are.id_area where id_personal="+idPersonal+";");
+        
+        lbl_nombre.setText(persona[0]+" "+persona[1]+" "+persona[2]);
+        lbl_puesto.setText(persona[3]+"");
+        lbl_area.setText(persona[4]+"");
     }
 
     /**
@@ -209,11 +225,11 @@ public class AsignarComodato extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(125, 125, 125)
                         .addComponent(btn_guardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_cancelar)
-                        .addGap(335, 335, 335))
+                        .addGap(214, 214, 214))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -355,9 +371,23 @@ public class AsignarComodato extends javax.swing.JFrame {
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
         // TODO add your handling code here:
-        //Insercion en la tabla de comodatos
+        //Insercion en la tabla de asignacion
+        int id_asignacion = m.getMax(bd.obtenerConsultas("select * from asignacion"));
         
         
+        String [] insert = new String[2];
+        insert[2] = id+"";
+        String [][]datos;
+        int filas = tbl_datos.getRowCount();
+        
+        for(int i = 0;i<filas;i++){
+            insert[0] = (id_asignacion+i)+"";
+            datos = bd.obtenerConsultas("select id_producto from producto where folio_producto ='"+tbl_datos.getValueAt(i,0)+"';");
+            insert[1] = datos[0][0];
+            bd.insertar("asignacion", insert);
+            //Actualizacion de tabla de productos
+            bd.execute("update producto set status_producto = 'comodato' where id_producto ="+datos[0][0]+";");
+        }   
         
         //Generacion de vale de resguardo 
         
