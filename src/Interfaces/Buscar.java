@@ -372,7 +372,7 @@ public class Buscar extends javax.swing.JFrame {
             int rows = tbl_productos.rowAtPoint(evt.getPoint());
             String id = tbl_productos.getValueAt(rows, 0)+"";
             check = b.obtenerConsultas("select foto_producto from producto where folio_producto ='"+id+"'");
-            String query="select pe.modificar_permiso,pe.baja_permiso from usuario u inner join permisos_modulos pm on u.id_usuario=pm.usuario_id_usuario inner join permisos pe on pm.permisos_id_permiso=pe.id_permiso where u.usuario='"+nombreusuario+"'";
+            String query="select pe.modificar_permiso,pe.baja_permiso from usuario u inner join usuarios_permisos pm on u.id_usuario=pm.usuario_id_usuario inner join permisos pe on pm.permisos_id_permiso=pe.id_permiso where u.usuario='"+nombreusuario+"'";
             String [][] usuario = b.obtenerConsultas(query);
             jLabelIdModificar.setText(id+"");
             final JPopupMenu menu = new JPopupMenu();
