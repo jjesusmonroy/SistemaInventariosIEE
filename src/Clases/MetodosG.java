@@ -66,4 +66,14 @@ public class MetodosG {
         }
         return true;
     }
+    
+    public boolean exists(String p, String[][] a){
+        boolean bandera=false;
+        for(int i=0;i<a.length;i++){
+            for(int j=0;j<a[i].length;j++){
+                if(p.equals(a[i][j].toLowerCase()))bandera=true;
+            }
+        }
+        return bandera;
+    }
 }

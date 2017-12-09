@@ -36,7 +36,7 @@ public class Alta extends javax.swing.JFrame {
     MetodosG m;
     File fichero;
     String ficherovalidacion;
-    
+    boolean existe;
     public Alta() {
         ficherovalidacion="";
         v=new Validaciones();
@@ -58,6 +58,7 @@ public class Alta extends javax.swing.JFrame {
         jLabel6.setText(id+"");
     }
     private void altaProductos(){
+        existe=true;
         int id = Integer.parseInt(jLabel6.getText()); // opcional en lo que se resuelve lo del folio
         int id2 = b.getId("select * from categoria where nombre_categoria = '"+jComboBox1.getSelectedItem().toString()+"'");        
         String [] insertar = new String [17];
@@ -82,6 +83,15 @@ public class Alta extends javax.swing.JFrame {
         insertar[14]=m.jtextfield(altatstockmin);
         insertar[15]="Disponible";
         insertar[16]=id2+"";
+        if(jComboBox1.getSelectedItem().toString().toLowerCase().equals("consumibles")){
+            if(m.exists(insertar[2].toLowerCase(), b.obtenerConsultas("select nombre_producto from producto where status_producto = 'Disponible'"))){
+                String atole = JOptionPane.showInputDialog("Producto encontrado, agregar stock?");
+                b.execute("update producto set stock_producto = stock_producto + "+atole+ " where nombre_producto = '"+insertar[2]+"'");
+                JOptionPane.showMessageDialog(this, "Actualizado con exito");
+                existe=false;
+                return;
+            }
+        }
         b.insertar("producto", insertar);
         if(jComboBox1.getSelectedItem().toString().toLowerCase().equals("vehiculo") || jComboBox1.getSelectedItem().toString().toLowerCase().equals("vehiculos")){
             int idcar= m.getMax(b.obtenerConsultas("select id_vehiculo from vehiculo"));
@@ -177,7 +187,7 @@ public class Alta extends javax.swing.JFrame {
         altalKmSer = new javax.swing.JLabel();
         altatvservicio = new javax.swing.JTextField();
         altatvtipo = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<String>();
+        jComboBox2 = new javax.swing.JComboBox<>();
         lblImage = new javax.swing.JLabel();
         btnCargarFoto = new javax.swing.JButton();
         altatimprote = new javax.swing.JFormattedTextField();
@@ -457,6 +467,11 @@ public class Alta extends javax.swing.JFrame {
                 altatfechaFocusGained(evt);
             }
         });
+        altatfecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                altatfechaPropertyChange(evt);
+            }
+        });
         altatfecha.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 altatfechaKeyTyped(evt);
@@ -538,7 +553,7 @@ public class Alta extends javax.swing.JFrame {
         altatvtipo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altatvtipo.setText("Tipo:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Camioneta", "Pickup", "Auto", "Motocicleta" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Camioneta", "Pickup", "Auto", "Motocicleta" }));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -624,8 +639,7 @@ public class Alta extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel6))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -762,10 +776,11 @@ public class Alta extends javax.swing.JFrame {
                             .addComponent(btnCargarFoto)
                             .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton9)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton11)
-                            .addComponent(jButton10))))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButton9)
+                                .addComponent(jButton10)))))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -884,7 +899,7 @@ public class Alta extends javax.swing.JFrame {
             if(valVehiculo()==0){// && validaFecha()){
                 altaProductos();
                 //altatnombre.setEnabled(false);
-                javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
+                if(existe)javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
                 limpiar();
             }else{
                 javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
@@ -892,7 +907,7 @@ public class Alta extends javax.swing.JFrame {
         }else if(var.equals("consumibles")){
             if(valCamposConsumibles()==0){// && validaFecha()){
                 altaProductos();
-                javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
+                if(existe)javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
                 limpiar();
             }else{
                 altatstockmin.setBackground(Color.PINK);
@@ -901,7 +916,7 @@ public class Alta extends javax.swing.JFrame {
         }else{ 
             if(valCamposGeneral()==0){// && validaFecha()){
                 altaProductos();
-                javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
+                if(existe)javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
                 limpiar();
             }else{
                  javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
@@ -1249,34 +1264,6 @@ public class Alta extends javax.swing.JFrame {
         }
         return cont;
    }
-   /* public boolean validaFecha() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date fechaDate1;
-        try {
-            fechaDate1 = (altatfecha.getDate());
-           // Date fA = new Date();
-            //Date fechaActual=sdf.parse(fA.getYear()+"-"+fA.getMonth()+"-"+fA.getDay());
-           Calendar c = new GregorianCalendar();
-            String dia = Integer.toString(c.get(Calendar.DATE));
-            String mes = Integer.toString(c.get(Calendar.MONTH)+1);
-            String annio = Integer.toString(c.get(Calendar.YEAR));
-             javax.swing.JOptionPane.showMessageDialog(this,"Fecha Actual:"+annio+"-"+ mes +"-"+ dia+"\nFecha Seleccionada:"+fechaDate1.toString());
-             Date fechaActual=sdf.parse(annio+"-"+ mes +"-"+ dia);
-             if(fechaActual.toString().equals(fechaDate1.toString()) ){
-            javax.swing.JOptionPane.showMessageDialog(this, "Fecha valida igual");
-            return true;
-        }
-        if(fechaActual.before(fechaDate1) ){
-            javax.swing.JOptionPane.showMessageDialog(this, "Fecha invalida");
-            return false;
-        }
-        } catch (ParseException ex) {
-            Logger.getLogger(Alta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         //formateador.parse(altatfecha.getDateFormatString());
-        javax.swing.JOptionPane.showMessageDialog(this, "Fecha valida");
-        return true;
-    }*/
     public int valCamposConsumibles(){
        int cont=0;
        if(v.soloNumeros(altatstockmin.getText())==true){
