@@ -74,7 +74,7 @@ public class Asignar extends javax.swing.JFrame {
         modelo = new javax.swing.table.DefaultTableModel(
                 datos,
                 new String[]{
-                    "Folio", "Nombre_Producto", "Marca", "Modelo", "Stock"
+                    "Folio", "Producto", "Marca", "Modelo", "Stock"
                 }
         ) {
             @Override
@@ -88,7 +88,7 @@ public class Asignar extends javax.swing.JFrame {
         tbl_productos1.setModel(new DefaultTableModel(
             aux,
             new String[]{
-                "Folio","Nombre_Producto","Marca","Modelo","Cantidad"
+                "Folio","Producto","Marca","Modelo","Cantidad"
             }){
                 @Override
                 public boolean isCellEditable(int row, int column) {
