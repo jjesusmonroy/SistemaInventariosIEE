@@ -384,16 +384,13 @@ public class Buscar extends javax.swing.JFrame {
             JMenuItem item1 = new JMenuItem("Modificar");
             JMenuItem item2 = new JMenuItem("Eliminar");
             JMenuItem item3 = new JMenuItem("Ver foto");
-            JMenuItem item4 = new JMenuItem("Comodato");
             ActionListener actionListener = new PopupActionListener();
             ActionListener actionListener2 = new PopupActionListener2();
             ActionListener al3 = new PopupActionListener3();
-            ActionListener comodato = new PopupActionListener_comodato();
             item1.addActionListener(actionListener);
             item2.addActionListener(actionListener2);
             item3.addActionListener(al3);
-            item4.addActionListener(comodato);
-            if(usuario[0][0].equals("1"))menu.add(item1);menu.add(item4);
+            if(usuario[0][0].equals("1"))menu.add(item1);
             if(usuario[0][1].equals("1"))menu.add(item2);
             if(check[0][0]!=null)menu.add(item3);
             menu.show(evt.getComponent(),evt.getX(),evt.getY());
@@ -426,13 +423,6 @@ public class Buscar extends javax.swing.JFrame {
         // TODO add your handling code here:
         iniciarTabla();
     }//GEN-LAST:event_jParametroItemStateChanged
-
-    class PopupActionListener_comodato implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-    }
     
     class PopupActionListener implements ActionListener {
         @Override
