@@ -36,7 +36,7 @@ public class Alta extends javax.swing.JFrame {
     MetodosG m;
     File fichero;
     String ficherovalidacion;
-    
+    boolean existe;
     public Alta() {
         ficherovalidacion="";
         v=new Validaciones();
@@ -58,6 +58,7 @@ public class Alta extends javax.swing.JFrame {
         jLabel6.setText(id+"");
     }
     private void altaProductos(){
+        existe=true;
         int id = Integer.parseInt(jLabel6.getText()); // opcional en lo que se resuelve lo del folio
         int id2 = b.getId("select * from categoria where nombre_categoria = '"+jComboBox1.getSelectedItem().toString()+"'");        
         String [] insertar = new String [17];
@@ -82,6 +83,15 @@ public class Alta extends javax.swing.JFrame {
         insertar[14]=m.jtextfield(altatstockmin);
         insertar[15]="Disponible";
         insertar[16]=id2+"";
+        if(jComboBox1.getSelectedItem().toString().toLowerCase().equals("consumibles")){
+            if(m.exists(insertar[2].toLowerCase(), b.obtenerConsultas("select nombre_producto from producto where status_producto = 'Disponible'"))){
+                String atole = JOptionPane.showInputDialog("Producto encontrado, agregar stock?");
+                b.execute("update producto set stock_producto = stock_producto + "+atole+ " where nombre_producto = '"+insertar[2]+"'");
+                JOptionPane.showMessageDialog(this, "Actualizado con exito");
+                existe=false;
+                return;
+            }
+        }
         b.insertar("producto", insertar);
         if(jComboBox1.getSelectedItem().toString().toLowerCase().equals("vehiculo") || jComboBox1.getSelectedItem().toString().toLowerCase().equals("vehiculos")){
             int idcar= m.getMax(b.obtenerConsultas("select id_vehiculo from vehiculo"));
@@ -900,7 +910,7 @@ public class Alta extends javax.swing.JFrame {
             if(valVehiculo()==0){// && validaFecha()){
                 altaProductos();
                 //altatnombre.setEnabled(false);
-                javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
+                if(existe)javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
                 limpiar();
             }else{
                 javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
@@ -908,7 +918,7 @@ public class Alta extends javax.swing.JFrame {
         }else if(var.equals("consumibles")){
             if(valCamposConsumibles()==0){// && validaFecha()){
                 altaProductos();
-                javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
+                if(existe)javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
                 limpiar();
             }else{
                 altatstockmin.setBackground(Color.PINK);
@@ -917,7 +927,7 @@ public class Alta extends javax.swing.JFrame {
         }else{ 
             if(valCamposGeneral()==0){// && validaFecha()){
                 altaProductos();
-                javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
+                if(existe)javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
                 limpiar();
             }else{
                  javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
