@@ -35,7 +35,7 @@ public class Permisos extends javax.swing.JFrame {
         invisible();
         iniciarTabla();
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(b.convertir2d1d
-        (b.obtenerConsultas("select nombre_modulo from modulos order by nombre_modulo"))));
+        (b.obtenerConsultas("select area from area order by area"))));
         bandera=true;
         usuario = null;
         idPersonal =null;
@@ -471,7 +471,7 @@ public class Permisos extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int idModulo = b.getId("select * from modulos where nombre_modulo = '"+jComboBox1.getSelectedItem().toString()+"'");
+        int idModulo = b.getId("select * from area where area = '"+jComboBox1.getSelectedItem().toString()+"'");
         if(bandera){
             String uUsuario = "usuario='"+jTextField1.getText()+"', "+
                             "pass='"+jTextField2.getText()+"'";
@@ -484,7 +484,7 @@ public class Permisos extends javax.swing.JFrame {
                             "solicitar_producto_permiso='"+lSolicitar.getText()+"', "+
                             "aprobar_solicitud_producto_permiso='"+lAprobar.getText()+"'";
             b.execute("update permisos set "+uPermisos+" where id_permiso ='"+usuario[0][3]+"'");
-            b.execute("update permisos_modulos set modulos_id_modulo='"+idModulo+"' where usuario_id_usuario='"+usuario[0][0]+"'");
+            b.execute("update personal per INNER JOIN puesto pue on per.puesto_id_puesto = pue.id_puesto inner join usuario usu on per.id_personal = usu.personal_id_personal set pue.area_id_area ='"+idModulo+"' where usu.id_usuario ='"+usuario[0][0]+"'");
             JOptionPane.showMessageDialog(this, "Actualizado con exito");
             bandera=true;
         }
@@ -495,8 +495,8 @@ public class Permisos extends javax.swing.JFrame {
             b.insertar("usuario", iusuario);
             String ipermiso [] = new String []{idPermiso+"",lAlta.getText(),lBaja.getText(),lConsulta.getText(),lModificar.getText(),lAdministrar.getText(),lSolicitar.getText(),lAprobar.getText()};
             b.insertar("permisos", ipermiso);
-            String ipermisos_modulos [] = new String []{idU+"",idPermiso+"",idModulo+""};
-            b.insertar("permisos_modulos", ipermisos_modulos);
+            String ipermisos_modulos [] = new String []{idU+"",idPermiso+""};
+            b.insertar("usuarios_permisos", ipermisos_modulos);
             JOptionPane.showMessageDialog(this, "Insertado con exito");
             bandera=true;
         }
@@ -606,7 +606,7 @@ public class Permisos extends javax.swing.JFrame {
                 }
             }
             if(bandera){
-            usuario= b.obtenerConsultas("select u.id_usuario,u.usuario,u.pass,pe.id_permiso,m.nombre_modulo,pe.alta_permiso,pe.baja_permiso,pe.consulta_permiso,pe.modificar_permiso,pe.administrar_usuario_permiso,pe.solicitar_producto_permiso,pe.aprobar_solicitud_producto_permiso,u.personal_id_personal from usuario u inner join permisos_modulos pm on u.id_usuario=pm.usuario_id_usuario inner join modulos m on pm.modulos_id_modulo=m.id_modulo inner join permisos pe on pm.permisos_id_permiso=pe.id_permiso where u.personal_id_personal='"+idPersonal[0][0]+"'");
+            usuario= b.obtenerConsultas("select usu.id_usuario,usu.usuario,usu.pass,per.id_permiso,are.area,per.alta_permiso,per.baja_permiso,per.consulta_permiso,per.modificar_permiso,per.administrar_usuario_permiso,per.solicitar_producto_permiso,per.aprobar_solicitud_producto_permiso,usu.personal_id_personal from usuario usu inner join usuarios_permisos up on usu.id_usuario = up.usuario_id_usuario inner join permisos per on up.permisos_id_permiso = per.id_permiso inner join personal pe on usu.personal_id_personal = pe.id_personal inner join puesto pue on pe.puesto_id_puesto = pue.id_puesto inner join area are on pue.area_id_area = are.id_area where usu.personal_id_personal='"+idPersonal[0][0]+"'");
             if(usuario.length==0){bandera=false; return;}
             jTextField1.setText(usuario[0][1]);
             jTextField2.setText(usuario[0][2]);
