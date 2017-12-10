@@ -664,10 +664,10 @@ public class Recoleccion extends javax.swing.JFrame {
         String searching1="";
         String searching2="";
         if(!parametro.equals("")){
-            searching = " nombre like '%"+parametro+"%'";
+            searching = "where nombre like '%"+parametro+"%'";
             searching1 = " or apellido_pa like '%"+parametro+"%'";
             searching2 = " or apellido_ma like '%"+parametro+"%'";}
-        String query="select id_personal,nombre,apellido_pa,apellido_ma,curp from personal where"+searching+searching1+searching2;
+        String query="select id_personal,nombre,apellido_pa,apellido_ma,curp from personal "+searching+searching1+searching2;
         String [][] busqueda = b.obtenerConsultas(query);
         tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
                 busqueda,
