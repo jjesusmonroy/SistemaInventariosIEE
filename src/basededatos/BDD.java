@@ -28,7 +28,6 @@ public class BDD{
     public static void main (String [] args){
         BDD b = new BDD();
         MetodosG m = new MetodosG();
-        String [][] a = b.obtenerConsultas("select * from producto");
     }
     //metodo para validar inicio de sesion de login
     public String[] validarInicio(String usuario){

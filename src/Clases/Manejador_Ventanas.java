@@ -6,11 +6,6 @@
 package Clases;
 
 import Interfaces.Administracion;
-import Interfaces.Almacen;
-import Interfaces.Director_Depto;
-import Interfaces.General;
-import Interfaces.Informatica;
-import Interfaces.Presidencia;
 import basededatos.BDD;
 
 /**
@@ -46,8 +41,6 @@ public class Manejador_Ventanas {
             " inner join permisos per" +
             " on up.permisos_id_permiso = per.id_permiso" +
             " where usu.usuario='"+nombre_usuario+"';";
-
-        
         return bd.obtenerConsultas(query);
     
     }

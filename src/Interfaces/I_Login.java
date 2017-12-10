@@ -6,7 +6,6 @@
 package Interfaces;
 
 import Clases.Manejador_Ventanas;
-import Pricipales.Login;
 import basededatos.BDD;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
@@ -267,11 +266,7 @@ public class I_Login extends javax.swing.JFrame {
                 lbl_invisible.setVisible(true);
             }
         }
-        catch(HeadlessException e){
-            lbl_invisible.setText("NO EXISTE USUARIO");
-            lbl_invisible.setVisible(true);
-        }
-        catch(NullPointerException e){
+        catch(HeadlessException | NullPointerException e){
             lbl_invisible.setText("NO EXISTE USUARIO");
             lbl_invisible.setVisible(true);
         }

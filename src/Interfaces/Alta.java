@@ -15,14 +15,8 @@ import javax.swing.JFileChooser;
 import javax.swing.ImageIcon;
 import javax.swing.Icon;
 import java.awt.Image;
-import java.text.ParseException;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import javax.swing.JTextField;
 /**
  *
  * @author Cherne
@@ -931,34 +925,34 @@ public class Alta extends javax.swing.JFrame {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
         String var = jComboBox1.getSelectedItem().toString().toLowerCase();
-        int cont=0;
         //validaFecha();
-        if(var.equals("vehiculos")){
-            if(valVehiculo()==0){// && validaFecha()){
-                altaProductos();
-                //altatnombre.setEnabled(false);
-                if(existe)javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
-                limpiar();
-            }else{
-                javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
-            }
-        }else if(var.equals("consumibles")){
-            if(valCamposConsumibles()==0){// && validaFecha()){
-                altaProductos();
-                if(existe)javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
-                limpiar();
-            }else{
-                altatstockmin.setBackground(Color.PINK);
-                javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
-            }
-        }else{ 
-            if(valCamposGeneral()==0){// && validaFecha()){
-                altaProductos();
-                if(existe)javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
-                limpiar();
-            }else{
-                 javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
-            }
+        switch (var) {
+            case "vehiculos":
+                if(valVehiculo()==0){// && validaFecha()){
+                    altaProductos();
+                    //altatnombre.setEnabled(false);
+                    if(existe)javax.swing.JOptionPane.showMessageDialog(null,"Se insertó el registro");
+                    limpiar();
+                }else{
+                    javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
+                }   break;
+            case "consumibles":
+                if(valCamposConsumibles()==0){// && validaFecha()){
+                    altaProductos();
+                    if(existe)javax.swing.JOptionPane.showMessageDialog(null,"Se insertó el registro");
+                    limpiar();
+                }else{
+                    altatstockmin.setBackground(Color.PINK);
+                    javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
+                }   break;
+            default:
+                if(valCamposGeneral()==0){// && validaFecha()){
+                    altaProductos();
+                    if(existe)javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
+                    limpiar();
+                }else{
+                    javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
+                }   break;
         }
         
     }//GEN-LAST:event_jButton9ActionPerformed
