@@ -350,7 +350,12 @@ public class Buscar extends javax.swing.JFrame {
             new String [] {
                 "Folio","Categoria", "Nombre_Producto", "Marca","Modelo","Stock","Status"
             }
-        ));
+        ){
+            @Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}  
+        });
     }//GEN-LAST:event_jTextField1KeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -372,7 +377,7 @@ public class Buscar extends javax.swing.JFrame {
             int rows = tbl_productos.rowAtPoint(evt.getPoint());
             String id = tbl_productos.getValueAt(rows, 0)+"";
             check = b.obtenerConsultas("select foto_producto from producto where folio_producto ='"+id+"'");
-            String query="select pe.modificar_permiso,pe.baja_permiso from usuario u inner join permisos_modulos pm on u.id_usuario=pm.usuario_id_usuario inner join permisos pe on pm.permisos_id_permiso=pe.id_permiso where u.usuario='"+nombreusuario+"'";
+            String query="select pe.modificar_permiso,pe.baja_permiso from usuario u inner join usuarios_permisos pm on u.id_usuario=pm.usuario_id_usuario inner join permisos pe on pm.permisos_id_permiso=pe.id_permiso where u.usuario='"+nombreusuario+"'";
             String [][] usuario = b.obtenerConsultas(query);
             jLabelIdModificar.setText(id+"");
             final JPopupMenu menu = new JPopupMenu();
@@ -418,7 +423,7 @@ public class Buscar extends javax.swing.JFrame {
         // TODO add your handling code here:
         iniciarTabla();
     }//GEN-LAST:event_jParametroItemStateChanged
-
+    
     class PopupActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
@@ -444,7 +449,7 @@ public class Buscar extends javax.swing.JFrame {
             VerFoto vf = new VerFoto(rutanormal(check[0][0]));
             vf.setVisible(true);
             }
-    }   
+    }    
     private String rutanormal(String ru){
         return ru.replace("$", "\\");
     }

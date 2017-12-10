@@ -66,16 +66,23 @@ public class Validaciones {
     
     public boolean valPlacas(String placa){
         if(estaVacio(placa)){return false;}
+        //Formato 2
         String p1=placa.substring(0, 3);
         char p2=placa.charAt(3);
         String p3=placa.substring(4, 6);
         char p4=placa.charAt(6);
         String p5=placa.substring(7, 9);
+        //Formato 2
+        String f1=placa.substring(0, 2);
+        char f2=placa.charAt(2);
+        String f3=placa.substring(3, 6);
+        char f4=placa.charAt(6);
+        String f5=placa.substring(7, 9);
         
         if(soloLetras(p1) && p2=='-' && soloNumeros(p3) && p4=='-' && soloNumeros(p5)){
             return true;
-        }else{
-               System.out.println(p1+"   "+p2+"     "+p3+"     "+p4+"    "+p5);
+        }else if(soloLetras(f1) && f2=='-' && soloNumeros(f3) && f4=='-' && soloNumeros(f5)){
+            return true;
         }
         return false;
     }
