@@ -29,7 +29,7 @@ public class TablaPersonal extends javax.swing.JFrame {
         modelo = new javax.swing.table.DefaultTableModel(
                 datos,
                 new String[]{
-                    "Id", "Nombre", "Apellido Pat.","Apellido Mat."
+                    "ID", "NOMBRE", "APELLIDO PAT.","APELLIDO MAT."
                 }
         ) {
             @Override
@@ -65,11 +65,11 @@ public class TablaPersonal extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Personal");
+        jLabel4.setText("PERSONAL");
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Sistema de Control de Inventario IEEN");
+        jLabel5.setText("SISTEMA DE CONTROL DE INVENTARIO IEEN");
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -98,7 +98,7 @@ public class TablaPersonal extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel15)
@@ -141,7 +141,7 @@ public class TablaPersonal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_personal);
 
-        btnSeleccionar.setText("Seleccionar");
+        btnSeleccionar.setText("SELECCIONAR");
         btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSeleccionarActionPerformed(evt);
@@ -164,7 +164,7 @@ public class TablaPersonal extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(120, 120, 120)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(128, Short.MAX_VALUE)))
+                    .addContainerGap(209, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,6 +275,6 @@ public class TablaPersonal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable tbl_personal;
+    private javax.swing.JTable tbl_personal;
     // End of variables declaration//GEN-END:variables
 }
