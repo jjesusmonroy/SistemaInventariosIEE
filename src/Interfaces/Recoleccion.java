@@ -5,19 +5,14 @@
  */
 package Interfaces;
 
-import Reportes.ListaValeResguardo;
 import Reportes.ListaValeRecoleccion;
 import basededatos.BDD;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import java.awt.event.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;

@@ -15,14 +15,8 @@ import javax.swing.JFileChooser;
 import javax.swing.ImageIcon;
 import javax.swing.Icon;
 import java.awt.Image;
-import java.text.ParseException;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import javax.swing.JTextField;
 /**
  *
  * @author Cherne

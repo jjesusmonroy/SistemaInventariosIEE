@@ -6,11 +6,6 @@
 package Clases;
 
 import Interfaces.Administracion;
-import Interfaces.Almacen;
-import Interfaces.Director_Depto;
-import Interfaces.General;
-import Interfaces.Informatica;
-import Interfaces.Presidencia;
 import basededatos.BDD;
 
 /**
