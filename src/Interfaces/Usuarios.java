@@ -329,19 +329,26 @@ public class Usuarios extends javax.swing.JFrame {
         @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 int idPersonal=b.getId("select id_personal from personal where nombre ='"+nombre+"' and apellido_pa='"+apellido+"'");
+                int idUsuario=b.getId("select u.id_usuario from personal p inner join usuario u on p.id_personal=u.personal_id_personal where p.nombre ='"+nombre+"' and p.apellido_pa='"+apellido+"'");
                 String[] options = new String[]{"Cancelar","Eliminación usuario/password", "Eliminación de personal"};
                 int response = JOptionPane.showOptionDialog(getContentPane(), "Elegir modo de eliminación del personal "+apellido+" "+nombre, "Eliminar Usuario",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
                 null, options, options[0]);
                 if(response==1){
-                    b.execute("delete from permisos_modulos where id_personal = '"+idPersonal+"'");
+                    b.execute("delete from usuarios_permisos where usuario_id_usuario = '"+idUsuario+"'");
                     b.execute("delete from usuario where personal_id_personal = '"+idPersonal+"'");
                     JOptionPane.showMessageDialog(getContentPane(), "Eliminado de usuario/password exitoso");
                 }
                 if(response==2){
-                    b.execute("delete from permisos_modulos where id_personal = '"+idPersonal+"'");
+                    b.execute("delete from usuarios_permisos where usuario_id_usuario = '"+idUsuario+"'");
                     b.execute("delete from usuario where personal_id_personal = '"+idPersonal+"'");
+                    b.execute("delete from asignacion where personal_id_personal ='"+idPersonal+"'");
+                    b.execute("delete from solicitud where personal_id_personal = '"+idPersonal+"'");
+                    b.execute("delete from peticion where personal_id_personal = '"+idPersonal+"'");
+                    b.execute("delete from solicitud_inventario where id_personal = '"+idPersonal+"'");
                     b.execute("delete from personal where id_personal = '"+idPersonal+"'");
+                    
+                    
                     JOptionPane.showMessageDialog(getContentPane(), "Eliminado de personal exitosa");
                 }
                 iniciarTabla();
