@@ -586,6 +586,7 @@ public class Recoleccion extends javax.swing.JFrame {
            if(b.verificacionExecute){JOptionPane.showMessageDialog(null, "Status del Producto Actualizado");}  
         
         List lista = new ArrayList();
+        int idfolio = m.getMax(b.obtenerConsultas("select folio_recoleccion from folio"));
         String[][] busqueda = b.obtenerConsultas(
                 "select p.puesto from personal pe, puesto p "
               + "where puesto_id_puesto = id_puesto and id_personal ="+ tbl_productos.getValueAt(tbl_productos.getSelectedRow(),0).toString()+";");
@@ -616,6 +617,7 @@ public class Recoleccion extends javax.swing.JFrame {
                 
                 Map parametro = new HashMap();
                 parametro.put("responsable",lblNombre.getText());
+                parametro.put("resguardo", idfolio+"");
                 parametro.put("cargo", busqueda[0][0]);
                 parametro.put("area", busqueda2[0][0]);
                 parametro.put("tipodeuso",tipouso.getText());
@@ -629,6 +631,14 @@ public class Recoleccion extends javax.swing.JFrame {
             }catch(ArrayIndexOutOfBoundsException e){
                 JOptionPane.showMessageDialog(null,"No existen datos para generar reporte","ERROR",JOptionPane.WARNING_MESSAGE);
             }
+            
+        String [] insert = new String[4];
+        insert[0] = 1+"";
+        insert[1] = 1+"";
+        insert[2] = idfolio+"";
+        insert[3]= 1+"";
+        b.insertar("folio", insert);
+        
         //tbl_productos1.getSelectedRow()
          modelo1.removeRow(tbl_productos1.getSelectedRow());
             id_cambio2=0;

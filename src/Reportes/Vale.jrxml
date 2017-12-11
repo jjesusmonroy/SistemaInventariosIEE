@@ -2,7 +2,8 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.7715610000000017"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="132"/>
+	<parameter name="nombre" class="java.lang.String"/>
 	<field name="id" class="java.lang.String"/>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="marca" class="java.lang.String"/>
@@ -59,28 +60,35 @@
 				</textElement>
 				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="131" y="22" width="259" height="20"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{nombre}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="23" splitType="Stretch">
+		<band height="38" splitType="Stretch">
 			<rectangle>
-				<reportElement x="2" y="1" width="100" height="20"/>
+				<reportElement x="189" y="1" width="366" height="37"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="189" y="1" width="366" height="20"/>
+				<reportElement x="2" y="1" width="100" height="37"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="102" y="1" width="87" height="20"/>
+				<reportElement x="102" y="1" width="87" height="37"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="2" y="1" width="100" height="20"/>
+				<reportElement x="2" y="1" width="100" height="37"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Cantidad]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="102" y="1" width="87" height="20"/>
+				<reportElement x="102" y="1" width="87" height="37"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -92,6 +100,34 @@
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[Artículo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="20" width="73" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="263" y="20" width="117" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="20" width="94" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[marca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="474" y="19" width="81" height="19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[modelo]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -107,37 +143,37 @@
 				<reportElement x="2" y="0" width="100" height="20"/>
 			</rectangle>
 			<textField>
-				<reportElement x="190" y="1" width="83" height="20"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="7"/>
+				<reportElement x="190" y="1" width="73" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="2" y="1" width="100" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="7"/>
+					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{cantidad}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="390" y="1" width="100" height="20"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="7"/>
+				<reportElement x="380" y="1" width="94" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{marca}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="490" y="1" width="100" height="20"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="7"/>
+				<reportElement x="474" y="1" width="81" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{modelo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="273" y="1" width="117" height="20"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="7"/>
+				<reportElement x="263" y="1" width="117" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
