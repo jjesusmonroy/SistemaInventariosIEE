@@ -6,11 +6,7 @@
 package Clases;
 
 import Interfaces.Administracion;
-import Interfaces.Almacen;
-import Interfaces.Director_Depto;
-import Interfaces.General;
-import Interfaces.Informatica;
-import Interfaces.Presidencia;
+import Interfaces.Principal;
 import basededatos.BDD;
 
 /**
@@ -22,7 +18,7 @@ public class Manejador_Ventanas {
     
     public void getVentanaPrincipal(String resulSet[][]){
             
-        Administracion administracion = new Administracion(resulSet[0][0],resulSet[0][1]+" "+resulSet[0][2]+" "+resulSet[0][3],Integer.parseInt(resulSet[0][4]),Integer.parseInt(resulSet[0][5]),Integer.parseInt(resulSet[0][6]),Integer.parseInt(resulSet[0][7]),Integer.parseInt(resulSet[0][8]));
+        Principal administracion = new Principal(resulSet[0][0],resulSet[0][1]+" "+resulSet[0][2]+" "+resulSet[0][3],Integer.parseInt(resulSet[0][4]),Integer.parseInt(resulSet[0][5]),Integer.parseInt(resulSet[0][6]),Integer.parseInt(resulSet[0][7]),Integer.parseInt(resulSet[0][8]),Integer.parseInt(resulSet[0][9]),Integer.parseInt(resulSet[0][10]));
         administracion.setVisible(true);                        
        
         
@@ -31,16 +27,21 @@ public class Manejador_Ventanas {
     public String[][] getModulo(String nombre_usuario){
 
         BDD bd = new BDD();
-        String query = "select m.nombre_modulo,p.nombre,p.apellido_pa,p.apellido_ma,per.alta_permiso,"
-                + "per.baja_permiso,per.consulta_permiso,per.modificar_permiso,per.administrar_usuario_permiso,"
-                + "u.id_usuario from usuario u "
-                + "inner join personal p on u.personal_id_personal=p.id_personal "
-                + "inner join permisos_modulos pm on u.id_usuario=pm.usuario_id_usuario "
-                + "inner join modulos m on pm.modulos_id_modulo=m.id_modulo "
-                + "inner join permisos per on pm.permisos_id_permiso=per.id_permiso "
-                + "where u.usuario='"+nombre_usuario+"';";
-
-        
+        String query = "select are.area,pe.nombre,pe.apellido_pa,pe.apellido_ma," +
+            "per.alta_permiso,per.baja_permiso,per.consulta_permiso,per.modificar_permiso,per.administrar_usuario_permiso,per.solicitar_producto_permiso,per.aprobar_solicitud_producto_permiso," +
+            "usu.id_usuario" +
+            " from usuario usu" +
+            " inner join personal pe" +
+            " on usu.personal_id_personal = pe.id_personal" +
+            " inner join puesto pue" +
+            " on pe.puesto_id_puesto = pue.id_puesto" +
+            " inner join area are" +
+            " on pue.area_id_area = are.id_area" +
+            " inner join usuarios_permisos up" +
+            " on usu.id_usuario = up.usuario_id_usuario" +
+            " inner join permisos per" +
+            " on up.permisos_id_permiso = per.id_permiso" +
+            " where usu.usuario='"+nombre_usuario+"';";
         return bd.obtenerConsultas(query);
     
     }

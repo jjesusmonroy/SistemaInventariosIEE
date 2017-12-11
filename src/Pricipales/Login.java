@@ -255,9 +255,7 @@ LoginManejador nuevo;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-       
-        
+
         if(nuevo.valida(usuario.getText(),contra.getText())==false){
           JOptionPane.showMessageDialog(this,"Error Usuario o Contraseña Invalida");
         }else{
@@ -321,7 +319,6 @@ LoginManejador nuevo;
             emple.setVisible(true);
             emple.setTitulo(nuevo.nombreUsuario(usuario.getText()), nuevo.idUsuario(usuario.getText()));
             this.dispose();
-        
     }
     }
     /**

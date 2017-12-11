@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.7715610000000017"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="403"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="nombre" class="java.lang.String"/>
 	<parameter name="cargo" class="java.lang.String"/>
 	<parameter name="area" class="java.lang.String"/>
@@ -10,6 +10,7 @@
 	<parameter name="muni" class="java.lang.String"/>
 	<parameter name="localidad" class="java.lang.String"/>
 	<parameter name="nores" class="java.lang.String"/>
+	<parameter name="fecha" class="java.lang.String"/>
 	<field name="folio" class="java.lang.String"/>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="marca" class="java.lang.String"/>
@@ -31,7 +32,7 @@
 				<textElement textAlignment="Center">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[VALE DE RESGUARDO DE BIENES]]></text>
+				<text><![CDATA[VALE DE COMODATO DE BIENES]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -75,13 +76,6 @@
 				</textElement>
 				<text><![CDATA[Fecha]]></text>
 			</staticText>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="142" y="45" width="90" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
 			<rectangle>
 				<reportElement x="0" y="76" width="555" height="20" backcolor="#CCCCCC"/>
 			</rectangle>
@@ -189,6 +183,13 @@
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{nores}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="45" width="90" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{fecha}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
@@ -314,7 +315,7 @@
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[NOTA: EN CASO DE RENUNCIA, LICENCIA O CAMBIO DE ADSCRIPCIÓN, SIRVASE HACER ENTREGA  ENTREGA DEL EQUIPO A SU CARGO, A FIN DE EVITAR RESPONSABILIDAD POSTERIOR EN EFECTIVO, LA RESPONSABILIDAD DE ESTE RESGUARDO NO FINIQUITA HASTA QUE EL BIEN HAYA SIDO DEVUELTO Y EL ORIGINAL DE ESTE DOCUMENTO SEA CACELADO.]]></text>
+				<text><![CDATA[NOTA: EN CASO DE RENUNCIA, LICENCIA O CAMBIO DE ADSCRIPCIÓN, SIRVASE HACER ENTREGA  ENTREGA DEL EQUIPO A SU CARGO, A FIN DE EVITAR RESPONSABILIDAD POSTERIOR EN EFECTIVO, LA RESPONSABILIDAD DE ESTE COMODATO NO FINIQUITA HASTA QUE EL BIEN HAYA SIDO DEVUELTO Y EL ORIGINAL DE ESTE DOCUMENTO SEA CACELADO.]]></text>
 			</staticText>
 		</band>
 	</summary>
