@@ -5,7 +5,15 @@
  */
 package Interfaces;
 
+import static Interfaces.Buscar.nombreusuario;
+import basededatos.BDD;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.DefaultListModel;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,8 +24,19 @@ public class Notificaciones extends javax.swing.JFrame {
     /**
      * Creates new form Notificaciones
      */
+    BDD bd;
+    
+    public static String usuario="";
+    boolean aprobar;
+    DefaultTableModel modelo;
     public Notificaciones() {
         initComponents();
+        bd = new BDD();
+        if(!usuario.equals("")){
+            inicializarTabla();
+        }
+
+        
     }
 
     /**
@@ -30,141 +49,134 @@ public class Notificaciones extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        btn_ayuda = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
-        jButton3 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        scrollPane = new javax.swing.JScrollPane();
+        tbl_notificaciones = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/close.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/minimize.png"))); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/checked.png"))); // NOI18N
+        jButton2.setText("CERRAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jPanel3.setBackground(new java.awt.Color(255, 102, 255));
+        jPanel3.setBackground(new java.awt.Color(255, 0, 204));
+
+        jLabel5.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("NOTIFICACIONES");
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel13MouseClicked(evt);
+            }
+        });
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/salir2.png"))); // NOI18N
+        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel14MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel14)
+                .addGap(13, 13, 13))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 16, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel5))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
-        btn_ayuda.setBackground(new java.awt.Color(255, 255, 255));
-        btn_ayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/ic_help_outline_black_24dp_1x.png"))); // NOI18N
-        btn_ayuda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ayudaActionPerformed(evt);
+        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
+
+        tbl_notificaciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tbl_notificaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tbl_notificacionesMouseReleased(evt);
             }
         });
-
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("NOTIFICACIONES");
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jList1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jList1MouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jList1);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
-        );
-
-        jButton3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 51, 153));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
-        jButton3.setText("CERRAR");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+        scrollPane.setViewportView(tbl_notificaciones);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
-                        .addComponent(btn_ayuda, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 113, Short.MAX_VALUE)
+                    .addComponent(jLabel7)
+                    .addGap(0, 440, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btn_ayuda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButton2)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 233, Short.MAX_VALUE)
+                    .addComponent(jLabel7)
+                    .addGap(0, 233, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -177,38 +189,56 @@ public class Notificaciones extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 23, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
-        this.dispose();
-
-    }//GEN-LAST:event_jButton1ActionPerformed
+        inicializarTabla();
+    }//GEN-LAST:event_formWindowGainedFocus
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        setExtendedState(Administracion.HIDE_ON_CLOSE);
-
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void btn_ayudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ayudaActionPerformed
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_ayudaActionPerformed
+        this.setExtendedState(ICONIFIED);
+    }//GEN-LAST:event_jLabel13MouseClicked
 
-    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this,jList1.getSelectedIndex()+"");
-    }//GEN-LAST:event_jList1MouseClicked
+    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
         this.dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jLabel14MouseClicked
 
+    private void tbl_notificacionesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_notificacionesMouseReleased
+        // TODO add your handling code here:
+        if(evt.getClickCount()==2){
+            int rows = tbl_notificaciones.rowAtPoint(evt.getPoint());
+            String id = tbl_notificaciones.getValueAt(rows, 0)+"";
+            
+            final JPopupMenu menu = new JPopupMenu();
+            JMenuItem item1 = new JMenuItem("VER");
+            JMenuItem item2 = new JMenuItem("ELIMINAR");
+            ActionListener actionListener = new PopupActionListener(Integer.parseInt(id));
+            ActionListener actionListener2 = new PopupActionListener2(Integer.parseInt(id));
+            item1.addActionListener(actionListener);
+            item2.addActionListener(actionListener2);
+            if(aprobar){
+                menu.add(item1);
+            }
+            menu.add(item2);            
+            menu.show(evt.getComponent(),evt.getX(),evt.getY());
+        }
+    }//GEN-LAST:event_tbl_notificacionesMouseReleased
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -245,15 +275,83 @@ public class Notificaciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_ayuda;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JList jList1;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane scrollPane;
+    private javax.swing.JTable tbl_notificaciones;
     // End of variables declaration//GEN-END:variables
+
+    private void inicializarTabla() {
+        String[][] res = bd.obtenerConsultas("select per.aprobar_solicitud_producto_permiso from usuario usu inner join usuarios_permisos up on usu.id_usuario = up.usuario_id_usuario inner join permisos per on up.permisos_id_permiso = per.id_permiso where usu.usuario =\""+usuario+"\";");
+
+            aprobar = res[0][0].equals("1");
+
+            if(aprobar){
+                //llenado de la tablita
+                String[][] datos = bd.obtenerConsultas("select pc.id_peticion,are.area,pc.categoria,pc.cantidad,pc.nombre,pc.status from peticiones_compra pc inner join usuario usu on pc.usuario_id_usuario = usu.id_usuario inner join personal per on usu.personal_id_personal = per.id_personal inner join puesto pue  on per.puesto_id_puesto = pue.id_puesto inner join area are on pue.area_id_area = are.id_area where pc.status= 'PENDIENTE';");
+
+                modelo = new javax.swing.table.DefaultTableModel(
+                        datos,
+                        new String[]{
+                            "ID","AREA", "CATEGORIA", "CANTIDAD", "NOMBRE","STATUS"
+                        }
+                ) {
+                    @Override
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
+                };
+            tbl_notificaciones.setModel(modelo);
+            }else {
+                String[][] res1 = bd.obtenerConsultas("select usu.id_usuario from usuario usu where usu.usuario = '"+usuario+"';");
+                int idUsuario = Integer.parseInt(res1[0][0]);
+                String[][] datos = bd.obtenerConsultas("select pc.id_peticion,are.area,pc.categoria,pc.cantidad,pc.nombre,pc.status from peticiones_compra pc inner join usuario usu on pc.usuario_id_usuario = usu.id_usuario inner join personal per on usu.personal_id_personal = per.id_personal inner join puesto pue  on per.puesto_id_puesto = pue.id_puesto inner join area are on pue.area_id_area = are.id_area where pc.usuario_id_usuario= "+idUsuario+";");
+
+                modelo = new javax.swing.table.DefaultTableModel(
+                        datos,
+                        new String[]{
+                            "ID","AREA", "CATEGORIA", "CANTIDAD", "NOMBRE","STATUS"
+                        }
+                ) {
+                    @Override
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
+                };
+            tbl_notificaciones.setModel(modelo);
+            }
+    }
+
+    class PopupActionListener2 implements ActionListener {
+        int id_pet;
+
+        public PopupActionListener2(int id) {
+            id_pet = id;
+        }
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            bd.execute("delete from peticiones_compra where id_peticion="+id_pet+";");
+            inicializarTabla();            
+        }
+        
+    }
+
+    class PopupActionListener implements ActionListener {
+        int id_pet;
+
+        public PopupActionListener(int id) {
+            id_pet = id;
+        }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            AprobarNotificaciones aprobar = new AprobarNotificaciones(id_pet);
+            aprobar.setVisible(true);
+        }
+    }
 }
