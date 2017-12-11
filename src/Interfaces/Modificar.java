@@ -6,6 +6,7 @@
 package Interfaces;
 
 import Clases.MetodosG;
+import Clases.Validaciones;
 import basededatos.BDD;
 import java.awt.Color;
 import java.awt.Image;
@@ -32,17 +33,20 @@ public final class Modificar extends javax.swing.JFrame {
     String folio;
     BDD b;
     MetodosG m;
+    Validaciones v;
     int idCategoria=0;
     String idCat;
     String idProducto;
     String idVehiculo;
     boolean vehiculo,consumible;
+    
     public Modificar(String user){
         initComponents();
         vehiculo=false;
         consumible=false;
         b = new BDD();
         m = new MetodosG();
+        v = new Validaciones();
         folio=user;
         idCat="";
         idProducto="";
@@ -123,8 +127,8 @@ public final class Modificar extends javax.swing.JFrame {
                     "no_factura_producto='"+m.jtextfield(nofact)+"', "+
                     "importe_producto='"+m.jtextfield(importe)+"', "+
                     "observaciones_producto='"+m.jtextarea(observaciones)+"', "+
-                    "stock_producto='"+m.jtextfield(stock)+"', "+
-                    "min_stock_producto='"+m.jtextfield(stockmin)+"', "+
+                    "stock_producto="+m.jtextfield(stock)+", "+
+                    "min_stock_producto="+m.jtextfield(stockmin)+", "+
                     "id_categoria='"+idcategoria+"'";
         b.execute("update producto set "+update+" where id_producto ='"+idProducto+"'");
         if(fichero!=null){
@@ -865,10 +869,35 @@ public final class Modificar extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-            // TODO add your handling code here:
-            update();
-            JOptionPane.showMessageDialog(this, "Se han guardado los cambios");
-            this.dispose();
+        // TODO add your handling code here:
+        
+        String var = jComboBox1.getSelectedItem().toString().toLowerCase();
+        //validaFecha();
+        switch (var) {
+            case "vehiculos":
+                if(valVehiculo()==0){// && validaFecha()){
+                    update();
+                }else{
+                    javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
+                }   break;
+            case "consumibles":
+                if(valCamposConsumibles()==0){// && validaFecha()){
+                    update();
+                }else{
+                    stockmin.setBackground(Color.PINK);
+                    javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
+                }   break;
+            default:
+                if(valCamposGeneral()==0){// && validaFecha()){
+                    update();
+                }else{
+                    javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
+                }   break;
+        }
+        
+        //update();
+        JOptionPane.showMessageDialog(this, "Se han guardado los cambios");
+        this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -1061,6 +1090,157 @@ public final class Modificar extends javax.swing.JFrame {
         if(fecha.getDate().after(date)){JOptionPane.showMessageDialog(this, "Fecha posterior a la actual");}
     }//GEN-LAST:event_fechaPropertyChange
 
+    
+    public int valCamposGeneral(){
+       int cont=0;
+        if(v.soloLetras(nombre.getText())==true){
+            cont++;
+            //asNombre.setText("*");
+            nombre.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(noserie.getText())==true){
+            cont++;
+            //asMarca.setText("*");
+            noserie.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(marca.getText())==true){
+            cont++;
+            //asModelo.setText("*");
+            marca.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(modelo.getText())==true){
+            cont++;
+            //asNoSerie.setText("*");
+            modelo.setBackground(Color.PINK);
+        }
+        if(v.soloLetras(color.getText())==true){
+            cont++;
+            //asColor.setText("*");
+            color.setBackground(Color.PINK);
+        }
+        if(v.soloNumeros(nofact.getText())==true){
+            cont++;
+            //asNoFact.setText("*");
+            nofact.setBackground(Color.PINK);
+        }
+        if(v.soloDecimales(importe.getText())==true){
+            cont++;
+            //asImporte.setText("*");
+            importe.setBackground(Color.PINK);
+        }
+        return cont;
+   }
+    public int valVehiculo(){
+          int cont=0;
+        if(v.estaVacio(noserie.getText())==true){
+            cont++;
+            //asMarca.setText("*");
+            noserie.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(marca.getText())==true){
+            cont++;
+            //asModelo.setText("*");
+            marca.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(modelo.getText())==true){
+            cont++;
+            //asNoSerie.setText("*");
+            modelo.setBackground(Color.PINK);
+        }
+        if(v.soloLetras(color.getText())==true){
+            cont++;
+            //asColor.setText("*");
+            color.setBackground(Color.PINK);
+        }
+        if(v.soloNumeros(nofact.getText())==true){
+            cont++;
+            //asNoFact.setText("*");
+            nofact.setBackground(Color.PINK);
+        }
+        if(v.soloDecimales(importe.getText())==true){
+            cont++;
+            //asImporte.setText("*");
+            importe.setBackground(Color.PINK);
+        }       
+       if(v.estaVacio(placas.getText())){
+            cont++;
+            //asImporte.setText("*");
+            placas.setBackground(Color.PINK);
+       }
+       if(placas.getText().length()!=9){
+            cont++;
+            placas.setBackground(Color.PINK);
+        }else if(v.valPlacas(placas.getText())){
+             cont++;
+            //asImporte.setText("*");
+            placas.setBackground(Color.PINK);
+        }
+        
+        if(v.estaVacio(nomotor.getText())){
+            cont++;
+            nomotor.setBackground(Color.PINK);
+        }
+        if(v.soloNumeros(nomotor.getText())){
+            cont++;
+            nomotor.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(kilometraje.getText())){
+            cont++;
+            kilometraje.setBackground(Color.PINK);
+        }
+        if(v.soloDecimales(kilometraje.getText())){
+            cont++;
+            kilometraje.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(kmservicio.getText())){
+            cont++;
+            kmservicio.setBackground(Color.PINK);
+        }
+        if(v.soloDecimales(kmservicio.getText())){
+            cont++;
+            kmservicio.setBackground(Color.PINK);
+        }
+        return cont;
+   }
+    public int valCamposConsumibles(){
+       int cont=0;
+       if(v.soloNumeros(stockmin.getText())==true){
+           cont++;
+            //asNombre.setText("*");
+            stockmin.setBackground(Color.PINK);
+       }
+        if(v.soloLetras(nombre.getText())==true){
+            cont++;
+            //asNombre.setText("*");
+            nombre.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(marca.getText())==true){
+            cont++;
+            //asModelo.setText("*");
+            marca.setBackground(Color.PINK);
+        }
+        if(v.soloLetras(color.getText())==true){
+            cont++;
+            //asColor.setText("*");
+            color.setBackground(Color.PINK);
+        }
+        if(v.soloNumeros(nofact.getText())==true){
+            cont++;
+            //asNoFact.setText("*");
+            nofact.setBackground(Color.PINK);
+        }
+        if(v.soloDecimales(importe.getText())==true){
+            cont++;
+            //asImporte.setText("*");
+           importe.setBackground(Color.PINK);
+        }
+        return cont;
+   }
+   
+   public String rutaChida(String ru){
+       return ru.replace("\\", "$");
+   }
+    
     /**
      * @param args the command line arguments
      */
