@@ -244,6 +244,8 @@ public class I_Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         Buscar buscar = new Buscar();
         buscar.nombreusuario=txt_usuario.getText();
+        NuevaSolicitud nuevaSolicitud = new NuevaSolicitud();
+        nuevaSolicitud.usuario = txt_usuario.getText();
         String nom_usuario = txt_usuario.getText();
         usuarioActual=txt_usuario.getText();
         char[] password = txt_password.getPassword();
