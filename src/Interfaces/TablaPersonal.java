@@ -226,12 +226,12 @@ public class TablaPersonal extends javax.swing.JFrame {
         
         int x = tbl_personal.getSelectedRow();
         nombre=
-            tbl_personal.getValueAt(x,1)+" "+
-            tbl_personal.getValueAt(x,2)+" "+
+            tbl_personal.getValueAt(x,1)+""+
+            tbl_personal.getValueAt(x,2)+""+
             tbl_personal.getValueAt(x,3);
         Asignar a=new Asignar();
         a.jLabel1.setText(nombre);
-        a.lblId.setText(tbl_personal.getValueAt(x,0)+" ");
+        a.lblId.setText(tbl_personal.getValueAt(x,0)+"");
         
        
         /*pasar = new javax.swing.table.DefaultTableModel(
