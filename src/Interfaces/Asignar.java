@@ -566,6 +566,7 @@ public class Asignar extends javax.swing.JFrame {
         }
         
         List lista = new ArrayList();
+        int idfolio = m.getMax(b.obtenerConsultas("select folio_resguardo from folio"));
         String[][] busqueda = b.obtenerConsultas(
                 "select p.puesto from personal pe, puesto p "
               + "where puesto_id_puesto = id_puesto and id_personal ="+lblId.getText()+";");
@@ -596,6 +597,8 @@ public class Asignar extends javax.swing.JFrame {
                 JasperReport reporte = (JasperReport)  JRLoader.loadObject("src/Reportes/ValeReguardo.jasper");
                 
                 Map parametro = new HashMap();
+                
+                parametro.put("nores",idfolio+"");
                 parametro.put("nombre",jLabel1.getText());
                 parametro.put("cargo", busqueda[0][0]);
                 parametro.put("area", busqueda2[0][0]);
@@ -610,6 +613,13 @@ public class Asignar extends javax.swing.JFrame {
             }catch(ArrayIndexOutOfBoundsException e){
                 JOptionPane.showMessageDialog(null,"Error al generar el vale","ERROR",JOptionPane.WARNING_MESSAGE);
             }
+        
+        String [] insert = new String[4];
+        insert[0] = idfolio+"";
+        insert[1] = 1+"";
+        insert[2] = 1+"";
+        insert[3]= 1+"";
+        b.insertar("folio", insert);
         
         int id = m.getMax(b.obtenerConsultas("select id_asignacion from asignacion"));
 
