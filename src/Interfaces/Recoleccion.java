@@ -34,15 +34,15 @@ public class Recoleccion extends javax.swing.JFrame {
     DefaultTableModel modelo1;
     Clases.Validaciones v;
     Clases.MetodosG m;
-    int id_cambio,id_cambio2;
+    String id_cambio,id_cambio2;
     String comentarios,bodega,folioProd;
     public Recoleccion() {
         initComponents();
         comentarios="";
         bodega="";
         folioProd="";
-        id_cambio=0;
-        id_cambio2=0;
+        id_cambio="";
+        id_cambio2="";
         b=new BDD();
         v=new Clases.Validaciones();
         m=new Clases.MetodosG();
@@ -153,6 +153,9 @@ public class Recoleccion extends javax.swing.JFrame {
         tbl_productos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_productosMouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tbl_productosMouseReleased(evt);
             }
         });
         tbl_productos.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -464,32 +467,6 @@ public class Recoleccion extends javax.swing.JFrame {
 
     private void tbl_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productosMouseClicked
         // TODO add your handling code here:
-         if(evt.getClickCount()==1 ){
-             tipouso.setEnabled(false);
-            localidad.setEnabled(false);
-            municipio.setEnabled(false);
-            int rows = tbl_productos.rowAtPoint(evt.getPoint());
-            id_cambio=Integer.parseInt(tbl_productos.getValueAt(rows, 0).toString());  
-            lblNombre.setText(tbl_productos.getValueAt(rows, 1)+" "+tbl_productos.getValueAt(rows, 2)+" "+tbl_productos.getValueAt(rows, 3));
-            if(id_cambio==0){
-            javax.swing.JOptionPane.showMessageDialog(this,"Seleccione una fila");
-             return;
-        }
-         int x = tbl_productos.getSelectedRow();
-         DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
-         for(int i = tbl_productos1.getRowCount()-1; i>=0;i--){
-            model.removeRow(i);
-        }
-         String aux[][] = b.obtenerConsultas("select a.id_asignacion,p.folio_producto,p.nombre_producto,p.marca_producto from asignacion a inner join producto p on p.id_producto=a.producto_id_producto and personal_id_personal="+id_cambio);
-         String [] nuevo=new String[4];
-         for(int i=0;i<aux.length;i++){
-                nuevo[0]=aux[i][0];
-                nuevo[1]=aux[i][1];
-                nuevo[2]=aux[i][2];
-                nuevo[3]=aux[i][3];
-                model.addRow(nuevo);
-         }
-        }
     }//GEN-LAST:event_tbl_productosMouseClicked
 
     private void jScrollPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane2MouseClicked
@@ -498,31 +475,22 @@ public class Recoleccion extends javax.swing.JFrame {
 
     private void tbl_productos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productos1MouseClicked
         // TODO add your handling code here:
+    }//GEN-LAST:event_tbl_productos1MouseClicked
+
+    private void tbl_productos1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productos1MouseReleased
+        // TODO add your handling code here:
         if(evt.getClickCount()==1 ){
             int rows = tbl_productos1.rowAtPoint(evt.getPoint());
-            id_cambio2=Integer.parseInt(tbl_productos1.getValueAt(rows, 0).toString());  
+            id_cambio2=tbl_productos1.getValueAt(rows, 0).toString();  
             folioProd=tbl_productos1.getValueAt(rows, 1).toString();
             tipouso.setEnabled(true);
             localidad.setEnabled(true);
             municipio.setEnabled(true);
         }
-    }//GEN-LAST:event_tbl_productos1MouseClicked
-
-    private void tbl_productos1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productos1MouseReleased
-        // TODO add your handling code here:
-        /*if(evt.getButton()== java.awt.event.MouseEvent.BUTTON3 && (tbl_productos1.getSelectedRowCount()!=0)){
-            final JPopupMenu menu = new JPopupMenu();
-            JMenuItem item1 = new JMenuItem("Recolectar");
-            ActionListener actionListener = new PopupActionListener();
-            item1.addActionListener(actionListener);
-            //if(usuario[0][0].equals("1"))menu.add(item1);
-            menu.add(item1);
-            menu.show(evt.getComponent(),evt.getX(),evt.getY());
-        }*/
     }//GEN-LAST:event_tbl_productos1MouseReleased
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if(id_cambio2==0){
+        if(id_cambio2.equals("")){
             JOptionPane.showMessageDialog(this, "Seleccione una un producto de la tabla");
             return;
         }   
@@ -558,8 +526,6 @@ public class Recoleccion extends javax.swing.JFrame {
         
         int [] select = new int[tbl_productos1.getSelectedRows().length];
         for(int i = 0; i<tbl_productos1.getSelectedRows().length;i++){
-            
-            javax.swing.JOptionPane.showMessageDialog(this,tbl_productos1.getValueAt(i,0)+"");
             select[i]=Integer.parseInt(tbl_productos1.getValueAt(i,0)+"");
         }
         
@@ -576,14 +542,20 @@ public class Recoleccion extends javax.swing.JFrame {
                 "id_personal =" + tbl_productos.getValueAt(tbl_productos.getSelectedRow(),0).toString() +";");
         
         
-        try{
+        try{    
+                String value0,value1,value2,value3;
                 for(int i = 0;i<tbl_productos1.getSelectedRows().length;i++){
+                    if(tbl_productos1.getValueAt(i, 0)==null)value0="";
+                    else value0=tbl_productos1.getValueAt(i,0).toString();
+                    if(tbl_productos1.getValueAt(i, 1)==null)value1="";
+                    else value1=tbl_productos1.getValueAt(i,1).toString();
+                    if(tbl_productos1.getValueAt(i, 2)==null)value2="";
+                    else value2=tbl_productos1.getValueAt(i,2).toString();
+                    if(tbl_productos1.getValueAt(i, 3)==null)value3="";
+                    else value3=tbl_productos1.getValueAt(i,3).toString();
                     ListaValeRecoleccion listaedad = new ListaValeRecoleccion(
-                            tbl_productos1.getValueAt(select[i],0).toString(),
-                            tbl_productos1.getValueAt(select[i],1).toString(),
-                            tbl_productos1.getValueAt(select[i],2).toString(),
-                            tbl_productos1.getValueAt(select[i],3).toString());
-                    select[i]=Integer.parseInt(tbl_productos1.getValueAt(i,0)+"");
+                            value0,value1,value2,value3
+                    );
                     lista.add(listaedad);
                 }
                 try {
@@ -625,7 +597,7 @@ public class Recoleccion extends javax.swing.JFrame {
         
         //tbl_productos1.getSelectedRow()
          modelo1.removeRow(tbl_productos1.getSelectedRow());
-            id_cambio2=0;
+            id_cambio2="";
             folioProd="";
             tipouso.setText("");
             localidad.setText("");
@@ -687,6 +659,36 @@ public class Recoleccion extends javax.swing.JFrame {
                 }
         ));
     }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void tbl_productosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productosMouseReleased
+        // TODO add your handling code here:
+        if(evt.getClickCount()==1 ){
+             tipouso.setEnabled(false);
+            localidad.setEnabled(false);
+            municipio.setEnabled(false);
+            int rows = tbl_productos.rowAtPoint(evt.getPoint());
+            id_cambio=tbl_productos.getValueAt(rows, 0).toString();  
+            lblNombre.setText(tbl_productos.getValueAt(rows, 1)+" "+tbl_productos.getValueAt(rows, 2)+" "+tbl_productos.getValueAt(rows, 3));
+            if(id_cambio.equals("")){
+            javax.swing.JOptionPane.showMessageDialog(this,"Seleccione una fila");
+             return;
+        }
+         int x = tbl_productos.getSelectedRow();
+         DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
+         for(int i = tbl_productos1.getRowCount()-1; i>=0;i--){
+            model.removeRow(i);
+        }
+         String aux[][] = b.obtenerConsultas("select a.id_asignacion,p.folio_producto,p.nombre_producto,p.marca_producto from asignacion a inner join producto p on p.id_producto=a.producto_id_producto and personal_id_personal="+id_cambio);
+         String [] nuevo=new String[4];
+         for(int i=0;i<aux.length;i++){
+                nuevo[0]=aux[i][0];
+                nuevo[1]=aux[i][1];
+                nuevo[2]=aux[i][2];
+                nuevo[3]=aux[i][3];
+                model.addRow(nuevo);
+         }
+        }
+    }//GEN-LAST:event_tbl_productosMouseReleased
     /*class PopupActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
