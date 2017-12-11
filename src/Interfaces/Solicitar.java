@@ -64,36 +64,11 @@ public class Solicitar extends javax.swing.JFrame {
  
       // tbl_productos1.setEnabled(false);
       //b = new BDD();
-        String [][] busqueda = b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto,stock_producto,status_producto from producto");
-        tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
-                busqueda
-                ,
-            new String [] {
-                "Folio", "Nombre", "Marca","Modelo","Stock","Status"
-            }
-                 ){
-            @SuppressWarnings("rawtypes")
-            Class[] columnTypes = new Class[] {
-                String.class, String.class, String.class, Integer.class, Integer.class, String.class
-            };
-            @SuppressWarnings({ "unchecked", "rawtypes" })
-            @Override
-            public Class getColumnClass(int columnIndex) {
-                return columnTypes[columnIndex];
-            }
-            boolean[] columnEditables = new boolean[] {
-                false, false, false, false, false, false
-            };
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return columnEditables[column];
-            }
-        });
-      
+      iniciarTabla();
            tbl_productos1.setModel(new javax.swing.table.DefaultTableModel(
              data,
             new String [] {
-                "Folio", "Nombre", "Marca","Modelo","Cantidad","Stock Actual"
+                "Folio", "Categoria", "Nombre","Marca","Modelo","Stock"
             }
         ){
             @SuppressWarnings("rawtypes")
@@ -403,7 +378,36 @@ public class Solicitar extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    private void iniciarTabla(){
+        String query ="select p.folio_producto,c.nombre_categoria,p.nombre_producto,p.marca_producto,p.modelo_producto,p.stock_producto from producto p "
+                + "inner join categoria c on p.id_categoria=c.id_categoria where p.status_producto='Activo'";
+        String [][] busqueda = b.obtenerConsultas(query);
+        tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
+                busqueda
+                ,
+            new String [] {
+                "Folio", "Categoria", "Nombre","Marca","Modelo","Stock"
+            }
+                 ){
+            @SuppressWarnings("rawtypes")
+            Class[] columnTypes = new Class[] {
+                String.class, String.class, String.class, Integer.class, Integer.class, String.class
+            };
+            @SuppressWarnings({ "unchecked", "rawtypes" })
+            @Override
+            public Class getColumnClass(int columnIndex) {
+                return columnTypes[columnIndex];
+            }
+            boolean[] columnEditables = new boolean[] {
+                false, false, false, false, false, false
+            };
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return columnEditables[column];
+            }
+        });
+      
+    }
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
@@ -420,7 +424,6 @@ public class Solicitar extends javax.swing.JFrame {
         for(int i = 0;i<tbl_productos1.getColumnCount();i++){   
             for(int j = 0; j<tbl_productos1.getRowCount();j++){
                 arr[j][i]=tbl_productos1.getValueAt(j,i)+"";
-                 System.out.println(arr[j][i]);
             }
         }
         
@@ -430,12 +433,19 @@ public class Solicitar extends javax.swing.JFrame {
         
         
         try{
+                String value0,value2,value3,value4,value5;
                 for(int i = 0;i<tbl_productos1.getRowCount();i++){
-                    ListaVale listaedad = new ListaVale(tbl_productos1.getValueAt(i,0).toString(),
-                                                        tbl_productos1.getValueAt(i,1).toString(),
-                                                        tbl_productos1.getValueAt(i,2).toString(),
-                                                        tbl_productos1.getValueAt(i,3).toString(),
-                                                        tbl_productos1.getValueAt(i,4).toString());
+                    if(tbl_productos1.getValueAt(i, 0)==null)value0="";
+                    else value0=tbl_productos1.getValueAt(i,0).toString();
+                    if(tbl_productos1.getValueAt(i, 2)==null)value2="";
+                    else value2=tbl_productos1.getValueAt(i,2).toString();
+                    if(tbl_productos1.getValueAt(i, 3)==null)value3="";
+                    else value3=tbl_productos1.getValueAt(i,3).toString();
+                    if(tbl_productos1.getValueAt(i, 4)==null)value4="";
+                    else value4=tbl_productos1.getValueAt(i,4).toString();
+                    if(tbl_productos1.getValueAt(i, 5)==null)value5="";
+                    else value5=tbl_productos1.getValueAt(i,5).toString();
+                    ListaVale listaedad = new ListaVale(value0,value2,value3,value4,value5);
                     lista.add(listaedad);
                 }
                 try {

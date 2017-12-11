@@ -209,19 +209,8 @@ public class TablaPersonal extends javax.swing.JFrame {
         Asignar a=new Asignar();
         a.jLabel1.setText(nombre);
         a.lblId.setText(tbl_personal.getValueAt(x,0)+"");
-        
-       
-        /*pasar = new javax.swing.table.DefaultTableModel(
-                a.datos,
-                new String[]{
-                    "Folio", "Nombre_Producto", "Marca", "Modelo", "Stock"
-                }
-        );*/
-        this.setVisible(false);
         this.dispose();
-//         a.tbl_productos1.setModel(pasar);
         a.setVisible(true);
-        
     }//GEN-LAST:event_btnSeleccionarActionPerformed
 
     /**

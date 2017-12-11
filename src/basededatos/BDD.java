@@ -113,7 +113,7 @@ public class BDD{
         ResultSet a=null;
         try{
             con = DriverManager.getConnection
-                ("jdbc:mysql://localhost:3306/dbis","root","root");
+                ("jdbc:mysql://localhost:3306/dbis?autoReconnect=true&useSSL=false","root","root");
             Statement st = con.createStatement();
             a=st.executeQuery(query);
         }catch(SQLException e){
@@ -128,7 +128,7 @@ public class BDD{
         try{
             
             con = DriverManager.getConnection
-                ("jdbc:mysql://localhost:3306/dbis","root","root");       
+                ("jdbc:mysql://localhost:3306/dbis?autoReconnect=true&useSSL=false","root","root");       
             try (Statement st = con.createStatement()) {
                 st.executeUpdate(query);
             }
@@ -159,7 +159,7 @@ public class BDD{
         try{
             
             con = DriverManager.getConnection
-                ("jdbc:mysql://localhost:3306/dbis","root","masterkey");       
+                ("jdbc:mysql://localhost:3306/dbis?autoReconnect=true&useSSL=false","root","root");       
             try (Statement st = con.createStatement()) {
                 st.executeUpdate(insertar);
             }

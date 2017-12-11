@@ -508,8 +508,10 @@ public class Asignar extends javax.swing.JFrame {
        // pasar=tbl_productos1.getModel();
         //pasarDatos();
         //dispose();
+        this.dispose();
         TablaPersonal  tablaPersonal=new TablaPersonal();
         tablaPersonal.setVisible(true);
+        
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
