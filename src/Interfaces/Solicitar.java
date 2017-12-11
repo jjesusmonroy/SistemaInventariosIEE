@@ -44,11 +44,13 @@ public class Solicitar extends javax.swing.JFrame {
     //String [][]matrix;
     int valFil;
     String stockCambio;
+    boolean tieneStock;
     public Solicitar() {
        
        // btnBorrar.setEnabled(false);
       //  valFil=5;
         //matrix=new String [valFil][5];
+        tieneStock=false;
         nuevo2=new String[5];
         v=new Validaciones();
         m=new Clases.MetodosG();
@@ -180,6 +182,9 @@ public class Solicitar extends javax.swing.JFrame {
         tbl_productos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_productosMouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tbl_productosMouseReleased(evt);
             }
         });
         jScrollPane1.setViewportView(tbl_productos);
@@ -505,13 +510,13 @@ public class Solicitar extends javax.swing.JFrame {
 
     private void tbl_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productosMouseClicked
         // TODO add your handling code here:
-        id_cambio2=tbl_productos1.getRowCount()+"";
+        /*id_cambio2=tbl_productos1.getRowCount()+"";
         if(evt.getClickCount()==1 ){
             btnAgregar.setEnabled(true);
             int rows = tbl_productos.rowAtPoint(evt.getPoint());
             id_cambio=tbl_productos.getValueAt(rows, 0).toString();   
             stockCambio=tbl_productos.getValueAt(rows, 4)+""; 
-        }
+        }*/
            
             
     }//GEN-LAST:event_tbl_productosMouseClicked
@@ -566,6 +571,25 @@ public class Solicitar extends javax.swing.JFrame {
             cambiarDeTabla();
         }
     }//GEN-LAST:event_txtCantidadKeyPressed
+
+    private void tbl_productosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productosMouseReleased
+        // TODO add your handling code here:
+         id_cambio2=tbl_productos1.getRowCount()+"";
+        if(evt.getClickCount()==1 ){
+            btnAgregar.setEnabled(true);
+            int rows = tbl_productos.rowAtPoint(evt.getPoint());
+            id_cambio=tbl_productos.getValueAt(rows, 0).toString();   
+            if(tbl_productos.getValueAt(rows, 5)==(null)){ 
+                tieneStock=false;
+                txtCantidad.setEnabled(false);
+                //JOptionPane.showMessageDialog(this, stockCambio);
+            }else{
+                tieneStock=true;
+                txtCantidad.setEnabled(true);
+                stockCambio=tbl_productos.getValueAt(rows, 5).toString();
+            }
+        }
+    }//GEN-LAST:event_tbl_productosMouseReleased
     private void cambiarDeTabla(){
         if(id_cambio.equals("")){
             javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una fila");
@@ -575,7 +599,7 @@ public class Solicitar extends javax.swing.JFrame {
              }else{  
                     if(!v.soloNumeros(txtCantidad.getText())){
                        Cantidad=Integer.parseInt(txtCantidad.getText());
-                       String query = "select p.folio_producto,c.nombre_categoria,p.nombre_producto,p.marca_producto,p.modelo_producto,p.stock_producto from producto p inner join categoria c on p.id_categoria=c.id_categoria where p.id_producto='"+id_cambio+"'";
+                       String query = "select p.folio_producto,c.nombre_categoria,p.nombre_producto,p.marca_producto,p.modelo_producto,p.stock_producto from producto p inner join categoria c on p.id_categoria=c.id_categoria where p.folio_producto='"+id_cambio+"'";
                        String [][] busqueda = (b.obtenerConsultas(query));
                        String [] nuevo=new String[6];
                        nuevo[0]=busqueda[0][0];
@@ -583,19 +607,36 @@ public class Solicitar extends javax.swing.JFrame {
                        nuevo[2]=busqueda[0][2];
                        nuevo[3]=busqueda[0][3];
                        nuevo[4]=busqueda[0][4];
-                       if(stockCambio==null){
-                           nuevo[5]="No Aplica";
-                       }else{
-                            nuevo[5]=(Integer.parseInt(stockCambio)-Cantidad)+"";
+                       
+                       //if(tieneStock==false){
+                         //  nuevo[5]="No Aplica";
+                       //}else{
+                       nuevo[5]=((Integer.parseInt(stockCambio))-Cantidad)+"";
                             stockCambio="";
-                       }
+                       //}
                        DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
                        model.addRow(nuevo);
-                   }else{
-                       javax.swing.JOptionPane.showMessageDialog(this, "Inserte cantidad");
-                       txtCantidad.requestFocus(true);
-                   }
+                   }else{   
+                       if(tieneStock==true){
+                            javax.swing.JOptionPane.showMessageDialog(this, "Inserte cantidad");
+                        txtCantidad.requestFocus(true);
+                        }else{
+                           txtCantidad.setEnabled(false);
+                            String query = "select p.folio_producto,c.nombre_categoria,p.nombre_producto,p.marca_producto,p.modelo_producto,p.stock_producto from producto p inner join categoria c on p.id_categoria=c.id_categoria where p.folio_producto='"+id_cambio+"'";
+                       String [][] busqueda = (b.obtenerConsultas(query));
+                       String [] nuevo=new String[6];
+                       nuevo[0]=busqueda[0][0];
+                       nuevo[1]=busqueda[0][1];
+                       nuevo[2]=busqueda[0][2];
+                       nuevo[3]=busqueda[0][3];
+                       nuevo[4]=busqueda[0][4];
+                       nuevo[5]="No Aplica";
+                       DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
+                       model.addRow(nuevo);
+                       }
+                    }
                 txtCantidad.setText("");
+                tieneStock=false;
               }
         }
     }
@@ -621,7 +662,7 @@ public class Solicitar extends javax.swing.JFrame {
         if(tbl_productos1.getRowCount()==0)return bandera;
         for(int i=0;i<tbl_productos1.getRowCount();i++){
             if(tbl_productos1.getValueAt(i, 0).equals(id)){bandera=true;
-                
+                JOptionPane.showMessageDialog(this, "Producto previamente insertado");
             }
             else bandera=false;
         }
