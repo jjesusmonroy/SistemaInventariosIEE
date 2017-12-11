@@ -259,6 +259,7 @@ public class Asignar extends javax.swing.JFrame {
 
         municipio.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         municipio.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        municipio.setNextFocusableComponent(localidad);
         municipio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 municipioActionPerformed(evt);
@@ -826,3 +827,4 @@ public class Asignar extends javax.swing.JFrame {
     private javax.swing.JTable tbl_productos1;
     private javax.swing.JTextField tipouso;
     // End of variables declaration//GEN-END:variables
+}
