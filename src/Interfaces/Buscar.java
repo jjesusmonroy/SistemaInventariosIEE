@@ -54,9 +54,9 @@ public class Buscar extends javax.swing.JFrame {
         tbl_productos = new javax.swing.JTable();
         jButton11 = new javax.swing.JButton();
         jLabelIdModificar = new javax.swing.JLabel();
-        jParametro = new javax.swing.JComboBox<String>();
+        jParametro = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jStatus = new javax.swing.JComboBox<String>();
+        jStatus = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -139,7 +139,7 @@ public class Buscar extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/search.png"))); // NOI18N
 
         jStatus.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Disponible", "Pendiente", "Asignado", "Baja" }));
+        jStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Baja", "ComoDato", "Donación", "Activo", "Reparación", "Bodega", "Asignado", "Inactivo", "Almacén" }));
         jStatus.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jStatusItemStateChanged(evt);

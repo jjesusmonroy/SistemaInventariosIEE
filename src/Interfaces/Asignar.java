@@ -69,7 +69,7 @@ public class Asignar extends javax.swing.JFrame {
         asignados = new ArrayList<>();
         String[][] datos = b.obtenerConsultas("select id_producto,"
                 + "nombre_producto,marca_producto,modelo_producto,stock_producto"
-                + " from producto where status_producto = 'Disponible'");
+                + " from producto where status_producto = 'Activo'");
 
         modelo = new javax.swing.table.DefaultTableModel(
                 datos,
@@ -757,7 +757,7 @@ public class Asignar extends javax.swing.JFrame {
     String[][] busqueda = b.obtenerConsultas("select id_producto"
             + ",nombre_producto,marca_producto,modelo_producto,stock_producto "
             + "from producto where nombre_producto = '"+ criteriobus +"' "
-            + "and status_producto = 'Disponible'");
+            + "and status_producto = 'Activo'");
     
     modelo = new javax.swing.table.DefaultTableModel(
                 busqueda,

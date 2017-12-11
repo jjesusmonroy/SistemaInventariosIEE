@@ -81,10 +81,10 @@ public class Alta extends javax.swing.JFrame {
         insertar[12]=m.jtextarea(altatobserv);
         insertar[13]=m.jtextfield(altatstockmin);
         insertar[14]=m.jtextfield(altatstockmin);
-        insertar[15]="Disponible";
+        insertar[15]="Activo";
         insertar[16]=id2+"";
         if(jComboBox1.getSelectedItem().toString().toLowerCase().equals("consumibles")){
-            if(m.exists(insertar[2].toLowerCase(), b.obtenerConsultas("select nombre_producto from producto where status_producto = 'Disponible'"))){
+            if(m.exists(insertar[2].toLowerCase(), b.obtenerConsultas("select nombre_producto from producto where status_producto = 'Activo'"))){
                 String atole = JOptionPane.showInputDialog("Producto encontrado, agregar stock?");
                 b.execute("update producto set stock_producto = stock_producto + "+atole+ " where nombre_producto = '"+insertar[2]+"'");
                 JOptionPane.showMessageDialog(this, "Actualizado con exito");
