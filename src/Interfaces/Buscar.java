@@ -184,7 +184,7 @@ public class Buscar extends javax.swing.JFrame {
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton11, jParametro, jStatus});
 
-        jPanel4.setBackground(new java.awt.Color(255, 51, 204));
+        jPanel4.setBackground(new java.awt.Color(242, 48, 177));
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));

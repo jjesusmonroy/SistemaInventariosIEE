@@ -6,6 +6,7 @@
 package Interfaces;
 
 import Clases.MetodosG;
+import Clases.Validaciones;
 import basededatos.BDD;
 import java.awt.Color;
 import java.awt.Image;
@@ -32,17 +33,20 @@ public final class Modificar extends javax.swing.JFrame {
     String folio;
     BDD b;
     MetodosG m;
+    Validaciones v;
     int idCategoria=0;
     String idCat;
     String idProducto;
     String idVehiculo;
     boolean vehiculo,consumible;
+    
     public Modificar(String user){
         initComponents();
         vehiculo=false;
         consumible=false;
         b = new BDD();
         m = new MetodosG();
+        v = new Validaciones();
         folio=user;
         idCat="";
         idProducto="";
@@ -123,8 +127,8 @@ public final class Modificar extends javax.swing.JFrame {
                     "no_factura_producto='"+m.jtextfield(nofact)+"', "+
                     "importe_producto='"+m.jtextfield(importe)+"', "+
                     "observaciones_producto='"+m.jtextarea(observaciones)+"', "+
-                    "stock_producto='"+m.jtextfield(stock)+"', "+
-                    "min_stock_producto='"+m.jtextfield(stockmin)+"', "+
+                    "stock_producto="+m.jtextfield(stock)+", "+
+                    "min_stock_producto="+m.jtextfield(stockmin)+", "+
                     "id_categoria='"+idcategoria+"'";
         b.execute("update producto set "+update+" where id_producto ='"+idProducto+"'");
         if(fichero!=null){
@@ -163,7 +167,6 @@ public final class Modificar extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -213,7 +216,6 @@ public final class Modificar extends javax.swing.JFrame {
         stock = new javax.swing.JTextField();
         altalCantidad1 = new javax.swing.JLabel();
         btnCargarFoto = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -226,15 +228,11 @@ public final class Modificar extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jPanel3.setBackground(new java.awt.Color(255, 51, 204));
+        jPanel3.setBackground(new java.awt.Color(242, 48, 177));
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("MODIFICAR PRODUCTOS");
-
-        jLabel2.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("SISTEMA DE CONTROL DE INVENTARIO IEEN");
 
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
         jLabel21.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -256,33 +254,23 @@ public final class Modificar extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel21)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel22))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 563, Short.MAX_VALUE)
+                .addComponent(jLabel21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel22)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel21)
-                            .addComponent(jLabel22)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addContainerGap(25, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel21)
+                        .addComponent(jLabel22)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -345,7 +333,7 @@ public final class Modificar extends javax.swing.JFrame {
         altalCantidad.setText("STOCK MINIMO:");
 
         stockmin.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        stockmin.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        stockmin.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         stockmin.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 stockminKeyTyped(evt);
@@ -353,7 +341,7 @@ public final class Modificar extends javax.swing.JFrame {
         });
 
         nombre.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        nombre.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        nombre.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         nombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 nombreKeyTyped(evt);
@@ -361,7 +349,7 @@ public final class Modificar extends javax.swing.JFrame {
         });
 
         noserie.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        noserie.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        noserie.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         noserie.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 noserieKeyTyped(evt);
@@ -369,7 +357,7 @@ public final class Modificar extends javax.swing.JFrame {
         });
 
         marca.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        marca.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        marca.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         marca.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 marcaKeyTyped(evt);
@@ -377,7 +365,7 @@ public final class Modificar extends javax.swing.JFrame {
         });
 
         modelo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        modelo.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        modelo.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         modelo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modeloActionPerformed(evt);
@@ -390,7 +378,7 @@ public final class Modificar extends javax.swing.JFrame {
         });
 
         color.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        color.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        color.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         color.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 colorKeyTyped(evt);
@@ -398,7 +386,7 @@ public final class Modificar extends javax.swing.JFrame {
         });
 
         nofact.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        nofact.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        nofact.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         nofact.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 nofactKeyTyped(evt);
@@ -406,7 +394,7 @@ public final class Modificar extends javax.swing.JFrame {
         });
 
         importe.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        importe.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        importe.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         importe.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 importeKeyTyped(evt);
@@ -416,7 +404,7 @@ public final class Modificar extends javax.swing.JFrame {
         descripcion.setColumns(20);
         descripcion.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         descripcion.setRows(3);
-        descripcion.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        descripcion.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         descripcion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 descripcionKeyTyped(evt);
@@ -427,7 +415,7 @@ public final class Modificar extends javax.swing.JFrame {
         observaciones.setColumns(20);
         observaciones.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         observaciones.setRows(5);
-        observaciones.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        observaciones.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         observaciones.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 observacionesKeyTyped(evt);
@@ -436,7 +424,6 @@ public final class Modificar extends javax.swing.JFrame {
         jScrollPane2.setViewportView(observaciones);
 
         jButton9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton9.setForeground(new java.awt.Color(255, 51, 153));
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/save.png"))); // NOI18N
         jButton9.setText("GUARDAR");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -446,7 +433,6 @@ public final class Modificar extends javax.swing.JFrame {
         });
 
         jButton10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton10.setForeground(new java.awt.Color(255, 51, 153));
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/file.png"))); // NOI18N
         jButton10.setText("RESTAURAR");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -456,7 +442,6 @@ public final class Modificar extends javax.swing.JFrame {
         });
 
         jButton11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton11.setForeground(new java.awt.Color(255, 51, 153));
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
         jButton11.setText("CANCELAR");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -465,7 +450,6 @@ public final class Modificar extends javax.swing.JFrame {
             }
         });
 
-        fecha.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
         fecha.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         fecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -479,7 +463,7 @@ public final class Modificar extends javax.swing.JFrame {
         altalPlacas.setText("PLACAS:");
 
         placas.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        placas.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        placas.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         placas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 placasKeyTyped(evt);
@@ -490,7 +474,7 @@ public final class Modificar extends javax.swing.JFrame {
         altalNoMotor.setText("NO. MOTOR:");
 
         nomotor.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        nomotor.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        nomotor.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         nomotor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 nomotorKeyTyped(evt);
@@ -501,7 +485,7 @@ public final class Modificar extends javax.swing.JFrame {
         altalKm.setText("KILOMETRAJE:");
 
         kilometraje.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        kilometraje.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        kilometraje.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         kilometraje.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 kilometrajeKeyTyped(evt);
@@ -512,7 +496,7 @@ public final class Modificar extends javax.swing.JFrame {
         altalKmSer.setText("KM. SERVICIO:");
 
         kmservicio.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        kmservicio.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        kmservicio.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         kmservicio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 kmservicioKeyTyped(evt);
@@ -588,7 +572,7 @@ public final class Modificar extends javax.swing.JFrame {
         lblImage.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         stock.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        stock.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        stock.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         stock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stockActionPerformed(evt);
@@ -604,7 +588,6 @@ public final class Modificar extends javax.swing.JFrame {
         altalCantidad1.setText("STOCK PRODUCTO:");
 
         btnCargarFoto.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnCargarFoto.setForeground(new java.awt.Color(255, 51, 153));
         btnCargarFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/subir_foto.png"))); // NOI18N
         btnCargarFoto.setText("CARGAR FOTO");
         btnCargarFoto.addActionListener(new java.awt.event.ActionListener() {
@@ -680,7 +663,7 @@ public final class Modificar extends javax.swing.JFrame {
                                     .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(importe, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane2))))
-                        .addGap(0, 75, Short.MAX_VALUE))))
+                        .addGap(0, 13, Short.MAX_VALUE))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -762,31 +745,22 @@ public final class Modificar extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IEE.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -796,9 +770,7 @@ public final class Modificar extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -897,10 +869,35 @@ public final class Modificar extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-            // TODO add your handling code here:
-            update();
-            JOptionPane.showMessageDialog(this, "Se han guardado los cambios");
-            this.dispose();
+        // TODO add your handling code here:
+        
+        String var = jComboBox1.getSelectedItem().toString().toLowerCase();
+        //validaFecha();
+        switch (var) {
+            case "Equipo de transporte":
+                if(valVehiculo()==0){// && validaFecha()){
+                    update();
+                }else{
+                    javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
+                }   break;
+            case "consumibles":
+                if(valCamposConsumibles()==0){// && validaFecha()){
+                    update();
+                }else{
+                    stockmin.setBackground(Color.PINK);
+                    javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
+                }   break;
+            default:
+                if(valCamposGeneral()==0){// && validaFecha()){
+                    update();
+                }else{
+                    javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
+                }   break;
+        }
+        
+        //update();
+        JOptionPane.showMessageDialog(this, "Se han guardado los cambios");
+        this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -1093,6 +1090,157 @@ public final class Modificar extends javax.swing.JFrame {
         if(fecha.getDate().after(date)){JOptionPane.showMessageDialog(this, "Fecha posterior a la actual");}
     }//GEN-LAST:event_fechaPropertyChange
 
+    
+    public int valCamposGeneral(){
+       int cont=0;
+        if(v.soloLetras(nombre.getText())==true){
+            cont++;
+            //asNombre.setText("*");
+            nombre.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(noserie.getText())==true){
+            cont++;
+            //asMarca.setText("*");
+            noserie.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(marca.getText())==true){
+            cont++;
+            //asModelo.setText("*");
+            marca.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(modelo.getText())==true){
+            cont++;
+            //asNoSerie.setText("*");
+            modelo.setBackground(Color.PINK);
+        }
+        if(v.soloLetras(color.getText())==true){
+            cont++;
+            //asColor.setText("*");
+            color.setBackground(Color.PINK);
+        }
+        if(v.soloNumeros(nofact.getText())==true){
+            cont++;
+            //asNoFact.setText("*");
+            nofact.setBackground(Color.PINK);
+        }
+        if(v.soloDecimales(importe.getText())==true){
+            cont++;
+            //asImporte.setText("*");
+            importe.setBackground(Color.PINK);
+        }
+        return cont;
+   }
+    public int valVehiculo(){
+          int cont=0;
+        if(v.estaVacio(noserie.getText())==true){
+            cont++;
+            //asMarca.setText("*");
+            noserie.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(marca.getText())==true){
+            cont++;
+            //asModelo.setText("*");
+            marca.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(modelo.getText())==true){
+            cont++;
+            //asNoSerie.setText("*");
+            modelo.setBackground(Color.PINK);
+        }
+        if(v.soloLetras(color.getText())==true){
+            cont++;
+            //asColor.setText("*");
+            color.setBackground(Color.PINK);
+        }
+        if(v.soloNumeros(nofact.getText())==true){
+            cont++;
+            //asNoFact.setText("*");
+            nofact.setBackground(Color.PINK);
+        }
+        if(v.soloDecimales(importe.getText())==true){
+            cont++;
+            //asImporte.setText("*");
+            importe.setBackground(Color.PINK);
+        }       
+       if(v.estaVacio(placas.getText())){
+            cont++;
+            //asImporte.setText("*");
+            placas.setBackground(Color.PINK);
+       }
+       if(placas.getText().length()!=9){
+            cont++;
+            placas.setBackground(Color.PINK);
+        }else if(v.valPlacas(placas.getText())){
+             cont++;
+            //asImporte.setText("*");
+            placas.setBackground(Color.PINK);
+        }
+        
+        if(v.estaVacio(nomotor.getText())){
+            cont++;
+            nomotor.setBackground(Color.PINK);
+        }
+        if(v.soloNumeros(nomotor.getText())){
+            cont++;
+            nomotor.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(kilometraje.getText())){
+            cont++;
+            kilometraje.setBackground(Color.PINK);
+        }
+        if(v.soloDecimales(kilometraje.getText())){
+            cont++;
+            kilometraje.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(kmservicio.getText())){
+            cont++;
+            kmservicio.setBackground(Color.PINK);
+        }
+        if(v.soloDecimales(kmservicio.getText())){
+            cont++;
+            kmservicio.setBackground(Color.PINK);
+        }
+        return cont;
+   }
+    public int valCamposConsumibles(){
+       int cont=0;
+       if(v.soloNumeros(stockmin.getText())==true){
+           cont++;
+            //asNombre.setText("*");
+            stockmin.setBackground(Color.PINK);
+       }
+        if(v.soloLetras(nombre.getText())==true){
+            cont++;
+            //asNombre.setText("*");
+            nombre.setBackground(Color.PINK);
+        }
+        if(v.estaVacio(marca.getText())==true){
+            cont++;
+            //asModelo.setText("*");
+            marca.setBackground(Color.PINK);
+        }
+        if(v.soloLetras(color.getText())==true){
+            cont++;
+            //asColor.setText("*");
+            color.setBackground(Color.PINK);
+        }
+        if(v.soloNumeros(nofact.getText())==true){
+            cont++;
+            //asNoFact.setText("*");
+            nofact.setBackground(Color.PINK);
+        }
+        if(v.soloDecimales(importe.getText())==true){
+            cont++;
+            //asImporte.setText("*");
+           importe.setBackground(Color.PINK);
+        }
+        return cont;
+   }
+   
+   public String rutaChida(String ru){
+       return ru.replace("\\", "$");
+   }
+    
     /**
      * @param args the command line arguments
      */
@@ -1158,8 +1306,6 @@ public final class Modificar extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;

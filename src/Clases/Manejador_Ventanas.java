@@ -5,7 +5,6 @@
  */
 package Clases;
 
-import Interfaces.Administracion;
 import Interfaces.Principal;
 import basededatos.BDD;
 
