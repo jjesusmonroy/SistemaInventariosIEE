@@ -667,6 +667,7 @@ public class Asignar extends javax.swing.JFrame {
         }
         
         List lista = new ArrayList();
+        int idfolio = m.getMax(b.obtenerConsultas("select folio_resguardo from folio"));
         String[][] busqueda = b.obtenerConsultas(
                 "select p.puesto from personal pe, puesto p "
               + "where puesto_id_puesto = id_puesto and id_personal ="+lblId.getText()+";");
@@ -692,6 +693,7 @@ public class Asignar extends javax.swing.JFrame {
                 
                 Map parametro = new HashMap();
                 parametro.put("nombre",jLabel1.getText());
+                parametro.put("nores",idfolio+"");
                 parametro.put("cargo", busqueda[0][0]);
                 parametro.put("area", busqueda2[0][0]);
                 parametro.put("tipo",tipouso.getText());
@@ -721,6 +723,13 @@ public class Asignar extends javax.swing.JFrame {
             b.execute("update producto set status_producto = 'Asignado' where folio_producto ='"+tbl_productos1.getValueAt(i,0).toString()+"'");
             javax.swing.JOptionPane.showMessageDialog(this, "Se insertó el registro"+insertar[0]);
         }
+        
+        String [] insert = new String[4];
+        insert[0] = idfolio+"";
+        insert[1] = 1+"";
+        insert[2] = 1+"";
+        insert[3]= 1+"";
+        b.insertar("folio", insert);
         
         buscatxt.setText("");
         jLabel1.setText("");
