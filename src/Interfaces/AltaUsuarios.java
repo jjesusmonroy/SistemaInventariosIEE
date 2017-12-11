@@ -6,6 +6,7 @@
 package Interfaces;
 
 import Clases.MetodosG;
+import Clases.Validaciones;
 import basededatos.BDD;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
@@ -23,9 +24,11 @@ public class AltaUsuarios extends javax.swing.JFrame {
      */
     BDD b;
     MetodosG m;
+    Validaciones v;
     public AltaUsuarios() {
         b = new BDD();
         m = new MetodosG();
+        v = new Validaciones();
         initComponents();
         this.setLocationRelativeTo(null);
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(b.convertir2d1d
@@ -733,79 +736,85 @@ public class AltaUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
     private void botonguardar(){
         int contErr=0;
-        insertar();
-        /*Clases.Validaciones v= new Clases.Validaciones();
+        if(cmb_puesto.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(this,"Seleccione un puesto");
+            cmb_puesto.requestFocus();
+            return;
+        }
+        if(auPdes.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Indicque una descripcion");
+            auPdes.requestFocus();
+            return;
+        }
         if(v.soloLetras(auNombre.getText())){
-            contErr++;
-            auNombre.setBackground(Color.PINK); 
-            
+            JOptionPane.showMessageDialog(this, "Nombre no valido");
+            auNombre.requestFocus();
+            return;
         }
         if(v.soloLetras(auApellidoP.getText())){
-            contErr++;
-            //asNombre.setText("*");
-            auApellidoP.setBackground(Color.PINK);
+            JOptionPane.showMessageDialog(this, "Campo no valido");
+            auApellidoP.requestFocus();
+            return;
         }
         if(v.soloLetras(auApellidoM.getText())){
-            contErr++;
-            //asMarca.setText("*");
-            auApellidoM.setBackground(Color.PINK);
+            JOptionPane.showMessageDialog(this, "Campo no valido");
+            auApellidoM.requestFocus();
+            return;
         }
-        if(auCurp.getText().length()!=18){
-            contErr++;
-            //asModelo.setText("*");
-            auCurp.setBackground(Color.PINK);
+        if(jDateChooser1.equals(null)){
+            JOptionPane.showMessageDialog(this, "Especifique una fecha");
+            jDateChooser1.requestFocus();
+            return;
         }
-        if(auRFC.getText().length()!=13){
-            contErr++;
-            //asNoSerie.setText("*");
-            auRFC.setBackground(Color.PINK);
+        if(v.soloLetras(auCurp.getText())){
+            JOptionPane.showMessageDialog(this, "Campo no valido");
+            auCurp.requestFocus();
+            return;
         }
-        if(v.soloNumeros(auNoCredencial.getText()) || auNoCredencial.getText().length()!=10){
-            contErr++;
-            //asColor.setText("*");
-            auNoCredencial.setBackground(Color.PINK);
+        if(v.soloLetras(auRFC.getText())){
+            JOptionPane.showMessageDialog(this, "Campo no valido");
+            auRFC.requestFocus();
+            return;
         }
-        if(auNoLicencia.getText().length()!=8){
-            contErr++;
-            //asNoFact.setText("*");
-            auNoLicencia.setBackground(Color.PINK);
+        if(v.estaVacio(auNoCredencial.getText())){
+            JOptionPane.showMessageDialog(this, "Campo no valido");
+            auNoCredencial.requestFocus();
+            return;
+        }
+        if(v.estaVacio(auNoLicencia.getText())){
+            JOptionPane.showMessageDialog(this, "Campo no valido");
+            auNoLicencia.requestFocus();
+            return;
         }
         if(v.estaVacio(auCalle.getText())){
-            contErr++;
-            //asImporte.setText("*");
-            auCalle.setBackground(Color.PINK);
-        }
-        ///////////////
-         if(v.soloNumeros(auTelefono.getText()) || auTelefono.getText().length()!=10){
-            contErr++;
-            //asNoSerie.setText("*");
-            auTelefono.setBackground(Color.PINK);
+            JOptionPane.showMessageDialog(this, "Campo no valido");
+            auCalle.requestFocus();
+            return;
         }
         if(v.estaVacio(auColonia.getText())){
-            contErr++;
-            //asColor.setText("*");
-            auColonia.setBackground(Color.PINK);
+            JOptionPane.showMessageDialog(this, "Campo no valido");
+            auColonia.requestFocus();
+            return;
         }
-        if(v.soloNumeros(auNum.getText())){
-            contErr++;
-            //asNoFact.setText("*");
-            auNum.setBackground(Color.PINK);
+        if(v.estaVacio(auNum.getText())){
+            JOptionPane.showMessageDialog(this, "Campo no valido");
+            auNum.requestFocus();
+            return;
         }
-        if(v.soloNumeros(auCp.getText()) || auCp.getText().length()!=5){
-            contErr++;
-            //asImporte.setText("*");
-            auCp.setBackground(Color.PINK);
+        if(v.soloNumeros(auCp.getText())){
+            JOptionPane.showMessageDialog(this, "Campo no valido");
+            auRFC.requestFocus();
+            return;
         }
-        if(contErr>0){
-            javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
-            
-        }else{
-        // Validaciones aca antes de insertar
-        //if(validarVacio()){
-            insertar();
-            JOptionPane.showMessageDialog(this, "Nuevo usuario insertado");*/
-            limpiar();
-        //}contErr=0;
+        if(v.soloNumeros(auTelefono.getText())){
+            JOptionPane.showMessageDialog(this, "Campo no valido");
+            auTelefono.requestFocus();
+            return;
+        }
+        
+        insertar();
+        limpiar();
+        
     }
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
