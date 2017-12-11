@@ -574,7 +574,7 @@ public class Solicitar extends javax.swing.JFrame {
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
         //obtInfo();
-        dispose();
+        this.dispose();
         NuevaSolicitud ns= new NuevaSolicitud();
         ns.setVisible(true);
     }//GEN-LAST:event_btnNuevoActionPerformed
