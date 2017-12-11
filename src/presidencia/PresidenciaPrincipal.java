@@ -36,6 +36,7 @@ public class PresidenciaPrincipal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -77,6 +78,17 @@ public class PresidenciaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jButton12.setBackground(new java.awt.Color(255, 255, 255));
+        jButton12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/note.png"))); // NOI18N
+        jButton12.setText("HISTORIAL DE PRESIDENCIA");
+        jButton12.setToolTipText("");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -84,16 +96,19 @@ public class PresidenciaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(jButton11)
-                .addGap(358, 358, 358))
+                .addGap(38, 38, 38)
+                .addComponent(jButton12)
+                .addGap(69, 69, 69))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton10)
-                    .addComponent(jButton11))
+                    .addComponent(jButton11)
+                    .addComponent(jButton12))
                 .addGap(0, 29, Short.MAX_VALUE))
         );
 
@@ -259,6 +274,10 @@ public class PresidenciaPrincipal extends javax.swing.JFrame {
         aprobo.setVisible(true);
     }//GEN-LAST:event_jButton11jButton2ActionPerformed
 
+    private void jButton12jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton12jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -305,6 +324,7 @@ public class PresidenciaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel idUsuariocampo;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;

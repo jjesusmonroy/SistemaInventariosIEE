@@ -36,7 +36,7 @@ public class SolicitudesAprobadas extends javax.swing.JFrame {
     public SolicitudesAprobadas() {
         initComponents();
         this.setLocationRelativeTo(null);
-        db.getConexion();
+       
         
     }
 
@@ -133,6 +133,7 @@ public class SolicitudesAprobadas extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaAutorizado.setSelectionBackground(new java.awt.Color(255, 51, 204));
         jScrollPane1.setViewportView(tablaAutorizado);
 
         jButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -192,6 +193,9 @@ public class SolicitudesAprobadas extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+        this.dispose();
+        this.setVisible(false);
+        
         
     }//GEN-LAST:event_jLabel14MouseClicked
 
@@ -255,8 +259,6 @@ public class SolicitudesAprobadas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;

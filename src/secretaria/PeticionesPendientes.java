@@ -18,12 +18,15 @@ import javax.swing.JTable;
 public class PeticionesPendientes extends javax.swing.JFrame {
 String a1,a2,a3,a4;
 PeticionManejador manejador;
+PersonalManejador personal;
     /**
      * Creates new form PeticionesPendientes
      */
     public PeticionesPendientes() {
         initComponents();
         manejador=new PeticionManejador();
+        personal= new PersonalManejador();
+        
         this.setLocationRelativeTo(this);
     }
 public void cambiaId(String idUsu){
@@ -241,7 +244,11 @@ public void cambiaId(String idUsu){
         if(evt.getClickCount() == 2){
           
           VistaPeticiones vista= new VistaPeticiones();
-         vista.setVista(PendienteA.getValueAt(fila, 0).toString(),PendienteA.getValueAt(fila, 1).toString(), PendienteA.getValueAt(fila, 2).toString(), PendienteA.getValueAt(fila, 3).toString(), PendienteA.getValueAt(fila, 5).toString(), PendienteA.getValueAt(fila, 4).toString(),manejador.diasPorPeticion(PendienteA.getValueAt(fila, 0).toString()));
+vista.setVista(PendienteA.getValueAt(fila, 0).toString(), PendienteA.getValueAt(fila, 1).toString(), PendienteA.getValueAt(fila, 2).toString(),
+        PendienteA.getValueAt(fila, 4).toString(), PendienteA.getValueAt(fila, 3).toString(), PendienteA.getValueAt(fila, 5).toString(),
+        PendienteA.getValueAt(fila, 6).toString(), PendienteA.getValueAt(fila, 7).toString(), manejador.diasPorPeticion(PendienteA.getValueAt(fila, 0).toString()),
+        personal.ChoferPorPeticion(PendienteA.getValueAt(fila, 0).toString()));
+       vista.cambiaIdChofer(personal.id_chofer(PendienteA.getValueAt(fila, 0).toString()));
          
 //table.addColumn("Folio");
 //            table.addColumn("Fecha Salida");
@@ -258,7 +265,7 @@ public void cambiaId(String idUsu){
 //SolictudesManejador manejador= new SolictudesManejador();
         // String[] arreglo=manejador.InformacionUsuario(PendienteA.getValueAt(fila, 0).toString());
          llenaDatosSolitante(PendienteA.getValueAt(fila, 0).toString());
-        vista.setSolicitanteinfo(a1, PendienteA.getValueAt(fila, 6).toString(), a2, a3);
+        vista.setSolicitanteinfo(a1, PendienteA.getValueAt(fila, 7).toString(), a2, a3);
         vista.setIdUsuario(idUsuario.getText());
         vista.setVisible(true);
         

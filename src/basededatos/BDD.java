@@ -159,7 +159,7 @@ public class BDD{
         try{
             
             con = DriverManager.getConnection
-                ("jdbc:mysql://localhost:3306/dbis","root","root");       
+                ("jdbc:mysql://localhost:3306/dbis","root","masterkey");       
             try (Statement st = con.createStatement()) {
                 st.executeUpdate(insertar);
             }
