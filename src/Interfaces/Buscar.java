@@ -34,7 +34,6 @@ public class Buscar extends javax.swing.JFrame {
         fillComboBox();
         iniciarTabla();
         jTextField1.requestFocus();
-        System.out.println(nombreusuario);
     }
 
     /**

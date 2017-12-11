@@ -253,7 +253,6 @@ public class I_Login extends javax.swing.JFrame {
         nuevaSolicitud.usuario = txt_usuario.getText();
         Notificaciones notificaciones = new Notificaciones();
         notificaciones.usuario = txt_usuario.getText();
-        System.out.println(notificaciones.usuario);
         usuarioActual=txt_usuario.getText();
         char[] password = txt_password.getPassword();
         if(nom_usuario.equals("") || password.length==0)return;

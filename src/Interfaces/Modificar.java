@@ -73,14 +73,15 @@ public final class Modificar extends javax.swing.JFrame {
         modelo.setText(elementos[0][5]);
         noserie.setText(elementos[0][6]);
         descripcion.setText(elementos[0][3]);
+        if(elementos[0][8]!=null){
         try{
                     ImageIcon icon=new ImageIcon(rutanormal(elementos[0][8]));
                     Icon icono=new ImageIcon(icon.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(),Image.SCALE_DEFAULT));
                     lblImage.setText("");
                     lblImage.setIcon(icono);
             }catch(Exception e){
-                  javax.swing.JOptionPane.showMessageDialog(this, "Error abriendo imagen");
             }
+        }
         java.util.Date date2=null;
         try{date2 = new SimpleDateFormat("yyyy-MM-dd").parse(elementos[0][9]);}catch(ParseException e){}
         fecha.setDate(date2);
@@ -126,7 +127,7 @@ public final class Modificar extends javax.swing.JFrame {
                     "min_stock_producto='"+m.jtextfield(stockmin)+"', "+
                     "id_categoria='"+idcategoria+"'";
         b.execute("update producto set "+update+" where id_producto ='"+idProducto+"'");
-        if(!fichero.toString().equals("")){
+        if(fichero!=null){
         b.execute("update producto set foto_producto ='"+rutachida(fichero.toString())+"' where id_producto ='"+idProducto+"'");}
         if(idVehiculo.equals("") && jComboBox1.getSelectedItem().toString().toLowerCase().equals("vehiculos")){
             int idcar= m.getMax(b.obtenerConsultas("select id_vehiculo from vehiculo"));
