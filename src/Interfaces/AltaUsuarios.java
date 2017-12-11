@@ -42,10 +42,8 @@ public class AltaUsuarios extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -93,19 +91,13 @@ public class AltaUsuarios extends javax.swing.JFrame {
         setForeground(java.awt.Color.white);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IEE.png"))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jPanel3.setBackground(new java.awt.Color(255, 51, 204));
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("ALTA DE USUARIOS");
-
-        jLabel2.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("SISTEMA DE CONTROL DE INVENTARIO IEEN");
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -127,27 +119,22 @@ public class AltaUsuarios extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel13)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel14))
-                    .addComponent(jLabel3))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel13)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel14)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel13)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel14))
-                .addGap(8, 8, 8)
-                .addComponent(jLabel3)
-                .addContainerGap(30, Short.MAX_VALUE))
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel3))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -157,7 +144,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
         jLabel16.setText("NOMBRE:");
 
         auNombre.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        auNombre.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        auNombre.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         auNombre.setNextFocusableComponent(auApellidoP);
         auNombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -180,7 +167,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
         jLabel7.setText("APELLIDO PATERNO:");
 
         auApellidoP.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        auApellidoP.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        auApellidoP.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         auApellidoP.setNextFocusableComponent(auApellidoM);
         auApellidoP.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -197,7 +184,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
         jLabel18.setText("APELLIDO MATERNO:");
 
         auApellidoM.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        auApellidoM.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        auApellidoM.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         auApellidoM.setNextFocusableComponent(jDateChooser1);
         auApellidoM.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -219,7 +206,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
         jLabel6.setText("CURP:");
 
         auCurp.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        auCurp.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        auCurp.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         auCurp.setNextFocusableComponent(auRFC);
         auCurp.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -239,7 +226,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
         jLabel10.setText("RFC:");
 
         auRFC.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        auRFC.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        auRFC.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         auRFC.setNextFocusableComponent(auNoCredencial);
         auRFC.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -259,7 +246,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
         jLabel17.setText("NO. LICENCIA DE CONDUCIR:");
 
         auNoLicencia.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        auNoLicencia.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        auNoLicencia.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         auNoLicencia.setNextFocusableComponent(auCalle);
         auNoLicencia.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -279,7 +266,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
         jLabel12.setText("NO. CREDENCIAL DE ELECTOR:");
 
         auNoCredencial.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        auNoCredencial.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        auNoCredencial.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         auNoCredencial.setNextFocusableComponent(auNoLicencia);
         auNoCredencial.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -299,7 +286,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
         jLabel15.setText("TELÉFONO:");
 
         auTelefono.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        auTelefono.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        auTelefono.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         auTelefono.setNextFocusableComponent(jButton9);
         auTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -316,7 +303,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
         jLabel19.setText("CALLE:");
 
         auCalle.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        auCalle.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        auCalle.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         auCalle.setNextFocusableComponent(auColonia);
         auCalle.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -333,16 +320,16 @@ public class AltaUsuarios extends javax.swing.JFrame {
         jLabel9.setText("NÚMERO:");
 
         auNum.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        auNum.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        auNum.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         auNum.setNextFocusableComponent(auCp);
-        auNum.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                auNumActionPerformed(evt);
-            }
-        });
         auNum.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 auNumFocusGained(evt);
+            }
+        });
+        auNum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                auNumActionPerformed(evt);
             }
         });
         auNum.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -355,7 +342,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
         jLabel8.setText("COLONIA:");
 
         auColonia.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        auColonia.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        auColonia.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         auColonia.setNextFocusableComponent(auNum);
         auColonia.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -372,7 +359,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
         jLabel20.setText("CÓDIGO POSTAL:");
 
         auCp.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        auCp.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        auCp.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         auCp.setNextFocusableComponent(auTelefono);
         auCp.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -397,8 +384,8 @@ public class AltaUsuarios extends javax.swing.JFrame {
             }
         });
 
+        jButton9.setBackground(new java.awt.Color(255, 255, 255));
         jButton9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton9.setForeground(new java.awt.Color(255, 51, 153));
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/save.png"))); // NOI18N
         jButton9.setText("GUARDAR");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -407,8 +394,8 @@ public class AltaUsuarios extends javax.swing.JFrame {
             }
         });
 
+        jButton10.setBackground(new java.awt.Color(255, 255, 255));
         jButton10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton10.setForeground(new java.awt.Color(255, 51, 153));
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/eraser.png"))); // NOI18N
         jButton10.setText("LIMPIAR");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -417,8 +404,8 @@ public class AltaUsuarios extends javax.swing.JFrame {
             }
         });
 
+        jButton11.setBackground(new java.awt.Color(255, 255, 255));
         jButton11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton11.setForeground(new java.awt.Color(255, 51, 153));
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/delete-button.png"))); // NOI18N
         jButton11.setText("CANCELAR");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -465,7 +452,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
         );
 
         auPuesto.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        auPuesto.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        auPuesto.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         auPuesto.setNextFocusableComponent(auPdes);
         auPuesto.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -488,7 +475,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
         jLabel4.setText("PUESTO:");
 
         auPdes.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        auPdes.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        auPdes.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         auPdes.setNextFocusableComponent(auNombre);
         auPdes.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -678,21 +665,13 @@ public class AltaUsuarios extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 960, Short.MAX_VALUE)))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 960, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1209,7 +1188,6 @@ public class AltaUsuarios extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1220,7 +1198,6 @@ public class AltaUsuarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
