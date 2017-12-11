@@ -90,7 +90,7 @@ public class BDD{
         ResultSet a=null;
         try{
             con = DriverManager.getConnection
-                ("jdbc:mysql://localhost:3306/dbis","root","root");
+                ("jdbc:mysql://localhost:3306/dbis","root","masterkey");
             Statement st = con.createStatement();
             a=st.executeQuery(query);
         }catch(SQLException e){
@@ -105,7 +105,7 @@ public class BDD{
         try{
             
             con = DriverManager.getConnection
-                ("jdbc:mysql://localhost:3306/dbis","root","root");       
+                ("jdbc:mysql://localhost:3306/dbis","root","masterkey");       
             try (Statement st = con.createStatement()) {
                 st.executeUpdate(query);
             }
@@ -135,7 +135,7 @@ public class BDD{
         try{
             
             con = DriverManager.getConnection
-                ("jdbc:mysql://localhost:3306/dbis","root","root");       
+                ("jdbc:mysql://localhost:3306/dbis","root","masterkey");       
             try (Statement st = con.createStatement()) {
                 st.executeUpdate(insertar);
             }
