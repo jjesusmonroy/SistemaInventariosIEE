@@ -245,12 +245,15 @@ public class I_Login extends javax.swing.JFrame {
 
     private void btn_iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciarActionPerformed
         // TODO add your handling code here:
+        String nom_usuario = txt_usuario.getText();
+        usuarioActual=txt_usuario.getText();
         Buscar buscar = new Buscar();
         buscar.nombreusuario=txt_usuario.getText();
         NuevaSolicitud nuevaSolicitud = new NuevaSolicitud();
         nuevaSolicitud.usuario = txt_usuario.getText();
-        String nom_usuario = txt_usuario.getText();
-        usuarioActual=txt_usuario.getText();
+        Notificaciones notificaciones = new Notificaciones();
+        notificaciones.usuario = txt_usuario.getText();
+        System.out.println(notificaciones.usuario);
         char[] password = txt_password.getPassword();
         if(nom_usuario.equals("") || password.length==0)return;
         

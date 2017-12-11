@@ -396,21 +396,18 @@ public class NuevaSolicitud extends javax.swing.JFrame {
             return;
         }
         //Almacenar en tabla peticiones
-        String[] peticion = new String[7];
+        String[] peticion = new String[9];
         peticion[0]= ""+m.getMax(b.obtenerConsultas("select id_peticion from peticiones_compra;"));
         peticion[1] = cmb_categoria.getSelectedItem().toString();
-        peticion[2] = txt_nombre.getText();
-        peticion[3] = txt_marca.getText();
-        peticion[4] = txt_modelo.getText();
-        peticion[5] = txt_comentarios.getText();
-        String[][] id_usuario = b.obtenerConsultas("select per.id_personal from personal per inner join usuario usu on per.id_personal = usu.id_usuario where usu.usuario ='"+usuario+"';");
-        peticion[6] = id_usuario[0][0];
+        peticion[2] = txt_cantidad.getText();
+        peticion[3] = txt_nombre.getText();
+        peticion[4] = txt_marca.getText();
+        peticion[5] = txt_modelo.getText();
+        peticion[6] = txt_comentarios.getText();
+        peticion[7] = "PENDIENTE";
+        String[][] id_usuario = b.obtenerConsultas("select usu.id_usuario from usuario usu where usu.usuario ='"+usuario+"';");
+        peticion[8] = id_usuario[0][0];
         b.insertar("peticiones_compra",peticion);
-        //Almacenar en notificaciones
-        
-        
-        
-        
         
         //Cerrar ventana
         JOptionPane.showMessageDialog(this,"Se realizó la petición.");
