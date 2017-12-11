@@ -1090,7 +1090,7 @@ public class Alta extends javax.swing.JFrame {
             evt.consume();
         }
         char c = evt.getKeyChar();
-        if((c<'0' || c>'9')) evt.consume();
+        if((c<'0' || c>'9')&& (c<'a' || c>'z') && (c<'A' || c>'Z') && c!=' ' && c!='-') evt.consume();
     }//GEN-LAST:event_altatmodeloKeyTyped
 
     private void altatnoserieKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_altatnoserieKeyTyped
