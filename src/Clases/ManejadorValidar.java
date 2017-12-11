@@ -21,32 +21,22 @@ public class ManejadorValidar {
     
     
     
-     public boolean validaFechaMenor(String fechaSeleccion,String fechaSalida){
-        boolean valido=false;
-        try {
-            Date fechaActual = new Date();
-            SimpleDateFormat formateador = new SimpleDateFormat("dd-MM-yyyy");
-            String fecha1=formateador.format(fechaSalida);
-            Date fechaDate1 = formateador.parse(fechaSeleccion);
-            Date fechaDate2 = formateador.parse(fecha1);
-            if ( fechaDate1.before(fechaDate2) ){
-    valido=false;
-    }else{
-     if ( fechaDate2.before(fechaDate1) ){
-      valido=true;
-     }else{
-      valido=false;
-     } 
-    }
-  
-         
-        } catch (ParseException ex) {
-            Logger.getLogger(ManejadorValidar.class.getName()).log(Level.SEVERE, null, ex);
-        }
+     
    
- return valido;
-
-}
+     
+     public int numDias(String fe,Date fecha) throws ParseException{
     
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+ 
+		Date fechaInicial=fecha;
+		Date fechaFinal=dateFormat.parse(fe);
+ 
+		int dias=(int) ((fechaFinal.getTime()-fechaInicial.getTime())/86400000)+1;
+ 
+		return dias;      
+}
+     
+     
+     
     
 }

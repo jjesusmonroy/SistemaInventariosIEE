@@ -162,8 +162,39 @@ public class PeticionManejador {
 
        
     }
+     
+     
+     public boolean insertaPeticionConChofer(String fechaSalida,String necesita,String lugar,String actividad,String idPersona,String idUsuario,String dias,String chofer){
+        
+        conexion=db.getConexion();
+        
+        
+        try {
+           Statement st = conexion.createStatement();
+            String sql= "INSERT INTO `dbis`.`peticion` (`fecha_ini`, `actividad_rea`, `lugar_destino`, `vehiculo_inclui`, `personal_id_personal`, `usuario_id_usuario`, `fecha_emision`,`estado_p`,`dias_duracion`, `tblchofer_id_chofer`)"
+                    + " VALUES ('"+fechaSalida+"', '"+actividad+"', '"+lugar+"', '"+necesita+"', '"+idPersona+"', '"+idUsuario+"', curdate(),'no solicitada','"+dias+"','"+chofer+"');";
+
+            
+            st.executeUpdate(sql);  
+            conexion.close();
+        } //try  
+        catch (SQLException ex) {
+            Logger.getLogger(PeticionManejador.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+        return true;
+        
+        
+        
+    }
     
+     
+     
+     
     
+    //INSERT INTO `dbis`.`peticion` (`fecha_ini`, `actividad_rea`, `lugar_destino`, `vehiculo_inclui`, `personal_id_personal`, `usuario_id_usuario`, `fecha_emision`, `estado_p`, `dias_duracion`, `tblchofer_id_chofer`) VALUES ('2017-12-13', 'IIHEHIEIHIH', 'TEPIC', 'si', '4', '1', '2017-12-10', 'no solicitada', '3', '1');
+
     //Select estado_p from peticion where folio=23;
     //select dias_duracion from peticion where folio=26;
 }

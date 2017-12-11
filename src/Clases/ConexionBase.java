@@ -20,8 +20,8 @@ import javax.swing.JOptionPane;
 
 public class ConexionBase {
     
-    private static final String usuario = "root";
-    private static String contra = "9247lunaenciso";
+    private static final String usuario ="root";
+    private static String contra ="masterkey";
     private static String servidor="localhost";
     private static String database="dbis";
     private Connection con;
@@ -34,14 +34,14 @@ public class ConexionBase {
          try {
             Class.forName("com.mysql.jdbc.Driver");
             //con = DriverManager.getConnection("jdbc:mysql://192.168.1.663306/basedata",usuario, contra);
-            con = DriverManager.getConnection("jdbc:mysql://"+servidor+"/"+database,usuario, contra);
+            con = DriverManager.getConnection("jdbc:mysql://"+servidor+"/"+database,usuario,contra);
             System.out.println("Conexion Correcta");
          } catch (SQLException ex) {
            // throw new SQLException(ex);
              System.err.println("No Hay Conexion a la Base de Datos");
          } catch (ClassNotFoundException ex) {
             //throw new ClassCastException(ex.getMessage());
-            System.err.println( "No Hay Conexion a la Base de Datos 1");
+            System.err.println( "No Hay Conexion a la Base de Datos 1iii");
            
          }finally{
              

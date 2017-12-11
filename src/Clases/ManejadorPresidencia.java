@@ -221,7 +221,64 @@ public class ManejadorPresidencia {
   }
 
      
-    
+  public  DefaultTableModel InforChofer(String id_solicitud){
+      
+      
+       
+         DefaultTableModel table = new DefaultTableModel();
+
+        try {
+            table.addColumn("No.de chofer");
+            table.addColumn("Nombre");
+            table.addColumn("Area");
+            table.addColumn("Puesto");
+            table.addColumn("Curp");
+            table.addColumn("RFC");
+           
+        
+            
+            
+            
+            //sql
+            String sql ="SELECT C.id_chofer,concat(per.nombre,' ',per.apellido_pa,' ',per.apellido_ma),a.area,p.puesto,per.curp,per.rfc from solicitud s,area a,puesto p,personal per,tblchofer c WHERE C.PERSONAL_ID_PERSONAL=Per.ID_PERSONAL and per.puesto_id_puesto=p.id_puesto and p.area_id_area=a.id_area and s.tblchofer_id_chofer=c.personal_id_personal and s.id_solicitud="+id_solicitud+";";
+            Connection c = db.getConexion();
+            Statement st = c.createStatement();
+            Object datos[] = new Object[6];
+            ResultSet rs = st.executeQuery(sql);
+
+            //llenar tabla
+            while (rs.next()) {
+                datos[0] = rs.getObject(1);
+                datos[1] = rs.getObject(2);
+                datos[2] = rs.getObject(3);
+                datos[3] = rs.getObject(4);
+                datos[4] = rs.getObject(5);
+                datos[5] = rs.getObject(6);
+                
+                
+              
+                
+                
+                table.addRow(datos);
+           }
+
+            c.close();
+        } catch (SQLException ex) {
+            System.out.printf("Error getTabla personal SQL");
+            Logger.getLogger(ManejadorPresidencia.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            return table;
+        }
+
+      
+      
+      
+      
+      
+      
+  }
+
    public String infoSecre(String idSoli){
         
         

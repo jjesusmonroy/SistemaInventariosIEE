@@ -48,7 +48,7 @@ public class ViaticosAutorizados extends javax.swing.JFrame {
                 return false;
             }
         };
-        jButton10 = new javax.swing.JButton();
+        asigna = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaB = new javax.swing.JTable();
@@ -131,14 +131,14 @@ public class ViaticosAutorizados extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tablaA);
 
-        jButton10.setBackground(new java.awt.Color(255, 255, 255));
-        jButton10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/coin.png"))); // NOI18N
-        jButton10.setText("ASIGNAR MONTO Y VEHICULO");
-        jButton10.setToolTipText("");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        asigna.setBackground(new java.awt.Color(255, 255, 255));
+        asigna.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        asigna.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/coin.png"))); // NOI18N
+        asigna.setText("ASIGNAR MONTO Y VEHICULO");
+        asigna.setToolTipText("");
+        asigna.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10jButton2ActionPerformed(evt);
+                asignajButton2ActionPerformed(evt);
             }
         });
 
@@ -190,7 +190,7 @@ public class ViaticosAutorizados extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton10)))
+                            .addComponent(asigna)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(noHaydatos)))
@@ -206,7 +206,7 @@ public class ViaticosAutorizados extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(noHaydatos, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton10)
+                        .addComponent(asigna)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)))
@@ -238,7 +238,7 @@ public class ViaticosAutorizados extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel14MouseClicked
 
-    private void jButton10jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10jButton2ActionPerformed
+    private void asignajButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignajButton2ActionPerformed
         // TODO add your handling code here:
       ManejadorAdministracion admin= new ManejadorAdministracion();
         fila=tablaA.getSelectedRow();
@@ -250,7 +250,7 @@ public class ViaticosAutorizados extends javax.swing.JFrame {
        
 
       
-    }//GEN-LAST:event_jButton10jButton2ActionPerformed
+    }//GEN-LAST:event_asignajButton2ActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
@@ -260,6 +260,7 @@ public class ViaticosAutorizados extends javax.swing.JFrame {
          
        if (this.tablaA.getRowCount() == 0 && this.tablaA.getSelectedRow() == -1) {
                  noHaydatos.setVisible(true);
+                 asigna.setEnabled(false);
             }
     }//GEN-LAST:event_formWindowActivated
 
@@ -311,7 +312,7 @@ public class ViaticosAutorizados extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton10;
+    private javax.swing.JButton asigna;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
