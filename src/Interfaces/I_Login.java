@@ -50,8 +50,8 @@ public class I_Login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btn_iniciar = new javax.swing.JButton();
         btn_salir = new javax.swing.JButton();
-        txt_password = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
+        txt_password = new javax.swing.JPasswordField();
         lbl_invisible = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -70,11 +70,13 @@ public class I_Login extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         txt_usuario.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txt_usuario.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setText("CONTRASEÑA:");
 
         btn_iniciar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btn_iniciar.setForeground(new java.awt.Color(255, 51, 153));
         btn_iniciar.setText("INGRESAR");
         btn_iniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +85,7 @@ public class I_Login extends javax.swing.JFrame {
         });
 
         btn_salir.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btn_salir.setForeground(new java.awt.Color(255, 51, 153));
         btn_salir.setText("CANCELAR");
         btn_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,15 +93,16 @@ public class I_Login extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel3.setText("NOMBRE DE USUARIO:");
+
         txt_password.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txt_password.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
         txt_password.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_passwordKeyPressed(evt);
             }
         });
-
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel3.setText("NOMBRE DE USUARIO:");
 
         lbl_invisible.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
@@ -110,19 +114,19 @@ public class I_Login extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_salir)
-                    .addComponent(btn_iniciar))
-                .addContainerGap(87, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbl_invisible, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_usuario, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_password)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(lbl_invisible, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_usuario)
+                    .addComponent(txt_password, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(68, 68, 68)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btn_salir)
+                                    .addComponent(btn_iniciar))))
+                        .addGap(0, 67, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -152,14 +156,14 @@ public class I_Login extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("LOGIN");
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/minus-sign.png"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel13MouseClicked(evt);
             }
         });
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/salir2.png"))); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/salir2.png"))); // NOI18N
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel14MouseClicked(evt);
@@ -193,7 +197,7 @@ public class I_Login extends javax.swing.JFrame {
                 .addGap(45, 45, 45))
         );
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("../Recursos/ieen-cabezera.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/ieen-cabezera.jpg"))); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel5.setText("SISTEMA INVENTARIOS");
@@ -243,6 +247,8 @@ public class I_Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         Buscar buscar = new Buscar();
         buscar.nombreusuario=txt_usuario.getText();
+        NuevaSolicitud nuevaSolicitud = new NuevaSolicitud();
+        nuevaSolicitud.usuario = txt_usuario.getText();
         String nom_usuario = txt_usuario.getText();
         usuarioActual=txt_usuario.getText();
         char[] password = txt_password.getPassword();
