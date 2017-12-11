@@ -581,7 +581,7 @@ public class Recoleccion extends javax.swing.JFrame {
            bodega=javax.swing.JOptionPane.showInputDialog("Agregar bodega:");
            b.execute("delete from asignacion where id_asignacion='"+id_cambio2+"'");
            if(b.verificacionExecute){JOptionPane.showMessageDialog(null, "Producto Recolectado");}
-           String update="status_producto='Disponible'";
+           String update="status_producto='Activo'";
            b.execute("update producto set "+update+" where folio_producto ='"+folioProd+"'");
            if(b.verificacionExecute){JOptionPane.showMessageDialog(null, "Status del Producto Actualizado");}  
         

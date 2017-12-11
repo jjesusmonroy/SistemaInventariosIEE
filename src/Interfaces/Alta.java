@@ -81,10 +81,10 @@ public class Alta extends javax.swing.JFrame {
         insertar[12]=m.jtextarea(altatobserv);
         insertar[13]=m.jtextfield(altatstockmin);
         insertar[14]=m.jtextfield(altatstockmin);
-        insertar[15]="Disponible";
+        insertar[15]="Activo";
         insertar[16]=id2+"";
         if(jComboBox1.getSelectedItem().toString().toLowerCase().equals("consumibles")){
-            if(m.exists(insertar[2].toLowerCase(), b.obtenerConsultas("select nombre_producto from producto where status_producto = 'Disponible'"))){
+            if(m.exists(insertar[2].toLowerCase(), b.obtenerConsultas("select * from producto p inner join categoria c on p.id_categoria=c.id_categoria where p.status_producto='Activo' and c.nombre_categoria='Consumibles'"))){
                 String atole = JOptionPane.showInputDialog("Producto encontrado, agregar stock?");
                 b.execute("update producto set stock_producto = stock_producto + "+atole+ " where nombre_producto = '"+insertar[2]+"'");
                 JOptionPane.showMessageDialog(this, "Actualizado con exito");
@@ -106,7 +106,6 @@ public class Alta extends javax.swing.JFrame {
             insertarvehiculo[7]=id+"";
             b.insertar("vehiculo", insertarvehiculo);
         }
-        folio();
     }
     
     private void limpiar(){
@@ -186,7 +185,7 @@ public class Alta extends javax.swing.JFrame {
         altalKmSer = new javax.swing.JLabel();
         altatvservicio = new javax.swing.JTextField();
         altatvtipo = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<String>();
+        jComboBox2 = new javax.swing.JComboBox<>();
         lblImage = new javax.swing.JLabel();
         btnCargarFoto = new javax.swing.JButton();
         altatimprote = new javax.swing.JFormattedTextField();
@@ -478,6 +477,7 @@ public class Alta extends javax.swing.JFrame {
         altatfecha.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
         altatfecha.setForeground(new java.awt.Color(255, 51, 153));
         altatfecha.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altatfecha.setNextFocusableComponent(altalImporte);
         altatfecha.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 altatfechaFocusGained(evt);
@@ -575,7 +575,7 @@ public class Alta extends javax.swing.JFrame {
 
         jComboBox2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jComboBox2.setForeground(new java.awt.Color(255, 51, 153));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Camioneta", "Pickup", "Auto", "Motocicleta" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Camioneta", "Pickup", "Auto", "Motocicleta" }));
         jComboBox2.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -646,6 +646,7 @@ public class Alta extends javax.swing.JFrame {
         altatimprote.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
         altatimprote.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         altatimprote.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        altatimprote.setNextFocusableComponent(altalObser);
         altatimprote.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 altatimproteKeyTyped(evt);
@@ -929,6 +930,7 @@ public class Alta extends javax.swing.JFrame {
                     altaProductos();
                     //altatnombre.setEnabled(false);
                     if(existe)javax.swing.JOptionPane.showMessageDialog(null,"Se insertó el registro");
+                    folio();
                     limpiar();
                 }else{
                     javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
@@ -937,6 +939,7 @@ public class Alta extends javax.swing.JFrame {
                 if(valCamposConsumibles()==0){// && validaFecha()){
                     altaProductos();
                     if(existe)javax.swing.JOptionPane.showMessageDialog(null,"Se insertó el registro");
+                    folio();
                     limpiar();
                 }else{
                     altatstockmin.setBackground(Color.PINK);
@@ -946,6 +949,7 @@ public class Alta extends javax.swing.JFrame {
                 if(valCamposGeneral()==0){// && validaFecha()){
                     altaProductos();
                     if(existe)javax.swing.JOptionPane.showMessageDialog(null,"Se inserto el registro");
+                    folio();
                     limpiar();
                 }else{
                     javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
