@@ -28,7 +28,14 @@ public class MetodosG {
         if(!e.getText().equals(""))return e.getText();
         else return null;
     }
-    
+    public String generarFolio(String folio, String id){
+        String deliver="";
+        if(id.length()==1)deliver= folio+"000"+id;
+        if(id.length()==2)deliver= folio+"00"+id;
+        if(id.length()==3)deliver= folio+"0"+id;
+        if(id.length()==2)deliver= folio+""+id;
+        return deliver;
+    }
     public String []  selecCat(String [][] array){
         String [] a = new String [array.length+1];
         a[0]="Seleccione una categoria...";

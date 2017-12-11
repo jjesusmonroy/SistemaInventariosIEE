@@ -36,7 +36,7 @@ public class Solicitar extends javax.swing.JFrame {
     BDD b;
     Clases.MetodosG m;
     NuevaSolicitud n;
-    int id_cambio,id_cambio2;
+    String id_cambio,id_cambio2;
     int cont;
     String []datos;
     Object[][] data;
@@ -44,17 +44,19 @@ public class Solicitar extends javax.swing.JFrame {
     //String [][]matrix;
     int valFil;
     String stockCambio;
+    boolean tieneStock;
     public Solicitar() {
        
        // btnBorrar.setEnabled(false);
       //  valFil=5;
         //matrix=new String [valFil][5];
+        tieneStock=false;
         nuevo2=new String[5];
         v=new Validaciones();
         m=new Clases.MetodosG();
         b= new BDD();
-        id_cambio=0;
-        id_cambio2=0;
+        id_cambio="";
+        id_cambio2="";
       //  n= new NuevaSolicitud();
         data=new Object [0][0];
         cont =0;
@@ -180,6 +182,9 @@ public class Solicitar extends javax.swing.JFrame {
         tbl_productos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_productosMouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tbl_productosMouseReleased(evt);
             }
         });
         jScrollPane1.setViewportView(tbl_productos);
@@ -426,12 +431,8 @@ public class Solicitar extends javax.swing.JFrame {
                 arr[j][i]=tbl_productos1.getValueAt(j,i)+"";
             }
         }
-        
         List lista = new ArrayList();
-        
         String x = javax.swing.JOptionPane.showInputDialog("Persona que solicita:");
-        
-        
         try{
                 String value0,value2,value3,value4,value5;
                 for(int i = 0;i<tbl_productos1.getRowCount();i++){
@@ -450,7 +451,6 @@ public class Solicitar extends javax.swing.JFrame {
                 }
                 try {
                 JasperReport reporte = (JasperReport)  JRLoader.loadObject("src/Reportes/Vale.jasper");
-                
                 Map parametro = new HashMap();
                 parametro.put("nombre",x+"");
                 JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, new JRBeanCollectionDataSource(lista));
@@ -466,59 +466,6 @@ public class Solicitar extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-         if(id_cambio==0){
-            javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una fila");
-        }else{
-             if(!v.soloNumeros(txtCantidad.getText())){
-                Cantidad=Integer.parseInt(txtCantidad.getText());
-                String [][] busqueda = (b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto from producto where folio_producto="+id_cambio));
-                String [] nuevo=new String[5];
-                nuevo[0]=busqueda[0][0];
-                nuevo[1]=busqueda[0][1];
-                nuevo[2]=busqueda[0][2];
-                nuevo[3]=busqueda[0][3];
-                nuevo[4]=Cantidad+"";
-                DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
-                model.addRow(nuevo);
-            }else{
-                javax.swing.JOptionPane.showMessageDialog(this, "Inserte cantidad");
-                txtCantidad.requestFocus(true);
-            }
-                txtCantidad.setText("");}
-        /*if(!busIguales(id_cambio)){
-            if(!v.soloNumeros(txtCantidad.getText())){
-                Cantidad=Integer.parseInt(txtCantidad.getText());
-                String [][] busqueda = (b.obtenerConsultas("select id_producto,nombre_producto,marca_producto,modelo_producto from producto where id_producto="+id_cambio));
-                String [] nuevo=new String[5];
-                nuevo[0]=busqueda[0][0];
-                nuevo[1]=busqueda[0][1];
-                nuevo[2]=busqueda[0][2];
-                nuevo[3]=busqueda[0][3];
-                nuevo[4]=Cantidad+"";
-                DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
-                model.addRow(nuevo);
-            }else{
-                javax.swing.JOptionPane.showMessageDialog(null, "Inserte cantidad");
-            }
-                txtCantidad.setText("");
-        }else{
-           DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
-            model.removeRow(Integer.parseInt(id_cambio));
-            if(!v.soloNumeros(txtCantidad.getText())){
-                String [][] busqueda = (b.obtenerConsultas("select id_producto,nombre_producto,marca_producto,modelo_producto from producto where id_producto="+id_cambio));
-                String [] nuevo=new String[5];
-                nuevo[0]=busqueda[0][0];
-                nuevo[1]=busqueda[0][1];
-                nuevo[2]=busqueda[0][2];
-                nuevo[3]=busqueda[0][3];
-                nuevo[4]=Cantidad+"";
-                DefaultTableModel model2 =(DefaultTableModel) tbl_productos1.getModel(); 
-                model2.addRow(nuevo);
-            }else{
-                javax.swing.JOptionPane.showMessageDialog(null, "Inserte cantidad");
-            }
-                txtCantidad.setText("");
-        }*/
          cambiarDeTabla();
     }//GEN-LAST:event_btnAgregarActionPerformed
     
@@ -563,13 +510,13 @@ public class Solicitar extends javax.swing.JFrame {
 
     private void tbl_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productosMouseClicked
         // TODO add your handling code here:
-        id_cambio2=tbl_productos1.getRowCount();
+        /*id_cambio2=tbl_productos1.getRowCount()+"";
         if(evt.getClickCount()==1 ){
             btnAgregar.setEnabled(true);
             int rows = tbl_productos.rowAtPoint(evt.getPoint());
-            id_cambio=Integer.parseInt(tbl_productos.getValueAt(rows, 0).toString());   
+            id_cambio=tbl_productos.getValueAt(rows, 0).toString();   
             stockCambio=tbl_productos.getValueAt(rows, 4)+""; 
-        }
+        }*/
            
             
     }//GEN-LAST:event_tbl_productosMouseClicked
@@ -580,14 +527,14 @@ public class Solicitar extends javax.swing.JFrame {
              javax.swing.JOptionPane.showMessageDialog(this, "No hay más elementos que borrar");
          }else{
         if(cont==0){
-            id_cambio2=tbl_productos1.getRowCount()-1;
+            id_cambio2=tbl_productos1.getRowCount()-1+"";
             //javax.swing.JOptionPane.showMessageDialog(this, id_cambio2+"");
             DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
-            model.removeRow(id_cambio2);
+            model.removeRow(Integer.parseInt(id_cambio2));
         }
         else{
          DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
-             model.removeRow(id_cambio2);
+             model.removeRow(Integer.parseInt(id_cambio2));
             cont=0;}
          }
     }//GEN-LAST:event_btnBorrarActionPerformed
@@ -596,7 +543,7 @@ public class Solicitar extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(evt.getClickCount()==1 ){
             btnBorrar.setEnabled(true);
-            id_cambio2= tbl_productos1.rowAtPoint(evt.getPoint());
+            id_cambio2= tbl_productos1.rowAtPoint(evt.getPoint())+"";
             //= Integer.parseInt(tbl_productos1.getValueAt(rows, 0)+"");
             cont++;
              
@@ -624,39 +571,76 @@ public class Solicitar extends javax.swing.JFrame {
             cambiarDeTabla();
         }
     }//GEN-LAST:event_txtCantidadKeyPressed
+
+    private void tbl_productosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productosMouseReleased
+        // TODO add your handling code here:
+         id_cambio2=tbl_productos1.getRowCount()+"";
+        if(evt.getClickCount()==1 ){
+            btnAgregar.setEnabled(true);
+            int rows = tbl_productos.rowAtPoint(evt.getPoint());
+            id_cambio=tbl_productos.getValueAt(rows, 0).toString();   
+            if(tbl_productos.getValueAt(rows, 5)==(null)){ 
+                tieneStock=false;
+                txtCantidad.setEnabled(false);
+                //JOptionPane.showMessageDialog(this, stockCambio);
+            }else{
+                tieneStock=true;
+                txtCantidad.setEnabled(true);
+                stockCambio=tbl_productos.getValueAt(rows, 5).toString();
+            }
+        }
+    }//GEN-LAST:event_tbl_productosMouseReleased
     private void cambiarDeTabla(){
-        if(id_cambio==0){
+        if(id_cambio.equals("")){
             javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una fila");
         }else{
             if(busIguales(id_cambio)){    
                 
-             }else{
+             }else{  
                     if(!v.soloNumeros(txtCantidad.getText())){
                        Cantidad=Integer.parseInt(txtCantidad.getText());
-                       String [][] busqueda = (b.obtenerConsultas("select id_producto,nombre_producto,marca_producto,modelo_producto from producto where id_producto="+id_cambio));
+                       String query = "select p.folio_producto,c.nombre_categoria,p.nombre_producto,p.marca_producto,p.modelo_producto,p.stock_producto from producto p inner join categoria c on p.id_categoria=c.id_categoria where p.folio_producto='"+id_cambio+"'";
+                       String [][] busqueda = (b.obtenerConsultas(query));
                        String [] nuevo=new String[6];
                        nuevo[0]=busqueda[0][0];
                        nuevo[1]=busqueda[0][1];
                        nuevo[2]=busqueda[0][2];
                        nuevo[3]=busqueda[0][3];
-                       nuevo[4]=Cantidad+"";
-                       if(stockCambio.equals("null")){
-                           nuevo[5]="No Aplica";
-                       }else{
-                            nuevo[5]=(Integer.parseInt(stockCambio)-Cantidad)+"";
+                       nuevo[4]=busqueda[0][4];
+                       
+                       //if(tieneStock==false){
+                         //  nuevo[5]="No Aplica";
+                       //}else{
+                       nuevo[5]=((Integer.parseInt(stockCambio))-Cantidad)+"";
                             stockCambio="";
-                       }
+                       //}
                        DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
                        model.addRow(nuevo);
-                   }else{
-                       javax.swing.JOptionPane.showMessageDialog(this, "Inserte cantidad");
-                       txtCantidad.requestFocus(true);
-                   }
+                   }else{   
+                       if(tieneStock==true){
+                            javax.swing.JOptionPane.showMessageDialog(this, "Inserte cantidad");
+                        txtCantidad.requestFocus(true);
+                        }else{
+                           txtCantidad.setEnabled(false);
+                            String query = "select p.folio_producto,c.nombre_categoria,p.nombre_producto,p.marca_producto,p.modelo_producto,p.stock_producto from producto p inner join categoria c on p.id_categoria=c.id_categoria where p.folio_producto='"+id_cambio+"'";
+                       String [][] busqueda = (b.obtenerConsultas(query));
+                       String [] nuevo=new String[6];
+                       nuevo[0]=busqueda[0][0];
+                       nuevo[1]=busqueda[0][1];
+                       nuevo[2]=busqueda[0][2];
+                       nuevo[3]=busqueda[0][3];
+                       nuevo[4]=busqueda[0][4];
+                       nuevo[5]="No Aplica";
+                       DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
+                       model.addRow(nuevo);
+                       }
+                    }
                 txtCantidad.setText("");
+                tieneStock=false;
               }
         }
     }
-    private boolean busIguales(int id){
+    /*private boolean busIguales(int id){
        // Cantidad=Integer.parseInt(txtCantidad.getText());
         for(int i=0;i<tbl_productos1.getRowCount();i++){
             if(id==Integer.parseInt(tbl_productos1.getValueAt(i,0)+"")){
@@ -672,6 +656,17 @@ public class Solicitar extends javax.swing.JFrame {
             }
         }
         return false;
+    }*/
+    private boolean busIguales(String id){
+        boolean bandera=false;
+        if(tbl_productos1.getRowCount()==0)return bandera;
+        for(int i=0;i<tbl_productos1.getRowCount();i++){
+            if(tbl_productos1.getValueAt(i, 0).equals(id)){bandera=true;
+                JOptionPane.showMessageDialog(this, "Producto previamente insertado");
+            }
+            else bandera=false;
+        }
+        return bandera;
     }
   /*  public String[][] obtInfo(){
         
