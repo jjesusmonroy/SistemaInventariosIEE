@@ -874,7 +874,7 @@ public final class Modificar extends javax.swing.JFrame {
         String var = jComboBox1.getSelectedItem().toString().toLowerCase();
         //validaFecha();
         switch (var) {
-            case "vehiculos":
+            case "Equipo de transporte":
                 if(valVehiculo()==0){// && validaFecha()){
                     update();
                 }else{
