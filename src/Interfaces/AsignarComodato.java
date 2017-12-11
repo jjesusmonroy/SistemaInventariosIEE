@@ -8,6 +8,7 @@ package Interfaces;
 import Clases.MetodosG;
 import Reportes.ListaValeResguardo;
 import basededatos.BDD;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -433,9 +434,8 @@ public class AsignarComodato extends javax.swing.JFrame {
         //Generacion de vale de resguardo 
         
         List lista = new ArrayList();
-        //String[][] busqueda = bd.obtenerConsultas("sel");
-        
-        
+        int idfolio = m.getMax(bd.obtenerConsultas("select folio_comodato from folio"));
+        System.out.println(idfolio+"");
         
         try{
                 for(int i = 0;i<tbl_datos.getRowCount();i++){
@@ -450,7 +450,10 @@ public class AsignarComodato extends javax.swing.JFrame {
                 JasperReport reporte = (JasperReport)  JRLoader.loadObject("src/Reportes/ValeComodato.jasper");
                 
                 Map parametro = new HashMap();
-                parametro.put("fecha",lbl_fecha.getDate());
+                parametro.put("nores",idfolio+"");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                System.out.println(idfolio+" " +sdf.format(lbl_fecha.getDate()) );
+                 parametro.put("fecha",sdf.format(lbl_fecha.getDate())+"");
                 parametro.put("nombre",lbl_nombre.getText());
                 parametro.put("cargo", lbl_puesto.getText());
                 parametro.put("area", lbl_area.getText());
@@ -466,6 +469,18 @@ public class AsignarComodato extends javax.swing.JFrame {
             }catch(ArrayIndexOutOfBoundsException e){
                 JOptionPane.showMessageDialog(null,"Error al generar el vale","ERROR",JOptionPane.WARNING_MESSAGE);
             }
+        
+        String [] insertar = new String[4];
+        insertar[0] = 1+"";
+        insertar[1] = idfolio+"";
+        insertar[2] = 1+"";
+        insertar[3]= 1+"";
+        bd.insertar("folio", insertar);
+        //String[][] busqueda = bd.obtenerConsultas("sel");
+        
+        
+        
+        
         
         
         
