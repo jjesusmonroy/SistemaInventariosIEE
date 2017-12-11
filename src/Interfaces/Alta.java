@@ -51,15 +51,16 @@ public class Alta extends javax.swing.JFrame {
         altalCantidad.setForeground(Color.GRAY);
         camposDesVehiculos();
         limpiar();
-        
     }
     private void folio(){
-        int id = m.getMax(b.obtenerConsultas("select id_producto from producto"));
-        jLabel6.setText(id+"");
+        String foliocategoria = b.getOne("select folio_categoria from categoria where nombre_categoria = '"+jComboBox1.getSelectedItem().toString()+"'");
+        String a=jComboBox1.getSelectedItem().toString().replace(" ","_");
+        String folio = b.getOne("select "+a+" from nomFolios");
+        jLabel6.setText(m.generarFolio(foliocategoria, folio));
     }
     private void altaProductos(){
         existe=true;
-        int id = Integer.parseInt(jLabel6.getText()); // opcional en lo que se resuelve lo del folio
+        int id = m.getMax(b.obtenerConsultas("select id_producto from producto"));
         int id2 = b.getId("select * from categoria where nombre_categoria = '"+jComboBox1.getSelectedItem().toString()+"'");        
         String [] insertar = new String [17];
         insertar[0]=id+"";
@@ -83,8 +84,9 @@ public class Alta extends javax.swing.JFrame {
         insertar[14]=m.jtextfield(altatstockmin);
         insertar[15]="Activo";
         insertar[16]=id2+"";
-        if(jComboBox1.getSelectedItem().toString().toLowerCase().equals("consumibles")){
-            if(m.exists(insertar[2].toLowerCase(), b.obtenerConsultas("select * from producto p inner join categoria c on p.id_categoria=c.id_categoria where p.status_producto='Activo' and c.nombre_categoria='Consumibles'"))){
+        if(jComboBox1.getSelectedItem().toString().toLowerCase().equals("consumibles") || 
+                jComboBox1.getSelectedItem().toString().toLowerCase().equals("papeleria")){
+            if(m.exists(insertar[2].toLowerCase(), b.obtenerConsultas("select * from producto p inner join categoria c on p.id_categoria=c.id_categoria where (p.status_producto='Activo' and c.nombre_categoria='Consumibles') or (p.status_producto='Activo' and c.nombre_categoria='Papeleria')"))){
                 String atole = JOptionPane.showInputDialog("Producto encontrado, agregar stock?");
                 b.execute("update producto set stock_producto = stock_producto + "+atole+ " where nombre_producto = '"+insertar[2]+"'");
                 JOptionPane.showMessageDialog(this, "Actualizado con exito");
@@ -93,7 +95,8 @@ public class Alta extends javax.swing.JFrame {
             }
         }
         b.insertar("producto", insertar);
-        if(jComboBox1.getSelectedItem().toString().toLowerCase().equals("vehiculo") || jComboBox1.getSelectedItem().toString().toLowerCase().equals("vehiculos")){
+        String a=jComboBox1.getSelectedItem().toString().replace(" ","_");
+        if(jComboBox1.getSelectedItem().toString().toLowerCase().equals("equipo de transporte")){
             int idcar= m.getMax(b.obtenerConsultas("select id_vehiculo from vehiculo"));
             String [] insertarvehiculo = new String [8];
             insertarvehiculo[0]=idcar+"";
@@ -102,12 +105,18 @@ public class Alta extends javax.swing.JFrame {
             insertarvehiculo[3]=m.jtextfield(altatvkm);
             insertarvehiculo[4]=m.jtextfield(altatvservicio);
             insertarvehiculo[5]=jComboBox2.getSelectedItem().toString();
-            insertarvehiculo[6]=idcar+"";
+            insertarvehiculo[6]=numUnidad(idcar);
             insertarvehiculo[7]=id+"";
             b.insertar("vehiculo", insertarvehiculo);
         }
+        b.execute("update nomFolios set "+a+"= "+a+"+'1'");
     }
-    
+    private String numUnidad(int a){
+        String b = a+"";
+        if(b.length()==1)return "00"+b;
+        else if (b.length()==2)return "0"+b;
+        else return b;
+    }
     private void limpiar(){
         jComboBox1.setSelectedIndex(0);
         lblImage.setIcon(null);
@@ -184,7 +193,7 @@ public class Alta extends javax.swing.JFrame {
         altalKmSer = new javax.swing.JLabel();
         altatvservicio = new javax.swing.JTextField();
         altatvtipo = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<String>();
+        jComboBox2 = new javax.swing.JComboBox<>();
         lblImage = new javax.swing.JLabel();
         btnCargarFoto = new javax.swing.JButton();
         altatimprote = new javax.swing.JFormattedTextField();
@@ -569,7 +578,7 @@ public class Alta extends javax.swing.JFrame {
         altatvtipo.setText("TIPO:");
 
         jComboBox2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Camioneta", "Pickup", "Auto", "Motocicleta" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Camioneta", "Pickup", "Auto", "Motocicleta" }));
         jComboBox2.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -664,14 +673,14 @@ public class Alta extends javax.swing.JFrame {
                         .addContainerGap(35, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(altalModelo)
                                             .addComponent(altalColor)
@@ -685,7 +694,7 @@ public class Alta extends javax.swing.JFrame {
                                             .addComponent(altatcolor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(altatmodelo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jComboBox1, 0, 266, Short.MAX_VALUE)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(altalNoSerie)
                                             .addComponent(altalDes))
@@ -908,7 +917,7 @@ public class Alta extends javax.swing.JFrame {
         String var = jComboBox1.getSelectedItem().toString().toLowerCase();
         //validaFecha();
         switch (var) {
-            case "vehiculos":
+            case "equipo de transporte":
                 if(valVehiculo()==0){// && validaFecha()){
                     altaProductos();
                     //altatnombre.setEnabled(false);
@@ -919,6 +928,16 @@ public class Alta extends javax.swing.JFrame {
                     javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
                 }   break;
             case "consumibles":
+                if(valCamposConsumibles()==0){// && validaFecha()){
+                    altaProductos();
+                    if(existe)javax.swing.JOptionPane.showMessageDialog(null,"Se insertó el registro");
+                    folio();
+                    limpiar();
+                }else{
+                    altatstockmin.setBackground(Color.PINK);
+                    javax.swing.JOptionPane.showMessageDialog(null,"Campos vacios/invalidos");
+                }   break;
+            case "papeleria":
                 if(valCamposConsumibles()==0){// && validaFecha()){
                     altaProductos();
                     if(existe)javax.swing.JOptionPane.showMessageDialog(null,"Se insertó el registro");
@@ -989,15 +1008,16 @@ public class Alta extends javax.swing.JFrame {
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
         // TODO add your handling code here:
+        folio();
         String var = jComboBox1.getSelectedItem().toString().toLowerCase();
-        if(var.equals("consumibles")){
+        if(var.equals("consumibles") || var.equals("papeleria")){
             altatstockmin.setEnabled(true);
             altalCantidad.setForeground(Color.BLACK);
             altatnoserie.setEnabled(false);
             altatdescripcion.setEnabled(false);
             altatobserv.setEnabled(false);
             altatmodelo.setEnabled(false);
-        }else if(var.equals("vehiculos")){
+        }else if(var.equals("equipo de transporte")){
             camposHabVehiculos();
         }else{
             camposDesVehiculos();
