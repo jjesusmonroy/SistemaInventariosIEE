@@ -36,10 +36,9 @@ public class Asignar extends javax.swing.JFrame {
     DefaultTableModel modelo;
     DefaultTableModel modelo1;
     TablaPersonal tp;
-    ArrayList<String> asignados;
     TableModel pasar;
     String datos[][];
-    String stocknn, stockoo;
+    String stocknn, stockoo,categoria;
     int id_cambio, id_cambio2, cont;
     int Cantidad,stockn,stocko;
     boolean stock;
@@ -61,8 +60,8 @@ public class Asignar extends javax.swing.JFrame {
         stockn=0;
         stocko=0;
         cont =0;
+        categoria="";
         b = new BDD();
-        asignados = new ArrayList<>();
         String aux[][] = new String[0][0];
         iniciarTabla();
         tbl_productos1.setModel(new DefaultTableModel(
@@ -504,20 +503,12 @@ public class Asignar extends javax.swing.JFrame {
     }
     private void tbl_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productosMouseClicked
         // TODO add your handling code here:
-        
-        /*if (evt.getClickCount() == 1 && !evt.isConsumed()) {
-            btnAgregar.setEnabled(true);
-            int rows = tbl_productos.rowAtPoint(evt.getPoint());
-            String id = tbl_productos.getValueAt(rows, 0) + "";
-            System.out.println(id);
-            idCambio=Integer.parseInt(tbl_productos.getValueAt(rows, 0).toString());
-        }*/
-        
         id_cambio2=tbl_productos1.getRowCount();
         if(evt.getClickCount()==1 ){
             btnAgregar.setEnabled(true);
             int rows = tbl_productos.rowAtPoint(evt.getPoint());
             id_cambio=Integer.parseInt(tbl_productos.getValueAt(rows, 0).toString());           
+            categoria=tbl_productos.getValueAt(rows,1).toString();
         }
     }//GEN-LAST:event_tbl_productosMouseClicked
 
@@ -551,22 +542,11 @@ public class Asignar extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(this,"Seleccione una fila");
              return;
         }
-        int x = tbl_productos.getSelectedRow();
-        /*modelo1.addRow(new Object[]{
-            tbl_productos.getValueAt(x,0),
-            tbl_productos.getValueAt(x,1),
-            tbl_productos.getValueAt(x,2),
-            tbl_productos.getValueAt(x,3)
-        });*/
         cambiarDeTabla();
-        asignados.add(tbl_productos.getValueAt(x,0)+"");
-
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         // TODO add your handling code here:
-       // modelo1.removeRow(tbl_productos1.getSelectedRow());
-       // asignados.remove(tbl_productos1.getSelectedRow());
         if(tbl_productos1.getRowCount()==0){
              javax.swing.JOptionPane.showMessageDialog(this, "No hay más elementos que borrar");
          }else{
@@ -761,8 +741,15 @@ public class Asignar extends javax.swing.JFrame {
     }
      private void cambiarDeTabla(){
         if(id_cambio==0)javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una fila");
+        if(categoria.toLowerCase().equals("consumibles")){
+            String [][] consulta = b.obtenerConsultas("select min_stock_producto,stock_producto from producto where folio_producto ='"+id_cambio+"'");
+            String text ="EL PRODUCTO CUENTA CON: "+consulta[0][1]+" EN STOCK Y SU MINIMO ESTA ESTABLECIDO EN: "+consulta[0][0];
+            BajaConsumibles bc = new BajaConsumibles(text,consulta[0][0],consulta[0][1],id_cambio+"");
+            bc.setVisible(true);
+            return;
+        }
         String query="select p.folio_producto,c.nombre_categoria,p.nombre_producto,p.marca_producto,p.modelo_producto from producto p inner join categoria c "
-                        + "on p.id_categoria=c.id_categoria where p.id_producto='"+id_cambio+"'";
+                        + "on p.id_categoria=c.id_categoria where p.folio_producto='"+id_cambio+"'";
         String [][] busqueda = (b.obtenerConsultas(query));
         String [] nuevo=new String[5];
         nuevo[0]=busqueda[0][0];
