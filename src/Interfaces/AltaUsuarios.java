@@ -378,7 +378,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
             }
         });
 
-        jDateChooser1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        jDateChooser1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         jDateChooser1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jDateChooser1.setNextFocusableComponent(auCurp);
         jDateChooser1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
