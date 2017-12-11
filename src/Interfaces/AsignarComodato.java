@@ -45,11 +45,25 @@ public class AsignarComodato extends javax.swing.JFrame {
         bd = new BDD();
         m = new MetodosG();
         
-        String[][] persona = bd.obtenerConsultas("select per.nombre, per.apellido_pa,per.apellido_ma,pue.puesto,are.area from personal per inner join puesto pue on per.puesto_id_puesto = pue.id_puesto inner join area are on pue.area_id_area = are.id_area where id_personal="+idPersonal+";");
+        String[][] persona = bd.obtenerConsultas(""
+                + "select nombre from personal where id_personal = "+ idPersonal +";");
+        String[][] persona1 = bd.obtenerConsultas(""
+                + "select apellido_pa from personal where id_personal = "+ idPersonal +";");
+        String[][] persona2 = bd.obtenerConsultas(""
+                + "select apellido_ma from personal where id_personal = "+ idPersonal +";");
+        String[][] busqueda = bd.obtenerConsultas(
+                "select p.puesto from personal pe, puesto p "
+              + "where puesto_id_puesto = id_puesto and id_personal ="+idPersonal+";");
         
-        lbl_nombre.setText(persona[0]+" "+persona[1]+" "+persona[2]);
-        lbl_puesto.setText(persona[3]+"");
-        lbl_area.setText(persona[4]+"");
+        String[][] busqueda2 = bd.obtenerConsultas(
+                "select a.area from personal pe, puesto p, area a where \n" +
+                "area_id_area = id_area and \n" +
+                "puesto_id_puesto = id_puesto and \n" +
+                "id_personal =" + idPersonal +";");
+        
+        lbl_nombre.setText(persona[0][0]+" "+persona1[0][0]+" "+persona2[0][0]);
+        lbl_puesto.setText(busqueda[0][0]+"");
+        lbl_area.setText(busqueda2[0][0]+"");
     }
 
     /**
@@ -402,7 +416,7 @@ public class AsignarComodato extends javax.swing.JFrame {
         int id_asignacion = m.getMax(bd.obtenerConsultas("select * from asignacion"));
         
         
-        String [] insert = new String[2];
+        String [] insert = new String[3];
         insert[2] = id+"";
         String [][]datos;
         int filas = tbl_datos.getRowCount();
@@ -419,8 +433,7 @@ public class AsignarComodato extends javax.swing.JFrame {
         //Generacion de vale de resguardo 
         
         List lista = new ArrayList();
-        String[][] busqueda = bd.obtenerConsultas(
-                "sel");
+        //String[][] busqueda = bd.obtenerConsultas("sel");
         
         
         
@@ -437,6 +450,7 @@ public class AsignarComodato extends javax.swing.JFrame {
                 JasperReport reporte = (JasperReport)  JRLoader.loadObject("src/Reportes/ValeComodato.jasper");
                 
                 Map parametro = new HashMap();
+                parametro.put("fecha",lbl_fecha.getDate());
                 parametro.put("nombre",lbl_nombre.getText());
                 parametro.put("cargo", lbl_puesto.getText());
                 parametro.put("area", lbl_area.getText());
@@ -446,6 +460,7 @@ public class AsignarComodato extends javax.swing.JFrame {
                 JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, new JRBeanCollectionDataSource(lista));
                 JasperViewer jas = new JasperViewer(jprint,false); 
                 jas.setVisible( true );
+                btn_guardar.setEnabled(false);
                 }catch (JRException ex) {
                 }
             }catch(ArrayIndexOutOfBoundsException e){
