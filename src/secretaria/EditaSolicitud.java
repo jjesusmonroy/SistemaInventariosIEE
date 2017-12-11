@@ -19,6 +19,7 @@ String estapernotando="";
 String incluidoVehiculo="";
 String idVehiculo="";
 String chofer="";
+String id_chofer="";
 SolictudesManejador manejador;
 int error;
     /**
@@ -29,6 +30,9 @@ int error;
         manejador= new SolictudesManejador();
         
          this.setLocationRelativeTo(null);
+         if(nombreChofer.getText().equalsIgnoreCase("")){
+             choferCheck.isSelected();
+         }
     }
     public void setIdUsuario1(String idU){
         
@@ -41,7 +45,12 @@ int error;
         
     }
     
-    
+    public void nombreChofer(String nombre){
+        nombreChofer.setText(nombre);
+    }
+    public void cambiaChofer(String id){
+        id_chofer=id;
+    }
     public void esChofer(){
         
         if(choferCheck.isSelected()){
@@ -75,6 +84,8 @@ int error;
         tablaInfo = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         diaS = new javax.swing.JLabel();
+        nombreChofer = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -117,12 +128,22 @@ int error;
 
         siPernota.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         siPernota.setText("SI");
+        siPernota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siPernotaActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setText("PERNOTA");
 
         noPernota.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         noPernota.setText("NO");
+        noPernota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noPernotaActionPerformed(evt);
+            }
+        });
 
         fecha1.setEditable(false);
 
@@ -131,7 +152,7 @@ int error;
         empleadoCampo.setEditable(false);
 
         jLabel15.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel15.setText("EMPLEADO:");
+        jLabel15.setText("NOMBRE CHOFER");
 
         tablaInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -160,6 +181,11 @@ int error;
         diaS.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         diaS.setText("X");
 
+        nombreChofer.setEditable(false);
+
+        jLabel18.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel18.setText("EMPLEADO:");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -167,39 +193,50 @@ int error;
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addGap(18, 18, 18)
-                        .addComponent(empleadoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(siPernota)
-                        .addGap(18, 18, 18)
-                        .addComponent(noPernota))
-                    .addComponent(jLabel4)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
                         .addContainerGap())
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(siPernota)
+                                .addGap(18, 18, 18)
+                                .addComponent(noPernota))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addGap(235, 235, 235)
+                                                .addComponent(jLabel8))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                                .addGap(18, 18, 18)
+                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(fecha3, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                                                        .addComponent(fecha1))
+                                                    .addComponent(empleadoCampo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGap(235, 235, 235)
-                                        .addComponent(jLabel8))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(fecha3, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                                            .addComponent(fecha1))))))
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGap(67, 67, 67)
+                                        .addComponent(diaS))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel7))))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(67, 67, 67)
-                                .addComponent(diaS))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7))))))
+                                .addComponent(jLabel15)
+                                .addGap(18, 18, 18)
+                                .addComponent(nombreChofer, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(20, 20, 20)
+                    .addComponent(jLabel18)
+                    .addContainerGap(416, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,22 +257,28 @@ int error;
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(fecha3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(28, 28, 28)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(siPernota)
-                            .addComponent(noPernota))
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(empleadoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(noPernota)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(diaS, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
+                .addComponent(empleadoCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(210, 210, 210))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreChofer, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(191, 191, 191))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(167, 167, 167)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(374, Short.MAX_VALUE)))
         );
 
         jPanel1.setBackground(new java.awt.Color(242, 48, 177));
@@ -333,11 +376,12 @@ int error;
         jLabel2.setText("LUGAR");
 
         choferCheck.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        choferCheck.setText("CHOFER");
+        choferCheck.setText("EL EMPLEADO ES SU PROPIO CHOFER");
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel5.setText("NECESITA VEHICULO");
 
+        necesario.setSelected(true);
         necesario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 necesarioActionPerformed(evt);
@@ -360,9 +404,9 @@ int error;
                             .addComponent(campoLugar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(necesario)))
-                        .addGap(0, 291, Short.MAX_VALUE)))
+                        .addGap(0, 236, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -377,9 +421,9 @@ int error;
                 .addGap(1, 1, 1)
                 .addComponent(campoLugar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(necesario))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(necesario)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(choferCheck)
                 .addContainerGap(96, Short.MAX_VALUE))
@@ -497,30 +541,32 @@ int error;
       JOptionPane.showMessageDialog(this, "No se envio", " NO exito", HEIGHT); 
    }
      }else{
-       if(manejador.NuevaSolicitudConVehiculo(fecha1.getText(), incluidoVehiculo, campoLugar.getText(), campoActividad.getText(), estapernotando, FechaRetorno, folioId.getText(), idUsuario1.getText(),manejador.idPersonaCascada(folioId.getText()),chofer)){
+        if(this.id_chofer.equalsIgnoreCase("")){
+                if(manejador.NuevaSolicitudConVehiculo(fecha1.getText(), incluidoVehiculo, campoLugar.getText(), campoActividad.getText(), estapernotando, FechaRetorno, folioId.getText(), idUsuario1.getText(),manejador.idPersonaCascada(folioId.getText()),chofer)){
          if(manejador.atualizaEstadoPeticion(folioId.getText())){
           JOptionPane.showMessageDialog(this, "Se a enviado un solicitud", "exito", HEIGHT); 
           this.setVisible(false);
-       }
+         }
+                }
+        }else{
+             if(manejador.NuevaSolicitudConVehiculoChofer(fecha1.getText(), incluidoVehiculo, campoLugar.getText(), campoActividad.getText(), estapernotando, FechaRetorno, folioId.getText(), idUsuario1.getText(),manejador.idPersonaCascada(folioId.getText()),chofer,this.id_chofer)){
+         if(manejador.atualizaEstadoPeticion(folioId.getText())){
+          JOptionPane.showMessageDialog(this, "Se a enviado un solicitud", "exito", HEIGHT); 
+          this.setVisible(false);
+         }
+       
        }       
     }
-        
+                
+       
+                
          
      
      }
-//      if(manejador.NuevaSolicitudSinVe(fecha1.getText(), necesita, lugar, actividad, perno, fechaLlegada, idFolio, idUsuario)){
-//          
-//      }
-//    if(manejador.NuevaSolicitudSinVe(fechaSalida, necesita, lugar, actividad, perno, fechaLlegada, idFolio, idUsuario)){
-//        
-//    }else{
-//        
-//        
-//        
-//    }
-    
+
+     }
        
-        
+  
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -533,6 +579,28 @@ int error;
         
         tablaInfo.setModel(manejador.infoPersonal(folioId.getText()));
     }//GEN-LAST:event_formWindowActivated
+
+    private void siPernotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siPernotaActionPerformed
+        // TODO add your handling code here:
+        
+        
+        if(siPernota.isSelected()){
+            noPernota.setVisible(false);
+        }
+        if(siPernota.isSelected()==false){
+            noPernota.setVisible(true);
+        }
+    }//GEN-LAST:event_siPernotaActionPerformed
+
+    private void noPernotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noPernotaActionPerformed
+        // TODO add your handling code here:
+        if(noPernota.isSelected()){
+            siPernota.setVisible(false);
+        }
+        if(noPernota.isSelected()==false){
+            siPernota.setVisible(true);
+        }
+    }//GEN-LAST:event_noPernotaActionPerformed
 
     
     public void diasSolicitados(String d){
@@ -652,6 +720,7 @@ int error;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -667,6 +736,7 @@ int error;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JCheckBox necesario;
     private javax.swing.JCheckBox noPernota;
+    private javax.swing.JTextField nombreChofer;
     private javax.swing.JCheckBox siPernota;
     private javax.swing.JTable tablaInfo;
     // End of variables declaration//GEN-END:variables

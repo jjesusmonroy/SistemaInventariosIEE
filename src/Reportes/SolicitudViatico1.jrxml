@@ -31,10 +31,6 @@ inner join personal p on p.id_personal = u.personal_id_personal where id_solicit
 	</background>
 	<title>
 		<band height="176" splitType="Stretch">
-			<image>
-				<reportElement x="19" y="53" width="132" height="84" uuid="24c88806-ce86-4db2-b417-2a5a2eae98df"/>
-				<imageExpression><![CDATA["C:\\Users\\Genaro Carolina\\Documents\\9no Semestre\\Gestion de proyectos\\Proyecto IEEN\\ieen.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="151" y="2" width="404" height="174" uuid="12b05d97-880b-4f73-8e22-6387b2087d17"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">

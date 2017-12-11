@@ -17,6 +17,7 @@ import net.sf.jasperreports.view.*;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.util.*;
 import Clases.SolictudesManejador;
+import javax.swing.JTable;
 
 /**
  *
@@ -27,6 +28,7 @@ public class SolicitudesEnviadas extends javax.swing.JFrame {
     boolean consultar=false;
     private Connection conexion;
     private ConexionBase db;
+    int fila;
     /**
      * Creates new form SolicitudesEnviadas
      */
@@ -60,7 +62,7 @@ public class SolicitudesEnviadas extends javax.swing.JFrame {
         jLabel34 = new javax.swing.JLabel();
         idUsuario3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tb1 = new javax.swing.JTable();
+        tb1 = new JTable(){ public boolean isCellEditable(int rowIndex, int colIndex){ return false; } };
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -150,6 +152,11 @@ public class SolicitudesEnviadas extends javax.swing.JFrame {
             }
         });
         tb1.setSelectionBackground(new java.awt.Color(242, 48, 177));
+        tb1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb1);
         if (tb1.getColumnModel().getColumnCount() > 0) {
             tb1.getColumnModel().getColumn(0).setResizable(false);
@@ -228,19 +235,26 @@ public class SolicitudesEnviadas extends javax.swing.JFrame {
         consultar = true;
            
         try {
-            int fila = tb1.getSelectedRow();
+            
             folio = (int) tb1.getValueAt(fila,0);
            
-            JasperReport reporte = (JasperReport) JRLoader.loadObject("SolicitudViatico1.jasper");
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("src/Reportes/SolicitudVehiculo.jasper");
             Map id = new HashMap();
             
-            id.put("id",folio);
+            id.put("id",1);
             JasperPrint j = JasperFillManager.fillReport(reporte,id,db.getConexion());
-            JasperViewer.viewReport(j);
+            JasperViewer.viewReport(j,false);
             } catch (JRException e) {
             Logger.getLogger(SolicitudesEnviadas.class.getName()).log(Level.SEVERE,null,e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tb1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb1MouseClicked
+        // TODO add your handling code here:
+        
+        
+        fila=tb1.getSelectedRow();
+    }//GEN-LAST:event_tb1MouseClicked
 
     /**
      * @param args the command line arguments

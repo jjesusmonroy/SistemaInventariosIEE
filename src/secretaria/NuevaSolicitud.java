@@ -5,6 +5,7 @@
  */
 package secretaria;
 
+import Clases.ManejadorValidar;
 import Clases.PersonalManejador;
 import Clases.SolictudesManejador;
 import java.text.SimpleDateFormat;
@@ -20,12 +21,17 @@ import javax.swing.JTable;
 public class NuevaSolicitud extends javax.swing.JFrame {
     int fila;
     int error;
+    int fila2;
+    String id_chofer="";
     String estapernotando="";
 String incluidoVehiculo="";
 String idVehiculo="";
 String chofer="";
 SolictudesManejador manejador;
 String id_per="";
+boolean m;
+Date date= new Date();
+int tipo;
 
 
     /**
@@ -35,7 +41,7 @@ String id_per="";
         
         initComponents();
          manejador= new SolictudesManejador();
-        
+        m=true;
         this.setLocationRelativeTo(null);
         
     }
@@ -44,8 +50,10 @@ String id_per="";
         
         if(choferCheck.isSelected()){
             chofer="SI";
+            tipo=0;
         }else{
             chofer="NO";
+            tipo=1;
         }
     }
     
@@ -61,6 +69,9 @@ String id_per="";
         }
     }
     
+    public void setChofer(String id){
+        this.id_chofer=id;
+    }
     
     public void validaVehi(){
         if(necesario.isSelected()){
@@ -108,6 +119,12 @@ String id_per="";
         error=8;
         pase=false;
         
+    }if(fecha1.getDate().after(date)==false){
+        error=9;
+        pase=false;
+    }if(fecha2.getDate().after(fecha1.getDate())==false){
+        error=10;
+        pase=false;
     }
     
     
@@ -137,6 +154,12 @@ String id_per="";
                 break;
               case 8:
                 JOptionPane.showMessageDialog(this, "No se puede ser chofer de un vehiculo no pedido");
+                break;
+               case 9:
+                JOptionPane.showMessageDialog(this, "La Fecha de salida no es valida");
+                break;
+                case 10:
+                JOptionPane.showMessageDialog(this, "La Fecha de Retorno No es Valida");
                 break;
         }
         
@@ -179,15 +202,24 @@ String id_per="";
         };
         jLabel9 = new javax.swing.JLabel();
         seleccionadoE = new javax.swing.JLabel();
+        choferCheck = new javax.swing.JCheckBox();
+        jLabel5 = new javax.swing.JLabel();
+        necesario = new javax.swing.JCheckBox();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         campoActividad = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         campoLugar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        choferCheck = new javax.swing.JCheckBox();
-        jLabel5 = new javax.swing.JLabel();
-        necesario = new javax.swing.JCheckBox();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        Seleccionar2 = new JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
+        etiquetaChofer = new javax.swing.JLabel();
+        seleccionadoE2 = new javax.swing.JLabel();
+        etiqueta2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -255,7 +287,7 @@ String id_per="";
         );
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "LLENADO DE INFORMACION VIATICO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Black", 0, 11))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "LLENADO DE INFORMACION VIATICO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setText("FECHA DE SALIDA");
@@ -263,23 +295,38 @@ String id_per="";
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setText("FECHA DE LLEGADA");
 
-        fecha2.setToolTipText("Selecciona la fecha de nacimiento de tu empleado");
+        fecha2.setToolTipText("");
+        fecha2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                fecha2MouseReleased(evt);
+            }
+        });
 
         siPernota.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         siPernota.setText("SI");
+        siPernota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siPernotaActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setText("PERNOTA");
 
         noPernota.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         noPernota.setText("NO");
+        noPernota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noPernotaActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
 
         jLabel25.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel25.setText("EMPLEADO:");
 
-        fecha1.setToolTipText("Selecciona la fecha de nacimiento de tu empleado");
+        fecha1.setToolTipText("");
 
         Seleccionar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -292,6 +339,7 @@ String id_per="";
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        Seleccionar.setSelectionBackground(new java.awt.Color(255, 0, 153));
         Seleccionar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SeleccionarMouseClicked(evt);
@@ -307,6 +355,24 @@ String id_per="";
         seleccionadoE.setForeground(new java.awt.Color(255, 102, 255));
         seleccionadoE.setText("X");
 
+        choferCheck.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        choferCheck.setText("EMPLEADO CHOFER");
+        choferCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                choferCheckActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel5.setText("NECESITA VEHICULO");
+
+        necesario.setSelected(true);
+        necesario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                necesarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -314,27 +380,36 @@ String id_per="";
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel25)
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(siPernota)
-                                .addGap(18, 18, 18)
-                                .addComponent(noPernota))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(fecha1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                                    .addComponent(fecha2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(jPanel6Layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(choferCheck))
+                                    .addGroup(jPanel6Layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(fecha1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                                            .addComponent(fecha2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(jPanel6Layout.createSequentialGroup()
+                                        .addComponent(siPernota)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(noPernota)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                                        .addComponent(necesario)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel5)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel8))
-                            .addComponent(jLabel4)
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(seleccionadoE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -355,26 +430,31 @@ String id_per="";
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(fecha2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(29, 29, 29)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(siPernota)
-                    .addComponent(noPernota))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(choferCheck))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(siPernota)
+                        .addComponent(noPernota)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(necesario))
                 .addGap(28, 28, 28)
                 .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(seleccionadoE))
-                .addGap(171, 171, 171))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(183, 183, 183))
         );
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "ACTIVIDAD A REALIZAR", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 11))); // NOI18N
-        jPanel7.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "ACTIVIDAD A REALIZAR", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
+        jPanel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
         campoActividad.setColumns(20);
         campoActividad.setRows(5);
@@ -386,17 +466,35 @@ String id_per="";
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setText("LUGAR");
 
-        choferCheck.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        choferCheck.setText("CHOFER");
-
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel5.setText("NECESITA VEHICULO");
-
-        necesario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                necesarioActionPerformed(evt);
+        Seleccionar2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        Seleccionar2.setSelectionBackground(new java.awt.Color(255, 0, 153));
+        Seleccionar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Seleccionar2MouseClicked(evt);
             }
         });
+        jScrollPane3.setViewportView(Seleccionar2);
+
+        etiquetaChofer.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        etiquetaChofer.setText("SELECCIONA UN CHOFER:");
+
+        seleccionadoE2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        seleccionadoE2.setForeground(new java.awt.Color(255, 102, 255));
+        seleccionadoE2.setText("X");
+
+        etiqueta2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        etiqueta2.setForeground(new java.awt.Color(255, 102, 255));
+        etiqueta2.setText("CHOFER SELECCIONADO:");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -405,17 +503,20 @@ String id_per="";
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel2)
-                    .addComponent(campoLugar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(necesario)
-                        .addGap(33, 33, 33)
-                        .addComponent(choferCheck))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(campoLugar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(etiquetaChofer)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(etiqueta2)
+                                .addGap(18, 18, 18)
+                                .addComponent(seleccionadoE2)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -424,18 +525,19 @@ String id_per="";
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(campoLugar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(etiquetaChofer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(campoLugar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(necesario)))
-                    .addComponent(choferCheck))
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiqueta2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(seleccionadoE2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -468,11 +570,11 @@ String id_per="";
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(usuarioT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 456, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addComponent(jButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -513,6 +615,7 @@ String id_per="";
         
        PersonalManejador empleado= new PersonalManejador();
        Seleccionar.setModel(empleado.Empleados());
+       Seleccionar2.setModel(empleado.Choferes());
     }//GEN-LAST:event_formWindowActivated
 
     private void SeleccionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SeleccionarMouseClicked
@@ -541,28 +644,110 @@ String id_per="";
     SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         String FechaSalida = formato.format(fecha1.getDate());
         String FechaLlegada= formato.format(fecha2.getDate());
+        ManejadorValidar validaFecha= new ManejadorValidar();
+        
         
       int input = JOptionPane.showConfirmDialog(this,"Esta seguro que deasea enviar esta solicitud","Confirmar operacion",JOptionPane.YES_NO_CANCEL_OPTION);
         
     if(input==0){
+        
+        if(tipo==0){
+       
     if(manejador.NuevaSolicitud(FechaSalida,campoLugar.getText() , campoActividad.getText(),estapernotando , FechaLlegada, mj.getText(), incluidoVehiculo, id_per, chofer)){
               JOptionPane.showMessageDialog(this, "Se a enviado un solicitud", "exito", HEIGHT); 
           this.dispose();
           this.setVisible(false);  
-          }
+    }
+    }else{
+            if(manejador.NuevaSolicitudConChofer(FechaSalida,campoLugar.getText() , campoActividad.getText(),estapernotando , FechaLlegada, mj.getText(), incluidoVehiculo, id_per, chofer,id_chofer)){
+              JOptionPane.showMessageDialog(this, "Se a enviado un solicitud", "exito", HEIGHT); 
+          this.dispose();
+          this.setVisible(false);  
+        }
+          }  
             
             
-            
-            
-        this.dispose();
-        }  
+       
+       
+         
         
-    }  
+     
              
-        
-        
-        
+     
+    }   
+    }   
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void Seleccionar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Seleccionar2MouseClicked
+        // TODO add your handling code here:
+        
+        
+        fila2=Seleccionar2.getSelectedRow(); 
+        
+        
+        if(evt.getClickCount() == 1){
+              seleccionadoE2.setText(Seleccionar2.getValueAt(fila2, 1).toString());
+              id_chofer=Seleccionar2.getValueAt(fila2, 0).toString();
+         }
+    }//GEN-LAST:event_Seleccionar2MouseClicked
+
+    private void choferCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choferCheckActionPerformed
+        // TODO add your handling code here:}
+        
+        
+        
+        
+        if(choferCheck.isSelected()==true){
+            
+            this.m=!m;
+            Seleccionar2.setVisible(m);
+            etiquetaChofer.setVisible(m);
+            etiqueta2.setVisible(m);
+            seleccionadoE2.setVisible(m);
+            
+            
+        }
+        
+        if(choferCheck.isSelected()==false){
+            
+            this.m=!m;
+            Seleccionar2.setVisible(m);
+            etiquetaChofer.setVisible(m);
+            etiqueta2.setVisible(m);
+            seleccionadoE2.setVisible(m);
+            
+        }
+    }//GEN-LAST:event_choferCheckActionPerformed
+
+    private void siPernotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siPernotaActionPerformed
+        // TODO add your handling code here:
+        
+        
+        if(siPernota.isSelected()){
+            noPernota.setVisible(false);
+        }
+        if(siPernota.isSelected()==false){
+            noPernota.setVisible(true);
+        }
+    }//GEN-LAST:event_siPernotaActionPerformed
+
+    private void noPernotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noPernotaActionPerformed
+        // TODO add your handling code here:
+        if(noPernota.isSelected()){
+            siPernota.setVisible(false);
+        }
+        if(noPernota.isSelected()==false){
+            siPernota.setVisible(true);
+        }
+           
+    }//GEN-LAST:event_noPernotaActionPerformed
+
+    private void fecha2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fecha2MouseReleased
+        // TODO add your handling code here:
+        
+        
+        
+    }//GEN-LAST:event_fecha2MouseReleased
 
     
     public void setVista(String fecha1,String fecha2,String actividad,String lugar,String perno,String necesita){
@@ -616,9 +801,12 @@ String id_per="";
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Seleccionar;
+    private javax.swing.JTable Seleccionar2;
     private javax.swing.JTextArea campoActividad;
     private javax.swing.JTextField campoLugar;
     private javax.swing.JCheckBox choferCheck;
+    private javax.swing.JLabel etiqueta2;
+    private javax.swing.JLabel etiquetaChofer;
     private com.toedter.calendar.JDateChooser fecha1;
     private com.toedter.calendar.JDateChooser fecha2;
     private javax.swing.JButton jButton2;
@@ -639,10 +827,12 @@ String id_per="";
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel mj;
     private javax.swing.JCheckBox necesario;
     private javax.swing.JCheckBox noPernota;
     private javax.swing.JLabel seleccionadoE;
+    private javax.swing.JLabel seleccionadoE2;
     private javax.swing.JCheckBox siPernota;
     private javax.swing.JPanel usuarioT;
     // End of variables declaration//GEN-END:variables
