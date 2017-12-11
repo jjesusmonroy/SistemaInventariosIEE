@@ -700,8 +700,10 @@ public class Asignar extends javax.swing.JFrame {
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:     
-        if(tbl_productos1.getRowCount()==0)return;
-        // TODO add your handling code here:  
+        if(tbl_productos1.getRowCount()==0){
+            JOptionPane.showMessageDialog(this,"No ha seleccionado ningun producto");
+            return;
+        }  
         AsignarComodato asignar = new AsignarComodato(tbl_productos1.getModel(),Integer.parseInt(lblId.getText()));
         asignar.setVisible(true);
     }//GEN-LAST:event_jButton13ActionPerformed
