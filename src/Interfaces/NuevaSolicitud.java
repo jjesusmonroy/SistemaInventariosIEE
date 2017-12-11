@@ -396,7 +396,7 @@ public class NuevaSolicitud extends javax.swing.JFrame {
             return;
         }
         //Almacenar en tabla peticiones
-        String[] peticion = new String[6];
+        String[] peticion = new String[7];
         peticion[0]= ""+m.getMax(b.obtenerConsultas("select id_peticion from peticiones_compra;"));
         peticion[1] = cmb_categoria.getSelectedItem().toString();
         peticion[2] = txt_nombre.getText();
@@ -413,6 +413,7 @@ public class NuevaSolicitud extends javax.swing.JFrame {
         
         
         //Cerrar ventana
+        JOptionPane.showMessageDialog(this,"Se realizó la petición.");
         this.dispose();
         
     }//GEN-LAST:event_jButton3ActionPerformed
