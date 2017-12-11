@@ -39,8 +39,8 @@ public class Asignar extends javax.swing.JFrame {
     TableModel pasar;
     String datos[][];
     String stocknn, stockoo,categoria;
-    int id_cambio, id_cambio2, cont;
-    int Cantidad,stockn,stocko;
+    String id_cambio, id_cambio2;
+    int Cantidad,stockn,stocko,cont;
     boolean stock;
     Clases.Validaciones v;
     Clases.MetodosG m;
@@ -52,31 +52,18 @@ public class Asignar extends javax.swing.JFrame {
         v=new Clases.Validaciones();
         m=new Clases.MetodosG();
         tp= new TablaPersonal();
-        id_cambio=0;
-        id_cambio2=0;
+        id_cambio="";
+        id_cambio2="";
         stock=false;
         stocknn=""; 
         stockoo = ""; 
         stockn=0;
         stocko=0;
-        cont =0;
+        cont=0;
         categoria="";
         b = new BDD();
-        String aux[][] = new String[0][0];
         iniciarTabla();
-        tbl_productos1.setModel(new DefaultTableModel(
-            aux,
-            new String[]{
-                "Folio","Categoria","Nombre","Marca","Modelo"
-            }){
-                @Override
-                public boolean isCellEditable(int row, int column) {
-                    return false;
-                }
-            }
-        
-        );
-        modelo1 = (DefaultTableModel)tbl_productos1.getModel();
+        iniciarTabla2();
     }
 
     /**
@@ -165,6 +152,9 @@ public class Asignar extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_productosMouseClicked(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tbl_productosMouseReleased(evt);
+            }
         });
         jScrollPane1.setViewportView(tbl_productos);
 
@@ -210,6 +200,9 @@ public class Asignar extends javax.swing.JFrame {
         tbl_productos1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_productos1MouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tbl_productos1MouseReleased(evt);
             }
         });
         jScrollPane2.setViewportView(tbl_productos1);
@@ -281,7 +274,7 @@ public class Asignar extends javax.swing.JFrame {
                         .addComponent(buscatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_buscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addComponent(jButton11)
                         .addGap(18, 18, 18)
                         .addComponent(btn_Guardar)
@@ -315,7 +308,7 @@ public class Asignar extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(lblId)
                 .addContainerGap())
         );
@@ -472,13 +465,7 @@ public class Asignar extends javax.swing.JFrame {
     }
     private void tbl_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productosMouseClicked
         // TODO add your handling code here:
-        id_cambio2=tbl_productos1.getRowCount();
-        if(evt.getClickCount()==1 ){
-            btnAgregar.setEnabled(true);
-            int rows = tbl_productos.rowAtPoint(evt.getPoint());
-            id_cambio=Integer.parseInt(tbl_productos.getValueAt(rows, 0).toString());           
-            categoria=tbl_productos.getValueAt(rows,1).toString();
-        }
+        
     }//GEN-LAST:event_tbl_productosMouseClicked
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
@@ -509,9 +496,15 @@ public class Asignar extends javax.swing.JFrame {
              javax.swing.JOptionPane.showMessageDialog(this,"Seleccione primero usuario a asignar");
              return;
         }
-        if(id_cambio==0){
+        if(id_cambio.equals("")){
             javax.swing.JOptionPane.showMessageDialog(this,"Seleccione una fila");
              return;
+        }
+        for(int i=0; i<tbl_productos1.getRowCount();i++){
+            if(id_cambio.equals(tbl_productos1.getValueAt(i, 0))){
+                JOptionPane.showMessageDialog(this,"Producto ya seleccionado");
+                return;
+            }
         }
         cambiarDeTabla();
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -522,27 +515,21 @@ public class Asignar extends javax.swing.JFrame {
              javax.swing.JOptionPane.showMessageDialog(this, "No hay más elementos que borrar");
          }else{
         if(cont==0){
-            id_cambio2=tbl_productos1.getRowCount()-1;
+            id_cambio2=tbl_productos1.getRowCount()-1+"";
             //javax.swing.JOptionPane.showMessageDialog(this, id_cambio2+"");
             DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
-            model.removeRow(id_cambio2);
+            model.removeRow(Integer.parseInt(id_cambio2));
         }
         else{
          DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
-             model.removeRow(id_cambio2);
+             model.removeRow(Integer.parseInt(id_cambio2));
             cont=0;}
          }
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void tbl_productos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productos1MouseClicked
         // TODO add your handling code here:
-        if(evt.getClickCount()==1 ){
-            btnBorrar.setEnabled(true);
-            id_cambio2= tbl_productos1.rowAtPoint(evt.getPoint());
-            //= Integer.parseInt(tbl_productos1.getValueAt(rows, 0)+"");
-            cont++;
-             
-        }
+        
     }//GEN-LAST:event_tbl_productos1MouseClicked
 
     private void btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GuardarActionPerformed
@@ -698,7 +685,45 @@ public class Asignar extends javax.swing.JFrame {
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
         iniciarTabla();
+        iniciarTabla2();
     }//GEN-LAST:event_formWindowGainedFocus
+    private void iniciarTabla2(){
+        String aux[][] = new String[0][0];
+        tbl_productos1.setModel(new DefaultTableModel(
+            aux,
+            new String[]{
+                "Folio","Categoria","Nombre","Marca","Modelo"
+            }){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            }
+        
+        );
+        modelo1 = (DefaultTableModel)tbl_productos1.getModel();
+    }
+    private void tbl_productosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productosMouseReleased
+        // TODO add your handling code here:
+        id_cambio2=tbl_productos1.getRowCount()+"";
+        if(evt.getClickCount()==1 ){
+            btnAgregar.setEnabled(true);
+            int rows = tbl_productos.rowAtPoint(evt.getPoint());
+            id_cambio=tbl_productos.getValueAt(rows, 0).toString();           
+            categoria=tbl_productos.getValueAt(rows,1).toString();
+        }
+    }//GEN-LAST:event_tbl_productosMouseReleased
+
+    private void tbl_productos1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productos1MouseReleased
+        // TODO add your handling code here:
+        if(evt.getClickCount()==1 ){
+            btnBorrar.setEnabled(true);
+            id_cambio2= tbl_productos1.rowAtPoint(evt.getPoint())+"";
+            //= Integer.parseInt(tbl_productos1.getValueAt(rows, 0)+"");
+            cont++;
+             
+        }
+    }//GEN-LAST:event_tbl_productos1MouseReleased
     public void pasarDatos(){
         int x = tbl_productos.getRowCount();
         datos=new String[x][4];
@@ -711,7 +736,7 @@ public class Asignar extends javax.swing.JFrame {
         }
     }
      private void cambiarDeTabla(){
-        if(id_cambio==0)javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una fila");
+        if(id_cambio.equals(""))javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una fila");
         if(categoria.toLowerCase().equals("consumibles")){
             String [][] consulta = b.obtenerConsultas("select min_stock_producto,stock_producto from producto where folio_producto ='"+id_cambio+"'");
             String text ="EL PRODUCTO CUENTA CON: "+consulta[0][1]+" EN STOCK Y SU MINIMO ESTA ESTABLECIDO EN: "+consulta[0][0];
