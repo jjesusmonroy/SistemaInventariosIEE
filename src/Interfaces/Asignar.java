@@ -50,8 +50,6 @@ public class Asignar extends javax.swing.JFrame {
 
         initComponents();
         lblId.setVisible(false);
-        txtCantidad.setEditable(false);
-        txtCantidad.setEnabled(false);
         v=new Clases.Validaciones();
         m=new Clases.MetodosG();
         tp= new TablaPersonal();
@@ -70,7 +68,7 @@ public class Asignar extends javax.swing.JFrame {
         tbl_productos1.setModel(new DefaultTableModel(
             aux,
             new String[]{
-                "Folio","Producto","Marca","Modelo","Cantidad"
+                "Folio","Categoria","Nombre","Marca","Modelo"
             }){
                 @Override
                 public boolean isCellEditable(int row, int column) {
@@ -105,8 +103,6 @@ public class Asignar extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton12 = new javax.swing.JButton();
         btn_Guardar = new javax.swing.JButton();
-        txtCantidad = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -124,6 +120,13 @@ public class Asignar extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -240,24 +243,6 @@ public class Asignar extends javax.swing.JFrame {
             }
         });
 
-        txtCantidad.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txtCantidad.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
-        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantidadActionPerformed(evt);
-            }
-        });
-        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCantidadKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCantidadKeyTyped(evt);
-            }
-        });
-
-        jLabel2.setText("CANTIDAD:");
-
         jLabel3.setText("TIPO DE USO:");
 
         jLabel7.setText("MUNICIPIO:");
@@ -314,9 +299,7 @@ public class Asignar extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnBorrar)
-                            .addComponent(btnAgregar)
-                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                            .addComponent(btnAgregar))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -382,11 +365,7 @@ public class Asignar extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(96, 96, 96)
                         .addComponent(btnAgregar)
                         .addGap(18, 18, 18)
                         .addComponent(btnBorrar)
@@ -506,14 +485,14 @@ public class Asignar extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
     private void iniciarTabla(){
-        String[][] consulta = b.obtenerConsultas("select id_producto,"
-                + "nombre_producto,marca_producto,modelo_producto,stock_producto"
-                + " from producto where status_producto = 'Activo'");
-
+        String query = "select p.folio_producto,c.nombre_categoria,p.nombre_producto,"
+                + "p.marca_producto,p.modelo_producto from producto p inner join categoria c on p.id_categoria=c.id_categoria"
+                + " where status_producto='Activo'";
+        String[][] consulta = b.obtenerConsultas(query);
         modelo = new javax.swing.table.DefaultTableModel(
                 consulta,
                 new String[]{
-                    "Folio", "Producto", "Marca", "Modelo", "Stock"
+                    "Folio", "Categoria", "Nombre", "Marca", "Modelo"
                 }
         ) {
             @Override
@@ -540,23 +519,6 @@ public class Asignar extends javax.swing.JFrame {
             int rows = tbl_productos.rowAtPoint(evt.getPoint());
             id_cambio=Integer.parseInt(tbl_productos.getValueAt(rows, 0).toString());           
         }
-        
-        String[][] busqueda = b.obtenerConsultas(
-                "select stock_producto from producto "
-              + "where id_producto = "+id_cambio+";");
-        if(busqueda==null){ 
-            stock=false;
-            txtCantidad.setEditable(false);
-            txtCantidad.setEnabled(false);
-        }else{
-            stock=true;
-            //stocko= Integer.parseInt(busqueda[0][0]);
-            txtCantidad.setEditable(true);
-            txtCantidad.setEnabled(true);
-        }
-        
-        
-
     }//GEN-LAST:event_tbl_productosMouseClicked
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
@@ -643,7 +605,6 @@ public class Asignar extends javax.swing.JFrame {
         for(int i = 0;i<tbl_productos1.getColumnCount();i++){   
             for(int j = 0; j<tbl_productos1.getRowCount();j++){
                 arr[j][i]=tbl_productos1.getValueAt(j,i)+"";
-                 System.out.println(arr[j][i]);
             }
         }
         int r=0,s=0,t=0;
@@ -679,12 +640,18 @@ public class Asignar extends javax.swing.JFrame {
         
         
         try{
+                String value0,value1,value2,value3;
                 for(int i = 0;i<tbl_productos1.getRowCount();i++){
+                    if(tbl_productos1.getValueAt(i, 0)==null)value0="";
+                    else value0=tbl_productos1.getValueAt(i,0).toString();
+                    if(tbl_productos1.getValueAt(i, 2)==null)value1="";
+                    else value1=tbl_productos1.getValueAt(i,2).toString();
+                    if(tbl_productos1.getValueAt(i, 3)==null)value2="";
+                    else value2=tbl_productos1.getValueAt(i,3).toString();
+                    if(tbl_productos1.getValueAt(i, 4)==null)value3="";
+                    else value3=tbl_productos1.getValueAt(i,4).toString();
                     ListaValeResguardo listaedad = new ListaValeResguardo(
-                            tbl_productos1.getValueAt(i,0).toString(),
-                            tbl_productos1.getValueAt(i,1).toString(),
-                            tbl_productos1.getValueAt(i,2).toString(),
-                            tbl_productos1.getValueAt(i,3).toString());
+                            value0,value1,value2,value3);
                     lista.add(listaedad);
                 }
                 try {
@@ -719,7 +686,6 @@ public class Asignar extends javax.swing.JFrame {
             insertar[2]=lblId.getText();        
             b.insertar("asignacion", insertar);
             b.execute("update producto set status_producto = 'Asignado' where folio_producto ='"+tbl_productos1.getValueAt(i,0).toString()+"'");
-            javax.swing.JOptionPane.showMessageDialog(this, "Se insertó el registro"+insertar[0]);
         }
         
         buscatxt.setText("");
@@ -737,36 +703,17 @@ public class Asignar extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_GuardarActionPerformed
 
-    private void txtCantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyPressed
-        // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            cambiarDeTabla();
-        }
-    }//GEN-LAST:event_txtCantidadKeyPressed
-
-    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if((c<'0' || c>'9')) evt.consume();
-
-    }//GEN-LAST:event_txtCantidadKeyTyped
-
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
     String criteriobus = buscatxt.getText();
     if(criteriobus.equals("")){ javax.swing.JOptionPane.showMessageDialog(this, "Campo de búsqueda vacío"); return; }
-    String[][] busqueda = b.obtenerConsultas("select id_producto"
-            + ",nombre_producto,marca_producto,modelo_producto,stock_producto "
-            + "from producto where nombre_producto = '"+ criteriobus +"' "
-            + "and status_producto = 'Activo'");
-    
-    modelo = new javax.swing.table.DefaultTableModel(
-                busqueda,
+        String query = "select p.folio_producto,c.nombre_categoria,p.nombre_producto,"
+                + "p.marca_producto,p.modelo_producto from producto p inner join categoria c on p.id_categoria=c.id_categoria"
+                + " where status_producto='Activo' and where nombre_producto like '%"+criteriobus+"%'";
+        String[][] consulta = b.obtenerConsultas(query);
+        modelo = new javax.swing.table.DefaultTableModel(
+                consulta,
                 new String[]{
-                    "Folio", 
-                    "Nombre_Producto", 
-                    "Marca", 
-                    "Modelo", 
-                    "Stock"
+                    "Folio", "Categoria", "Nombre", "Marca", "Modelo"
                 }
         ) {
             @Override
@@ -776,10 +723,6 @@ public class Asignar extends javax.swing.JFrame {
         };
         tbl_productos.setModel(modelo);
     }//GEN-LAST:event_btn_buscarActionPerformed
-
-    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantidadActionPerformed
 
     private void tbl_productosAncestorMoved(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_tbl_productosAncestorMoved
         // TODO add your handling code here:
@@ -800,6 +743,11 @@ public class Asignar extends javax.swing.JFrame {
         AsignarComodato asignar = new AsignarComodato(tbl_productos1.getModel(),Integer.parseInt(lblId.getText()));
         asignar.setVisible(true);
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        iniciarTabla();
+    }//GEN-LAST:event_formWindowGainedFocus
     public void pasarDatos(){
         int x = tbl_productos.getRowCount();
         datos=new String[x][4];
@@ -812,43 +760,18 @@ public class Asignar extends javax.swing.JFrame {
         }
     }
      private void cambiarDeTabla(){
-        if(id_cambio==0){
-            javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una fila");
-        }else if(stock){
-            if(busIguales(id_cambio)){              
-             }else{
-             if(!v.soloNumeros(txtCantidad.getText())){
-                Cantidad=Integer.parseInt(txtCantidad.getText());
-                String [][] busqueda = (b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto from producto where id_producto="+id_cambio));
-                String [] nuevo=new String[5];
-                nuevo[0]=busqueda[0][0];
-                nuevo[1]=busqueda[0][1];
-                nuevo[2]=busqueda[0][2];
-                nuevo[3]=busqueda[0][3];
-                nuevo[4]=Cantidad+"";
-                DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
-                model.addRow(nuevo);
-            }else{
-                javax.swing.JOptionPane.showMessageDialog(this, "Inserte cantidad");
-                txtCantidad.requestFocus(true);
-            }
-                txtCantidad.setText("");}
-            }
-    }
-    private boolean busIguales(int id){
-       // Cantidad=Integer.parseInt(txtCantidad.getText());
-        for(int i=0;i<tbl_productos1.getRowCount();i++){
-            //javax.swing.JOptionPane.showMessageDialog(this,tbl_productos1.getValueAt(i,0)+ " Buscando ");
-            if(id==Integer.parseInt(tbl_productos1.getValueAt(i,0)+"")){
-                if(javax.swing.JOptionPane.showConfirmDialog(this, "Producto previamente seleccionado "+"\n"+"¿Desea aumentar la cantidad?")==0){
-                    int cantidad=Integer.parseInt(javax.swing.JOptionPane.showInputDialog(this,"Cantidad"));
-                    tbl_productos1.setValueAt(cantidad,i, 4);
-                    txtCantidad.setText("");
-                }
-                return true;
-            }
-        }
-        return false;
+        if(id_cambio==0)javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una fila");
+        String query="select p.folio_producto,c.nombre_categoria,p.nombre_producto,p.marca_producto,p.modelo_producto from producto p inner join categoria c "
+                        + "on p.id_categoria=c.id_categoria where p.id_producto='"+id_cambio+"'";
+        String [][] busqueda = (b.obtenerConsultas(query));
+        String [] nuevo=new String[5];
+        nuevo[0]=busqueda[0][0];
+        nuevo[1]=busqueda[0][1];
+        nuevo[2]=busqueda[0][2];
+        nuevo[3]=busqueda[0][3];
+        nuevo[4]=busqueda[0][4];
+        DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
+        model.addRow(nuevo); 
     }
     /**
      * @param args the command line arguments
@@ -897,7 +820,6 @@ public class Asignar extends javax.swing.JFrame {
     public javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -915,6 +837,5 @@ public class Asignar extends javax.swing.JFrame {
     private javax.swing.JTable tbl_productos;
     private javax.swing.JTable tbl_productos1;
     private javax.swing.JTextField tipouso;
-    private javax.swing.JTextField txtCantidad;
     // End of variables declaration//GEN-END:variables
 }

@@ -742,7 +742,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
         personal[13]=auNoCredencial.getText();
         personal[14]=idPuesto+"";
         b.insertar("personal", personal);
-        if(b.verificacionInsert==true){javax.swing.JOptionPane.showMessageDialog(this, "Registro insertado!");}
+        if(b.verificacionInsert==true){javax.swing.JOptionPane.showMessageDialog(this, "Nuevo usuario insertado!");}
         else{javax.swing.JOptionPane.showMessageDialog(this, "Error al insertar");}
         
     }
@@ -836,7 +836,6 @@ public class AltaUsuarios extends javax.swing.JFrame {
             insertar();
             JOptionPane.showMessageDialog(this, "Nuevo usuario insertado");*/
             limpiar();
-            JOptionPane.showMessageDialog(this, "Nuevo usuario insertado");
         //}contErr=0;
     }
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -974,16 +973,13 @@ public class AltaUsuarios extends javax.swing.JFrame {
         if(auCp.getText().length()>=5){
             evt.consume();
         }
-        if(auColonia.getText().length()>30){
-            evt.consume();
-        }
         char c = evt.getKeyChar();
         if((c<'0' || c>'9')) evt.consume();
     }//GEN-LAST:event_auCpKeyTyped
 
     private void auNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auNombreKeyTyped
         // TODO add your handling code here:
-        if(auNombre.getText().length()>20){
+        if(auNombre.getText().length()>=20){
             evt.consume();
         }
         char c = evt.getKeyChar();
@@ -994,7 +990,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
 
     private void auApellidoPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auApellidoPKeyTyped
         // TODO add your handling code here:
-        if(auApellidoP.getText().length()>15){
+        if(auApellidoP.getText().length()>=15){
             evt.consume();
         }
         char c = evt.getKeyChar();
@@ -1005,7 +1001,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
 
     private void auApellidoMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auApellidoMKeyTyped
         // TODO add your handling code here:
-        if(auApellidoM.getText().length()>15){
+        if(auApellidoM.getText().length()>=15){
             evt.consume();
         }
         char c = evt.getKeyChar();
@@ -1016,7 +1012,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
 
     private void auCalleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auCalleKeyTyped
         // TODO add your handling code here:
-        if(auCalle.getText().length()>45){
+        if(auCalle.getText().length()>=45){
             evt.consume();
         }
         char c = evt.getKeyChar();
@@ -1027,7 +1023,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
 
     private void auNumKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auNumKeyTyped
         // TODO add your handling code here:
-        if(auNum.getText().length()>6){
+        if(auNum.getText().length()>=6){
             evt.consume();
         }
         char c = evt.getKeyChar();
@@ -1036,7 +1032,7 @@ public class AltaUsuarios extends javax.swing.JFrame {
 
     private void auColoniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_auColoniaKeyTyped
         // TODO add your handling code here:
-        if(auColonia.getText().length()>30){
+        if(auColonia.getText().length()>=30){
             evt.consume();
         }
         char c = evt.getKeyChar();
