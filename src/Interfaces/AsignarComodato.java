@@ -438,12 +438,18 @@ public class AsignarComodato extends javax.swing.JFrame {
         System.out.println(idfolio+"");
         
         try{
+                String value0,value1,value2,value3;
                 for(int i = 0;i<tbl_datos.getRowCount();i++){
+                    if(tbl_datos.getValueAt(i, 0)==null)value0="";
+                    else value0=tbl_datos.getValueAt(i,0).toString();
+                    if(tbl_datos.getValueAt(i, 1)==null)value1="";
+                    else value1=tbl_datos.getValueAt(i,1).toString();
+                    if(tbl_datos.getValueAt(i, 2)==null)value2="";
+                    else value2=tbl_datos.getValueAt(i,2).toString();
+                    if(tbl_datos.getValueAt(i, 3)==null)value3="";
+                    else value3=tbl_datos.getValueAt(i,3).toString();
                     ListaValeResguardo listaedad = new ListaValeResguardo(
-                            tbl_datos.getValueAt(i,0).toString(),
-                            tbl_datos.getValueAt(i,1).toString(),
-                            tbl_datos.getValueAt(i,2).toString(),
-                            tbl_datos.getValueAt(i,3).toString());
+                            value0,value1,value2,value3);
                     lista.add(listaedad);
                 }
                 try {
