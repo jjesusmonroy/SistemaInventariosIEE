@@ -238,11 +238,17 @@
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Disponible"/>
-                    <StringItem index="1" value="Pendiente"/>
-                    <StringItem index="2" value="Asignado"/>
-                    <StringItem index="3" value="Baja"/>
+                  <StringArray count="10">
+                    <StringItem index="0" value="Activo"/>
+                    <StringItem index="1" value="Baja"/>
+                    <StringItem index="2" value="ComoDato"/>
+                    <StringItem index="3" value="Donaci&#xf3;n"/>
+                    <StringItem index="4" value="Activo"/>
+                    <StringItem index="5" value="Reparaci&#xf3;n"/>
+                    <StringItem index="6" value="Bodega"/>
+                    <StringItem index="7" value="Asignado"/>
+                    <StringItem index="8" value="Inactivo"/>
+                    <StringItem index="9" value="Almac&#xe9;n"/>
                   </StringArray>
                 </Property>
               </Properties>
