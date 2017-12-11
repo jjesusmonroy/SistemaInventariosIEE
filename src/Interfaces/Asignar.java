@@ -386,13 +386,14 @@ public class Asignar extends javax.swing.JFrame {
                                     .addComponent(jLabel8)
                                     .addComponent(localidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btn_buscar)
-                                    .addComponent(jButton11)
-                                    .addComponent(jButton12)
-                                    .addComponent(btn_Guardar)
-                                    .addComponent(jButton13)
-                                    .addComponent(buscatxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(buscatxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btn_buscar)
+                                        .addComponent(jButton11)
+                                        .addComponent(jButton12)
+                                        .addComponent(btn_Guardar)
+                                        .addComponent(jButton13)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -703,7 +704,7 @@ public class Asignar extends javax.swing.JFrame {
                 }catch (JRException ex) {
                 }
             }catch(ArrayIndexOutOfBoundsException e){
-                JOptionPane.showMessageDialog(null,"No existen datos para generar reporte","ERROR",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Error al generar el vale","ERROR",JOptionPane.WARNING_MESSAGE);
             }
         
         int id = m.getMax(b.obtenerConsultas("select id_asignacion from asignacion"));
@@ -793,7 +794,8 @@ public class Asignar extends javax.swing.JFrame {
     }//GEN-LAST:event_municipioActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:       
+        // TODO add your handling code here:  
+        javax.swing.JOptionPane.showMessageDialog(this, lblId.getText());
         AsignarComodato asignar = new AsignarComodato(tbl_productos1.getModel(),Integer.parseInt(lblId.getText()));
         asignar.setVisible(true);
     }//GEN-LAST:event_jButton13ActionPerformed

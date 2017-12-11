@@ -2,9 +2,6 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.7715610000000017"/>
 	<property name="ireport.x" value="0"/>
-<<<<<<< HEAD
-	<property name="ireport.y" value="318"/>
-=======
 	<property name="ireport.y" value="403"/>
 	<parameter name="nombre" class="java.lang.String"/>
 	<parameter name="cargo" class="java.lang.String"/>
@@ -17,7 +14,6 @@
 	<field name="nombre" class="java.lang.String"/>
 	<field name="marca" class="java.lang.String"/>
 	<field name="modelo" class="java.lang.String"/>
->>>>>>> 66922609463fd010e327e3b9521dc209b8b5b73d
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -80,11 +76,7 @@
 				<text><![CDATA[Fecha]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy">
-<<<<<<< HEAD
-				<reportElement x="132" y="45" width="100" height="20"/>
-=======
 				<reportElement x="142" y="45" width="90" height="20"/>
->>>>>>> 66922609463fd010e327e3b9521dc209b8b5b73d
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -149,12 +141,6 @@
 				</textElement>
 				<text><![CDATA[Localidad:]]></text>
 			</staticText>
-<<<<<<< HEAD
-		</band>
-	</pageHeader>
-	<columnHeader>
-		<band height="42" splitType="Stretch">
-=======
 			<textField>
 				<reportElement x="76" y="96" width="100" height="20"/>
 				<textElement verticalAlignment="Middle">
@@ -208,29 +194,10 @@
 	</pageHeader>
 	<columnHeader>
 		<band height="40" splitType="Stretch">
->>>>>>> 66922609463fd010e327e3b9521dc209b8b5b73d
 			<rectangle>
 				<reportElement x="0" y="0" width="555" height="20" backcolor="#CCCCCC"/>
 			</rectangle>
 			<rectangle>
-<<<<<<< HEAD
-				<reportElement x="0" y="20" width="76" height="20" backcolor="#CCCCCC"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="66" y="20" width="87" height="20" backcolor="#CCCCCC"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="143" y="20" width="233" height="20" backcolor="#CCCCCC"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="366" y="20" width="72" height="20" backcolor="#CCCCCC"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="438" y="20" width="62" height="20" backcolor="#CCCCCC"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="500" y="20" width="55" height="20" backcolor="#CCCCCC"/>
-=======
 				<reportElement x="0" y="20" width="106" height="20" backcolor="#CCCCCC"/>
 			</rectangle>
 			<rectangle>
@@ -241,7 +208,6 @@
 			</rectangle>
 			<rectangle>
 				<reportElement x="424" y="20" width="131" height="20" backcolor="#CCCCCC"/>
->>>>>>> 66922609463fd010e327e3b9521dc209b8b5b73d
 			</rectangle>
 			<staticText>
 				<reportElement x="0" y="0" width="555" height="20" backcolor="#CCCCCC"/>
@@ -249,53 +215,6 @@
 				<text><![CDATA[RELACIÓN DE MOVILIARIO Y EQUIPO DE CÓMPUTO]]></text>
 			</staticText>
 			<staticText>
-<<<<<<< HEAD
-				<reportElement x="0" y="20" width="66" height="20" backcolor="#CCCCCC"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[No. Inventario]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="66" y="20" width="77" height="20" backcolor="#CCCCCC"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[No. Serie]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="143" y="20" width="223" height="20" backcolor="#CCCCCC"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[Descripción]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="366" y="20" width="72" height="20" backcolor="#CCCCCC"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[Marca]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="438" y="20" width="62" height="20" backcolor="#CCCCCC"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[Modelo]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="500" y="20" width="55" height="20" backcolor="#CCCCCC"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<text><![CDATA[Color]]></text>
-			</staticText>
-		</band>
-	</columnHeader>
-	<detail>
-		<band height="28" splitType="Stretch"/>
-=======
 				<reportElement x="0" y="20" width="106" height="20" backcolor="#CCCCCC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
@@ -368,7 +287,6 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{folio}]]></textFieldExpression>
 			</textField>
 		</band>
->>>>>>> 66922609463fd010e327e3b9521dc209b8b5b73d
 	</detail>
 	<columnFooter>
 		<band height="17" splitType="Stretch"/>
@@ -377,39 +295,22 @@
 		<band height="16" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-<<<<<<< HEAD
-		<band height="93" splitType="Stretch">
-			<staticText>
-				<reportElement x="0" y="21" width="555" height="20"/>
-=======
 		<band height="140" splitType="Stretch">
 			<staticText>
 				<reportElement x="1" y="69" width="555" height="20"/>
->>>>>>> 66922609463fd010e327e3b9521dc209b8b5b73d
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[Usuario Responsable]]></text>
 			</staticText>
 			<staticText>
-<<<<<<< HEAD
-				<reportElement x="1" y="1" width="554" height="20"/>
-=======
 				<reportElement x="2" y="49" width="554" height="20"/>
->>>>>>> 66922609463fd010e327e3b9521dc209b8b5b73d
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[________________________]]></text>
 			</staticText>
 			<rectangle>
-<<<<<<< HEAD
-				<reportElement positionType="FixRelativeToBottom" x="1" y="56" width="554" height="35"/>
-			</rectangle>
-			<staticText>
-				<reportElement x="7" y="56" width="543" height="35"/>
-=======
 				<reportElement positionType="FixRelativeToBottom" x="0" y="105" width="555" height="35"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="6" y="105" width="544" height="35"/>
->>>>>>> 66922609463fd010e327e3b9521dc209b8b5b73d
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
