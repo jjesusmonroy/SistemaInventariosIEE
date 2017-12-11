@@ -555,13 +555,13 @@ public class Recoleccion extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(this,mes);
             return;
         }
-         comentarios=javax.swing.JOptionPane.showInputDialog("Agregar comentarios:");
-           bodega=javax.swing.JOptionPane.showInputDialog("Agregar bodega:");
-           b.execute("delete from asignacion where id_asignacion='"+id_cambio2+"'");
-           if(b.verificacionExecute){JOptionPane.showMessageDialog(null, "Producto Recolectado");}
-           String update="status_producto='Activo'";
-           b.execute("update producto set "+update+" where folio_producto ='"+folioProd+"'");
-           if(b.verificacionExecute){JOptionPane.showMessageDialog(null, "Status del Producto Actualizado");}  
+        
+        int [] select = new int[tbl_productos1.getSelectedRows().length];
+        for(int i = 0; i<tbl_productos1.getSelectedRows().length;i++){
+            
+            javax.swing.JOptionPane.showMessageDialog(this,tbl_productos1.getValueAt(i,0)+"");
+            select[i]=Integer.parseInt(tbl_productos1.getValueAt(i,0)+"");
+        }
         
         List lista = new ArrayList();
         int idfolio = m.getMax(b.obtenerConsultas("select folio_recoleccion from folio"));
@@ -574,12 +574,7 @@ public class Recoleccion extends javax.swing.JFrame {
                 "area_id_area = id_area and \n" +
                 "puesto_id_puesto = id_puesto and \n" +
                 "id_personal =" + tbl_productos.getValueAt(tbl_productos.getSelectedRow(),0).toString() +";");
-        int [] select = new int[tbl_productos1.getSelectedRows().length];
-        for(int i = 0; i<tbl_productos1.getSelectedRows().length;i++){
-            
-            //javax.swing.JOptionPane.showMessageDialog(this,tbl_productos1.getValueAt(i,0)+"");
-            select[i]=Integer.parseInt(tbl_productos1.getValueAt(i,0)+"");
-        }
+        
         
         try{
                 for(int i = 0;i<tbl_productos1.getSelectedRows().length;i++){
@@ -588,6 +583,7 @@ public class Recoleccion extends javax.swing.JFrame {
                             tbl_productos1.getValueAt(select[i],1).toString(),
                             tbl_productos1.getValueAt(select[i],2).toString(),
                             tbl_productos1.getValueAt(select[i],3).toString());
+                    select[i]=Integer.parseInt(tbl_productos1.getValueAt(i,0)+"");
                     lista.add(listaedad);
                 }
                 try {
@@ -616,6 +612,16 @@ public class Recoleccion extends javax.swing.JFrame {
         insert[2] = idfolio+"";
         insert[3]= 1+"";
         b.insertar("folio", insert);
+        
+         comentarios=javax.swing.JOptionPane.showInputDialog("Agregar comentarios:");
+           bodega=javax.swing.JOptionPane.showInputDialog("Agregar bodega:");
+           b.execute("delete from asignacion where id_asignacion='"+id_cambio2+"'");
+           if(b.verificacionExecute){JOptionPane.showMessageDialog(null, "Producto Recolectado");}
+           String update="status_producto='Activo'";
+           b.execute("update producto set "+update+" where folio_producto ='"+folioProd+"'");
+           if(b.verificacionExecute){JOptionPane.showMessageDialog(null, "Status del Producto Actualizado");}  
+        
+        
         
         //tbl_productos1.getSelectedRow()
          modelo1.removeRow(tbl_productos1.getSelectedRow());
