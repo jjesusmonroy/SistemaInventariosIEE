@@ -703,7 +703,7 @@ public class Asignar extends javax.swing.JFrame {
                 }catch (JRException ex) {
                 }
             }catch(ArrayIndexOutOfBoundsException e){
-                JOptionPane.showMessageDialog(null,"No existen datos para generar reporte","ERROR",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Error al generar el vale","ERROR",JOptionPane.WARNING_MESSAGE);
             }
         
         int id = m.getMax(b.obtenerConsultas("select id_asignacion from asignacion"));
@@ -796,6 +796,7 @@ public class Asignar extends javax.swing.JFrame {
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:     
         if(tbl_productos1.getRowCount()==0)return;
+        // TODO add your handling code here:  
         AsignarComodato asignar = new AsignarComodato(tbl_productos1.getModel(),Integer.parseInt(lblId.getText()));
         asignar.setVisible(true);
     }//GEN-LAST:event_jButton13ActionPerformed

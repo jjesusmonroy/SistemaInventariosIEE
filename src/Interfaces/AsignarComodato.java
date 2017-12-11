@@ -6,8 +6,21 @@
 package Interfaces;
 
 import Clases.MetodosG;
+import Reportes.ListaValeResguardo;
 import basededatos.BDD;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -404,6 +417,43 @@ public class AsignarComodato extends javax.swing.JFrame {
         }   
         
         //Generacion de vale de resguardo 
+        
+        List lista = new ArrayList();
+        String[][] busqueda = bd.obtenerConsultas(
+                "sel");
+        
+        
+        
+        try{
+                for(int i = 0;i<tbl_datos.getRowCount();i++){
+                    ListaValeResguardo listaedad = new ListaValeResguardo(
+                            tbl_datos.getValueAt(i,0).toString(),
+                            tbl_datos.getValueAt(i,1).toString(),
+                            tbl_datos.getValueAt(i,2).toString(),
+                            tbl_datos.getValueAt(i,3).toString());
+                    lista.add(listaedad);
+                }
+                try {
+                JasperReport reporte = (JasperReport)  JRLoader.loadObject("src/Reportes/ValeComodato.jasper");
+                
+                Map parametro = new HashMap();
+                parametro.put("nombre",lbl_nombre.getText());
+                parametro.put("cargo", lbl_puesto.getText());
+                parametro.put("area", lbl_area.getText());
+                parametro.put("tipo",lbl_tipo.getText());
+                parametro.put("muni", lbl_municipio.getText());
+                parametro.put("localidad", lbl_localidad.getText());
+                JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, new JRBeanCollectionDataSource(lista));
+                JasperViewer jas = new JasperViewer(jprint,false); 
+                jas.setVisible( true );
+                }catch (JRException ex) {
+                }
+            }catch(ArrayIndexOutOfBoundsException e){
+                JOptionPane.showMessageDialog(null,"Error al generar el vale","ERROR",JOptionPane.WARNING_MESSAGE);
+            }
+        
+        
+        
         
     }//GEN-LAST:event_btn_guardarActionPerformed
 
