@@ -599,7 +599,7 @@ public class Solicitar extends javax.swing.JFrame {
              }else{  
                     if(!v.soloNumeros(txtCantidad.getText())){
                        Cantidad=Integer.parseInt(txtCantidad.getText());
-                       String query = "select p.folio_producto,c.nombre_categoria,p.nombre_producto,p.marca_producto,p.modelo_producto,p.stock_producto from producto p inner join categoria c on p.id_categoria=c.id_categoria where p.id_producto='"+id_cambio+"'";
+                       String query = "select p.folio_producto,c.nombre_categoria,p.nombre_producto,p.marca_producto,p.modelo_producto,p.stock_producto from producto p inner join categoria c on p.id_categoria=c.id_categoria where p.folio_producto='"+id_cambio+"'";
                        String [][] busqueda = (b.obtenerConsultas(query));
                        String [] nuevo=new String[6];
                        nuevo[0]=busqueda[0][0];
@@ -622,7 +622,7 @@ public class Solicitar extends javax.swing.JFrame {
                         txtCantidad.requestFocus(true);
                         }else{
                            txtCantidad.setEnabled(false);
-                            String query = "select p.folio_producto,c.nombre_categoria,p.nombre_producto,p.marca_producto,p.modelo_producto,p.stock_producto from producto p inner join categoria c on p.id_categoria=c.id_categoria where p.id_producto='"+id_cambio+"'";
+                            String query = "select p.folio_producto,c.nombre_categoria,p.nombre_producto,p.marca_producto,p.modelo_producto,p.stock_producto from producto p inner join categoria c on p.id_categoria=c.id_categoria where p.folio_producto='"+id_cambio+"'";
                        String [][] busqueda = (b.obtenerConsultas(query));
                        String [] nuevo=new String[6];
                        nuevo[0]=busqueda[0][0];
