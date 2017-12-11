@@ -80,7 +80,7 @@ public class Notificaciones extends javax.swing.JFrame {
             }
         });
 
-        jPanel3.setBackground(new java.awt.Color(255, 0, 204));
+        jPanel3.setBackground(new java.awt.Color(242, 48, 177));
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));

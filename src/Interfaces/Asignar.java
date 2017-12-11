@@ -133,6 +133,7 @@ public class Asignar extends javax.swing.JFrame {
         buscatxt.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         buscatxt.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
 
+        btn_buscar.setBackground(new java.awt.Color(255, 255, 255));
         btn_buscar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/loupe.png"))); // NOI18N
         btn_buscar.setText("BUSCAR");
@@ -141,6 +142,8 @@ public class Asignar extends javax.swing.JFrame {
                 btn_buscarActionPerformed(evt);
             }
         });
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
         tbl_productos.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
@@ -168,6 +171,7 @@ public class Asignar extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_productos);
 
+        jButton11.setBackground(new java.awt.Color(255, 255, 255));
         jButton11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
         jButton11.setText("CANCELAR");
@@ -177,6 +181,7 @@ public class Asignar extends javax.swing.JFrame {
             }
         });
 
+        btnAgregar.setBackground(new java.awt.Color(255, 255, 255));
         btnAgregar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnAgregar.setText(">>");
         btnAgregar.setEnabled(false);
@@ -186,6 +191,7 @@ public class Asignar extends javax.swing.JFrame {
             }
         });
 
+        btnBorrar.setBackground(new java.awt.Color(255, 255, 255));
         btnBorrar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnBorrar.setText("<<");
         btnBorrar.setEnabled(false);
@@ -194,6 +200,8 @@ public class Asignar extends javax.swing.JFrame {
                 btnBorrarActionPerformed(evt);
             }
         });
+
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
 
         tbl_productos1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         tbl_productos1.setModel(new javax.swing.table.DefaultTableModel(
@@ -216,6 +224,7 @@ public class Asignar extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
+        jButton12.setBackground(new java.awt.Color(255, 255, 255));
         jButton12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/search-user-wearing-tie.png"))); // NOI18N
         jButton12.setText("ASIGNAR A");
@@ -225,6 +234,7 @@ public class Asignar extends javax.swing.JFrame {
             }
         });
 
+        btn_Guardar.setBackground(new java.awt.Color(255, 255, 255));
         btn_Guardar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btn_Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/save.png"))); // NOI18N
         btn_Guardar.setText("GENERAR VALE");
@@ -261,6 +271,7 @@ public class Asignar extends javax.swing.JFrame {
         localidad.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         localidad.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
 
+        jButton13.setBackground(new java.awt.Color(255, 255, 255));
         jButton13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/search-user-wearing-tie.png"))); // NOI18N
         jButton13.setText("ASIGNAR COMODATO");
@@ -281,7 +292,7 @@ public class Asignar extends javax.swing.JFrame {
                         .addComponent(buscatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_buscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addComponent(jButton11)
                         .addGap(18, 18, 18)
                         .addComponent(btn_Guardar)
@@ -315,7 +326,7 @@ public class Asignar extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(lblId)
                 .addContainerGap())
         );
@@ -366,7 +377,7 @@ public class Asignar extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel4.setBackground(new java.awt.Color(255, 51, 204));
+        jPanel4.setBackground(new java.awt.Color(242, 48, 177));
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
