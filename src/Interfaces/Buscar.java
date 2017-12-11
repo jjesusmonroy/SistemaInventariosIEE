@@ -435,13 +435,9 @@ public class Buscar extends javax.swing.JFrame {
     class PopupActionListener2 implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            int dialogButton = JOptionPane.YES_NO_OPTION;
-            int dialogResult = JOptionPane.showConfirmDialog (null, "El producto se pondra en status Agotado, desea proceder?","Advertencia",dialogButton);
-            if(dialogResult == JOptionPane.YES_OPTION){
-                // Saving code here
-                b.execute("update producto set status_producto = 'Agotado' where folio_producto = '"+jLabelIdModificar.getText()+"'");
-                iniciarTabla();
-            }
+            Baja baja = new Baja();
+            baja.idproducto=jLabelIdModificar.getText();
+            baja.setVisible(true);
         }   
     }
     class PopupActionListener3 implements ActionListener {

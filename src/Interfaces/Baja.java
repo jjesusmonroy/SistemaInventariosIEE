@@ -149,6 +149,8 @@ public class Baja extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         baja();
+        Notificaciones not = new Notificaciones();
+        not.dim.addElement("El producto con el folio: "+idproducto+" se dió de  baja");
         JOptionPane.showMessageDialog(this, "Dado de baja");
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
