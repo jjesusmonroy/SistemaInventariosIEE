@@ -83,21 +83,23 @@ public class Permisos extends javax.swing.JFrame {
         lAprobar = new javax.swing.JLabel();
         jcAprobar = new javax.swing.JCheckBox();
         jButton2 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jPanel4.setBackground(new java.awt.Color(255, 0, 204));
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Permisos");
+        jLabel4.setText("PERMISOS");
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Sistema de Control de Inventario IEEN");
+        jLabel5.setText("SISTEMA DE CONTROL DE INVENTARIOS IEEN");
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -151,6 +153,7 @@ public class Permisos extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        tbl_usuarios.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         tbl_usuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -176,53 +179,58 @@ public class Permisos extends javax.swing.JFrame {
 
     jLabel3.setText("MODULO:");
 
-    jcAlta.setText("Alta");
+    jcAlta.setText("ALTA");
     jcAlta.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jcAltaActionPerformed(evt);
         }
     });
 
-    jcBaja.setText("Baja");
+    jcBaja.setText("BAJA");
     jcBaja.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jcBajaActionPerformed(evt);
         }
     });
 
-    jcConsulta.setText("Consulta");
+    jcConsulta.setText("CONSULTA");
     jcConsulta.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jcConsultaActionPerformed(evt);
         }
     });
 
-    jcModificar.setText("Modificar");
+    jcModificar.setText("MODIFICAR");
     jcModificar.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jcModificarActionPerformed(evt);
         }
     });
 
-    jcAdministrar.setText("Administrar Usuarios");
+    jcAdministrar.setText("ADMINISTRAR USUARIOS");
     jcAdministrar.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jcAdministrarActionPerformed(evt);
         }
     });
 
+    jTextField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+    jTextField1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
     jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
         public void keyTyped(java.awt.event.KeyEvent evt) {
             jTextField1KeyTyped(evt);
         }
     });
 
+    jTextField2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+    jTextField2.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
     jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
         public void keyTyped(java.awt.event.KeyEvent evt) {
             jTextField2KeyTyped(evt);
         }
     });
 
+    jComboBox1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
     jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
     idUsuario.setText("idUsuario");
@@ -243,14 +251,17 @@ public class Permisos extends javax.swing.JFrame {
 
     lAdministrar.setText("0");
 
-    jButton1.setText("Guardar");
+    jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+    jButton1.setForeground(new java.awt.Color(255, 51, 153));
+    jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/save.png"))); // NOI18N
+    jButton1.setText("GUARDAR");
     jButton1.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButton1ActionPerformed(evt);
         }
     });
 
-    jcSolicitar.setText("Solicitar productos");
+    jcSolicitar.setText("SOLICITAR PRODUCTOS");
     jcSolicitar.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jcSolicitarActionPerformed(evt);
@@ -261,13 +272,16 @@ public class Permisos extends javax.swing.JFrame {
 
     lAprobar.setText("0");
 
-    jcAprobar.setText("Aprobar solicitudes de productos");
+    jcAprobar.setText("APROBAR SOLICITUDES DE PRODUCTOS");
     jcAprobar.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jcAprobarActionPerformed(evt);
         }
     });
 
+    jButton2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+    jButton2.setForeground(new java.awt.Color(255, 51, 153));
+    jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
     jButton2.setText("Cancelar");
     jButton2.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -275,11 +289,18 @@ public class Permisos extends javax.swing.JFrame {
         }
     });
 
+    jLabel7.setBackground(new java.awt.Color(255, 255, 255));
+    jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IEE.png"))); // NOI18N
+
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
     jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(
         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jLabel7)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -303,7 +324,7 @@ public class Permisos extends javax.swing.JFrame {
                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jcSolicitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jcAprobar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lAlta)
                             .addComponent(lBaja)
@@ -333,12 +354,16 @@ public class Permisos extends javax.swing.JFrame {
         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanel1Layout.createSequentialGroup()
             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(0, 355, Short.MAX_VALUE))
+            .addGap(0, 430, Short.MAX_VALUE))
+        .addGroup(jPanel1Layout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jLabel7)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(124, 124, 124)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
@@ -379,7 +404,7 @@ public class Permisos extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jcAprobar)
                             .addComponent(lAprobar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1)
                             .addComponent(jButton2))
@@ -396,9 +421,9 @@ public class Permisos extends javax.swing.JFrame {
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addContainerGap())
+        .addGroup(layout.createSequentialGroup()
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 0, Short.MAX_VALUE))
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -676,6 +701,7 @@ public class Permisos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
