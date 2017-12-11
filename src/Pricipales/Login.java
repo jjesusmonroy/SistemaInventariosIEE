@@ -16,6 +16,7 @@ import Administrador.PrincipalAdministracion;
 import jefatura.PrincipalJefatura;
 import secretaria.PrincipalSecretaria;
  import Clases.LoginManejador;
+import Clases.ManejadorVehiculos;
 import Interfaces.Inicio;
 import Usuario.PrincipalUsuario;
 import javax.swing.JOptionPane;
@@ -30,8 +31,28 @@ LoginManejador nuevo;
         initComponents();
         this.setLocationRelativeTo(null);
         nuevo=new LoginManejador();
+        vehiculos();
+       
+        
     }
 
+    public void vehiculos(){
+        
+         ManejadorVehiculos vehiculos=new ManejadorVehiculos();
+       int vencidos= vehiculos.NumeroVehiculosTerminados();
+       if(vencidos==0){
+           return;
+       }else{
+       
+        if(vehiculos.atualizaTodosLosVencidos(vehiculos.VehiculosVencidos(vencidos))){
+          
+        }else{
+            JOptionPane.showMessageDialog(null,"error");
+        }
+       }
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -293,7 +314,7 @@ LoginManejador nuevo;
             this.dispose();
         
         }
-        if(nombre.equalsIgnoreCase("Usuario")){
+        if(!nombre.equalsIgnoreCase("Administracion") & !nombre.equalsIgnoreCase("Secretaria") & !nombre.equalsIgnoreCase("Presidencia") & !nombre.equalsIgnoreCase("jefe departamento") ){
             PrincipalUsuario emple= new PrincipalUsuario();
             emple.setVisible(true);
             emple.setTitulo(nuevo.nombreUsuario(usuario.getText()), nuevo.idUsuario(usuario.getText()));

@@ -17,6 +17,8 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author tepic
  */
+
+//select a.id_area from  area a,personal per, puesto p where per.puesto_id_puesto=p.id_puesto and p.area_id_area=a.id_area and per.id_personal=5;
 public class ManejadorUsuario {
     
     private Connection conexion;
@@ -27,26 +29,26 @@ public class ManejadorUsuario {
         db= new ConexionBase();
     }
     
-    public DefaultTableModel MisViaticosxUsuario(String idViatico){
+    public DefaultTableModel MisViaticosxUsuario(String id_persona){
         
         
          DefaultTableModel table = new DefaultTableModel();
 
         try {
             table.addColumn("Folio:");
-            table.addColumn("Monto:");
-            table.addColumn("Informe Entregado:");
-            table.addColumn("Se aprobo:");
-            table.addColumn("Fecha de Salida:");
-            table.addColumn("Fecha de Retorno:");
-            table.addColumn("Es chofer:");
+            table.addColumn("Fecha De Aprobacion:");
+            table.addColumn("No.Vehiculo:");
+            table.addColumn("Km Por Recorrer:");
+            table.addColumn("Lugar:");
+            table.addColumn("Fecha De Salida:");
+            table.addColumn("Fecha De Retorno:");
             
             
             //select numero_unidad,tipo,color,estado_vehiculo,kilometraje,no_motor,placa_vehiculo from vehiculo
             //sql
-            String sql = "SELECT v.id_viatico,v.cantidad_asig,v.informa,v.fecha_aproba,g.fecha_salida,g.fecha_retorno,g.chofer from viatico v, solicitud g where v.solicitud_id_solicitud=g.id_solicitud and v.id_viatico="+idViatico+";";
-            Connection c = db.getConexion();
-            Statement st = c.createStatement();
+            String sql = "select v.id_viatico,v.fecha_aproba,vehi.num_unidad,km_consumido,s.lugar,s.fecha_salida,s.fecha_retorno from viatico v,solicitud s, personal p,vehiculo vehi where v.solicitud_id_solicitud=s.id_solicitud and v.vehiculo_id_vehiculo=vehi.id_vehiculo and s.personal_id_personal=p.id_personal and p.id_personal="+id_persona+";";
+            conexion = db.getConexion(); //obtenemos conexion 
+            Statement st = conexion.createStatement(); //crear obteno de consulta
             Object datos[] = new Object[7];
             ResultSet rs = st.executeQuery(sql);
             
@@ -65,7 +67,7 @@ public class ManejadorUsuario {
                 table.addRow(datos);
            }
 
-            c.close();
+            conexion.close();
         } catch (SQLException ex) {
             System.out.printf("Error getTabla Cliente SQL");
             Logger.getLogger(ManejadorUsuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -193,7 +195,38 @@ public class ManejadorUsuario {
 }
 
 
+public String[] Monto(String idViatico){
+        
+        String id[]=new String[1];
+        
+        try {
+            
+            String sql = "select cantidad_asig,monto_des from viatico where id_viatico="+idViatico+";";
 
+            conexion = db.getConexion(); //obtenemos conexion 
+            Statement st = conexion.createStatement(); //crear obteno de consulta
+            ResultSet resultados = st.executeQuery(sql); //ejecutar consulta
+            id= new String[2];
+//vemos si encontro coincidencias
+            if (resultados.next()) {
+                
+                id[0]=resultados.getObject(1).toString();
+                id[1]=resultados.getObject(2).toString();
+            }
+
+            conexion.close();
+        } //esAdministrador
+        catch (SQLException ex) {
+            Logger.getLogger(ManejadorUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null, "No Hay Conexion a la Base de Datos");
+        }
+
+        return id;
+        
+
+       
+    }
 
 
 public DefaultTableModel ViaticosTerminados(String idd){
@@ -212,7 +245,7 @@ public DefaultTableModel ViaticosTerminados(String idd){
             
             //select numero_unidad,tipo,color,estado_vehiculo,kilometraje,no_motor,placa_vehiculo from vehiculo
             //sql
-            String sql = "SELECT v.id_viatico, s.fecha_salida,s.fecha_retorno,s.actividad,v.informa from viatico v, solicitud s,personal per where v.solicitud_id_solicitud=s.id_solicitud and per.id_personal="+idd+" and fecha_retorno<curdate();";
+            String sql = "SELECT v.id_viatico, s.fecha_salida,s.fecha_retorno,s.actividad,v.informa from viatico v, solicitud s,personal per where v.solicitud_id_solicitud=s.id_solicitud and per.id_personal="+idd+" and informa='NO' and fecha_retorno<curdate();";
             Connection c = db.getConexion();
             Statement st = c.createStatement();
             Object datos[] = new Object[5];
@@ -244,17 +277,104 @@ public DefaultTableModel ViaticosTerminados(String idd){
         
     }
 
+ public DefaultTableModel ViaticosParaObservacion(String idPersona){
+        
+        
+         DefaultTableModel table = new DefaultTableModel();
+
+        try {
+            table.addColumn("Folio Viatico");
+            table.addColumn("Cantidad Asig");
+            table.addColumn("No.Vehiculo");
+            table.addColumn("Kilometreaje Consumido");
+            table.addColumn("Lugar Destino");
+            table.addColumn("Realizado en la Fecha");
+            
+            
+            
+            
+            //select numero_unidad,tipo,color,estado_vehiculo,kilometraje,no_motor,placa_vehiculo from vehiculo
+            //sql
+            String sql = "select v.id_viatico, cantidad_asig,vehi.num_unidad,km_consumido,s.lugar,s.fecha_salida from viatico v,solicitud s, personal p,vehiculo vehi where v.solicitud_id_solicitud=s.id_solicitud and vehi.id_vehiculo=v.vehiculo_id_vehiculo and p.id_personal="+idPersona+";";
+            Connection c = db.getConexion();
+            Statement st = c.createStatement();
+            Object datos[] = new Object[6];
+            ResultSet rs = st.executeQuery(sql);
+            
+            
+
+            //llenar tabla
+            while (rs.next()) {
+                datos[0] = rs.getObject(1);
+                datos[1] = rs.getObject(2);
+                datos[2] = rs.getObject(3);
+                datos[3] = rs.getObject(4);
+                datos[4] = rs.getObject(5);
+                datos[5] = rs.getObject(6);
+                 ;
+           
+                
+                
+                table.addRow(datos);
+           }
+
+            c.close();
+        } catch (SQLException ex) {
+            System.out.printf("Error getTabla Cliente SQL");
+            Logger.getLogger(ManejadorUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            return table;
+        } 
+    
+    
+    
+    
+//    select id_viatico from viatico a,solicitud d where a.solicitud_id_solicitud=d.id_solicitud and d.personal_id_personal=3;
+//    
+    
+    
+}
 
 
+public String AreaPersonal(String idPersona){
+        
+        String id="";
+        
+        try {
+            
+            String sql = "select a.id_area from  area a,personal per, puesto p where per.puesto_id_puesto=p.id_puesto and p.area_id_area=a.id_area and per.id_personal="+idPersona+";";
 
+            conexion = db.getConexion(); //obtenemos conexion 
+            Statement st = conexion.createStatement(); //crear obteno de consulta
+            ResultSet resultados = st.executeQuery(sql); //ejecutar consulta
+            //vemos si encontro coincidencias
+            if (resultados.next()) {
+                
+                id=resultados.getObject(1).toString();
+            }
+
+            conexion.close();
+        } //esAdministrador
+        catch (SQLException ex) {
+            Logger.getLogger(ManejadorUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null, "No Hay Conexion a la Base de Datos");
+        }
+
+        return id;
+        
+
+       
+    }
 
 
 
 }
 
+//select a.id_area from  area a,personal per, puesto p where per.puesto_id_puesto=p.id_puesto and p.area_id_area=a.id_area and per.id_personal=5;
 
-
-
+//select v.id_viatico, cantidad_asig,vehi.num_unidad,km_consumido,s.lugar,s.fecha_salida from viatico v,solicitud s, personal p,vehiculo vehi where v.solicitud_id_solicitud=s.id_solicitud and vehi.id_vehiculo=v.vehiculo_id_vehiculo and p.id_personal=5;
 
 
 

@@ -10,6 +10,7 @@
 	<parameter name="muni" class="java.lang.String"/>
 	<parameter name="localidad" class="java.lang.String"/>
 	<parameter name="nores" class="java.lang.String"/>
+	<parameter name="fecha" class="java.lang.String"/>
 	<field name="folio" class="java.lang.String"/>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="marca" class="java.lang.String"/>
@@ -75,13 +76,6 @@
 				</textElement>
 				<text><![CDATA[Fecha]]></text>
 			</staticText>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="142" y="45" width="90" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
 			<rectangle>
 				<reportElement x="0" y="76" width="555" height="20" backcolor="#CCCCCC"/>
 			</rectangle>
@@ -189,6 +183,13 @@
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{nores}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="45" width="90" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{fecha}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>

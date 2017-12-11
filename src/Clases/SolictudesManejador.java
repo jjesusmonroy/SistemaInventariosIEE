@@ -136,15 +136,16 @@ public class SolictudesManejador {
    
    
    
-public boolean NuevaSolicitud(String fechaSalida,String lugar,String actividad,String pernoto,String fechaLlegada,String usuario,String necesario,String id_per,String chofe){
+public boolean NuevaSolicitud(String fechaSalida,String lugar,String actividad,String pernoto,String fechaLlegada,String usuario,String necesario,String id_per,String chofe){//0==no chofer
         
         conexion=db.getConexion();
         
         
         
-        //sin vehiculo        
+        //sin vehiculo        0
         
         try {
+            
             Statement st = conexion.createStatement();
             String sql= "INSERT INTO `dbis`.`solicitud` (`fecha_salida`, `fecha_emision`, `lugar`, `actividad`, `pernotado`, `estado_solicitud`, `fecha_retorno`, `usuario_id_usuario`, `incluivehi`, `personal_id_personal`, `chofer`)"+
                     " VALUES ('"+fechaSalida+"', curdate(), '"+lugar+"', '"+actividad+"', '"+pernoto+"', 'EN REVISION', '"+fechaLlegada+"', '"+usuario+"', '"+necesario+"', '"+id_per+"', '"+chofe+"');";
@@ -152,6 +153,8 @@ public boolean NuevaSolicitud(String fechaSalida,String lugar,String actividad,S
             st.executeUpdate(sql);
 
             conexion.close();
+            
+            
         } //try  
         catch (SQLException ex) {
             Logger.getLogger(SolictudesManejador.class.getName()).log(Level.SEVERE, null, ex);
@@ -163,6 +166,45 @@ public boolean NuevaSolicitud(String fechaSalida,String lugar,String actividad,S
         
         
     }
+
+
+
+public boolean NuevaSolicitudConChofer(String fechaSalida,String lugar,String actividad,String pernoto,String fechaLlegada,String usuario,String necesario,String id_per,String chofe,String id_chofer){//0==no chofer
+        
+        conexion=db.getConexion();
+        
+        
+        
+        //sin vehiculo        0
+        
+        try{
+            Statement st = conexion.createStatement();
+            String sql= "INSERT INTO `dbis`.`solicitud` (`fecha_salida`, `fecha_emision`, `lugar`, `actividad`, `pernotado`, `estado_solicitud`, `fecha_retorno`, `usuario_id_usuario`, `incluivehi`, `personal_id_personal`, `chofer`,`tblchofer_id_chofer`)"+
+                    " VALUES ('"+fechaSalida+"', curdate(), '"+lugar+"', '"+actividad+"', '"+pernoto+"', 'EN REVISION', '"+fechaLlegada+"', '"+usuario+"', '"+necesario+"', '"+id_per+"', '"+chofe+"','"+id_chofer+"');";
+
+            st.executeUpdate(sql);
+
+            conexion.close();
+            } 
+        catch (SQLException ex) {
+            Logger.getLogger(SolictudesManejador.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+        return true;
+        
+        
+        
+    }
+
+
+
+
+
+
+
+
+
 
 public boolean NuevaSolicitudConVehiculo(String fechaSalida,String necesita,String lugar,String actividad,String perno,String fechaLlegada,String idFolio,String idUsuario,String idPersona,String cho){
         
@@ -196,6 +238,40 @@ public boolean NuevaSolicitudConVehiculo(String fechaSalida,String necesita,Stri
         
         
     }
+
+public boolean NuevaSolicitudConVehiculoChofer(String fechaSalida,String necesita,String lugar,String actividad,String perno,String fechaLlegada,String idFolio,String idUsuario,String idPersona,String cho,String idCho){
+        
+        conexion=db.getConexion();
+        
+        
+        
+        //sin vehiculo        
+        
+        try {
+            Statement st = conexion.createStatement();
+            String sql= "INSERT INTO `dbis`.`solicitud` (`fecha_salida`, `fecha_emision`, `lugar`, `actividad`, `pernotado`, `estado_solicitud`, `fecha_retorno`, `usuario_id_usuario`, `peticion_folio`,`incluivehi`,`personal_id_personal`,`chofer`,`tblchofer_id_chofer`) "
+                    + "VALUES ('"+fechaSalida+"', curdate(), '"+lugar+"', '"+actividad+"', '"+perno+"', 'EN REVISION', '"+fechaLlegada+"', '"+idUsuario+"', '"+idFolio+"','"+"SI"+"','"+idPersona+"','"+cho+"','"+idCho+"');";
+//            String sql = "INSERT INTO `viaticos`.`peticion` "
+//                    + "(`fecha_ini`, `actividad_rea`, `lugar_destino`, `vehiculo_inclui`,"
+//                    + " `personal_id_personal`, `usuario_id_usuario`) VALUES ('"+fechaSalida+"', '"+actividad+"', '"+lugar+"', '"+necesita+"', '"+idPersona+"', '"+idUsuario+"');";
+
+
+
+            st.executeUpdate(sql);
+
+            conexion.close();
+        } //try  
+        catch (SQLException ex) {
+            Logger.getLogger(PeticionManejador.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+
+        return true;
+        
+        
+        
+    }
+
 
 public DefaultTableModel Solicitudes(){
         

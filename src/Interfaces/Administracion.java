@@ -35,7 +35,7 @@ public class Administracion extends javax.swing.JFrame {
         btn_recoleccion.setEnabled(1==modificar);
         btn_usuarios.setEnabled(1==usuarios);
         btn_solicitar.setEnabled(1==solicitar);
-        btn_notificaciones.setEnabled(1==aprobar);
+        btn_notificaciones.setEnabled(1==solicitar);
                 
     }
     

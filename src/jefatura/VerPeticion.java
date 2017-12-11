@@ -186,6 +186,7 @@ String folio;
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
+        cadenaB.setEditable(false);
         cadenaB.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 cadenaBKeyReleased(evt);
@@ -275,7 +276,10 @@ String folio;
         if(evt.getClickCount() == 2){
           
         VistaPeticiones vista= new VistaPeticiones();
-        vista.setVista(tablasoli.getValueAt(fila, 0).toString(),tablasoli.getValueAt(fila,1).toString(), tablasoli.getValueAt(fila, 2).toString(), tablasoli.getValueAt(fila, 3).toString(),tablasoli.getValueAt(fila, 4).toString() ,tablasoli.getValueAt(fila, 5).toString(),manejador2.diasPorPeticion(tablasoli.getValueAt(fila, 0).toString()));
+        vista.setVista(tablasoli.getValueAt(fila, 0).toString(), tablasoli.getValueAt(fila, 1).toString(), 
+                tablasoli.getValueAt(fila, 2).toString(), tablasoli.getValueAt(fila,3).toString(), tablasoli.getValueAt(fila, 4).toString(),
+                tablasoli.getValueAt(fila, 5).toString(), tablasoli.getValueAt(fila, 6).toString(), tablasoli.getValueAt(fila, 7).toString(),
+                tablasoli.getValueAt(fila, 8).toString(), manejador.ChoferPorPeticion(tablasoli.getValueAt(fila, 0).toString()));
         vista.estadoFolio(manejador2.estadoPeticion(tablasoli.getValueAt(fila, 0).toString()));
         vista.entradaJefe();
         
@@ -304,6 +308,8 @@ String folio;
 
     private void comboBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBusquedaActionPerformed
         // TODO add your handling code here:
+        
+        cadenaB.setEditable(true);
     }//GEN-LAST:event_comboBusquedaActionPerformed
 
     private void cadenaBKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cadenaBKeyReleased

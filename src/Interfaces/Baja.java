@@ -7,6 +7,8 @@ package Interfaces;
 
 import Clases.MetodosG;
 import basededatos.BDD;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,6 +28,8 @@ public class Baja extends javax.swing.JFrame {
         m = new MetodosG();
         initComponents();
         getContentPane().setBackground(java.awt.Color.white);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
     
     private void baja(){
@@ -56,6 +60,7 @@ public class Baja extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Baja producto");
+        setUndecorated(true);
 
         jLabel1.setText("Se pondrá el producto en estado de baja...");
 
@@ -78,6 +83,11 @@ public class Baja extends javax.swing.JFrame {
         });
 
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,6 +140,11 @@ public class Baja extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Dado de baja");
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="774147aa-6e24-4b3b-8b0e-03e04c553e67">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idSolicitud" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select concat(per.nombre,' ',per.apellido_pa,' ',per.apellido_ma),s.fecha_salida,s.fecha_retorno,s.lugar,s.actividad,s.pernotado
+from personal per, solicitud s where per.id_personal=s.personal_id_personal  and s.id_solicitud=$P{id}]]>
+	</queryString>
+	<field name="concat(per.nombre,&apos; &apos;,per.apellido_pa,&apos; &apos;,per.apellido_ma)" class="java.lang.String"/>
+	<field name="fecha_salida" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha_retorno" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="lugar" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="actividad" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pernotado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="81" splitType="Stretch">
+			<staticText>
+				<reportElement x="139" y="15" width="272" height="31" uuid="c9ca2ed2-39ac-414f-82a3-591207096057"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SOLICITUD DE VIATICO IEEEN]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="152" y="15" width="298" height="20" uuid="3b4f3a9a-5cd5-462d-929d-955ac867cd07"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{concat(per.nombre,' ',per.apellido_pa,' ',per.apellido_ma)}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="15" width="143" height="20" uuid="c516246d-00cc-4f34-9153-ecb0fc77c04d"/>
+				<text><![CDATA[NOMBRE DEL  ASIGNADO]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="41" width="100" height="20" uuid="a8be5097-b713-4e5c-8467-90bcc0da4da7"/>
+				<text><![CDATA[lugar]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="152" y="41" width="100" height="20" uuid="0c03f8cf-9db1-4672-b316-1131913843d3"/>
+				<textFieldExpression><![CDATA[$F{lugar}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="21" width="100" height="20" uuid="9f3e9889-4c83-4039-8b80-cf3c00c8d1c4"/>
+				<text><![CDATA[FECHA SALIDA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="211" y="16" width="100" height="20" uuid="db727389-62a8-4ace-aae8-87043d81b19d"/>
+				<textFieldExpression><![CDATA[$F{fecha_retorno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="16" width="100" height="20" uuid="cb4381e0-a93c-474c-8a9c-93fadeba32ab"/>
+				<textFieldExpression><![CDATA[$F{pernotado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="291" y="78" width="100" height="20" uuid="29ebc4fd-515a-49ff-b9cf-f4e2450abadc"/>
+				<text><![CDATA[fecha_retorno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="339" y="16" width="100" height="20" uuid="fe0722fc-8451-43b7-a81e-0287bbed95b7"/>
+				<text><![CDATA[pernotado]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="86" y="98" width="100" height="20" uuid="eb6b0163-e556-4517-9c60-19833d3cdc32"/>
+				<textFieldExpression><![CDATA[$F{fecha_salida}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="391" y="0" width="100" height="20" uuid="298c39ea-0ba4-4f42-b179-ad9b0dcb28b3"/>
+				<textFieldExpression><![CDATA[$F{actividad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

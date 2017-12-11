@@ -6,6 +6,7 @@
 package Clases;
 
 import Interfaces.Administracion;
+import Interfaces.Principal;
 import basededatos.BDD;
 
 /**
@@ -17,7 +18,7 @@ public class Manejador_Ventanas {
     
     public void getVentanaPrincipal(String resulSet[][]){
             
-        Administracion administracion = new Administracion(resulSet[0][0],resulSet[0][1]+" "+resulSet[0][2]+" "+resulSet[0][3],Integer.parseInt(resulSet[0][4]),Integer.parseInt(resulSet[0][5]),Integer.parseInt(resulSet[0][6]),Integer.parseInt(resulSet[0][7]),Integer.parseInt(resulSet[0][8]),Integer.parseInt(resulSet[0][9]),Integer.parseInt(resulSet[0][10]));
+        Principal administracion = new Principal(resulSet[0][0],resulSet[0][1]+" "+resulSet[0][2]+" "+resulSet[0][3],Integer.parseInt(resulSet[0][4]),Integer.parseInt(resulSet[0][5]),Integer.parseInt(resulSet[0][6]),Integer.parseInt(resulSet[0][7]),Integer.parseInt(resulSet[0][8]),Integer.parseInt(resulSet[0][9]),Integer.parseInt(resulSet[0][10]));
         administracion.setVisible(true);                        
        
         

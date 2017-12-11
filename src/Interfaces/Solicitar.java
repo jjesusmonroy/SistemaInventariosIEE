@@ -34,8 +34,9 @@ public class Solicitar extends javax.swing.JFrame {
     public String [] nuevo2;
     Validaciones v;
     BDD b;
+    Clases.MetodosG m;
     NuevaSolicitud n;
-    int id_cambio,id_cambio2;
+    String id_cambio,id_cambio2;
     int cont;
     String []datos;
     Object[][] data;
@@ -50,9 +51,10 @@ public class Solicitar extends javax.swing.JFrame {
         //matrix=new String [valFil][5];
         nuevo2=new String[5];
         v=new Validaciones();
+        m=new Clases.MetodosG();
         b= new BDD();
-        id_cambio=0;
-        id_cambio2=0;
+        id_cambio="";
+        id_cambio2="";
       //  n= new NuevaSolicitud();
         data=new Object [0][0];
         cont =0;
@@ -62,36 +64,11 @@ public class Solicitar extends javax.swing.JFrame {
  
       // tbl_productos1.setEnabled(false);
       //b = new BDD();
-        String [][] busqueda = b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto,stock_producto,status_producto from producto");
-        tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
-                busqueda
-                ,
-            new String [] {
-                "Folio", "Nombre", "Marca","Modelo","Stock","Status"
-            }
-                 ){
-            @SuppressWarnings("rawtypes")
-            Class[] columnTypes = new Class[] {
-                String.class, String.class, String.class, Integer.class, Integer.class, String.class
-            };
-            @SuppressWarnings({ "unchecked", "rawtypes" })
-            @Override
-            public Class getColumnClass(int columnIndex) {
-                return columnTypes[columnIndex];
-            }
-            boolean[] columnEditables = new boolean[] {
-                false, false, false, false, false, false
-            };
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return columnEditables[column];
-            }
-        });
-      
+      iniciarTabla();
            tbl_productos1.setModel(new javax.swing.table.DefaultTableModel(
              data,
             new String [] {
-                "Folio", "Nombre", "Marca","Modelo","Cantidad","Stock Actual"
+                "Folio", "Categoria", "Nombre","Marca","Modelo","Stock"
             }
         ){
             @SuppressWarnings("rawtypes")
@@ -141,12 +118,10 @@ public class Solicitar extends javax.swing.JFrame {
         btnNuevo = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -155,7 +130,7 @@ public class Solicitar extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jTextField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextField1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        jTextField1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField1KeyTyped(evt);
@@ -163,7 +138,6 @@ public class Solicitar extends javax.swing.JFrame {
         });
 
         btnBuscar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnBuscar.setForeground(new java.awt.Color(255, 51, 153));
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/loupe.png"))); // NOI18N
         btnBuscar.setText("BUSCAR");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +147,6 @@ public class Solicitar extends javax.swing.JFrame {
         });
 
         btnCancelar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(255, 51, 153));
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
         btnCancelar.setText("CANCELAR");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -183,7 +156,6 @@ public class Solicitar extends javax.swing.JFrame {
         });
 
         btnSolicitar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnSolicitar.setForeground(new java.awt.Color(255, 51, 153));
         btnSolicitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/hand-finger-with-a-ribbon.png"))); // NOI18N
         btnSolicitar.setText("SOLICITAR");
         btnSolicitar.addActionListener(new java.awt.event.ActionListener() {
@@ -216,7 +188,7 @@ public class Solicitar extends javax.swing.JFrame {
         jLabel4.setText("CANTIDAD:");
 
         txtCantidad.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txtCantidad.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        txtCantidad.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCantidadKeyPressed(evt);
@@ -227,7 +199,6 @@ public class Solicitar extends javax.swing.JFrame {
         });
 
         btnAgregar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnAgregar.setForeground(new java.awt.Color(255, 51, 153));
         btnAgregar.setText(">>");
         btnAgregar.setEnabled(false);
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -237,7 +208,6 @@ public class Solicitar extends javax.swing.JFrame {
         });
 
         btnBorrar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnBorrar.setForeground(new java.awt.Color(255, 51, 153));
         btnBorrar.setText("<<");
         btnBorrar.setEnabled(false);
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
@@ -267,9 +237,8 @@ public class Solicitar extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tbl_productos1);
 
         btnNuevo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnNuevo.setForeground(new java.awt.Color(255, 51, 153));
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/note.png"))); // NOI18N
-        btnNuevo.setText("NUEVO");
+        btnNuevo.setText("PETICION DE COMPRA");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoActionPerformed(evt);
@@ -293,7 +262,7 @@ public class Solicitar extends javax.swing.JFrame {
                         .addComponent(btnSolicitar)
                         .addGap(14, 14, 14)
                         .addComponent(btnNuevo)
-                        .addContainerGap(307, Short.MAX_VALUE))
+                        .addContainerGap(201, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -338,10 +307,6 @@ public class Solicitar extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("SOLICITUD DE PRODUCTOS");
 
-        jLabel2.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("SISTEMA DE CONTROL DE INVENTARIO IEEN");
-
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -361,10 +326,8 @@ public class Solicitar extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
+                .addContainerGap()
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -374,20 +337,13 @@ public class Solicitar extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel13)
-                        .addComponent(jLabel14)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(17, 17, 17)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel14))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
-
-        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IEE.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -395,24 +351,15 @@ public class Solicitar extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel7)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 397, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -429,8 +376,38 @@ public class Solicitar extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    private void iniciarTabla(){
+        String query ="select p.folio_producto,c.nombre_categoria,p.nombre_producto,p.marca_producto,p.modelo_producto,p.stock_producto from producto p "
+                + "inner join categoria c on p.id_categoria=c.id_categoria where p.status_producto='Activo'";
+        String [][] busqueda = b.obtenerConsultas(query);
+        tbl_productos.setModel(new javax.swing.table.DefaultTableModel(
+                busqueda
+                ,
+            new String [] {
+                "Folio", "Categoria", "Nombre","Marca","Modelo","Stock"
+            }
+                 ){
+            @SuppressWarnings("rawtypes")
+            Class[] columnTypes = new Class[] {
+                String.class, String.class, String.class, Integer.class, Integer.class, String.class
+            };
+            @SuppressWarnings({ "unchecked", "rawtypes" })
+            @Override
+            public Class getColumnClass(int columnIndex) {
+                return columnTypes[columnIndex];
+            }
+            boolean[] columnEditables = new boolean[] {
+                false, false, false, false, false, false
+            };
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return columnEditables[column];
+            }
+        });
+      
+    }
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
         this.dispose();
@@ -447,25 +424,30 @@ public class Solicitar extends javax.swing.JFrame {
         for(int i = 0;i<tbl_productos1.getColumnCount();i++){   
             for(int j = 0; j<tbl_productos1.getRowCount();j++){
                 arr[j][i]=tbl_productos1.getValueAt(j,i)+"";
-                 System.out.println(arr[j][i]);
             }
         }
-        
         List lista = new ArrayList();
-        
+        String x = javax.swing.JOptionPane.showInputDialog("Persona que solicita:");
         try{
+                String value0,value2,value3,value4,value5;
                 for(int i = 0;i<tbl_productos1.getRowCount();i++){
-                    ListaVale listaedad = new ListaVale(tbl_productos1.getValueAt(i,0).toString(),
-                                                        tbl_productos1.getValueAt(i,1).toString(),
-                                                        tbl_productos1.getValueAt(i,2).toString(),
-                                                        tbl_productos1.getValueAt(i,3).toString(),
-                                                        tbl_productos1.getValueAt(i,4).toString());
+                    if(tbl_productos1.getValueAt(i, 0)==null)value0="";
+                    else value0=tbl_productos1.getValueAt(i,0).toString();
+                    if(tbl_productos1.getValueAt(i, 2)==null)value2="";
+                    else value2=tbl_productos1.getValueAt(i,2).toString();
+                    if(tbl_productos1.getValueAt(i, 3)==null)value3="";
+                    else value3=tbl_productos1.getValueAt(i,3).toString();
+                    if(tbl_productos1.getValueAt(i, 4)==null)value4="";
+                    else value4=tbl_productos1.getValueAt(i,4).toString();
+                    if(tbl_productos1.getValueAt(i, 5)==null)value5="";
+                    else value5=tbl_productos1.getValueAt(i,5).toString();
+                    ListaVale listaedad = new ListaVale(value0,value2,value3,value4,value5);
                     lista.add(listaedad);
                 }
                 try {
                 JasperReport reporte = (JasperReport)  JRLoader.loadObject("src/Reportes/Vale.jasper");
-                
                 Map parametro = new HashMap();
+                parametro.put("nombre",x+"");
                 JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, new JRBeanCollectionDataSource(lista));
                 JasperViewer jas = new JasperViewer(jprint,false); 
                 jas.setVisible( true );
@@ -479,59 +461,6 @@ public class Solicitar extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-         if(id_cambio==0){
-            javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una fila");
-        }else{
-             if(!v.soloNumeros(txtCantidad.getText())){
-                Cantidad=Integer.parseInt(txtCantidad.getText());
-                String [][] busqueda = (b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto from producto where folio_producto="+id_cambio));
-                String [] nuevo=new String[5];
-                nuevo[0]=busqueda[0][0];
-                nuevo[1]=busqueda[0][1];
-                nuevo[2]=busqueda[0][2];
-                nuevo[3]=busqueda[0][3];
-                nuevo[4]=Cantidad+"";
-                DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
-                model.addRow(nuevo);
-            }else{
-                javax.swing.JOptionPane.showMessageDialog(this, "Inserte cantidad");
-                txtCantidad.requestFocus(true);
-            }
-                txtCantidad.setText("");}
-        /*if(!busIguales(id_cambio)){
-            if(!v.soloNumeros(txtCantidad.getText())){
-                Cantidad=Integer.parseInt(txtCantidad.getText());
-                String [][] busqueda = (b.obtenerConsultas("select id_producto,nombre_producto,marca_producto,modelo_producto from producto where id_producto="+id_cambio));
-                String [] nuevo=new String[5];
-                nuevo[0]=busqueda[0][0];
-                nuevo[1]=busqueda[0][1];
-                nuevo[2]=busqueda[0][2];
-                nuevo[3]=busqueda[0][3];
-                nuevo[4]=Cantidad+"";
-                DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
-                model.addRow(nuevo);
-            }else{
-                javax.swing.JOptionPane.showMessageDialog(null, "Inserte cantidad");
-            }
-                txtCantidad.setText("");
-        }else{
-           DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
-            model.removeRow(Integer.parseInt(id_cambio));
-            if(!v.soloNumeros(txtCantidad.getText())){
-                String [][] busqueda = (b.obtenerConsultas("select id_producto,nombre_producto,marca_producto,modelo_producto from producto where id_producto="+id_cambio));
-                String [] nuevo=new String[5];
-                nuevo[0]=busqueda[0][0];
-                nuevo[1]=busqueda[0][1];
-                nuevo[2]=busqueda[0][2];
-                nuevo[3]=busqueda[0][3];
-                nuevo[4]=Cantidad+"";
-                DefaultTableModel model2 =(DefaultTableModel) tbl_productos1.getModel(); 
-                model2.addRow(nuevo);
-            }else{
-                javax.swing.JOptionPane.showMessageDialog(null, "Inserte cantidad");
-            }
-                txtCantidad.setText("");
-        }*/
          cambiarDeTabla();
     }//GEN-LAST:event_btnAgregarActionPerformed
     
@@ -576,11 +505,11 @@ public class Solicitar extends javax.swing.JFrame {
 
     private void tbl_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productosMouseClicked
         // TODO add your handling code here:
-        id_cambio2=tbl_productos1.getRowCount();
+        id_cambio2=tbl_productos1.getRowCount()+"";
         if(evt.getClickCount()==1 ){
             btnAgregar.setEnabled(true);
             int rows = tbl_productos.rowAtPoint(evt.getPoint());
-            id_cambio=Integer.parseInt(tbl_productos.getValueAt(rows, 0).toString());   
+            id_cambio=tbl_productos.getValueAt(rows, 0).toString();   
             stockCambio=tbl_productos.getValueAt(rows, 4)+""; 
         }
            
@@ -593,14 +522,14 @@ public class Solicitar extends javax.swing.JFrame {
              javax.swing.JOptionPane.showMessageDialog(this, "No hay más elementos que borrar");
          }else{
         if(cont==0){
-            id_cambio2=tbl_productos1.getRowCount()-1;
+            id_cambio2=tbl_productos1.getRowCount()-1+"";
             //javax.swing.JOptionPane.showMessageDialog(this, id_cambio2+"");
             DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
-            model.removeRow(id_cambio2);
+            model.removeRow(Integer.parseInt(id_cambio2));
         }
         else{
          DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
-             model.removeRow(id_cambio2);
+             model.removeRow(Integer.parseInt(id_cambio2));
             cont=0;}
          }
     }//GEN-LAST:event_btnBorrarActionPerformed
@@ -609,7 +538,7 @@ public class Solicitar extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(evt.getClickCount()==1 ){
             btnBorrar.setEnabled(true);
-            id_cambio2= tbl_productos1.rowAtPoint(evt.getPoint());
+            id_cambio2= tbl_productos1.rowAtPoint(evt.getPoint())+"";
             //= Integer.parseInt(tbl_productos1.getValueAt(rows, 0)+"");
             cont++;
              
@@ -638,22 +567,23 @@ public class Solicitar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtCantidadKeyPressed
     private void cambiarDeTabla(){
-        if(id_cambio==0){
+        if(id_cambio.equals("")){
             javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una fila");
         }else{
             if(busIguales(id_cambio)){    
                 
-             }else{
+             }else{  
                     if(!v.soloNumeros(txtCantidad.getText())){
                        Cantidad=Integer.parseInt(txtCantidad.getText());
-                       String [][] busqueda = (b.obtenerConsultas("select id_producto,nombre_producto,marca_producto,modelo_producto from producto where id_producto="+id_cambio));
+                       String query = "select p.folio_producto,c.nombre_categoria,p.nombre_producto,p.marca_producto,p.modelo_producto,p.stock_producto from producto p inner join categoria c on p.id_categoria=c.id_categoria where p.id_producto='"+id_cambio+"'";
+                       String [][] busqueda = (b.obtenerConsultas(query));
                        String [] nuevo=new String[6];
                        nuevo[0]=busqueda[0][0];
                        nuevo[1]=busqueda[0][1];
                        nuevo[2]=busqueda[0][2];
                        nuevo[3]=busqueda[0][3];
-                       nuevo[4]=Cantidad+"";
-                       if(stockCambio.equals("null")){
+                       nuevo[4]=busqueda[0][4];
+                       if(stockCambio==null){
                            nuevo[5]="No Aplica";
                        }else{
                             nuevo[5]=(Integer.parseInt(stockCambio)-Cantidad)+"";
@@ -669,7 +599,7 @@ public class Solicitar extends javax.swing.JFrame {
               }
         }
     }
-    private boolean busIguales(int id){
+    /*private boolean busIguales(int id){
        // Cantidad=Integer.parseInt(txtCantidad.getText());
         for(int i=0;i<tbl_productos1.getRowCount();i++){
             if(id==Integer.parseInt(tbl_productos1.getValueAt(i,0)+"")){
@@ -685,6 +615,17 @@ public class Solicitar extends javax.swing.JFrame {
             }
         }
         return false;
+    }*/
+    private boolean busIguales(String id){
+        boolean bandera=false;
+        if(tbl_productos1.getRowCount()==0)return bandera;
+        for(int i=0;i<tbl_productos1.getRowCount();i++){
+            if(tbl_productos1.getValueAt(i, 0).equals(id)){bandera=true;
+                
+            }
+            else bandera=false;
+        }
+        return bandera;
     }
   /*  public String[][] obtInfo(){
         
@@ -753,10 +694,8 @@ public class Solicitar extends javax.swing.JFrame {
     private javax.swing.JButton btnSolicitar;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

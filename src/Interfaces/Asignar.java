@@ -36,10 +36,9 @@ public class Asignar extends javax.swing.JFrame {
     DefaultTableModel modelo;
     DefaultTableModel modelo1;
     TablaPersonal tp;
-    ArrayList<String> asignados;
     TableModel pasar;
     String datos[][];
-    String stocknn, stockoo;
+    String stocknn, stockoo,categoria;
     int id_cambio, id_cambio2, cont;
     int Cantidad,stockn,stocko;
     boolean stock;
@@ -50,8 +49,6 @@ public class Asignar extends javax.swing.JFrame {
 
         initComponents();
         lblId.setVisible(false);
-        txtCantidad.setEditable(false);
-        txtCantidad.setEnabled(false);
         v=new Clases.Validaciones();
         m=new Clases.MetodosG();
         tp= new TablaPersonal();
@@ -63,14 +60,14 @@ public class Asignar extends javax.swing.JFrame {
         stockn=0;
         stocko=0;
         cont =0;
+        categoria="";
         b = new BDD();
-        asignados = new ArrayList<>();
         String aux[][] = new String[0][0];
         iniciarTabla();
         tbl_productos1.setModel(new DefaultTableModel(
             aux,
             new String[]{
-                "Folio","Producto","Marca","Modelo","Cantidad"
+                "Folio","Categoria","Nombre","Marca","Modelo"
             }){
                 @Override
                 public boolean isCellEditable(int row, int column) {
@@ -105,8 +102,6 @@ public class Asignar extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton12 = new javax.swing.JButton();
         btn_Guardar = new javax.swing.JButton();
-        txtCantidad = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -117,13 +112,18 @@ public class Asignar extends javax.swing.JFrame {
         jButton13 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -131,10 +131,9 @@ public class Asignar extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         buscatxt.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        buscatxt.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        buscatxt.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
 
         btn_buscar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btn_buscar.setForeground(new java.awt.Color(255, 51, 153));
         btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/loupe.png"))); // NOI18N
         btn_buscar.setText("BUSCAR");
         btn_buscar.addActionListener(new java.awt.event.ActionListener() {
@@ -170,7 +169,6 @@ public class Asignar extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbl_productos);
 
         jButton11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton11.setForeground(new java.awt.Color(255, 51, 153));
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/error.png"))); // NOI18N
         jButton11.setText("CANCELAR");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +178,6 @@ public class Asignar extends javax.swing.JFrame {
         });
 
         btnAgregar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnAgregar.setForeground(new java.awt.Color(255, 51, 153));
         btnAgregar.setText(">>");
         btnAgregar.setEnabled(false);
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -190,7 +187,6 @@ public class Asignar extends javax.swing.JFrame {
         });
 
         btnBorrar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnBorrar.setForeground(new java.awt.Color(255, 51, 153));
         btnBorrar.setText("<<");
         btnBorrar.setEnabled(false);
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
@@ -221,7 +217,6 @@ public class Asignar extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
         jButton12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton12.setForeground(new java.awt.Color(255, 51, 153));
         jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/search-user-wearing-tie.png"))); // NOI18N
         jButton12.setText("ASIGNAR A");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
@@ -231,7 +226,6 @@ public class Asignar extends javax.swing.JFrame {
         });
 
         btn_Guardar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btn_Guardar.setForeground(new java.awt.Color(255, 51, 153));
         btn_Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/save.png"))); // NOI18N
         btn_Guardar.setText("GENERAR VALE");
         btn_Guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -240,24 +234,6 @@ public class Asignar extends javax.swing.JFrame {
             }
         });
 
-        txtCantidad.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txtCantidad.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
-        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantidadActionPerformed(evt);
-            }
-        });
-        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCantidadKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCantidadKeyTyped(evt);
-            }
-        });
-
-        jLabel2.setText("CANTIDAD:");
-
         jLabel3.setText("TIPO DE USO:");
 
         jLabel7.setText("MUNICIPIO:");
@@ -265,7 +241,8 @@ public class Asignar extends javax.swing.JFrame {
         jLabel8.setText("LOCALIDAD:");
 
         tipouso.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tipouso.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        tipouso.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
+        tipouso.setNextFocusableComponent(municipio);
         tipouso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipousoActionPerformed(evt);
@@ -273,7 +250,8 @@ public class Asignar extends javax.swing.JFrame {
         });
 
         municipio.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        municipio.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        municipio.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
+        municipio.setNextFocusableComponent(localidad);
         municipio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 municipioActionPerformed(evt);
@@ -281,10 +259,9 @@ public class Asignar extends javax.swing.JFrame {
         });
 
         localidad.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        localidad.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        localidad.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
 
         jButton13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton13.setForeground(new java.awt.Color(255, 51, 153));
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/search-user-wearing-tie.png"))); // NOI18N
         jButton13.setText("ASIGNAR COMODATO");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -304,7 +281,7 @@ public class Asignar extends javax.swing.JFrame {
                         .addComponent(buscatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_buscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                         .addComponent(jButton11)
                         .addGap(18, 18, 18)
                         .addComponent(btn_Guardar)
@@ -314,9 +291,7 @@ public class Asignar extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnBorrar)
-                            .addComponent(btnAgregar)
-                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                            .addComponent(btnAgregar))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -340,7 +315,7 @@ public class Asignar extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(lblId)
                 .addContainerGap())
         );
@@ -382,11 +357,7 @@ public class Asignar extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(96, 96, 96)
                         .addComponent(btnAgregar)
                         .addGap(18, 18, 18)
                         .addComponent(btnBorrar)
@@ -400,10 +371,6 @@ public class Asignar extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("ASIGNACIÓN DE PRODUCTOS");
-
-        jLabel5.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("SISTEMA DE CONTROL DE INVENTARIO DEL IEEN");
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -425,34 +392,23 @@ public class Asignar extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 375, Short.MAX_VALUE)
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel15))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel15)
+                .addGap(35, 35, 35))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel14)
-                        .addComponent(jLabel15)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel4))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
-
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IEE.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -460,24 +416,14 @@ public class Asignar extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel6))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -488,7 +434,7 @@ public class Asignar extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -499,6 +445,7 @@ public class Asignar extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -506,14 +453,14 @@ public class Asignar extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
     private void iniciarTabla(){
-        String[][] consulta = b.obtenerConsultas("select id_producto,"
-                + "nombre_producto,marca_producto,modelo_producto,stock_producto"
-                + " from producto where status_producto = 'Activo'");
-
+        String query = "select p.folio_producto,c.nombre_categoria,p.nombre_producto,"
+                + "p.marca_producto,p.modelo_producto from producto p inner join categoria c on p.id_categoria=c.id_categoria"
+                + " where status_producto='Activo'";
+        String[][] consulta = b.obtenerConsultas(query);
         modelo = new javax.swing.table.DefaultTableModel(
                 consulta,
                 new String[]{
-                    "Folio", "Producto", "Marca", "Modelo", "Stock"
+                    "Folio", "Categoria", "Nombre", "Marca", "Modelo"
                 }
         ) {
             @Override
@@ -525,38 +472,13 @@ public class Asignar extends javax.swing.JFrame {
     }
     private void tbl_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productosMouseClicked
         // TODO add your handling code here:
-        
-        /*if (evt.getClickCount() == 1 && !evt.isConsumed()) {
-            btnAgregar.setEnabled(true);
-            int rows = tbl_productos.rowAtPoint(evt.getPoint());
-            String id = tbl_productos.getValueAt(rows, 0) + "";
-            System.out.println(id);
-            idCambio=Integer.parseInt(tbl_productos.getValueAt(rows, 0).toString());
-        }*/
-        
         id_cambio2=tbl_productos1.getRowCount();
         if(evt.getClickCount()==1 ){
             btnAgregar.setEnabled(true);
             int rows = tbl_productos.rowAtPoint(evt.getPoint());
             id_cambio=Integer.parseInt(tbl_productos.getValueAt(rows, 0).toString());           
+            categoria=tbl_productos.getValueAt(rows,1).toString();
         }
-        
-        String[][] busqueda = b.obtenerConsultas(
-                "select stock_producto from producto "
-              + "where id_producto = "+id_cambio+";");
-        if(busqueda==null){ 
-            stock=false;
-            txtCantidad.setEditable(false);
-            txtCantidad.setEnabled(false);
-        }else{
-            stock=true;
-            //stocko= Integer.parseInt(busqueda[0][0]);
-            txtCantidad.setEditable(true);
-            txtCantidad.setEnabled(true);
-        }
-        
-        
-
     }//GEN-LAST:event_tbl_productosMouseClicked
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
@@ -575,8 +497,10 @@ public class Asignar extends javax.swing.JFrame {
        // pasar=tbl_productos1.getModel();
         //pasarDatos();
         //dispose();
+        this.dispose();
         TablaPersonal  tablaPersonal=new TablaPersonal();
         tablaPersonal.setVisible(true);
+        
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
@@ -589,22 +513,11 @@ public class Asignar extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(this,"Seleccione una fila");
              return;
         }
-        int x = tbl_productos.getSelectedRow();
-        /*modelo1.addRow(new Object[]{
-            tbl_productos.getValueAt(x,0),
-            tbl_productos.getValueAt(x,1),
-            tbl_productos.getValueAt(x,2),
-            tbl_productos.getValueAt(x,3)
-        });*/
         cambiarDeTabla();
-        asignados.add(tbl_productos.getValueAt(x,0)+"");
-
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         // TODO add your handling code here:
-       // modelo1.removeRow(tbl_productos1.getSelectedRow());
-       // asignados.remove(tbl_productos1.getSelectedRow());
         if(tbl_productos1.getRowCount()==0){
              javax.swing.JOptionPane.showMessageDialog(this, "No hay más elementos que borrar");
          }else{
@@ -643,7 +556,6 @@ public class Asignar extends javax.swing.JFrame {
         for(int i = 0;i<tbl_productos1.getColumnCount();i++){   
             for(int j = 0; j<tbl_productos1.getRowCount();j++){
                 arr[j][i]=tbl_productos1.getValueAt(j,i)+"";
-                 System.out.println(arr[j][i]);
             }
         }
         int r=0,s=0,t=0;
@@ -679,12 +591,18 @@ public class Asignar extends javax.swing.JFrame {
         
         
         try{
+                String value0,value1,value2,value3;
                 for(int i = 0;i<tbl_productos1.getRowCount();i++){
+                    if(tbl_productos1.getValueAt(i, 0)==null)value0="";
+                    else value0=tbl_productos1.getValueAt(i,0).toString();
+                    if(tbl_productos1.getValueAt(i, 2)==null)value1="";
+                    else value1=tbl_productos1.getValueAt(i,2).toString();
+                    if(tbl_productos1.getValueAt(i, 3)==null)value2="";
+                    else value2=tbl_productos1.getValueAt(i,3).toString();
+                    if(tbl_productos1.getValueAt(i, 4)==null)value3="";
+                    else value3=tbl_productos1.getValueAt(i,4).toString();
                     ListaValeResguardo listaedad = new ListaValeResguardo(
-                            tbl_productos1.getValueAt(i,0).toString(),
-                            tbl_productos1.getValueAt(i,1).toString(),
-                            tbl_productos1.getValueAt(i,2).toString(),
-                            tbl_productos1.getValueAt(i,3).toString());
+                            value0,value1,value2,value3);
                     lista.add(listaedad);
                 }
                 try {
@@ -719,7 +637,6 @@ public class Asignar extends javax.swing.JFrame {
             insertar[2]=lblId.getText();        
             b.insertar("asignacion", insertar);
             b.execute("update producto set status_producto = 'Asignado' where folio_producto ='"+tbl_productos1.getValueAt(i,0).toString()+"'");
-            javax.swing.JOptionPane.showMessageDialog(this, "Se insertó el registro"+insertar[0]);
         }
         
         buscatxt.setText("");
@@ -737,36 +654,17 @@ public class Asignar extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_GuardarActionPerformed
 
-    private void txtCantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyPressed
-        // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            cambiarDeTabla();
-        }
-    }//GEN-LAST:event_txtCantidadKeyPressed
-
-    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if((c<'0' || c>'9')) evt.consume();
-
-    }//GEN-LAST:event_txtCantidadKeyTyped
-
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
     String criteriobus = buscatxt.getText();
     if(criteriobus.equals("")){ javax.swing.JOptionPane.showMessageDialog(this, "Campo de búsqueda vacío"); return; }
-    String[][] busqueda = b.obtenerConsultas("select id_producto"
-            + ",nombre_producto,marca_producto,modelo_producto,stock_producto "
-            + "from producto where nombre_producto = '"+ criteriobus +"' "
-            + "and status_producto = 'Activo'");
-    
-    modelo = new javax.swing.table.DefaultTableModel(
-                busqueda,
+        String query = "select p.folio_producto,c.nombre_categoria,p.nombre_producto,"
+                + "p.marca_producto,p.modelo_producto from producto p inner join categoria c on p.id_categoria=c.id_categoria"
+                + " where status_producto='Activo' and where nombre_producto like '%"+criteriobus+"%'";
+        String[][] consulta = b.obtenerConsultas(query);
+        modelo = new javax.swing.table.DefaultTableModel(
+                consulta,
                 new String[]{
-                    "Folio", 
-                    "Nombre_Producto", 
-                    "Marca", 
-                    "Modelo", 
-                    "Stock"
+                    "Folio", "Categoria", "Nombre", "Marca", "Modelo"
                 }
         ) {
             @Override
@@ -776,10 +674,6 @@ public class Asignar extends javax.swing.JFrame {
         };
         tbl_productos.setModel(modelo);
     }//GEN-LAST:event_btn_buscarActionPerformed
-
-    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantidadActionPerformed
 
     private void tbl_productosAncestorMoved(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_tbl_productosAncestorMoved
         // TODO add your handling code here:
@@ -800,6 +694,11 @@ public class Asignar extends javax.swing.JFrame {
         AsignarComodato asignar = new AsignarComodato(tbl_productos1.getModel(),Integer.parseInt(lblId.getText()));
         asignar.setVisible(true);
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        iniciarTabla();
+    }//GEN-LAST:event_formWindowGainedFocus
     public void pasarDatos(){
         int x = tbl_productos.getRowCount();
         datos=new String[x][4];
@@ -812,43 +711,25 @@ public class Asignar extends javax.swing.JFrame {
         }
     }
      private void cambiarDeTabla(){
-        if(id_cambio==0){
-            javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una fila");
-        }else if(stock){
-            if(busIguales(id_cambio)){              
-             }else{
-             if(!v.soloNumeros(txtCantidad.getText())){
-                Cantidad=Integer.parseInt(txtCantidad.getText());
-                String [][] busqueda = (b.obtenerConsultas("select folio_producto,nombre_producto,marca_producto,modelo_producto from producto where id_producto="+id_cambio));
-                String [] nuevo=new String[5];
-                nuevo[0]=busqueda[0][0];
-                nuevo[1]=busqueda[0][1];
-                nuevo[2]=busqueda[0][2];
-                nuevo[3]=busqueda[0][3];
-                nuevo[4]=Cantidad+"";
-                DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
-                model.addRow(nuevo);
-            }else{
-                javax.swing.JOptionPane.showMessageDialog(this, "Inserte cantidad");
-                txtCantidad.requestFocus(true);
-            }
-                txtCantidad.setText("");}
-            }
-    }
-    private boolean busIguales(int id){
-       // Cantidad=Integer.parseInt(txtCantidad.getText());
-        for(int i=0;i<tbl_productos1.getRowCount();i++){
-            //javax.swing.JOptionPane.showMessageDialog(this,tbl_productos1.getValueAt(i,0)+ " Buscando ");
-            if(id==Integer.parseInt(tbl_productos1.getValueAt(i,0)+"")){
-                if(javax.swing.JOptionPane.showConfirmDialog(this, "Producto previamente seleccionado "+"\n"+"¿Desea aumentar la cantidad?")==0){
-                    int cantidad=Integer.parseInt(javax.swing.JOptionPane.showInputDialog(this,"Cantidad"));
-                    tbl_productos1.setValueAt(cantidad,i, 4);
-                    txtCantidad.setText("");
-                }
-                return true;
-            }
+        if(id_cambio==0)javax.swing.JOptionPane.showMessageDialog(this, "Seleccione una fila");
+        if(categoria.toLowerCase().equals("consumibles")){
+            String [][] consulta = b.obtenerConsultas("select min_stock_producto,stock_producto from producto where folio_producto ='"+id_cambio+"'");
+            String text ="EL PRODUCTO CUENTA CON: "+consulta[0][1]+" EN STOCK Y SU MINIMO ESTA ESTABLECIDO EN: "+consulta[0][0];
+            BajaConsumibles bc = new BajaConsumibles(text,consulta[0][0],consulta[0][1],id_cambio+"");
+            bc.setVisible(true);
+            return;
         }
-        return false;
+        String query="select p.folio_producto,c.nombre_categoria,p.nombre_producto,p.marca_producto,p.modelo_producto from producto p inner join categoria c "
+                        + "on p.id_categoria=c.id_categoria where p.folio_producto='"+id_cambio+"'";
+        String [][] busqueda = (b.obtenerConsultas(query));
+        String [] nuevo=new String[5];
+        nuevo[0]=busqueda[0][0];
+        nuevo[1]=busqueda[0][1];
+        nuevo[2]=busqueda[0][2];
+        nuevo[3]=busqueda[0][3];
+        nuevo[4]=busqueda[0][4];
+        DefaultTableModel model =(DefaultTableModel) tbl_productos1.getModel(); 
+        model.addRow(nuevo); 
     }
     /**
      * @param args the command line arguments
@@ -897,11 +778,8 @@ public class Asignar extends javax.swing.JFrame {
     public javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
@@ -915,6 +793,5 @@ public class Asignar extends javax.swing.JFrame {
     private javax.swing.JTable tbl_productos;
     private javax.swing.JTable tbl_productos1;
     private javax.swing.JTextField tipouso;
-    private javax.swing.JTextField txtCantidad;
     // End of variables declaration//GEN-END:variables
 }

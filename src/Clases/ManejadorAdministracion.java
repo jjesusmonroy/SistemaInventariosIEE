@@ -119,7 +119,7 @@ public class ManejadorAdministracion {
          try {
 
             Statement st = conexion.createStatement();
-            String sql = "update producto set status_producto='ocupado' where id_producto=(select v.id_producto from vehiculo v where num_unidad="+id+")";
+            String sql = "update producto set status_producto='ocupado' where id_producto="+id+";";
 
             st.executeUpdate(sql);
             conexion.close();
@@ -136,6 +136,89 @@ public class ManejadorAdministracion {
         
         
         
+    }
+   
+   
+   public boolean atualizaEstadoVehiculoMan(String id){
+         conexion = db.getConexion();
+
+         try {
+
+            Statement st = conexion.createStatement();
+            String sql = "update producto set status_producto='MANTENIMIENTO' where id_producto="+id+";";
+
+            st.executeUpdate(sql);
+            conexion.close();
+
+        } //try  
+        catch (SQLException ex) {
+            Logger.getLogger(ManejadorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+
+        }
+
+        return true;
+        
+        
+        
+        
+    }
+   
+   public boolean atualizaEstadoVehiculoTermina(String id){
+         conexion = db.getConexion();
+
+         try {
+
+            Statement st = conexion.createStatement();
+            String sql = "update producto set status_producto='disponible' where id_producto="+id+";";
+
+            st.executeUpdate(sql);
+            conexion.close();
+
+        } //try  
+        catch (SQLException ex) {
+            Logger.getLogger(ManejadorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+
+        }
+
+        return true;
+        
+        
+        
+        
+    }
+   
+   
+   public String idProdcuto(String inde){
+        
+        String id="";
+        
+        try {
+            
+            String sql = "SELECT id_producto from vehiculo where id_vehiculo="+inde+";";
+
+            conexion = db.getConexion(); //obtenemos conexion 
+            Statement st = conexion.createStatement(); //crear obteno de consulta
+            ResultSet resultados = st.executeQuery(sql); //ejecutar consulta
+            //vemos si encontro coincidencias
+            if (resultados.next()) {
+                
+                id=resultados.getObject(1).toString();
+            }
+
+            conexion.close();
+        } //esAdministrador
+        catch (SQLException ex) {
+            Logger.getLogger(ManejadorAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null, "No Hay Conexion a la Base de Datos");
+        }
+
+        return id;
+        
+
+       
     }
    
    
@@ -251,7 +334,7 @@ public class ManejadorAdministracion {
     
     
     
-   public boolean ViaticoHacer(String cantidad,String idVehi,String idSoli,int tipo){// tipo 0== sin vehiculo tipo==1 con vehiculo
+   public boolean ViaticoHacer(String cantidad,String idVehi,String idSoli,String km,String des,int tipo){// tipo 0== sin vehiculo tipo==1 con vehiculo
         
         conexion=db.getConexion();
                     
@@ -260,7 +343,7 @@ public class ManejadorAdministracion {
         try {
             if(tipo==1){
             Statement st = conexion.createStatement();
-            String sql=  "INSERT INTO `dbis`.`viatico` (`cantidad_asig`, `solicitud_id_solicitud`, `informa`, `fecha_aproba`, `vehiculo_id_vehiculo`) VALUES ('"+cantidad+"', '"+idSoli+"', 'no', curdate(), '"+idVehi+"');";
+            String sql=  "INSERT INTO `dbis`.`viatico` (`cantidad_asig`, `solicitud_id_solicitud`, `informa`, `fecha_aproba`, `vehiculo_id_vehiculo`, `km_consumido`, `monto_des`) VALUES ('"+cantidad+"', '"+idSoli+"', 'no', curdate(), '"+idVehi+"','"+km+"','"+des+"');";
 
 
 
@@ -270,7 +353,7 @@ public class ManejadorAdministracion {
             conexion.close();
             }if(tipo==0){
                  Statement st = conexion.createStatement();
-            String sql=  "INSERT INTO `dbis`.`viatico` (`cantidad_asig`,`informa`, `fecha_aproba`, `solicitud_id_solicitud`) VALUES ('"+cantidad+",'no', curdate(),'"+idSoli+"');";
+            String sql=  "INSERT INTO `dbis`.`viatico` (`cantidad_asig`,`informa`, `fecha_aproba`, `solicitud_id_solicitud`, `km_consumido`, `monto_des`) VALUES ('"+cantidad+",'no', curdate(),'"+idSoli+"','"+km+"','"+des+"');";
 
 
 

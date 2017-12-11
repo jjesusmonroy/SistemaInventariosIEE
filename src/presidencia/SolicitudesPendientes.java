@@ -20,7 +20,9 @@ public class SolicitudesPendientes extends javax.swing.JFrame {
      */
     public SolicitudesPendientes() {
         initComponents();
-        noHaydatos.setVisible(false);
+        equi.setVisible(false);
+        noHaydatos2.setVisible(false);
+        
         this.setLocationRelativeTo(null);
     }
 
@@ -40,15 +42,18 @@ public class SolicitudesPendientes extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaS = new JTable(){ public boolean isCellEditable(int rowIndex, int colIndex){ return false; } };
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        aprueba = new javax.swing.JButton();
+        Noaprueba = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         infoTabla = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tablaSecre = new javax.swing.JTable();
-        noHaydatos = new javax.swing.JLabel();
+        equi = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        infoTabla2 = new javax.swing.JTable();
+        noHaydatos1 = new javax.swing.JLabel();
+        seleccion = new javax.swing.JLabel();
+        noHaydatos2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -140,23 +145,23 @@ public class SolicitudesPendientes extends javax.swing.JFrame {
             tablaS.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/checked.png"))); // NOI18N
-        jButton1.setText("APROBAR SOLICITUD");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        aprueba.setBackground(new java.awt.Color(255, 255, 255));
+        aprueba.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        aprueba.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/checked.png"))); // NOI18N
+        aprueba.setText("APROBAR SOLICITUD");
+        aprueba.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                apruebaActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cancel (1).png"))); // NOI18N
-        jButton2.setText("CANCELAR SOLICITUD");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Noaprueba.setBackground(new java.awt.Color(255, 255, 255));
+        Noaprueba.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Noaprueba.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cancel (1).png"))); // NOI18N
+        Noaprueba.setText("CANCELAR SOLICITUD");
+        Noaprueba.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                NoapruebaActionPerformed(evt);
             }
         });
 
@@ -192,10 +197,14 @@ public class SolicitudesPendientes extends javax.swing.JFrame {
                 .addGap(0, 8, Short.MAX_VALUE))
         );
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Llenada por:"));
+        equi.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        equi.setForeground(new java.awt.Color(255, 51, 204));
+        equi.setText("EL EMPLEADO ES SU PROPIO CHOFER");
 
-        tablaSecre.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Informacion del chofer"));
+
+        infoTabla2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -206,27 +215,35 @@ public class SolicitudesPendientes extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(tablaSecre);
+        jScrollPane4.setViewportView(infoTabla2);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 8, Short.MAX_VALUE))
         );
 
-        noHaydatos.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        noHaydatos.setForeground(new java.awt.Color(255, 51, 204));
-        noHaydatos.setText("POR AHORA NO TIENES SOLICITUDES PENDIENTES**");
+        noHaydatos1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        noHaydatos1.setForeground(new java.awt.Color(255, 51, 204));
+        noHaydatos1.setText("SOLICITUD SELECCIONADA:");
+
+        seleccion.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        seleccion.setForeground(new java.awt.Color(255, 51, 204));
+        seleccion.setText("X");
+
+        noHaydatos2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        noHaydatos2.setForeground(new java.awt.Color(255, 51, 204));
+        noHaydatos2.setText("POR AHORA NO TIENES SOLICITUDES PENDIENTES**");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -235,20 +252,30 @@ public class SolicitudesPendientes extends javax.swing.JFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(noHaydatos1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(seleccion)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(aprueba, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Noaprueba, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(noHaydatos)))
+                        .addGap(33, 33, 33)
+                        .addComponent(equi)))
                 .addGap(21, 21, 21))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(759, Short.MAX_VALUE)
+                    .addComponent(noHaydatos2)
+                    .addGap(138, 138, 138)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,19 +284,27 @@ public class SolicitudesPendientes extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(equi, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(aprueba, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(noHaydatos, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))))
+                        .addComponent(Noaprueba, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(noHaydatos1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(seleccion, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(482, Short.MAX_VALUE)
+                    .addComponent(noHaydatos2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(2, 2, 2)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -305,7 +340,9 @@ public class SolicitudesPendientes extends javax.swing.JFrame {
         
         
         if (this.tablaS.getRowCount() == 0 && this.tablaS.getSelectedRow() == -1) {
-                 noHaydatos.setVisible(true);
+                 noHaydatos2.setVisible(true);
+                 aprueba.setEnabled(false);
+                 Noaprueba.setEnabled(false);
             }
        
         
@@ -323,14 +360,23 @@ public class SolicitudesPendientes extends javax.swing.JFrame {
         if(evt.getClickCount() == 1){
            
             infoTabla.setModel(n.InfoEmpleado(n.id_persona(tablaS.getValueAt(fila, 7).toString())));
-            
-            
+            infoTabla2.setModel(n.InforChofer(tablaS.getValueAt(fila, 7).toString()));
+            seleccion.setText(tablaS.getValueAt(fila,0).toString());
+            if (this.infoTabla2.getRowCount() == 0 && this.infoTabla2.getSelectedRow() == -1) {
+                 equi.setVisible(true);
+                 
+            }
+            if (this.infoTabla2.getRowCount()> 0) {
+                 equi.setVisible(false);
+                 
+            }
             
         }
         if(evt.getClickCount() == 2){
            
             VistaCompletaSolicitud completo= new VistaCompletaSolicitud();
             completo.VistaCompleta(tablaS.getValueAt(fila, 0).toString(), tablaS.getValueAt(fila, 1).toString(),tablaS.getValueAt(fila, 2).toString(), tablaS.getValueAt(fila, 3).toString(), tablaS.getValueAt(fila, 4).toString(), tablaS.getValueAt(fila, 5).toString(), tablaS.getValueAt(fila, 6).toString());
+            
             completo.setVisible(true);
             
             
@@ -339,11 +385,16 @@ public class SolicitudesPendientes extends javax.swing.JFrame {
         
     }//GEN-LAST:event_tablaSMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void apruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apruebaActionPerformed
         // TODO add your handling code here:
         
+        
        ManejadorPresidencia autoriza= new ManejadorPresidencia();
-       
+        
+       if(seleccion.getText().equalsIgnoreCase("X")){
+           JOptionPane.showMessageDialog(this,"No se a seleccionado una soliciud");
+           return;
+       }
         
         int input = JOptionPane.showConfirmDialog(this,"Esta seguro de AUTORIZAR esta solicitud","Confirmar",JOptionPane.YES_NO_CANCEL_OPTION);
         if(input==0){
@@ -351,11 +402,14 @@ public class SolicitudesPendientes extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this,"SE APROBO ESTA SOLICITUD");
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_apruebaActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void NoapruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoapruebaActionPerformed
         // TODO add your handling code here:
-        
+         if(seleccion.getText().equalsIgnoreCase("X")){
+           JOptionPane.showMessageDialog(this,"No se a seleccionado una soliciud");
+           return;
+       }
         ManejadorPresidencia autoriza= new ManejadorPresidencia();
        
         PanelObservacion panelCancela= new PanelObservacion();
@@ -363,7 +417,7 @@ public class SolicitudesPendientes extends javax.swing.JFrame {
         
         panelCancela.setVisible(true);
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_NoapruebaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -401,21 +455,24 @@ public class SolicitudesPendientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Noaprueba;
+    private javax.swing.JButton aprueba;
+    private javax.swing.JLabel equi;
     private javax.swing.JTable infoTabla;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTable infoTabla2;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JLabel noHaydatos;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JLabel noHaydatos1;
+    private javax.swing.JLabel noHaydatos2;
+    private javax.swing.JLabel seleccion;
     private javax.swing.JTable tablaS;
-    private javax.swing.JTable tablaSecre;
     // End of variables declaration//GEN-END:variables
 }

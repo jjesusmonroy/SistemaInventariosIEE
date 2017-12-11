@@ -33,44 +33,7 @@ public class Notificaciones extends javax.swing.JFrame {
         initComponents();
         bd = new BDD();
         if(!usuario.equals("")){
-            String[][] res = bd.obtenerConsultas("select per.aprobar_solicitud_producto_permiso from usuario usu inner join usuarios_permisos up on usu.id_usuario = up.usuario_id_usuario inner join permisos per on up.permisos_id_permiso = per.id_permiso where usu.usuario =\""+usuario+"\";");
-
-            aprobar = res[0][0].equals("1");
-
-            if(aprobar){
-                //llenado de la tablita
-                String[][] datos = bd.obtenerConsultas("select pc.id_peticion,are.area,pc.categoria,pc.cantidad,pc.nombre,pc.status from peticiones_compra pc inner join usuario usu on pc.usuario_id_usuario = usu.id_usuario inner join personal per on usu.personal_id_personal = per.id_personal inner join puesto pue  on per.puesto_id_puesto = pue.id_puesto inner join area are on pue.area_id_area = are.id_area where pc.status= 'PENDIENTE';");
-
-                modelo = new javax.swing.table.DefaultTableModel(
-                        datos,
-                        new String[]{
-                            "ID","AREA", "CATEGORIA", "CANTIDAD", "NOMBRE","STATUS"
-                        }
-                ) {
-                    @Override
-                    public boolean isCellEditable(int row, int column) {
-                        return false;
-                    }
-                };
-            tbl_notificaciones.setModel(modelo);
-            }else {
-                String[][] res1 = bd.obtenerConsultas("select usu.id_usuario from usuario usu where usu.usuario = '"+usuario+"';");
-                int idUsuario = Integer.parseInt(res1[0][0]);
-                String[][] datos = bd.obtenerConsultas("select pc.id_peticion,are.area,pc.categoria,pc.cantidad,pc.nombre,pc.status from peticiones_compra pc inner join usuario usu on pc.usuario_id_usuario = usu.id_usuario inner join personal per on usu.personal_id_personal = per.id_personal inner join puesto pue  on per.puesto_id_puesto = pue.id_puesto inner join area are on pue.area_id_area = are.id_area where pc.usuario_id_usuario= "+idUsuario+";");
-
-                modelo = new javax.swing.table.DefaultTableModel(
-                        datos,
-                        new String[]{
-                            "ID","AREA", "CATEGORIA", "CANTIDAD", "NOMBRE","STATUS"
-                        }
-                ) {
-                    @Override
-                    public boolean isCellEditable(int row, int column) {
-                        return false;
-                    }
-                };
-            tbl_notificaciones.setModel(modelo);
-            }
+            inicializarTabla();
         }
 
         
@@ -189,16 +152,16 @@ public class Notificaciones extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(scrollPane)
+                    .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton2)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 53, Short.MAX_VALUE)
+                    .addGap(0, 113, Short.MAX_VALUE)
                     .addComponent(jLabel7)
-                    .addGap(0, 382, Short.MAX_VALUE)))
+                    .addGap(0, 440, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,7 +183,7 @@ public class Notificaciones extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,10 +193,12 @@ public class Notificaciones extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
+        inicializarTabla();
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -261,16 +226,14 @@ public class Notificaciones extends javax.swing.JFrame {
             final JPopupMenu menu = new JPopupMenu();
             JMenuItem item1 = new JMenuItem("VER");
             JMenuItem item2 = new JMenuItem("ELIMINAR");
-            ActionListener actionListener = new PopupActionListener();
-            ActionListener actionListener2 = new PopupActionListener2();
+            ActionListener actionListener = new PopupActionListener(Integer.parseInt(id));
+            ActionListener actionListener2 = new PopupActionListener2(Integer.parseInt(id));
             item1.addActionListener(actionListener);
             item2.addActionListener(actionListener2);
             if(aprobar){
                 menu.add(item1);
             }
-            else{
-                menu.add(item2);
-            }
+            menu.add(item2);            
             menu.show(evt.getComponent(),evt.getX(),evt.getY());
         }
     }//GEN-LAST:event_tbl_notificacionesMouseReleased
@@ -324,17 +287,72 @@ public class Notificaciones extends javax.swing.JFrame {
     private javax.swing.JTable tbl_notificaciones;
     // End of variables declaration//GEN-END:variables
 
+    private void inicializarTabla() {
+        String[][] res = bd.obtenerConsultas("select per.aprobar_solicitud_producto_permiso from usuario usu inner join usuarios_permisos up on usu.id_usuario = up.usuario_id_usuario inner join permisos per on up.permisos_id_permiso = per.id_permiso where usu.usuario =\""+usuario+"\";");
+
+            aprobar = res[0][0].equals("1");
+
+            if(aprobar){
+                //llenado de la tablita
+                String[][] datos = bd.obtenerConsultas("select pc.id_peticion,are.area,pc.categoria,pc.cantidad,pc.nombre,pc.status from peticiones_compra pc inner join usuario usu on pc.usuario_id_usuario = usu.id_usuario inner join personal per on usu.personal_id_personal = per.id_personal inner join puesto pue  on per.puesto_id_puesto = pue.id_puesto inner join area are on pue.area_id_area = are.id_area where pc.status= 'PENDIENTE';");
+
+                modelo = new javax.swing.table.DefaultTableModel(
+                        datos,
+                        new String[]{
+                            "ID","AREA", "CATEGORIA", "CANTIDAD", "NOMBRE","STATUS"
+                        }
+                ) {
+                    @Override
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
+                };
+            tbl_notificaciones.setModel(modelo);
+            }else {
+                String[][] res1 = bd.obtenerConsultas("select usu.id_usuario from usuario usu where usu.usuario = '"+usuario+"';");
+                int idUsuario = Integer.parseInt(res1[0][0]);
+                String[][] datos = bd.obtenerConsultas("select pc.id_peticion,are.area,pc.categoria,pc.cantidad,pc.nombre,pc.status from peticiones_compra pc inner join usuario usu on pc.usuario_id_usuario = usu.id_usuario inner join personal per on usu.personal_id_personal = per.id_personal inner join puesto pue  on per.puesto_id_puesto = pue.id_puesto inner join area are on pue.area_id_area = are.id_area where pc.usuario_id_usuario= "+idUsuario+";");
+
+                modelo = new javax.swing.table.DefaultTableModel(
+                        datos,
+                        new String[]{
+                            "ID","AREA", "CATEGORIA", "CANTIDAD", "NOMBRE","STATUS"
+                        }
+                ) {
+                    @Override
+                    public boolean isCellEditable(int row, int column) {
+                        return false;
+                    }
+                };
+            tbl_notificaciones.setModel(modelo);
+            }
+    }
+
     class PopupActionListener2 implements ActionListener {
+        int id_pet;
+
+        public PopupActionListener2(int id) {
+            id_pet = id;
+        }
+        
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            bd.execute("delete from peticiones_compra where id_peticion="+id_pet+";");
+            inicializarTabla();            
         }
+        
     }
 
     class PopupActionListener implements ActionListener {
+        int id_pet;
+
+        public PopupActionListener(int id) {
+            id_pet = id;
+        }
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            AprobarNotificaciones aprobar = new AprobarNotificaciones(id_pet);
+            aprobar.setVisible(true);
         }
     }
 }

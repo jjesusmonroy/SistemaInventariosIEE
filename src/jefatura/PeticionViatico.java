@@ -10,6 +10,7 @@ import Clases.PeticionManejador;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import javax.swing.JTable;
 
 /**
  *
@@ -20,7 +21,10 @@ PeticionManejador manejador;
 PersonalManejador manejadorPer;
 String usuarioid="";
 int ErrorTipo;
-
+int fila2;
+String id_chofer="";
+int tipo;
+boolean m;
     
     /**
      * Creates new form SolicitudViatico
@@ -30,7 +34,9 @@ int ErrorTipo;
         this.setLocationRelativeTo(null);
         manejador=new PeticionManejador();
         manejadorPer= new PersonalManejador();
-        
+        manejadorPer.comboPersonal(ComboPersonal);
+        m=true;
+        tipo=1;
                 
         
         
@@ -58,6 +64,8 @@ int ErrorTipo;
         jLabel14 = new javax.swing.JLabel();
         necesario = new javax.swing.JCheckBox();
         ComboPersonal = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        necesario2 = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         campoFechaSalida = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
@@ -66,7 +74,17 @@ int ErrorTipo;
         campoLugar = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         campoDias = new javax.swing.JTextField();
-        jPanel5 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        Seleccionar2 = new JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
+        etiquetaChofer = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        seleccionadoE2 = new javax.swing.JLabel();
         jButton10 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -109,7 +127,7 @@ int ErrorTipo;
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 520, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 570, Short.MAX_VALUE)
                 .addComponent(jLabel12)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel11)
@@ -152,6 +170,20 @@ int ErrorTipo;
         });
 
         ComboPersonal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un empleado" }));
+        ComboPersonal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboPersonalActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel9.setText("EL EMPLEADO SU PROPIO CHOFER");
+
+        necesario2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                necesario2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -160,19 +192,23 @@ int ErrorTipo;
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ComboPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(necesario))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel14)
+                                .addComponent(necesario)
                                 .addGap(18, 18, 18)
-                                .addComponent(ComboPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 123, Short.MAX_VALUE)))
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(necesario2)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -181,23 +217,29 @@ int ErrorTipo;
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(necesario))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(necesario))
+                            .addComponent(necesario2, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ComboPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11))
+                    .addComponent(ComboPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "DATOS DEL VIATICO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14))); // NOI18N
 
-        campoFechaSalida.setToolTipText("Selecciona la fecha de nacimiento de tu empleado");
+        campoFechaSalida.setToolTipText("");
         campoFechaSalida.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        campoFechaSalida.setMaxSelectableDate(new java.util.Date(253370793678000L));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setText("FECHA DE SALIDA");
@@ -211,7 +253,7 @@ int ErrorTipo;
         jScrollPane1.setViewportView(campoLugar);
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel4.setText("DIAS DE DURACION");
+        jLabel4.setText("NO.DIAS  DE DURACION");
 
         campoDias.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         campoDias.addActionListener(new java.awt.event.ActionListener() {
@@ -225,6 +267,42 @@ int ErrorTipo;
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel7.setText("EJEMPLO CAPTURA: ESTADO,LOCALIDAD");
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel8.setText("DIAS");
+
+        Seleccionar2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        Seleccionar2.setSelectionBackground(new java.awt.Color(255, 0, 153));
+        Seleccionar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Seleccionar2MouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(Seleccionar2);
+
+        etiquetaChofer.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        etiquetaChofer.setText("SELECCIONE UN CHOFER PARA ESTA PETICION:");
+
+        jLabel13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel13.setText("SELECCIONO A:");
+
+        seleccionadoE2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        seleccionadoE2.setText("X");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -232,19 +310,33 @@ int ErrorTipo;
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(campoFechaSalida, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoDias, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(143, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(campoDias, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel8))
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(campoFechaSalida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel7)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(etiquetaChofer)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(seleccionadoE2)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,22 +345,32 @@ int ErrorTipo;
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(campoFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoDias, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoDias, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(151, 151, 151))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(125, 125, 125))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(etiquetaChofer, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(seleccionadoE2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26))
         );
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        campoFechaSalida.getAccessibleContext().setAccessibleName("");
 
         jButton10.setBackground(new java.awt.Color(255, 255, 255));
         jButton10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -281,50 +383,35 @@ int ErrorTipo;
             }
         });
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton10)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jButton10)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton10)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton10)
+                .addGap(33, 33, 33))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1130, 540));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1180, 600));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -363,17 +450,145 @@ int ErrorTipo;
     }
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        
-        manejadorPer.comboPersonal(ComboPersonal);
+        PersonalManejador empleado= new PersonalManejador();
+        Seleccionar2.setModel(empleado.Choferes());
         
         
         
     }//GEN-LAST:event_formWindowActivated
 
-    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+    private void Seleccionar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Seleccionar2MouseClicked
         // TODO add your handling code here:
-        this.setExtendedState(ICONIFIED);
-    }//GEN-LAST:event_jLabel12MouseClicked
+
+        fila2=Seleccionar2.getSelectedRow();
+
+        if(evt.getClickCount() == 1){
+            seleccionadoE2.setText(Seleccionar2.getValueAt(fila2, 1).toString());
+            id_chofer=Seleccionar2.getValueAt(fila2, 0).toString();
+        }
+    }//GEN-LAST:event_Seleccionar2MouseClicked
+
+    private void jButton10jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10jButton2ActionPerformed
+        // TODO add your handling code here:
+
+        if(validaPeticion()==false){
+
+            switch (this.ErrorTipo) {
+                case 1:
+                JOptionPane.showMessageDialog(this, "Campo Lugar Vacio","Error Campos Vacios",ERROR_MESSAGE);
+                break;
+                case 2:
+                JOptionPane.showMessageDialog(this, "Campo Fecha Vacio","Error Campos Vacios",ERROR_MESSAGE);
+                break;
+                case 3:
+                JOptionPane.showMessageDialog(this, "Campo Actividad Vacio","Error Campos Vacios",ERROR_MESSAGE);
+                break;
+                case 4:
+                JOptionPane.showMessageDialog(this, "Campo Fecha Vacio","Error Campos Vacios",ERROR_MESSAGE);
+                break;
+                case 5:
+                JOptionPane.showMessageDialog(this, "Selecciona Un Empleado Porfavor","Error Campos Vacios",ERROR_MESSAGE);
+                break;
+                case 6:
+                JOptionPane.showMessageDialog(this, "Selecciona Los dia del viatico","Error Campos Vacios",ERROR_MESSAGE);
+                break;
+                case 7:
+                JOptionPane.showMessageDialog(this, "No se permite asignar 0 dias a una peticion","Error En Campos",ERROR_MESSAGE);
+                break;
+                case 8:
+                 JOptionPane.showMessageDialog(this, "Favor de seleccionar un chofer","Error En Campos",ERROR_MESSAGE);
+                break;
+
+            }//switch para saber que campo no se valido
+
+        }else{
+            int input = JOptionPane.showConfirmDialog(this,"Esta seguro que desea mandar esta peticion","Confirmar operacion",JOptionPane.YES_NO_CANCEL_OPTION);
+
+            if(input==0){
+                this.setVisible(false);
+
+                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                String FechaSalida = formato.format(campoFechaSalida.getDate());
+                String idPersonalCombo=manejadorPer.id_persona((String)ComboPersonal.getSelectedItem());
+                
+                if(tipo==0){
+                
+                if(manejador.insertaPeticion(FechaSalida, necesitaVehi(), campoLugar.getText(), campoActividad.getText(), idPersonalCombo, usuarioid,campoDias.getText())){
+                    JOptionPane.showMessageDialog(this, "Peticion Enviada Con Exito", "Peticion Realizada", HEIGHT);
+                    vaciaCampos();
+                    ComboPersonal.setSelectedIndex(0);
+                    campoDias.setText("");
+                    campoFechaSalida.setDate(null);
+                }
+                }
+                
+                if(tipo==1){
+                
+                     if(manejador.insertaPeticionConChofer(FechaSalida, necesitaVehi(), campoLugar.getText(), campoActividad.getText(), idPersonalCombo, usuarioid,campoDias.getText(),id_chofer)){
+                    JOptionPane.showMessageDialog(this, "Peticion Enviada Con Exito", "Peticion Realizada", HEIGHT);
+                    vaciaCampos();
+                    ComboPersonal.setSelectedIndex(0);
+                    campoDias.setText("");
+                    campoFechaSalida.setDate(null);
+                }
+                    
+                    
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton10jButton2ActionPerformed
+
+    private void campoDiasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoDiasKeyTyped
+        // TODO mnadd your handling code here:
+
+        char c=evt.getKeyChar();
+
+        if(Character.isLetter(c)) {
+            getToolkit().beep();
+
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_campoDiasKeyTyped
+
+    private void campoDiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDiasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoDiasActionPerformed
+
+    private void necesario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_necesario2ActionPerformed
+        // TODO add your handling code here:
+        
+        
+        if(necesario2.isSelected()==true){
+            
+            this.m=!m;
+            Seleccionar2.setVisible(m);
+            etiquetaChofer.setVisible(m);
+           tipo=0;
+            seleccionadoE2.setVisible(m);
+            
+            
+        }
+        
+        if(necesario2.isSelected()==false){
+            
+            this.m=!m;
+            Seleccionar2.setVisible(m);
+            etiquetaChofer.setVisible(m);
+            tipo=1;
+            seleccionadoE2.setVisible(m);
+            
+        }
+    }//GEN-LAST:event_necesario2ActionPerformed
+
+    private void ComboPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboPersonalActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_ComboPersonalActionPerformed
+
+    private void necesarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_necesarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_necesarioActionPerformed
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
 
@@ -381,86 +596,14 @@ int ErrorTipo;
         this.dispose();
     }//GEN-LAST:event_jLabel11MouseClicked
 
-    private void necesarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_necesarioActionPerformed
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_necesarioActionPerformed
-
-    private void jButton10jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10jButton2ActionPerformed
-        // TODO add your handling code here:
-        
-        
-        
-        
-        if(validaPeticion()==false){
-        
-         switch (this.ErrorTipo) {
-                    case 1:
-                    JOptionPane.showMessageDialog(this, "Campo Lugar Vacio","Error Campos Vacios",ERROR_MESSAGE);
-                    break;
-                    case 2:
-                    JOptionPane.showMessageDialog(this, "Campo Fecha Vacio","Error Campos Vacios",ERROR_MESSAGE);
-                    break;
-                    case 3:
-                    JOptionPane.showMessageDialog(this, "Campo Actividad Vacio","Error Campos Vacios",ERROR_MESSAGE);
-                    break;
-                    case 4:
-                    JOptionPane.showMessageDialog(this, "Campo Fecha Vacio","Error Campos Vacios",ERROR_MESSAGE);
-                    break;
-                    case 5:
-                    JOptionPane.showMessageDialog(this, "Selecciona Un Empleado Porfavor","Error Campos Vacios",ERROR_MESSAGE);
-                    break;
-                    case 6:
-                    JOptionPane.showMessageDialog(this, "Selecciona Los dia del viatico","Error Campos Vacios",ERROR_MESSAGE);
-                    break;
-                    }//switch para saber que campo no se valido
-        
-        
-        
-    }else{
-         int input = JOptionPane.showConfirmDialog(this,"Esta seguro que desea mandar esta peticion","Confirmar operacion",JOptionPane.YES_NO_CANCEL_OPTION);
-        
-        if(input==0){
-            this.setVisible(false);
-        
-        
-       SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        String FechaSalida = formato.format(campoFechaSalida.getDate());
-      String idPersonalCombo=manejadorPer.id_persona((String)ComboPersonal.getSelectedItem());
-    if(manejador.insertaPeticion(FechaSalida, necesitaVehi(), campoLugar.getText(), campoActividad.getText(), idPersonalCombo, usuarioid,campoDias.getText())){
-        JOptionPane.showMessageDialog(this, "Peticion Enviada Con Exito", "Peticion Realizada", HEIGHT);
-        vaciaCampos();
-        ComboPersonal.setSelectedIndex(0);
-        campoDias.setText("");
-        campoFechaSalida.setDate(null);
-    }
-        
-        }
-        }
-    }//GEN-LAST:event_jButton10jButton2ActionPerformed
+        this.setExtendedState(ICONIFIED);
+    }//GEN-LAST:event_jLabel12MouseClicked
     
     
     
     
-    private void campoDiasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoDiasKeyTyped
-        // TODO mnadd your handling code here:
-        
-           char c=evt.getKeyChar(); 
-             
-         
-          if(Character.isLetter(c)) { 
-              getToolkit().beep(); 
-               
-              evt.consume(); 
-               
-              
-               
-          } 
-    }//GEN-LAST:event_campoDiasKeyTyped
-
-    private void campoDiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDiasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoDiasActionPerformed
-
     
     
     
@@ -494,7 +637,16 @@ int ErrorTipo;
              this.ErrorTipo=6;
              paso=false;
              
+         }if(campoDias.getText().equalsIgnoreCase("0")){
+             this.ErrorTipo=7;
+             paso=false;
          }
+         if(seleccionadoE2.getText().equalsIgnoreCase("X") & tipo==1){
+             this.ErrorTipo=8;
+             paso=false;
+         }
+         
+         
          return paso;
     }
     
@@ -544,27 +696,35 @@ int ErrorTipo;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboPersonal;
+    private javax.swing.JTable Seleccionar2;
     private javax.swing.JTextArea campoActividad;
     private javax.swing.JTextField campoDias;
     private com.toedter.calendar.JDateChooser campoFechaSalida;
     private javax.swing.JTextArea campoLugar;
+    private javax.swing.JLabel etiquetaChofer;
     private javax.swing.JButton jButton10;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JCheckBox necesario;
+    private javax.swing.JCheckBox necesario2;
+    private javax.swing.JLabel seleccionadoE2;
     // End of variables declaration//GEN-END:variables
 }
