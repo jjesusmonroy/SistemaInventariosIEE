@@ -141,7 +141,6 @@ public class Alta extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -185,11 +184,10 @@ public class Alta extends javax.swing.JFrame {
         altalKmSer = new javax.swing.JLabel();
         altatvservicio = new javax.swing.JTextField();
         altatvtipo = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<String>();
         lblImage = new javax.swing.JLabel();
         btnCargarFoto = new javax.swing.JButton();
         altatimprote = new javax.swing.JFormattedTextField();
-        jLabel1 = new javax.swing.JLabel();
 
         jTextField3.setText("jTextField3");
 
@@ -204,10 +202,6 @@ public class Alta extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("ALTA DE PRODUCTOS");
-
-        jLabel2.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("SISTEMA DE CONTROL DE INVENTARIO IEEN");
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/minus-sign.png"))); // NOI18N
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -229,36 +223,32 @@ public class Alta extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel14))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel14)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
                     .addComponent(jLabel14)
                     .addComponent(jLabel13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setText("CATEGORIA:");
 
         jComboBox1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(255, 51, 153));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        jComboBox1.setBorder(null);
         jComboBox1.setName(""); // NOI18N
         jComboBox1.setNextFocusableComponent(altatnombre);
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
@@ -314,7 +304,7 @@ public class Alta extends javax.swing.JFrame {
         altalCantidad.setText("STOCK MINIMO:");
 
         altatstockmin.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altatstockmin.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        altatstockmin.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         altatstockmin.setNextFocusableComponent(altatnofactura);
         altatstockmin.setPreferredSize(new java.awt.Dimension(5, 22));
         altatstockmin.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -329,7 +319,8 @@ public class Alta extends javax.swing.JFrame {
         });
 
         altatnombre.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altatnombre.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        altatnombre.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
+        altatnombre.setCaretColor(new java.awt.Color(255, 255, 255));
         altatnombre.setNextFocusableComponent(altatmarca);
         altatnombre.setPreferredSize(new java.awt.Dimension(5, 22));
         altatnombre.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -344,7 +335,8 @@ public class Alta extends javax.swing.JFrame {
         });
 
         altatnoserie.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altatnoserie.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        altatnoserie.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
+        altatnoserie.setCaretColor(new java.awt.Color(255, 255, 255));
         altatnoserie.setNextFocusableComponent(altatdescripcion);
         altatnoserie.setPreferredSize(new java.awt.Dimension(5, 22));
         altatnoserie.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -359,7 +351,8 @@ public class Alta extends javax.swing.JFrame {
         });
 
         altatmarca.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altatmarca.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        altatmarca.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
+        altatmarca.setCaretColor(new java.awt.Color(255, 255, 255));
         altatmarca.setNextFocusableComponent(altatcolor);
         altatmarca.setPreferredSize(new java.awt.Dimension(5, 22));
         altatmarca.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -374,7 +367,8 @@ public class Alta extends javax.swing.JFrame {
         });
 
         altatmodelo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altatmodelo.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        altatmodelo.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
+        altatmodelo.setCaretColor(new java.awt.Color(255, 255, 255));
         altatmodelo.setNextFocusableComponent(altatnoserie);
         altatmodelo.setPreferredSize(new java.awt.Dimension(5, 22));
         altatmodelo.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -389,7 +383,8 @@ public class Alta extends javax.swing.JFrame {
         });
 
         altatcolor.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altatcolor.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        altatcolor.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
+        altatcolor.setCaretColor(new java.awt.Color(255, 255, 255));
         altatcolor.setMinimumSize(new java.awt.Dimension(5, 22));
         altatcolor.setNextFocusableComponent(altatmodelo);
         altatcolor.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -404,7 +399,7 @@ public class Alta extends javax.swing.JFrame {
         });
 
         altatnofactura.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altatnofactura.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        altatnofactura.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         altatnofactura.setNextFocusableComponent(altatfecha);
         altatnofactura.setPreferredSize(new java.awt.Dimension(5, 22));
         altatnofactura.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -421,7 +416,7 @@ public class Alta extends javax.swing.JFrame {
         altatdescripcion.setColumns(20);
         altatdescripcion.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altatdescripcion.setRows(3);
-        altatdescripcion.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        altatdescripcion.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         altatdescripcion.setNextFocusableComponent(altatstockmin);
         altatdescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -433,7 +428,7 @@ public class Alta extends javax.swing.JFrame {
         altatobserv.setColumns(20);
         altatobserv.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altatobserv.setRows(5);
-        altatobserv.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        altatobserv.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         altatobserv.setNextFocusableComponent(altatvplacas);
         altatobserv.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -442,8 +437,8 @@ public class Alta extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(altatobserv);
 
+        jButton9.setBackground(new java.awt.Color(255, 255, 255));
         jButton9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton9.setForeground(new java.awt.Color(255, 51, 153));
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/save.png"))); // NOI18N
         jButton9.setText("GUARDAR");
         jButton9.setNextFocusableComponent(jButton10);
@@ -453,8 +448,8 @@ public class Alta extends javax.swing.JFrame {
             }
         });
 
+        jButton10.setBackground(new java.awt.Color(255, 255, 255));
         jButton10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton10.setForeground(new java.awt.Color(255, 51, 153));
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/eraser.png"))); // NOI18N
         jButton10.setText("LIMPIAR");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -463,8 +458,8 @@ public class Alta extends javax.swing.JFrame {
             }
         });
 
+        jButton11.setBackground(new java.awt.Color(255, 255, 255));
         jButton11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton11.setForeground(new java.awt.Color(255, 51, 153));
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/delete-button.png"))); // NOI18N
         jButton11.setText("CANCELAR");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -474,8 +469,7 @@ public class Alta extends javax.swing.JFrame {
         });
 
         altatfecha.setBackground(new java.awt.Color(255, 255, 255));
-        altatfecha.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
-        altatfecha.setForeground(new java.awt.Color(255, 51, 153));
+        altatfecha.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         altatfecha.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altatfecha.setNextFocusableComponent(altalImporte);
         altatfecha.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -494,13 +488,14 @@ public class Alta extends javax.swing.JFrame {
             }
         });
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Vehiculo"));
 
         altalPlacas.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altalPlacas.setText("PLACAS:");
 
         altatvplacas.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altatvplacas.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        altatvplacas.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         altatvplacas.setNextFocusableComponent(altatvnomotor);
         altatvplacas.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -523,7 +518,7 @@ public class Alta extends javax.swing.JFrame {
         altalNoMotor.setText("NO. MOTOR:");
 
         altatvnomotor.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altatvnomotor.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        altatvnomotor.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         altatvnomotor.setNextFocusableComponent(altatvkm);
         altatvnomotor.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -540,7 +535,7 @@ public class Alta extends javax.swing.JFrame {
         altalKm.setText("KILOMETRAJE:");
 
         altatvkm.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altatvkm.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        altatvkm.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         altatvkm.setNextFocusableComponent(altatvservicio);
         altatvkm.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -557,7 +552,7 @@ public class Alta extends javax.swing.JFrame {
         altalKmSer.setText("KM. SERVICIO:");
 
         altatvservicio.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        altatvservicio.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        altatvservicio.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         altatvservicio.setNextFocusableComponent(jButton9);
         altatvservicio.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -574,9 +569,8 @@ public class Alta extends javax.swing.JFrame {
         altatvtipo.setText("TIPO:");
 
         jComboBox2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jComboBox2.setForeground(new java.awt.Color(255, 51, 153));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Camioneta", "Pickup", "Auto", "Motocicleta" }));
-        jComboBox2.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Camioneta", "Pickup", "Auto", "Motocicleta" }));
+        jComboBox2.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -633,8 +627,8 @@ public class Alta extends javax.swing.JFrame {
         lblImage.setText("FOTO");
         lblImage.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        btnCargarFoto.setBackground(new java.awt.Color(255, 255, 255));
         btnCargarFoto.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnCargarFoto.setForeground(new java.awt.Color(255, 51, 153));
         btnCargarFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/subir_foto.png"))); // NOI18N
         btnCargarFoto.setText("CARGAR FOTO");
         btnCargarFoto.addActionListener(new java.awt.event.ActionListener() {
@@ -643,7 +637,7 @@ public class Alta extends javax.swing.JFrame {
             }
         });
 
-        altatimprote.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 102, 153), null));
+        altatimprote.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 0, 0), null));
         altatimprote.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         altatimprote.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         altatimprote.setNextFocusableComponent(altalObser);
@@ -667,7 +661,7 @@ public class Alta extends javax.swing.JFrame {
                         .addComponent(jButton10)
                         .addGap(18, 18, 18)
                         .addComponent(jButton11)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(35, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -803,28 +797,17 @@ public class Alta extends javax.swing.JFrame {
                 .addContainerGap(69, Short.MAX_VALUE))
         );
 
-        jLabel1.setBackground(new java.awt.Color(153, 153, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IEE.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1439,10 +1422,8 @@ public class Alta extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

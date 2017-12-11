@@ -34,6 +34,7 @@ public class Solicitar extends javax.swing.JFrame {
     public String [] nuevo2;
     Validaciones v;
     BDD b;
+    Clases.MetodosG m;
     NuevaSolicitud n;
     int id_cambio,id_cambio2;
     int cont;
@@ -50,6 +51,7 @@ public class Solicitar extends javax.swing.JFrame {
         //matrix=new String [valFil][5];
         nuevo2=new String[5];
         v=new Validaciones();
+        m=new Clases.MetodosG();
         b= new BDD();
         id_cambio=0;
         id_cambio2=0;
@@ -453,6 +455,9 @@ public class Solicitar extends javax.swing.JFrame {
         
         List lista = new ArrayList();
         
+        String x = javax.swing.JOptionPane.showInputDialog("Persona que solicita:");
+        
+        
         try{
                 for(int i = 0;i<tbl_productos1.getRowCount();i++){
                     ListaVale listaedad = new ListaVale(tbl_productos1.getValueAt(i,0).toString(),
@@ -466,6 +471,7 @@ public class Solicitar extends javax.swing.JFrame {
                 JasperReport reporte = (JasperReport)  JRLoader.loadObject("src/Reportes/Vale.jasper");
                 
                 Map parametro = new HashMap();
+                parametro.put("nombre",x+"");
                 JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, new JRBeanCollectionDataSource(lista));
                 JasperViewer jas = new JasperViewer(jprint,false); 
                 jas.setVisible( true );

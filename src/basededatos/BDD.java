@@ -26,14 +26,12 @@ public class BDD{
     }
     
     public static void main (String [] args){
-        BDD b = new BDD();
-        MetodosG m = new MetodosG();
+        
     }
     //metodo para validar inicio de sesion de login
     public String[] validarInicio(String usuario){
-            BDD b = new BDD();
             String [] a = new String[2];
-            ResultSet myRs = b.connection("select * from usuario where usuario = '"+usuario+"'");
+            ResultSet myRs = connection("select * from usuario where usuario = '"+usuario+"'");
         try{
             while(myRs.next()){
             a[0]=myRs.getString("usuario");
@@ -42,32 +40,56 @@ public class BDD{
         }
         catch(SQLException e){
             System.out.println("Error en m validarInicio c BDD\n"+e.getMessage());
+        } finally {
+            try {
+                if (myRs != null) {
+                    myRs.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+
         return a;
     }   
     
     private int columnCounter(String query){
-        BDD b = new BDD();
         int columnas=0;
-        ResultSet resul = b.connection(query);
-        try{ResultSetMetaData rsmd = resul.getMetaData();
-             columnas = rsmd.getColumnCount();
-        }catch(SQLException e ){System.out.println("Error en m columnCounter c BDD\n"+e.getMessage());}
-        return columnas;        
+        ResultSet resul = connection(query);
+        try {
+            ResultSetMetaData rsmd = resul.getMetaData();
+            columnas = rsmd.getColumnCount();
+        } catch (SQLException e) {
+            System.out.println("Error en m columnCounter c BDD\n" + e.getMessage());
+        } finally {
+            try {
+                if (resul != null) {
+                    resul.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return columnas;
     }
     public String[][]  obtenerConsultas(String query){
-        BDD b = new BDD();
-        String [] columnNames = b.columnNames(query);
-        ResultSet resul = b.connection(query);        
-        int columnas = b.columnCounter(query);
-        int renglones = b.noregistros(query);
+        String [] columnNames = columnNames(query);
+        ResultSet resul = connection(query);        
+        int columnas = columnCounter(query);
+        int renglones = noregistros(query);
         String [][] datos = new String [renglones][columnas]; 
             try{
                 int aux=0;
                 while(resul.next()){
                 
                     for(int i=0; i<columnas; i++){
-                        if(!b.needColumnNames(query)){
+                        if(!needColumnNames(query)){
                         datos[aux][i]=resul.getString(i+1);
                         }
                         else datos[aux][i]=resul.getString(columnNames[i]);
@@ -162,15 +184,22 @@ public class BDD{
     }
     
     public int noregistros(String query){
-        BDD b = new BDD();
         int renglones=0;
-        ResultSet resul = b.connection(query);
+        ResultSet resul = connection(query);
         try{
             resul.last();
             renglones = resul.getRow();
         }catch(SQLException e){
             System.out.println("Error en m noregistros c BDD \n"+e.getMessage());
         }
+        finally{
+            try {
+                if(resul!=null)resul.close();
+                if(con!=null)con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(BDD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
         return renglones;
     }
     private boolean needColumnNames(String query){
@@ -184,9 +213,8 @@ public class BDD{
         return f;
     }
     public int getId(String query){
-        BDD b = new BDD();
         int id =0; 
-        ResultSet rs = b.connection(query);
+        ResultSet rs = connection(query);
         try{
             while(rs.next()){
             id = Integer.parseInt(rs.getString(1)); }
@@ -204,9 +232,8 @@ public class BDD{
     }
     
     public String getOne(String query){
-        BDD b = new BDD();
         String resultado="";
-        ResultSet rs = b.connection(query);
+        ResultSet rs = connection(query);
         try{    
             while(rs.next()){
                 resultado=rs.getString(1);

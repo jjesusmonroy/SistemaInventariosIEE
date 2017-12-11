@@ -455,6 +455,9 @@
                     </EtchetBorder>
                   </Border>
                 </Property>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="municipio"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tipousoActionPerformed"/>
@@ -471,6 +474,9 @@
                       <Color PropertyName="highlight" blue="99" green="66" red="ff" type="rgb"/>
                     </EtchetBorder>
                   </Border>
+                </Property>
+                <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="localidad"/>
                 </Property>
               </Properties>
               <Events>
